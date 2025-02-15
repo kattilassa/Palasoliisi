@@ -36,6 +36,8 @@ public partial class Joystick : TextureRect
         if (pressed)
         {
             _isDragging = true;
+
+            // Liikkuminen kiinteällä etäisyydellä aina sen mukaan, mihin suuntaan painetaan
             _direction = (position - _startPosition).LimitLength(MaxDistance).Normalized();
             Position = _startPosition + _direction * MaxDistance;
         }

@@ -1,8 +1,10 @@
 using Godot;
 using System;
 
-public partial class Movement : Node2D
+namespace PalaSoliisi
 {
+	public partial class Bear : Node2D
+	{
     private Vector2 targetPosition; // Tavoite, johon halutaan liikkua
     private float speed = 200f; // Nopeus, jolla hahmo liikkuu kohti kohdetta
 
@@ -36,4 +38,6 @@ public partial class Movement : Node2D
             targetPosition = touch.Position;
         }
     }
+
+	}
 }

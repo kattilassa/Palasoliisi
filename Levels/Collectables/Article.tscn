@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://hsdidskav6hn"]
+
+[ext_resource type="Texture2D" uid="uid://c4egm6mtlxm61" path="res://art/Collectables/diamond.png" id="1_kti2w"]
+[ext_resource type="Script" path="res://Levels/Collectables/Article.cs" id="2_2nmxv"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_kti2w")
+script = ExtResource("2_2nmxv")
