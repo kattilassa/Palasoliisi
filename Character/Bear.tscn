@@ -8,7 +8,3 @@ position = Vector2(0.625001, -1.29167)
 scale = Vector2(0.025, 0.025)
 texture = ExtResource("1_2nthn")
 script = ExtResource("2_ppn53")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
-rotation_smoothing_enabled = true
