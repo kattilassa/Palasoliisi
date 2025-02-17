@@ -18,6 +18,7 @@ namespace PalaSoliisi
 		private PackedScene _articleScene = null;
 		private int _articlePieces = 0;
 		private Bear _bear = null;
+		private Article _article = null;
 
 		public int ArticlePieces
 		{
@@ -55,9 +56,8 @@ namespace PalaSoliisi
 
 			//Articles to zero
 			ArticlePieces= 0;
-
-			//Create articles
 			CreateArticles();
+
 		}
 		public override void _Process(double delta)
 		{
@@ -75,18 +75,27 @@ namespace PalaSoliisi
 			}
 			return _bearScene.Instantiate<Bear>();
 		}
-		private Article CreateArticles()
+		private void CreateArticles()
 		{
+			if (_article != null)
+			{
+				_article.QueueFree();
+				_article = null;
+			}
+
 			if (_articleScene == null)
 			{
 				_articleScene = ResourceLoader.Load<PackedScene>(_articleScenePath);
 				if (_articleScene == null)
 				{
 					GD.PrintErr("Articles can't be found");
-					return null;
+					return;
 				}
 			}
-			return _articleScene.Instantiate<Article>(); 
+
+			_article = _articleScene.Instantiate<Article>();
+			AddChild(_article);
+			_article.GlobalPosition = new Vector2(5,5);
 		}
 
 		public void CollectArticle()
