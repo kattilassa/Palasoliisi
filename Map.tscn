@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=4 uid="uid://bu0y12c7gfv7e"]
 
 [ext_resource type="TileSet" uid="uid://xu544k2gpeo7" path="res://art/leveltiles.tres" id="1_bev4m"]
-[ext_resource type="Script" path="res://Level.cs" id="1_w2bbf"]
+[ext_resource type="Script" path="res://Code/Level.cs" id="1_w2bbf"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_w2bbf")
