@@ -10,9 +10,5 @@ namespace PalaSoliisi
 		{
 			Level.Current.ArticlePieces += _articlePieces;
 		}
-		//public void CollectArticle()
-		//{
-		//	Level.Current._article.GlobalPosition = new Vector2(5,5);
-		//}
 	}
 }
