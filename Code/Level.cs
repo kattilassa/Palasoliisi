@@ -14,6 +14,8 @@ namespace PalaSoliisi
 		}
 		[Export] private string _bearScenePath = "res://Character/Bear.tscn";
 		[Export] private string _articleScenePath = "res://Levels/Collectables/Article.tscn";
+
+        private Grid _grid = null;
 		private PackedScene _bearScene = null;
 		private PackedScene _articleScene = null;
 		private int _articlePieces = 0;
@@ -24,6 +26,11 @@ namespace PalaSoliisi
 		{
 			get { return _articlePieces; }
 			set { _articlePieces = value; }
+		}
+
+		public Grid Grid
+		{
+			get { return _grid; }
 		}
 		public Bear Bear
 		{
@@ -39,6 +46,11 @@ namespace PalaSoliisi
 		}
 		public override void _Ready()
 		{
+			_grid = GetNode<Grid>("Grid");
+			if (_grid == null)
+			{
+				GD.PrintErr("Gridiä ei löytynyt Levelin lapsinodeista!");
+			}
 			ResetGame();
 		}
 		public void ResetGame()
@@ -95,7 +107,12 @@ namespace PalaSoliisi
 
 			_article = _articleScene.Instantiate<Article>();
 			AddChild(_article);
-			_article.GlobalPosition = new Vector2(5,5);
+
+			Cell freeCell = Grid.GetRandomFreeCell();
+			if (Grid.OccupyCell(_article, freeCell.GridPosition))
+			{
+				_article.SetPosition(freeCell.GridPosition);
+			}
 		}
 
 		public void CollectArticle()

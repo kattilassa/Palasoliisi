@@ -10,5 +10,6 @@ namespace PalaSoliisi
 		{
 			Level.Current.ArticlePieces += _articlePieces;
 		}
+
 	}
 }

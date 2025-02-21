@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://Code/Bear.cs" id="2_ppn53"]
 
 [node name="Sprite2D" type="Sprite2D"]
-position = Vector2(0.625001, -1.29167)
 scale = Vector2(0.025, 0.025)
 texture = ExtResource("1_2nthn")
 script = ExtResource("2_ppn53")
