@@ -97,9 +97,5 @@ namespace PalaSoliisi
 			AddChild(_article);
 			_article.GlobalPosition = new Vector2(5,5);
 		}
-
-		public void CollectArticle()
-		{
-		}
 	}
 }
