@@ -114,9 +114,5 @@ namespace PalaSoliisi
 				_article.SetPosition(freeCell.GridPosition);
 			}
 		}
-
-		public void CollectArticle()
-		{
-		}
 	}
 }

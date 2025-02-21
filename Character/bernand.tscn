@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwvbfdokg5du5"]
+
+[ext_resource type="Texture2D" uid="uid://bwnic2qdiuuoc" path="res://art/pngegg(1).png" id="1_sg1re"]
+[ext_resource type="Script" path="res://Character/Bernand.cs" id="1_w14n6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wi8o6"]
+radius = 24.0
+height = 98.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_mask = 2
+script = ExtResource("1_w14n6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.231481, 0.231481)
+texture = ExtResource("1_sg1re")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_wi8o6")

@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvhlf4h17hnyj"]
+
+[sub_resource type="Theme" id="Theme_qsj88"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 0
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Panel"]
+custom_minimum_size = Vector2(42, 31)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Palasoliisi"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Newgamebutton" type="Button" parent="MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_qsj88")
+text = "New Game"
+
+[node name="Options" type="Button" parent="MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="Exitgame" type="Button" parent="MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Exit Game"
