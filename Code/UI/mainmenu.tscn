@@ -1,63 +1,107 @@
-[gd_scene load_steps=2 format=3 uid="uid://dvhlf4h17hnyj"]
+[gd_scene load_steps=7 format=3 uid="uid://dvhlf4h17hnyj"]
 
-[sub_resource type="Theme" id="Theme_qsj88"]
+[ext_resource type="Script" path="res://Code/UI/MainMenuController.cs" id="1_wyj4e"]
+[ext_resource type="Texture2D" uid="uid://bguhdq03svjjk" path="res://art/UI/bg.png" id="2_q0372"]
+[ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="3_o21db"]
+[ext_resource type="Script" path="res://Code/UI/Gamename.cs" id="4_g8c62"]
+[ext_resource type="Texture2D" uid="uid://bwnic2qdiuuoc" path="res://art/pngegg(1).png" id="5_rd4yo"]
+[ext_resource type="Script" path="res://Code/UI/Info.cs" id="6_s8jbw"]
 
-[node name="Control" type="Control"]
+[node name="Menu" type="Control" node_paths=PackedStringArray("_newGameButton", "_optionsButton", "_quitButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_wyj4e")
+_newGameButton = NodePath("buttonmenu/NewGamebutton")
+_optionsButton = NodePath("buttonmenu/OptionsButton")
+_quitButton = NodePath("buttonmenu/QuitGameButton")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="background" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 0
 
-[node name="Panel" type="Panel" parent="MarginContainer"]
+[node name="BGImage" type="TextureRect" parent="background"]
+layout_mode = 2
+texture = ExtResource("2_q0372")
+expand_mode = 5
+stretch_mode = 6
+
+[node name="leftwindow" type="HBoxContainer" parent="background"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/Panel"]
-custom_minimum_size = Vector2(42, 31)
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 23.0
-grow_horizontal = 2
+[node name="bearposition" type="MarginContainer" parent="background/leftwindow"]
+layout_direction = 2
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 0
+
+[node name="bernand" type="TextureRect" parent="background/leftwindow/bearposition"]
+layout_mode = 2
+texture = ExtResource("5_rd4yo")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="background"]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="background/VBoxContainer"]
+layout_direction = 3
+layout_mode = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 200
+
+[node name="Info" type="Button" parent="background/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_o21db")
+text = "info"
+clip_text = true
+script = ExtResource("6_s8jbw")
+
+[node name="buttonmenu" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 150.0
+offset_top = 49.75
+offset_right = 306.0
+offset_bottom = 205.75
+
+[node name="GameName" type="Label" parent="buttonmenu"]
+custom_minimum_size = Vector2(42, 40)
+layout_mode = 2
+theme = ExtResource("3_o21db")
+theme_override_font_sizes/font_size = 30
 text = "Palasoliisi"
 horizontal_alignment = 1
+script = ExtResource("4_g8c62")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Newgamebutton" type="Button" parent="MarginContainer/Panel/VBoxContainer"]
+[node name="NewGamebutton" type="Button" parent="buttonmenu"]
 layout_mode = 2
-theme = SubResource("Theme_qsj88")
+theme = ExtResource("3_o21db")
 text = "New Game"
 
-[node name="Options" type="Button" parent="MarginContainer/Panel/VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="buttonmenu"]
 layout_mode = 2
+theme = ExtResource("3_o21db")
 text = "Options"
 
-[node name="Exitgame" type="Button" parent="MarginContainer/Panel/VBoxContainer"]
+[node name="QuitGameButton" type="Button" parent="buttonmenu"]
 layout_mode = 2
+theme = ExtResource("3_o21db")
 text = "Exit Game"
+
+[node name="Slogan" type="Label" parent="buttonmenu"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("3_o21db")
+text = "Break the fake!"
+horizontal_alignment = 1
+vertical_alignment = 2

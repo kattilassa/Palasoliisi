@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwhnsrfbstgmb"]
+
+[ext_resource type="Script" path="res://Code/UI/OptionsMenu.cs" id="1_ekxvf"]
+[ext_resource type="Texture2D" uid="uid://bguhdq03svjjk" path="res://art/UI/bg.png" id="2_gc4qa"]
+[ext_resource type="Texture2D" uid="uid://bwnic2qdiuuoc" path="res://art/pngegg(1).png" id="3_dhby7"]
+[ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="4_xo7g7"]
+[ext_resource type="Script" path="res://Code/UI/Gamename.cs" id="6_rdmbd"]
+
+[node name="Menu" type="Control" node_paths=PackedStringArray("_MenuButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ekxvf")
+_MenuButton = NodePath("buttonmenu/MenuButton")
+
+[node name="background" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BGImage" type="TextureRect" parent="background"]
+layout_mode = 2
+texture = ExtResource("2_gc4qa")
+expand_mode = 5
+stretch_mode = 6
+
+[node name="leftwindow" type="HBoxContainer" parent="background"]
+layout_mode = 2
+
+[node name="bearposition" type="MarginContainer" parent="background/leftwindow"]
+layout_direction = 2
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 0
+
+[node name="bernand" type="TextureRect" parent="background/leftwindow/bearposition"]
+layout_mode = 2
+texture = ExtResource("3_dhby7")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="buttonmenu" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 150.0
+offset_top = 49.75
+offset_right = 306.0
+offset_bottom = 205.75
+
+[node name="GameName" type="Label" parent="buttonmenu"]
+custom_minimum_size = Vector2(42, 40)
+layout_mode = 2
+theme = ExtResource("4_xo7g7")
+theme_override_font_sizes/font_size = 30
+text = "options"
+horizontal_alignment = 1
+script = ExtResource("6_rdmbd")
+
+[node name="NewGamebutton" type="Button" parent="buttonmenu"]
+layout_mode = 2
+theme = ExtResource("4_xo7g7")
+text = "language
+"
+
+[node name="sound" type="Button" parent="buttonmenu"]
+layout_mode = 2
+theme = ExtResource("4_xo7g7")
+text = "sound"
+
+[node name="MenuButton" type="Button" parent="buttonmenu"]
+layout_mode = 2
+theme = ExtResource("4_xo7g7")
+toggle_mode = true
+text = "Back to menu"
