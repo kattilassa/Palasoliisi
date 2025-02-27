@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Code/Level.cs" id="1_fqho6"]
 [ext_resource type="TileSet" uid="uid://xu544k2gpeo7" path="res://art/leveltiles.tres" id="2_cx6sm"]
-[ext_resource type="PackedScene" path="res://Levels/Grid.tscn" id="3_ikcwx"]
+[ext_resource type="PackedScene" uid="uid://biil78h7unvgi" path="res://Levels/Grid.tscn" id="3_ikcwx"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_fqho6")
@@ -18,6 +18,3 @@ tile_map_data = PackedByteArray("AAACAAYAAAAAAAAAAAAGAAMAAAAAAAAAAAAJAAcAAAAAAAA
 tile_set = ExtResource("2_cx6sm")
 
 [node name="Grid" parent="." instance=ExtResource("3_ikcwx")]
-_width = 28
-_height = 16
-_cellSize = Vector2i(16, 16)

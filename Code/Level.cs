@@ -8,6 +8,9 @@ namespace PalaSoliisi
 		// Static on luokan ominaisuus, ei siitä luotujen ominaisuuksien.
 		// Kaikki luokasta luodut olio jakavat saman staattisen muuttujan.
 		private static Level _current = null;
+		private bool _showInGameMenu = false;
+		private Control _inGameMenu;
+		[Export] private TextureButton _settingsButton = null;
 		public static Level Current
 		{
 			get { return _current; }
@@ -46,11 +49,16 @@ namespace PalaSoliisi
 		}
 		public override void _Ready()
 		{
+			_inGameMenu = GetNode<Control>("Camera2D/InGameMenu");
+			_inGameMenu.Hide();
 			_grid = GetNode<Grid>("Grid");
 			if (_grid == null)
 			{
 				GD.PrintErr("Gridiä ei löytynyt Levelin lapsinodeista!");
 			}
+
+				_settingsButton.Connect(Button.SignalName.Pressed,
+				new Callable(this, nameof(OnSettingsPressed)));
 			ResetGame();
 		}
 		public void ResetGame()
@@ -73,7 +81,27 @@ namespace PalaSoliisi
 		}
 		public override void _Process(double delta)
 		{
+
 		}
+
+		private void OnSettingsPressed()
+		{
+			if (_showInGameMenu)
+			{
+				_showInGameMenu = false;
+				_inGameMenu.Hide();
+			}
+			else
+			{
+				_showInGameMenu = true;
+				_inGameMenu.Show();
+			}
+			if (_showInGameMenu)
+			{
+				return;
+			}
+		}
+
 		private Bear CreateBear()
 		{
 			if (_bearScene == null)

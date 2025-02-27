@@ -1,12 +1,49 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvhlf4h17hnyj"]
+[gd_scene load_steps=10 format=3 uid="uid://dvhlf4h17hnyj"]
 
 [ext_resource type="Script" path="res://Code/UI/MainMenuController.cs" id="1_wyj4e"]
 [ext_resource type="Texture2D" uid="uid://bguhdq03svjjk" path="res://art/UI/bg.png" id="2_q0372"]
+[ext_resource type="PackedScene" uid="uid://di3083dy1c8dm" path="res://Code/UI/BernandUI.tscn" id="3_10f56"]
 [ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="3_o21db"]
-[ext_resource type="Script" path="res://Code/UI/Gamename.cs" id="4_g8c62"]
-[ext_resource type="Texture2D" uid="uid://bwnic2qdiuuoc" path="res://art/pngegg(1).png" id="5_rd4yo"]
 [ext_resource type="Script" path="res://Code/UI/Info.cs" id="6_s8jbw"]
 [ext_resource type="AudioStream" uid="uid://dnyyposml5dwp" path="res://music/Loyalty_Freak_Music_-_03_-_Chillin_with_a_drink_at_the_club(chosic.com).mp3" id="7_by3o2"]
+
+[sub_resource type="Animation" id="Animation_sut44"]
+resource_name = "GameNameAnimation"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.03333, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 40), Vector2(0, 30), Vector2(0, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_rt2jq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 50)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dudcx"]
+_data = {
+"GameNameAnimation": SubResource("Animation_sut44"),
+"RESET": SubResource("Animation_rt2jq")
+}
 
 [node name="Menu" type="Control" node_paths=PackedStringArray("_newGameButton", "_optionsButton", "_quitButton")]
 layout_mode = 3
@@ -16,11 +53,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wyj4e")
-_newGameButton = NodePath("buttonmenu/NewGamebutton")
-_optionsButton = NodePath("buttonmenu/OptionsButton")
-_quitButton = NodePath("buttonmenu/QuitGameButton")
+_newGameButton = NodePath("ButtonMenu/NewGamebutton")
+_optionsButton = NodePath("ButtonMenu/OptionsButton")
+_quitButton = NodePath("ButtonMenu/QuitGameButton")
 
-[node name="background" type="MarginContainer" parent="."]
+[node name="BackGround" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,78 +65,43 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BGImage" type="TextureRect" parent="background"]
+[node name="BGImage" type="TextureRect" parent="BackGround"]
 layout_mode = 2
 texture = ExtResource("2_q0372")
 expand_mode = 5
 stretch_mode = 6
 
-[node name="leftwindow" type="HBoxContainer" parent="background"]
-layout_mode = 2
-
-[node name="bearposition" type="MarginContainer" parent="background/leftwindow"]
-layout_direction = 2
-layout_mode = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 0
-
-[node name="bernand" type="TextureRect" parent="background/leftwindow/bearposition"]
-layout_mode = 2
-texture = ExtResource("5_rd4yo")
-expand_mode = 3
-stretch_mode = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="background"]
-layout_mode = 2
+[node name="ButtonMenu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -28.0
+offset_right = 62.5
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="background/VBoxContainer"]
-layout_direction = 3
-layout_mode = 2
-theme_override_constants/margin_left = 400
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 200
-
-[node name="Info" type="Button" parent="background/VBoxContainer/MarginContainer"]
-layout_mode = 2
-theme = ExtResource("3_o21db")
-text = "info"
-clip_text = true
-script = ExtResource("6_s8jbw")
-
-[node name="buttonmenu" type="VBoxContainer" parent="."]
-layout_mode = 2
-offset_left = 150.0
-offset_top = 49.75
-offset_right = 306.0
-offset_bottom = 205.75
-
-[node name="GameName" type="Label" parent="buttonmenu"]
-custom_minimum_size = Vector2(42, 40)
-layout_mode = 2
-theme = ExtResource("3_o21db")
-theme_override_font_sizes/font_size = 30
-text = "Palasoliisi"
-horizontal_alignment = 1
-script = ExtResource("4_g8c62")
-
-[node name="NewGamebutton" type="Button" parent="buttonmenu"]
+[node name="NewGamebutton" type="Button" parent="ButtonMenu"]
 layout_mode = 2
 theme = ExtResource("3_o21db")
 text = "New Game"
 
-[node name="OptionsButton" type="Button" parent="buttonmenu"]
+[node name="OptionsButton" type="Button" parent="ButtonMenu"]
 layout_mode = 2
 theme = ExtResource("3_o21db")
 text = "Options"
 
-[node name="QuitGameButton" type="Button" parent="buttonmenu"]
+[node name="QuitGameButton" type="Button" parent="ButtonMenu"]
 layout_mode = 2
 theme = ExtResource("3_o21db")
 text = "Exit Game"
 
-[node name="Slogan" type="Label" parent="buttonmenu"]
+[node name="Slogan" type="Label" parent="ButtonMenu"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme = ExtResource("3_o21db")
@@ -111,3 +113,40 @@ vertical_alignment = 2
 stream = ExtResource("7_by3o2")
 autoplay = true
 bus = &"Music"
+
+[node name="GameName" type="Label" parent="."]
+custom_minimum_size = Vector2(42, 40)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 50.0
+offset_bottom = -156.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_o21db")
+theme_override_font_sizes/font_size = 30
+text = "Palasoliisi"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Info" type="Button" parent="."]
+layout_mode = 2
+offset_left = 400.0
+offset_top = 14.75
+offset_right = 446.0
+offset_bottom = 39.75
+theme = ExtResource("3_o21db")
+text = "info"
+clip_text = true
+script = ExtResource("6_s8jbw")
+
+[node name="Bernand" parent="." instance=ExtResource("3_10f56")]
+position = Vector2(30, 109.75)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../GameName")
+libraries = {
+"": SubResource("AnimationLibrary_dudcx")
+}
+autoplay = "GameNameAnimation"

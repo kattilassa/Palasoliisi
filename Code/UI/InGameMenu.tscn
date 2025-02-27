@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw1b55q33qgnr"]
+
+[ext_resource type="PackedScene" uid="uid://b60yxlkl1xjot" path="res://Code/UI/Settings/VolumeSettings/VolumeSettings.tscn" id="1_o5jel"]
+
+[node name="InGameMenu" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VolumeSettings" parent="." instance=ExtResource("1_o5jel")]
+layout_mode = 2
