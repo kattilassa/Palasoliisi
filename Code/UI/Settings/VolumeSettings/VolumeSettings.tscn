@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://b60yxlkl1xjot"]
+
+[ext_resource type="PackedScene" uid="uid://xeypftrmblhk" path="res://Code/UI/Settings/VolumeSettings/VolumeSetting.tscn" id="1_fij5k"]
+[ext_resource type="AudioStream" uid="uid://seql4aoi0pqm" path="res://music/1183_writing-on-pencil-01.mp3" id="2_okqwm"]
+
+[node name="VolumeSettings" type="VBoxContainer"]
+
+[node name="VolumeSetting" parent="." instance=ExtResource("1_fij5k")]
+layout_mode = 2
+BusName = "All"
+
+[node name="VolumeSetting2" parent="." instance=ExtResource("1_fij5k")]
+layout_mode = 2
+BusName = "Music"
+Busindex = 1
+
+[node name="VolumeSetting3" parent="." instance=ExtResource("1_fij5k")]
+layout_mode = 2
+BusName = "Ambience"
+Busindex = 2
+
+[node name="VolumeSetting4" parent="." instance=ExtResource("1_fij5k")]
+layout_mode = 2
+BusName = "Sfx"
+Busindex = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="VolumeSetting4"]
+stream = ExtResource("2_okqwm")
+bus = &"Sfx"

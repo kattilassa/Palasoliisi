@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwhnsrfbstgmb"]
+[gd_scene load_steps=8 format=3 uid="uid://bwhnsrfbstgmb"]
 
 [ext_resource type="Script" path="res://Code/UI/OptionsMenu.cs" id="1_ekxvf"]
 [ext_resource type="Texture2D" uid="uid://bguhdq03svjjk" path="res://art/UI/bg.png" id="2_gc4qa"]
 [ext_resource type="Texture2D" uid="uid://bwnic2qdiuuoc" path="res://art/pngegg(1).png" id="3_dhby7"]
+[ext_resource type="PackedScene" uid="uid://b60yxlkl1xjot" path="res://Code/UI/Settings/VolumeSettings/VolumeSettings.tscn" id="4_sg1lq"]
 [ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="4_xo7g7"]
 [ext_resource type="Script" path="res://Code/UI/Gamename.cs" id="6_rdmbd"]
+[ext_resource type="AudioStream" uid="uid://dnyyposml5dwp" path="res://music/Loyalty_Freak_Music_-_03_-_Chillin_with_a_drink_at_the_club(chosic.com).mp3" id="7_6mkjy"]
 
 [node name="Menu" type="Control" node_paths=PackedStringArray("_MenuButton")]
 layout_mode = 3
@@ -14,7 +16,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ekxvf")
-_MenuButton = NodePath("buttonmenu/MenuButton")
+_MenuButton = NodePath("MenuButton")
 
 [node name="background" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -46,35 +48,54 @@ texture = ExtResource("3_dhby7")
 expand_mode = 3
 stretch_mode = 4
 
-[node name="buttonmenu" type="VBoxContainer" parent="."]
-layout_mode = 2
-offset_left = 150.0
-offset_top = 49.75
-offset_right = 306.0
-offset_bottom = 205.75
-
-[node name="GameName" type="Label" parent="buttonmenu"]
-custom_minimum_size = Vector2(42, 40)
-layout_mode = 2
+[node name="Options" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("4_xo7g7")
 theme_override_font_sizes/font_size = 30
 text = "options"
 horizontal_alignment = 1
 script = ExtResource("6_rdmbd")
 
-[node name="NewGamebutton" type="Button" parent="buttonmenu"]
-layout_mode = 2
-theme = ExtResource("4_xo7g7")
-text = "language
-"
+[node name="ButtonMenu" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
 
-[node name="sound" type="Button" parent="buttonmenu"]
+[node name="VolumeSettings" parent="ButtonMenu" instance=ExtResource("4_sg1lq")]
 layout_mode = 2
-theme = ExtResource("4_xo7g7")
-text = "sound"
+alignment = 1
 
-[node name="MenuButton" type="Button" parent="buttonmenu"]
-layout_mode = 2
+[node name="TEMP-DELETE-ME" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_6mkjy")
+autoplay = true
+bus = &"Music"
+
+[node name="MenuButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -57.0
+offset_top = -56.0
+offset_right = 57.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
 theme = ExtResource("4_xo7g7")
 toggle_mode = true
 text = "Back to menu"
+icon_alignment = 1

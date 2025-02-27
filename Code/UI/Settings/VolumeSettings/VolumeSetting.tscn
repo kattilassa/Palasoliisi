@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://xeypftrmblhk"]
+
+[ext_resource type="Script" path="res://Code/UI/Settings/VolumeSettings/VolumeSetting.cs" id="1_gec8m"]
+[ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="2_7ia43"]
+
+[node name="VolumeSetting" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -9.0
+offset_right = -246.0
+offset_bottom = -239.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+script = ExtResource("1_gec8m")
+BusName = "Volume"
+
+[node name="BusNameLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_7ia43")
+text = "volume"
+horizontal_alignment = 2
+
+[node name="VolumeHSlider" type="HSlider" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme = ExtResource("2_7ia43")
+value = 100.0
+
+[node name="VolumePercentageLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+theme = ExtResource("2_7ia43")
+horizontal_alignment = 2

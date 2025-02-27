@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvhlf4h17hnyj"]
+[gd_scene load_steps=8 format=3 uid="uid://dvhlf4h17hnyj"]
 
 [ext_resource type="Script" path="res://Code/UI/MainMenuController.cs" id="1_wyj4e"]
 [ext_resource type="Texture2D" uid="uid://bguhdq03svjjk" path="res://art/UI/bg.png" id="2_q0372"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Code/UI/Gamename.cs" id="4_g8c62"]
 [ext_resource type="Texture2D" uid="uid://bwnic2qdiuuoc" path="res://art/pngegg(1).png" id="5_rd4yo"]
 [ext_resource type="Script" path="res://Code/UI/Info.cs" id="6_s8jbw"]
+[ext_resource type="AudioStream" uid="uid://dnyyposml5dwp" path="res://music/Loyalty_Freak_Music_-_03_-_Chillin_with_a_drink_at_the_club(chosic.com).mp3" id="7_by3o2"]
 
 [node name="Menu" type="Control" node_paths=PackedStringArray("_newGameButton", "_optionsButton", "_quitButton")]
 layout_mode = 3
@@ -105,3 +106,8 @@ theme = ExtResource("3_o21db")
 text = "Break the fake!"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="TEMP-DELETE-ME" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_by3o2")
+autoplay = true
+bus = &"Music"
