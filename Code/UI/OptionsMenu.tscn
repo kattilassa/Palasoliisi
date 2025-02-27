@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Code/UI/Gamename.cs" id="6_rdmbd"]
 [ext_resource type="AudioStream" uid="uid://dnyyposml5dwp" path="res://music/Loyalty_Freak_Music_-_03_-_Chillin_with_a_drink_at_the_club(chosic.com).mp3" id="7_6mkjy"]
 
-[node name="Menu" type="Control" node_paths=PackedStringArray("_MenuButton")]
+[node name="Menu2" type="Control" node_paths=PackedStringArray("_MenuButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
