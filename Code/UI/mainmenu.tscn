@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dvhlf4h17hnyj"]
+[gd_scene load_steps=13 format=3 uid="uid://dvhlf4h17hnyj"]
 
 [ext_resource type="Script" path="res://Code/UI/MainMenuController.cs" id="1_wyj4e"]
 [ext_resource type="Texture2D" uid="uid://bguhdq03svjjk" path="res://art/UI/bg.png" id="2_q0372"]
@@ -45,6 +45,42 @@ _data = {
 "RESET": SubResource("Animation_rt2jq")
 }
 
+[sub_resource type="Animation" id="Animation_mlt37"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(165, 35)]
+}
+
+[sub_resource type="Animation" id="Animation_se6ql"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(165, 200), Vector2(165, 35)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qico6"]
+_data = {
+"RESET": SubResource("Animation_mlt37"),
+"fade_in": SubResource("Animation_se6ql")
+}
+
 [node name="Menu" type="Control" node_paths=PackedStringArray("_newGameButton", "_optionsButton", "_quitButton")]
 layout_mode = 3
 anchors_preset = 15
@@ -70,44 +106,6 @@ layout_mode = 2
 texture = ExtResource("2_q0372")
 expand_mode = 5
 stretch_mode = 6
-
-[node name="ButtonMenu" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -62.5
-offset_top = -28.0
-offset_right = 62.5
-offset_bottom = 89.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="NewGamebutton" type="Button" parent="ButtonMenu"]
-layout_mode = 2
-theme = ExtResource("3_o21db")
-text = "New Game"
-
-[node name="OptionsButton" type="Button" parent="ButtonMenu"]
-layout_mode = 2
-theme = ExtResource("3_o21db")
-text = "Options"
-
-[node name="QuitGameButton" type="Button" parent="ButtonMenu"]
-layout_mode = 2
-theme = ExtResource("3_o21db")
-text = "Exit Game"
-
-[node name="Slogan" type="Label" parent="ButtonMenu"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-theme = ExtResource("3_o21db")
-text = "Break the fake!"
-horizontal_alignment = 1
-vertical_alignment = 2
 
 [node name="TEMP-DELETE-ME" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_by3o2")
@@ -150,3 +148,44 @@ libraries = {
 "": SubResource("AnimationLibrary_dudcx")
 }
 autoplay = "GameNameAnimation"
+
+[node name="ButtonMenu" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 165.0
+offset_top = 35.0
+offset_right = 290.0
+offset_bottom = 291.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="NewGamebutton" type="Button" parent="ButtonMenu"]
+custom_minimum_size = Vector2(-1.23, 0)
+layout_mode = 2
+theme = ExtResource("3_o21db")
+text = "New Game"
+
+[node name="OptionsButton" type="Button" parent="ButtonMenu"]
+layout_mode = 2
+theme = ExtResource("3_o21db")
+text = "Options"
+
+[node name="QuitGameButton" type="Button" parent="ButtonMenu"]
+layout_mode = 2
+theme = ExtResource("3_o21db")
+text = "Exit Game"
+
+[node name="Slogan" type="Label" parent="ButtonMenu"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("3_o21db")
+text = "Break the fake!"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ButtonMenu"]
+libraries = {
+"": SubResource("AnimationLibrary_qico6")
+}
+autoplay = "fade_in"

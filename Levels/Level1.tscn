@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://bu0y12c7gfv7e"]
+[gd_scene load_steps=8 format=4 uid="uid://bu0y12c7gfv7e"]
 
 [ext_resource type="Script" path="res://Code/Level.cs" id="1_uqqbp"]
 [ext_resource type="TileSet" uid="uid://xu544k2gpeo7" path="res://art/leveltiles.tres" id="2_myw2y"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bwvbfdokg5du5" path="res://Character/bernand.tscn" id="3_iiw8e"]
 [ext_resource type="PackedScene" uid="uid://biil78h7unvgi" path="res://Levels/Grid.tscn" id="4_q5lk7"]
 [ext_resource type="Texture2D" uid="uid://divdppkpedkra" path="res://art/UI/setting.png" id="4_saxcp"]
+[ext_resource type="Texture2D" uid="uid://bxec5xqh2iklr" path="res://art/UI/setting_pressed.png" id="5_7ri4h"]
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("_settingsButton")]
 script = ExtResource("1_uqqbp")
@@ -34,12 +35,9 @@ offset_bottom = -82.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("4_saxcp")
-texture_pressed = ExtResource("4_saxcp")
-texture_hover = ExtResource("4_saxcp")
-texture_disabled = ExtResource("4_saxcp")
-texture_focused = ExtResource("4_saxcp")
+texture_pressed = ExtResource("5_7ri4h")
 ignore_texture_size = true
-stretch_mode = 0
+stretch_mode = 6
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_iiw8e")]
 position = Vector2(-148, -79)
