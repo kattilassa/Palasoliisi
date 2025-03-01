@@ -39,6 +39,10 @@ namespace PalaSoliisi
 		{
 			get { return _bear; }
 		}
+		public Article Article
+		{
+			get { return _article; }
+		}
 
 		// Rakentaja. Käytetään alustamaan olio.
 		public Level()
@@ -115,7 +119,7 @@ namespace PalaSoliisi
 			}
 			return _bearScene.Instantiate<Bear>();
 		}
-		private void CreateArticles()
+		public void CreateArticles()
 		{
 			if (_article != null)
 			{

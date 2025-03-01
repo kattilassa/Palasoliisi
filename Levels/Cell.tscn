@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5y7ldd466tn2"]
+[gd_scene load_steps=3 format=3 uid="uid://bhsdj03xyjlbv"]
 
 [ext_resource type="Texture2D" uid="uid://p5x0i23jikrx" path="res://art/Grid.png" id="1_kudy0"]
 [ext_resource type="Script" path="res://Code/Cell.cs" id="2_dl24n"]
 
 [node name="Sprite2D" type="Sprite2D"]
+scale = Vector2(2, 2)
 texture = ExtResource("1_kudy0")
 hframes = 4
 vframes = 4

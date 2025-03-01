@@ -23,7 +23,7 @@ namespace PalaSoliisi
 
 			return false;
 		}
-		public abstract void Collect(Bear bear);
+		public abstract void Collect();
 	}
 
 }
