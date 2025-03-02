@@ -1,11 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwhnsrfbstgmb"]
+[gd_scene load_steps=13 format=3 uid="uid://bwhnsrfbstgmb"]
 
 [ext_resource type="Script" path="res://Code/UI/OptionsMenu.cs" id="1_ekxvf"]
 [ext_resource type="Texture2D" uid="uid://bguhdq03svjjk" path="res://art/UI/bg.png" id="2_gc4qa"]
 [ext_resource type="PackedScene" uid="uid://di3083dy1c8dm" path="res://Code/UI/BernandUI.tscn" id="3_le24b"]
+[ext_resource type="AudioStream" uid="uid://dwkwx2v0ks8oy" path="res://music/menu-drift-away-dusk-fss-no-copyright-music-234393.mp3" id="4_chgfv"]
 [ext_resource type="PackedScene" uid="uid://b60yxlkl1xjot" path="res://Code/UI/Settings/VolumeSettings/VolumeSettings.tscn" id="4_sg1lq"]
 [ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="4_xo7g7"]
-[ext_resource type="AudioStream" uid="uid://dnyyposml5dwp" path="res://music/Loyalty_Freak_Music_-_03_-_Chillin_with_a_drink_at_the_club(chosic.com).mp3" id="7_6mkjy"]
 
 [sub_resource type="Animation" id="Animation_sut44"]
 resource_name = "GameNameAnimation"
@@ -43,6 +43,41 @@ tracks/0/keys = {
 _data = {
 "GameNameAnimation": SubResource("Animation_sut44"),
 "RESET": SubResource("Animation_rt2jq")
+}
+
+[sub_resource type="Animation" id="Animation_lwre7"]
+resource_name = "bernand_move"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(10, 115), Vector2(5, 115)]
+}
+
+[sub_resource type="Animation" id="Animation_6hr1k"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 110)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rosi8"]
+_data = {
+"RESET": SubResource("Animation_6hr1k"),
+"bernand_move": SubResource("Animation_lwre7")
 }
 
 [node name="OptionsMenu" type="Control" node_paths=PackedStringArray("_MenuButton")]
@@ -83,7 +118,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="TEMP-DELETE-ME" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_6mkjy")
+stream = ExtResource("4_chgfv")
 autoplay = true
 bus = &"Music"
 
@@ -111,8 +146,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 50.0
-offset_bottom = -156.0
+offset_top = 40.0
+offset_bottom = -166.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_xo7g7")
@@ -128,4 +163,10 @@ libraries = {
 autoplay = "GameNameAnimation"
 
 [node name="Bernand" parent="." instance=ExtResource("3_le24b")]
-position = Vector2(30, 109.75)
+position = Vector2(10, 110)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bernand"]
+libraries = {
+"": SubResource("AnimationLibrary_rosi8")
+}
+autoplay = "bernand_move"

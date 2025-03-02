@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b60yxlkl1xjot"]
 
 [ext_resource type="PackedScene" uid="uid://xeypftrmblhk" path="res://Code/UI/Settings/VolumeSettings/VolumeSetting.tscn" id="1_fij5k"]
-[ext_resource type="AudioStream" uid="uid://seql4aoi0pqm" path="res://music/1183_writing-on-pencil-01.mp3" id="2_okqwm"]
+[ext_resource type="AudioStream" uid="uid://dtdqqdvnuj05q" path="res://music/paper.mp3" id="2_ci830"]
 
 [node name="VolumeSettings" type="VBoxContainer"]
 
@@ -25,5 +25,5 @@ BusName = "Sfx"
 Busindex = 3
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="VolumeSetting4"]
-stream = ExtResource("2_okqwm")
+stream = ExtResource("2_ci830")
 bus = &"Sfx"

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://di3083dy1c8dm"]
 
-[ext_resource type="Texture2D" uid="uid://bwnic2qdiuuoc" path="res://art/pngegg(1).png" id="1_ea5yr"]
+[ext_resource type="Texture2D" uid="uid://b2ibgw7w5g1oq" path="res://art/Bernard.png" id="1_wujep"]
 [ext_resource type="Texture2D" uid="uid://bhygkfmhrx011" path="res://art/UI/Suurennuslasi.png" id="2_nbo8v"]
 
 [sub_resource type="Animation" id="Animation_16su1"]
@@ -44,14 +44,14 @@ _data = {
 [node name="Node2D" type="Node2D"]
 
 [node name="Bernand" type="Sprite2D" parent="."]
-position = Vector2(40, 71)
-scale = Vector2(0.303704, 0.303704)
-texture = ExtResource("1_ea5yr")
+position = Vector2(64.0629, 120.063)
+scale = Vector2(0.687008, 0.687008)
+texture = ExtResource("1_wujep")
 
 [node name="MagnifyingAnimation" type="Sprite2D" parent="Bernand"]
-position = Vector2(75, 85)
+position = Vector2(7.18631, 56.6763)
 rotation = 0.527089
-scale = Vector2(3.29268, 3.29268)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_nbo8v")
 centered = false
 offset = Vector2(-25, -65)

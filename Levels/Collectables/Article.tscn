@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://hsdidskav6hn"]
 
-[ext_resource type="Texture2D" uid="uid://cqjhk1k15q7on" path="res://art/UI/collectable.png" id="1_ljm6l"]
+[ext_resource type="Texture2D" uid="uid://8lawcytg4jte" path="res://art/UI/article.png" id="1_twdxp"]
 [ext_resource type="Script" path="res://Code/Article.cs" id="2_2nmxv"]
 
 [node name="Sprite2D" type="Sprite2D"]
-position = Vector2(-24.75, -24.75)
-scale = Vector2(0.417647, 0.417647)
-texture = ExtResource("1_ljm6l")
+position = Vector2(-18.4375, -11.4375)
+scale = Vector2(0.0995, 0.0995)
+texture = ExtResource("1_twdxp")
 script = ExtResource("2_2nmxv")
