@@ -1,9 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://cyh8af6t3vuso"]
 
-[ext_resource type="Texture2D" uid="uid://bwnic2qdiuuoc" path="res://art/pngegg(1).png" id="1_2nthn"]
+[ext_resource type="Texture2D" uid="uid://b2ibgw7w5g1oq" path="res://art/Bernard.png" id="1_glomg"]
 [ext_resource type="Script" path="res://Code/Bear.cs" id="2_ppn53"]
 
 [node name="Sprite2D" type="Sprite2D"]
-scale = Vector2(0.025, 0.025)
-texture = ExtResource("1_2nthn")
+position = Vector2(36.4, 36.4)
+scale = Vector2(0.309375, 0.309375)
+texture = ExtResource("1_glomg")
 script = ExtResource("2_ppn53")

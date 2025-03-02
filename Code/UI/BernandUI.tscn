@@ -49,7 +49,7 @@ scale = Vector2(0.687008, 0.687008)
 texture = ExtResource("1_wujep")
 
 [node name="MagnifyingAnimation" type="Sprite2D" parent="Bernand"]
-position = Vector2(7.18631, 56.6763)
+position = Vector2(8.6419, 56.6763)
 rotation = 0.527089
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_nbo8v")
