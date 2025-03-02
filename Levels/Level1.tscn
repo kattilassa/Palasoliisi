@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://dgmiirivfd1qw"]
+[gd_scene load_steps=8 format=4 uid="uid://dgmiirivfd1qw"]
 
 [ext_resource type="Script" path="res://Code/Level.cs" id="1_uqqbp"]
 [ext_resource type="TileSet" uid="uid://xu544k2gpeo7" path="res://art/leveltiles.tres" id="2_myw2y"]
@@ -6,10 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://bwvbfdokg5du5" path="res://Character/bernand.tscn" id="3_iiw8e"]
 [ext_resource type="PackedScene" uid="uid://dtetqwlcfp0hq" path="res://Levels/Grid.tscn" id="4_q5lk7"]
 [ext_resource type="Texture2D" uid="uid://divdppkpedkra" path="res://art/UI/setting.png" id="4_saxcp"]
+[ext_resource type="PackedScene" uid="uid://3sn1fe2ewdhc" path="res://Code/UI/ScoreUI.tscn" id="7_vypdg"]
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("_settingsButton")]
+[node name="Level" type="Node2D" node_paths=PackedStringArray("_settingsButton", "_scoreUIControl")]
 script = ExtResource("1_uqqbp")
 _settingsButton = NodePath("Camera2D/Settings")
+_scoreUIControl = NodePath("UI/ScoreUI")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -45,3 +47,19 @@ stretch_mode = 0
 position = Vector2(-148, -79)
 
 [node name="Grid" parent="." instance=ExtResource("4_q5lk7")]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -228.0
+offset_top = -128.0
+offset_right = 228.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreUI" parent="UI" instance=ExtResource("7_vypdg")]
+layout_mode = 1
+offset_bottom = 0.0

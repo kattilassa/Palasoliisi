@@ -1,4 +1,5 @@
 using Godot;
+using PalaSoliisi.UI;
 using System;
 
 namespace PalaSoliisi
@@ -17,6 +18,7 @@ namespace PalaSoliisi
 		}
 		[Export] private string _bearScenePath = "res://Character/Bear.tscn";
 		[Export] private string _articleScenePath = "res://Levels/Collectables/Article.tscn";
+		[Export] private ScoreUIControl _scoreUIControl = null;
 
         private Grid _grid = null;
 		private PackedScene _bearScene = null;
@@ -28,7 +30,22 @@ namespace PalaSoliisi
 		public int ArticlePieces
 		{
 			get { return _articlePieces; }
-			set { _articlePieces = value; }
+			set
+			{
+				if (value < 0)
+				{
+					_articlePieces = 0;
+				}
+				else
+				{
+					_articlePieces = value;
+				}
+
+				if (_scoreUIControl != null)
+				{
+					_scoreUIControl.SetScore(_articlePieces);
+				}
+			}
 		}
 
 		public Grid Grid

@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://3sn1fe2ewdhc"]
+
+[ext_resource type="Script" path="res://Code/UI/ScoreUIControl.cs" id="1_anxd8"]
+
+[node name="ScoreUI" type="Control" node_paths=PackedStringArray("_scoreLabel")]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 25.0
+grow_horizontal = 2
+script = ExtResource("1_anxd8")
+_scoreLabel = NodePath("ArticlePieces")
+
+[node name="ArticlePieces" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.0
+offset_right = 63.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Pieces found: 00"
