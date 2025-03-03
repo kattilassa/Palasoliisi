@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Code/Cell.cs" id="2_dl24n"]
 
 [node name="Sprite2D" type="Sprite2D"]
+scale = Vector2(2, 2)
 texture = ExtResource("1_kudy0")
 hframes = 4
 vframes = 4

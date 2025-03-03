@@ -5,10 +5,11 @@ namespace PalaSoliisi
 {
 	public partial class Article : Collectable
 	{
-		[Export] private int _articlePieces = 1;
-        public override void Collect(Bear bear)
+		[Export] private int _score = 1;
+        public override void Collect()
 		{
-			Level.Current.ArticlePieces += _articlePieces;
+			Level.Current.ArticlePieces += _score;
+			Level.Current.CreateArticles();
 		}
 	}
 }

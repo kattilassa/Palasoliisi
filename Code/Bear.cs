@@ -26,7 +26,7 @@ namespace PalaSoliisi
 
         public override void _Process(double delta)
         {
-                Move(delta);
+            Move(delta);
         }
 
         // Input-eventit (hiiren klikkaus)
@@ -46,6 +46,11 @@ namespace PalaSoliisi
                     {
                         _targetPosition = cellCenter;
                     }
+                }
+                if (Level.Current.Grid.HasCollectable(gridCoord))
+                {
+                    Level.Current.Article.Collect();
+                    GD.Print("Artikkeli kerätty");
                 }
                 else
                 {
