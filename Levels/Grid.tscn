@@ -3,7 +3,8 @@
 [ext_resource type="Script" path="res://Code/Grid.cs" id="1_n2v6i"]
 
 [node name="Node2D" type="Node2D"]
+visible = false
 script = ExtResource("1_n2v6i")
 _width = 14
-_height = 8
+_height = 5
 _cellSize = Vector2i(32, 32)

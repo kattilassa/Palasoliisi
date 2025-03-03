@@ -6,7 +6,7 @@ namespace PalaSoliisi
 	public partial class Bear : Node2D
 	{
         [Export] private float _speed = 50; // Nopeus, jolla hahmo liikkuu kohti kohdetta
-        [Export] private Vector2I _startPosition = new Vector2I(5 ,5);
+        [Export] private Vector2I _startPosition = new Vector2I(6 ,3);
 
         private Vector2 _targetPosition; // Tavoite, johon halutaan liikkua
 

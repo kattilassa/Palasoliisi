@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://bu0y12c7gfv7e"]
+[gd_scene load_steps=9 format=4 uid="uid://bu0y12c7gfv7e"]
 
 [ext_resource type="Script" path="res://Code/Level.cs" id="1_uqqbp"]
 [ext_resource type="TileSet" uid="uid://xu544k2gpeo7" path="res://art/leveltiles.tres" id="2_myw2y"]
 [ext_resource type="PackedScene" uid="uid://bw1b55q33qgnr" path="res://Code/UI/InGameMenu.tscn" id="3_1pr6y"]
+[ext_resource type="Texture2D" uid="uid://m2gha3ecoxug" path="res://art/House base.png" id="3_ithxu"]
 [ext_resource type="PackedScene" uid="uid://biil78h7unvgi" path="res://Levels/Grid.tscn" id="4_q5lk7"]
 [ext_resource type="Texture2D" uid="uid://divdppkpedkra" path="res://art/UI/setting.png" id="4_saxcp"]
 [ext_resource type="Texture2D" uid="uid://bxec5xqh2iklr" path="res://art/UI/setting_pressed.png" id="5_7ri4h"]
@@ -10,7 +11,7 @@
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("_settingsButton", "_scoreUIControl")]
 script = ExtResource("1_uqqbp")
-_settingsButton = NodePath("Camera2D/Settings")
+_settingsButton = NodePath("Settings")
 _scoreUIControl = NodePath("UI/ScoreUI")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -23,24 +24,21 @@ tile_set = ExtResource("2_myw2y")
 tile_map_data = PackedByteArray("AAACAAYAAAAAAAAAAAAGAAMAAAAAAAAAAAAJAAcAAAAAAAAAAAAAAAEAAAAAAAAAAAD9/wUAAAAAAAAAAAADAAMAAAAAAAEAAAAMAAMAAAAAAAEAAAAKAAAAAAAAAAEAAAD7/wEAAAAAAAEAAAAFAAcAAAAAAAEAAAD1/wMAAAABAAAAAAD2//r/AAABAAAAAAD0//z/AAABAAAAAAACAPr/AAABAAAAAAD9//r/AAABAAAAAAAMAPz/AAABAAAAAAAIAPr/AAABAAAAAAA=")
 tile_set = ExtResource("2_myw2y")
 
-[node name="InGameMenu" parent="Camera2D" instance=ExtResource("3_1pr6y")]
-
-[node name="Settings" type="TextureButton" parent="Camera2D"]
+[node name="TextureRect" type="TextureRect" parent="Camera2D"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 175.0
-offset_top = -122.0
-offset_right = 215.0
-offset_bottom = -82.0
+offset_left = -274.0
+offset_top = -150.0
+offset_right = 258.0
+offset_bottom = 149.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("4_saxcp")
-texture_pressed = ExtResource("5_7ri4h")
-ignore_texture_size = true
-stretch_mode = 6
+texture = ExtResource("3_ithxu")
+expand_mode = 1
 
 [node name="Grid" parent="." instance=ExtResource("4_q5lk7")]
+_height = 8
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -56,3 +54,26 @@ grow_vertical = 2
 
 [node name="ScoreUI" parent="UI" instance=ExtResource("7_dt16r")]
 layout_mode = 1
+offset_top = 2.0
+offset_bottom = 27.0
+
+[node name="Settings" type="TextureButton" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 170.0
+offset_top = -120.0
+offset_right = 215.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("4_saxcp")
+texture_pressed = ExtResource("5_7ri4h")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="InGameMenu" parent="." instance=ExtResource("3_1pr6y")]
+offset_left = -140.0
+offset_top = -40.0
+offset_right = 140.0
+offset_bottom = 40.0

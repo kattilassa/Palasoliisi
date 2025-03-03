@@ -1,0 +1,175 @@
+[gd_scene load_steps=5 format=3 uid="uid://k58ad82k4mch"]
+
+[ext_resource type="Texture2D" uid="uid://bpvxxnc6ta86y" path="res://art/Paw.png" id="1_57hhc"]
+
+[sub_resource type="Animation" id="Animation_1sv0o"]
+resource_name = "paw_movement"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Paw-fourth:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(251.063, 326.063)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Paw-third:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.766667, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(302.063, 314.063), Vector2(377, 216), Vector2(365, 202)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Paw-second:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(288.063, 272.063), Vector2(344, 211), Vector2(364, 237)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Paw-first:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(339.063, 276.063), Vector2(350, 244), Vector2(329, 241)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Paw-fifth:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(274, 371)]
+}
+
+[sub_resource type="Animation" id="Animation_7qn1e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Paw-fourth:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(307, 245)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Paw-second:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(344, 191)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Paw-first:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(395, 195)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Paw-third:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(431, 151)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Paw-fifth:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(264, 373)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l0aow"]
+_data = {
+"RESET": SubResource("Animation_7qn1e"),
+"paw_movement": SubResource("Animation_1sv0o")
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Paw-first" type="Sprite2D" parent="."]
+position = Vector2(395, 195)
+rotation = 0.818559
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_57hhc")
+
+[node name="Paw-second" type="Sprite2D" parent="."]
+position = Vector2(344, 191)
+rotation = 0.818559
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_57hhc")
+
+[node name="Paw-third" type="Sprite2D" parent="."]
+position = Vector2(431, 151)
+rotation = 0.818559
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_57hhc")
+
+[node name="Paw-fourth" type="Sprite2D" parent="."]
+position = Vector2(307, 245)
+rotation = 0.818559
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_57hhc")
+
+[node name="Paw-fifth" type="Sprite2D" parent="."]
+position = Vector2(264, 373)
+rotation = 0.818559
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_57hhc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l0aow")
+}
+autoplay = "paw_movement"

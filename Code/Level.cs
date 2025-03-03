@@ -70,7 +70,7 @@ namespace PalaSoliisi
 		}
 		public override void _Ready()
 		{
-			_inGameMenu = GetNode<Control>("Camera2D/InGameMenu");
+			_inGameMenu = GetNode<Control>("InGameMenu");
 			_inGameMenu.Hide();
 			_grid = GetNode<Grid>("Grid");
 			if (_grid == null)
