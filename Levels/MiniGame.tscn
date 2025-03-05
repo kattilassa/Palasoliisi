@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=4 uid="uid://b15035piso76o"]
+
+[ext_resource type="Script" path="res://Code/MiniGame.cs" id="1_8xkur"]
+[ext_resource type="TileSet" uid="uid://xu544k2gpeo7" path="res://art/leveltiles.tres" id="1_kqe58"]
+[ext_resource type="PackedScene" uid="uid://biil78h7unvgi" path="res://Levels/Grid.tscn" id="2_no4ox"]
+
+[node name="MiniGame" type="Node2D"]
+script = ExtResource("1_8xkur")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Camera2D"]
+tile_map_data = PackedByteArray("AAD+////AAAAAAIAAAD+//7/AAAAAAIAAAD///7/AAAAAAIAAAD/////AAAAAAIAAAAAAP7/AAAAAAIAAAAAAP//AAAAAAIAAAABAP//AAAAAAIAAAABAP7/AAAAAAIAAAD+/wAAAAAAAAIAAAD+/wEAAAAAAAIAAAD//wEAAAAAAAIAAAD//wAAAAAAAAIAAAAAAAAAAAAAAAIAAAAAAAEAAAAAAAIAAAABAAEAAAAAAAIAAAABAAAAAAAAAAIAAAA=")
+tile_set = ExtResource("1_kqe58")
+
+[node name="Grid" parent="." instance=ExtResource("2_no4ox")]
+visible = true
+_width = 2
+_height = 2
