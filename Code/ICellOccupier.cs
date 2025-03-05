@@ -10,6 +10,7 @@ namespace PalaSoliisi
 		None,
 		Bear,
 		Collectable,
-		Obstacle
+		Card,
+		CardBack
 	}
 }
