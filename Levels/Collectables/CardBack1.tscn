@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://d05ljbe4xsdsx"]
+
+[ext_resource type="Texture2D" uid="uid://bpvxxnc6ta86y" path="res://art/Paw.png" id="1_vil13"]
+[ext_resource type="Script" path="res://Code/MiniGame/CardBack1.cs" id="2_0nonf"]
+
+[node name="Sprite2D" type="Sprite2D"]
+z_index = 1
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_vil13")
+script = ExtResource("2_0nonf")
