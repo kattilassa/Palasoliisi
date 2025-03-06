@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace PalaSoliisi
 {
-	public partial class MiniGame : Node2D
+	public partial class MiniGame : Level
 	{
 		[Export] private string _card1ScenePath = "res://Levels/Collectables/Card1.tscn";
 		[Export] private string _card2ScenePath = "res://Levels/Collectables/Card2.tscn";
@@ -23,29 +23,21 @@ namespace PalaSoliisi
 		private List<Card> _placedCards = new List<Card>();
 		private List<CardBack> _placedCardBacks = new List<CardBack>();
 
-		public static MiniGame Current
-		{
-			get { return _current; }
-		}
-
 		public MiniGame()
 		{
 			_current = this;
-		}
-		public Grid Grid
-		{
-			get { return _grid; }
 		}
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
-			_grid = GetNode<Grid>("Grid");
+			base._Ready(); // Kutsutaan Levelin alustusta
+
+        	_grid = GetNode<Grid>("Grid");
 			if (_grid == null)
 			{
-				GD.PrintErr("Gridiä ei löytynyt Levelin lapsinodeista!");
+				GD.PrintErr("Gridiä ei löytynyt MiniGamein lapsinodeista!");
 			}
-
 			PlaceCards();
 		}
 
@@ -53,6 +45,38 @@ namespace PalaSoliisi
 		public override void _Process(double delta)
 		{
 		}
+
+		public override void _Input(InputEvent @event)
+        {
+            if (@event is InputEventMouseButton mouseEvent
+                && mouseEvent.ButtonIndex == MouseButton.Left
+                && !mouseEvent.Pressed)
+            {
+                Vector2 clickPos = GetGlobalMousePosition();
+
+                if (Grid.IsCellClicked(clickPos, out Vector2I gridCoord))
+                {
+                    GD.Print($"Solua klikattu: {gridCoord}");
+
+					// Käännä CardBack olion metodilla Turn()
+					// Etsitään kortti takapuoli, joka on tässä solussa
+					CardBack clickedCardBack = _placedCardBacks.Find(cb => cb.GridPosition == gridCoord);
+
+					if (clickedCardBack != null)
+					{
+						clickedCardBack.Turn(); // Käännä kortti
+					}
+					else
+					{
+						GD.Print("Klikattu solu ei sisällä CardBackia.");
+					}
+                }
+                else
+                {
+                    GD.Print("Klikkaus ei osunut soluun.");
+                }
+            }
+        }
 
 		private void PlaceCards()
 		{

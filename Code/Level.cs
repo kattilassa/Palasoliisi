@@ -9,9 +9,9 @@ namespace PalaSoliisi
 		// Static on luokan ominaisuus, ei siitä luotujen ominaisuuksien.
 		// Kaikki luokasta luodut olio jakavat saman staattisen muuttujan.
 		private static Level _current = null;
-		private bool _showInGameMenu = false;
-		private Control _inGameMenu;
-		[Export] private TextureButton _settingsButton = null;
+		public bool _showInGameMenu = false;
+		public Control _inGameMenu;
+		[Export] public TextureButton _settingsButton = null;
 		public static Level Current
 		{
 			get { return _current; }
@@ -105,7 +105,7 @@ namespace PalaSoliisi
 
 		}
 
-		private void OnSettingsPressed()
+		public void OnSettingsPressed()
 		{
 			if (_showInGameMenu)
 			{
