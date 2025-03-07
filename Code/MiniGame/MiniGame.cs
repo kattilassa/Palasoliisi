@@ -22,6 +22,7 @@ namespace PalaSoliisi
 
 		private List<Card> _placedCards = new List<Card>();
 		private List<CardBack> _placedCardBacks = new List<CardBack>();
+		private List<Card> _turnedCards = new List<Card>();
 
 		public MiniGame()
 		{
@@ -58,13 +59,23 @@ namespace PalaSoliisi
                 {
                     GD.Print($"Solua klikattu: {gridCoord}");
 
-					// Käännä CardBack olion metodilla Turn()
 					// Etsitään kortti takapuoli, joka on tässä solussa
 					CardBack clickedCardBack = _placedCardBacks.Find(cb => cb.GridPosition == gridCoord);
 
 					if (clickedCardBack != null)
 					{
 						clickedCardBack.Turn(); // Käännä kortti
+
+						Card turnedCard = _placedCards.Find(c => c.GridPosition == gridCoord);
+						if (turnedCard != null)
+						{
+							_turnedCards.Add(turnedCard); // Lisää käännettyjen korttien listaan
+
+							if (_turnedCards.Count == 2) // Kun kaksi korttia on käännetty
+							{
+								CheckPair();
+							}
+						}
 					}
 					else
 					{
@@ -126,7 +137,6 @@ namespace PalaSoliisi
 
 		private void CoverCards()
 		{
-			// TODO: CardBack asettettujen korttien päälle
 			// Vapautetaan aiemmat CardBackit
 			foreach (var cardBack in _placedCardBacks)
 			{
@@ -155,6 +165,26 @@ namespace PalaSoliisi
 				cardBack.SetPosition(card.GridPosition);
 				_placedCardBacks.Add(cardBack);
 			}
+		}
+
+		private void CheckPair()
+		{
+			if (_turnedCards.Count != 2)
+				return;
+
+			Card card1 = _turnedCards[0];
+			Card card2 = _turnedCards[1];
+
+			if (card1.GetType() == card2.GetType()) // Jos kortit ovat samaa tyyppiä
+			{
+				GD.Print("Pari löytyi!");
+			}
+			else
+			{
+				GD.Print("Ei pari, käännetään takaisin.");
+			}
+
+			_turnedCards.Clear(); // Tyhjennä lista seuraavaa paria varten
 		}
 	}
 }

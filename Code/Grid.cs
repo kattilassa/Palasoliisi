@@ -184,7 +184,7 @@ namespace PalaSoliisi
 			return null;
 		}
 
-		public CardBack GetCard(Vector2I gridPosition)
+		public Card GetCard(Vector2I gridPosition)
 		{
 			if (!IsValidCoordinate(gridPosition))
 			{
@@ -193,9 +193,9 @@ namespace PalaSoliisi
 
 			Cell cell = _cells[gridPosition.X, gridPosition.Y];
 
-			if (cell.Occupier is CardBack)
+			if (cell.Occupier is Card)
 			{
-				return cell.Occupier as CardBack;
+				return cell.Occupier as Card;
 			}
 
 			return null;

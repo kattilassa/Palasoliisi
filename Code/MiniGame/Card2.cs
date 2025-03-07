@@ -5,5 +5,8 @@ namespace PalaSoliisi
 {
 	public partial class Card2 : Card
 	{
+		public override void Turn()
+		{
+		}
 	}
 }

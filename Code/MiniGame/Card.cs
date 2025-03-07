@@ -23,5 +23,7 @@ namespace PalaSoliisi
 
 			return false;
 		}
+
+		public abstract void Turn();
 	}
 }
