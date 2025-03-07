@@ -5,6 +5,9 @@ using PalaSoliisi.UI;
 
 namespace PalaSoliisi
 {
+	/// <summary>
+	/// Memory card game.
+	/// </summary>
 	public partial class MiniGame : Level
 	{
 		[Export] private string _card1ScenePath = "res://Levels/Collectables/Card1.tscn";
@@ -22,7 +25,9 @@ namespace PalaSoliisi
 
 		private static MiniGame _current = null;
 		private Grid _grid = null;
+		// Score of matching pairs found
 		private int _pairsFound = 0;
+		// Score of turns taken
 		private int _turnsTaken = 0;
 
 		private Card1 _card1 = null;
@@ -31,8 +36,11 @@ namespace PalaSoliisi
 		private Card4 _card4 = null;
 		private CardBack _cardBack1 = null;
 
+		// List of cards placed in the grid
 		private List<Card> _placedCards = new List<Card>();
 		private List<CardBack> _placedCardBacks = new List<CardBack>();
+
+		// List of cards that are flipped within a turn
 		private List<Card> _turnedCards = new List<Card>();
 		private List<CardBack> _turnedCardBacks = new List<CardBack>();
 
@@ -41,6 +49,7 @@ namespace PalaSoliisi
 			_current = this;
 		}
 
+		// Set score to UI
 		public int PairsFound
 		{
 			get { return _pairsFound; }
@@ -61,6 +70,7 @@ namespace PalaSoliisi
 				}
 			}
 		}
+		// Set score to UI
 		public int TurnsTaken
 		{
 			get { return _turnsTaken; }
@@ -82,26 +92,20 @@ namespace PalaSoliisi
 			}
 		}
 
-		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
-			base._Ready(); // Kutsutaan Levelin alustusta
+			// Calls the initialization in Level
+			base._Ready();
 
+			// Initalizes grid
         	_grid = GetNode<Grid>("Grid");
 			if (_grid == null)
 			{
-				GD.PrintErr("Gridiä ei löytynyt MiniGamein lapsinodeista!");
+				GD.PrintErr("Couldn't find Grid in nodetree!");
 			}
 
-			PairsFound = 0;
-			TurnsTaken = 0;
+			ResetMiniGame();
 
-			PlaceCards();
-		}
-
-		// Called every frame. 'delta' is the elapsed time since the previous frame.
-		public override void _Process(double delta)
-		{
 		}
 
 		public override void _Input(InputEvent @event)
@@ -114,24 +118,27 @@ namespace PalaSoliisi
 
                 if (Grid.IsCellClicked(clickPos, out Vector2I gridCoord))
                 {
-                    GD.Print($"Solua klikattu: {gridCoord}");
+                    GD.Print($"Clicked cell: {gridCoord}");
 
-					// Etsitään kortti takapuoli, joka on tässä solussa
+					// Finds CardBack that is located in the clicked cell
 					CardBack clickedCardBack = _placedCardBacks.Find(cb => cb.GridPosition == gridCoord);
 
 					if (clickedCardBack != null)
 					{
-						clickedCardBack.Turn(); // Käännä kortti
+						// Turn the clicked card
+						clickedCardBack.Turn();
 
+						// Finds Card that is located in the clicked cell
 						Card turnedCard = _placedCards.Find(c => c.GridPosition == gridCoord);
-						CardBack turnedCardBack = _placedCardBacks.Find(cb => cb.GridPosition == gridCoord);
 
-						if (turnedCard != null && turnedCardBack != null)
+						if (turnedCard != null && clickedCardBack != null)
 						{
-							_turnedCards.Add(turnedCard); // Lisää käännettyjen korttien listaan
-							_turnedCardBacks.Add(turnedCardBack);
+							// Add to the list of turned cards
+							_turnedCards.Add(turnedCard);
+							_turnedCardBacks.Add(clickedCardBack);
 
-							if (_turnedCards.Count == 2) // Kun kaksi korttia on käännetty
+							// When 2 cards gave been clicked check if matching pair
+							if (_turnedCards.Count == 2)
 							{
 								CheckPair();
 							}
@@ -139,19 +146,36 @@ namespace PalaSoliisi
 					}
 					else
 					{
-						GD.Print("Klikattu solu ei sisällä CardBackia.");
+						GD.Print("Clickes cell does not have CardBack");
 					}
                 }
                 else
                 {
-                    GD.Print("Klikkaus ei osunut soluun.");
+                    GD.Print("Clicked outside of grid boundaries");
                 }
             }
         }
 
+		/// <summary>
+		/// Reset MiniGame. Resets score for found pairs and taken turns. Places new cards
+		/// on grid.
+		/// </summary>
+		private void ResetMiniGame()
+		{
+			// Reset scores
+			PairsFound = 0;
+			TurnsTaken = 0;
+
+			// Place new cards
+			PlaceCards();
+		}
+
+		/// <summary>
+		/// Places new cards on grid in random order
+		/// </summary>
 		private void PlaceCards()
 		{
-			// Vapautetaan aiemmin asetetut kortit
+			// Release previously placed cards
 			foreach (var card in _placedCards)
 			{
 				Grid.ReleaseCell(card.GridPosition);
@@ -159,7 +183,7 @@ namespace PalaSoliisi
 			}
 			_placedCards.Clear();
 
-			// Ladataan korttien scenet, jos niitä ei ole jo ladattu
+			// Load Card scenes for different types of cards
 			Dictionary<string, PackedScene> cardScenes = new Dictionary<string, PackedScene>
 			{
 				{ "card1", _card1Scene ?? ResourceLoader.Load<PackedScene>(_card1ScenePath) },
@@ -170,6 +194,7 @@ namespace PalaSoliisi
 
 			foreach (var key in cardScenes.Keys)
 			{
+				// Chack that all cardscenes can be loaded
 				if (cardScenes[key] == null)
 				{
 					GD.PrintErr($"Can't load {key} scene!");
@@ -177,36 +202,44 @@ namespace PalaSoliisi
 				}
 			}
 
-			// Luodaan ja asetetaan kortit
+			// Create new cards and set random positions
 			foreach (var scene in cardScenes.Values)
 			{
-				for (int i = 0; i < 2; i++) // Jokaisesta korttityypistä 2 kappaletta
+				// 2 of each cardtype
+				for (int i = 0; i < 2; i++)
 				{
+					// Initialize Card
 					Card card = scene.Instantiate<Card>();
 					AddChild(card);
 
+					// Get random free position from grid and set position
 					Cell freeCell = Grid.GetRandomFreeCell();
 					if (Grid.OccupyCell(card, freeCell.GridPosition))
 					{
 						card.SetPosition(freeCell.GridPosition);
+						// Add placed Card in a list to keep track of cards in grid
 						_placedCards.Add(card);
 					}
 				}
 			}
 
+			// Cover cards with CardBack
 			CoverCards();
 		}
 
+		/// <summary>
+		/// Places CardBack on top of every Card in grid
+		/// </summary>
 		private void CoverCards()
 		{
-			// Vapautetaan aiemmat CardBackit
+			// Release previously placed cards
 			foreach (var cardBack in _placedCardBacks)
 			{
 				cardBack.QueueFree();
 			}
 			_placedCardBacks.Clear();
 
-			// Ladataan CardBackin Scene, jos sitä ei ole vielä ladattu
+			// Load CardBack scene
 			if (_cardBack1Scene == null)
 			{
 				_cardBack1Scene = ResourceLoader.Load<PackedScene>(_cardBack1ScenePath);
@@ -217,56 +250,71 @@ namespace PalaSoliisi
 				}
 			}
 
-			// Käydään läpi vain asetetut kortit ja peitetään ne CardBackilla
+			// Check placed cards position and place CardBack on top of it
 			foreach (var card in _placedCards)
 			{
+				// Initialize CardBack
 				CardBack cardBack = _cardBack1Scene.Instantiate<CardBack>();
 				AddChild(cardBack);
 
-				// Asetetaan CardBack samalle paikalle kuin kortti
+				// Set CardBack in the same position as Card
 				cardBack.SetPosition(card.GridPosition);
+				// Add placed CardBack in a list to keep track of cards in grid
 				_placedCardBacks.Add(cardBack);
 			}
 		}
 
+		/// <summary>
+		/// Check if clicked pair matches
+		/// </summary>
 		private async void CheckPair()
 		{
+			// Keeps score of number of turns taken
 			TurnsTaken++;
 
+			// Execute method only when 2 cells have been clikced
 			if (_turnedCards.Count != 2)
 				return;
 
 			Card card1 = _turnedCards[0];
 			Card card2 = _turnedCards[1];
 
+			// Check if matchinf pair
 			if (card1.GetType() == card2.GetType()) // Jos kortit ovat samaa tyyppiä
 			{
-				GD.Print("Pari löytyi!");
+				GD.Print("Pair found!");
+				// Keep score of number of pairs found
 				PairsFound++;
 			}
+			// If pair does not match cover cards again
 			else
 			{
-				GD.Print("Ei pari, käännetään takaisin.");
-				// ?? 1 sek viive ??
+				GD.Print("Pair not found.");
+				// Wait for a second before covering cards
 				await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
+				// Covers only selected pair
 				TurnPair();
 			}
 
-			_turnedCards.Clear(); // Tyhjennä lista seuraavaa paria varten
+			// Clear lists for the next pair
+			_turnedCards.Clear();
 			_turnedCardBacks.Clear();
 		}
 
+		/// <summary>
+		/// Cover only the previously selected 2 cards if not matching
+		/// </summary>
 		private void TurnPair()
 		{
+			// Check if 2 cards turned
 			if (_turnedCardBacks.Count != 2)
 				return;
 
+			// Cover cards in list
 			for (int i = 0 ; i < _turnedCardBacks.Count ; i++)
 			{
 				_turnedCardBacks[i].Cover();
 			}
-
-			_turnedCardBacks.Clear(); // Tyhjennä lista seuraavaa paria varten
 		}
 	}
 }

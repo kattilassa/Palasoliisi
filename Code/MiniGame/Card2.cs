@@ -7,6 +7,7 @@ namespace PalaSoliisi
 	{
 		public override void Turn()
 		{
+			// If needed in the future
 		}
 	}
 }
