@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://gugyeq2bngsf"]
+
+[ext_resource type="Script" path="res://Code/UI/MiniGameControl.cs" id="1_m6glx"]
+[ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="1_qjjbb"]
+
+[node name="MiniGameUI" type="Control" node_paths=PackedStringArray("_pairsScore", "_turnsScore")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m6glx")
+_pairsScore = NodePath("VBoxContainer/Pairs")
+_turnsScore = NodePath("VBoxContainer/Turns")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Pairs" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_qjjbb")
+text = "Pairs found: 00"
+horizontal_alignment = 1
+
+[node name="Turns" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_qjjbb")
+text = "Turns taken: 00"
+horizontal_alignment = 1

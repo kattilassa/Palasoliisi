@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using PalaSoliisi.UI;
 
 namespace PalaSoliisi
 {
@@ -11,6 +12,7 @@ namespace PalaSoliisi
 		[Export] private string _card3ScenePath = "res://Levels/Collectables/Card3.tscn";
 		[Export] private string _card4ScenePath = "res://Levels/Collectables/Card4.tscn";
 		[Export] private string _cardBack1ScenePath = "res://Levels/Collectables/CardBack1.tscn";
+		[Export] private MiniGameControl _miniGameControl = null;
 
 		private PackedScene _card1Scene = null;
 		private PackedScene _card2Scene = null;
@@ -20,7 +22,7 @@ namespace PalaSoliisi
 
 		private static MiniGame _current = null;
 		private Grid _grid = null;
-		private int _score = 0;
+		private int _pairsFound = 0;
 		private int _turnsTaken = 0;
 
 		private Card1 _card1 = null;
@@ -39,6 +41,47 @@ namespace PalaSoliisi
 			_current = this;
 		}
 
+		public int PairsFound
+		{
+			get { return _pairsFound; }
+			set
+			{
+				if (value < 0)
+				{
+					_pairsFound = 0;
+				}
+				else
+				{
+					_pairsFound = value;
+				}
+
+				if (_miniGameControl != null)
+				{
+					_miniGameControl.SetPairsScore(_pairsFound);
+				}
+			}
+		}
+		public int TurnsTaken
+		{
+			get { return _turnsTaken; }
+			set
+			{
+				if (value < 0)
+				{
+					_turnsTaken = 0;
+				}
+				else
+				{
+					_turnsTaken = value;
+				}
+
+				if (_miniGameControl != null)
+				{
+					_miniGameControl.SetTurnsScore(_turnsTaken);
+				}
+			}
+		}
+
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
@@ -49,6 +92,10 @@ namespace PalaSoliisi
 			{
 				GD.PrintErr("Gridiä ei löytynyt MiniGamein lapsinodeista!");
 			}
+
+			PairsFound = 0;
+			TurnsTaken = 0;
+
 			PlaceCards();
 		}
 
@@ -87,7 +134,6 @@ namespace PalaSoliisi
 							if (_turnedCards.Count == 2) // Kun kaksi korttia on käännetty
 							{
 								CheckPair();
-								_turnsTaken++;
 							}
 						}
 					}
@@ -185,6 +231,8 @@ namespace PalaSoliisi
 
 		private async void CheckPair()
 		{
+			TurnsTaken++;
+
 			if (_turnedCards.Count != 2)
 				return;
 
@@ -194,7 +242,7 @@ namespace PalaSoliisi
 			if (card1.GetType() == card2.GetType()) // Jos kortit ovat samaa tyyppiä
 			{
 				GD.Print("Pari löytyi!");
-				_score++;
+				PairsFound++;
 			}
 			else
 			{
