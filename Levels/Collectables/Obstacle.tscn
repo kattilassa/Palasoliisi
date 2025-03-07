@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b03x72ub854df"]
+
+[ext_resource type="Texture2D" uid="uid://c4egm6mtlxm61" path="res://art/Collectables/diamond.png" id="1_o5vix"]
+[ext_resource type="Script" path="res://Code/Obstacle.cs" id="2_ijgn7"]
+
+[node name="Sprite2D" type="Sprite2D"]
+position = Vector2(-4.11675, 2.88325)
+scale = Vector2(1.88959, 1.88959)
+texture = ExtResource("1_o5vix")
+script = ExtResource("2_ijgn7")

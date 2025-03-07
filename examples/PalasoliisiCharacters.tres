@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CharacterList" load_steps=5 format=3 uid="uid://dm3tvr4hxlvk8"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/Character.gd" id="1_u5sbf"]
+[ext_resource type="Texture2D" uid="uid://by8xvr8yul5m4" path="res://Character/Bernard1.0.png" id="2_2imxg"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/CharacterList.gd" id="3_obmbi"]
+
+[sub_resource type="Resource" id="Resource_m8h7l"]
+script = ExtResource("1_u5sbf")
+name = "Bernand"
+image = ExtResource("2_2imxg")
+color = Color(1, 1, 1, 1)
+
+[resource]
+script = ExtResource("3_obmbi")
+characters = Array[ExtResource("1_u5sbf")]([SubResource("Resource_m8h7l")])

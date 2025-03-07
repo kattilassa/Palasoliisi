@@ -1,0 +1,33 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbjeqtfsboy0j"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="2_iii5e"]
+[ext_resource type="Resource" uid="uid://ih20x2pyndt8" path="res://Dialogues/proto.tres" id="3_y7yso"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeWait.gd" id="5_xs3gx"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeGhost.gd" id="6_us3gl"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="7_okvsh"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_jh0fn"]
+script = ExtResource("5_xs3gx")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_mbxhn"]
+script = ExtResource("6_us3gl")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_8wwwg"]
+script = ExtResource("7_okvsh")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogueBox" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 446.0
+offset_bottom = 128.0
+script = ExtResource("2_iii5e")
+data = ExtResource("3_y7yso")
+start_id = "proto"
+custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_jh0fn"), SubResource("RichTextEffect_mbxhn"), SubResource("RichTextEffect_8wwwg")])

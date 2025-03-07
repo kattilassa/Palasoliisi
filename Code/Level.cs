@@ -6,26 +6,31 @@ namespace PalaSoliisi
 {
 	public partial class Level : Node2D
 	{
-		// Static on luokan ominaisuus, ei siitä luotujen ominaisuuksien.
-		// Kaikki luokasta luodut olio jakavat saman staattisen muuttujan.
 		private static Level _current = null;
-		private bool _showInGameMenu = false;
+		public bool _showInGameMenu = false;
+		public bool _showDialogue = false;
+		public bool _settingsClose = false;
+		public bool _UIpressed = false;
 		private Control _inGameMenu;
 		[Export] private TextureButton _settingsButton = null;
+		[Export] private TextureButton _articleButton = null;
 		public static Level Current
 		{
 			get { return _current; }
 		}
-		[Export] private string _bearScenePath = "res://Character/Bear.tscn";
 		[Export] private string _articleScenePath = "res://Levels/Collectables/Article.tscn";
 		[Export] private ScoreUIControl _scoreUIControl = null;
 
         private Grid _grid = null;
 		private PackedScene _bearScene = null;
 		private PackedScene _articleScene = null;
+		private PackedScene _obstacleScene = null;
+		private PackedScene _dialogueScene = null;
 		private int _articlePieces = 0;
 		private Bear _bear = null;
 		private Article _article = null;
+		private Obstacle _obstacle = null;
+		private ProtoDialog _dialogue = null;
 
 		public int ArticlePieces
 		{
@@ -60,81 +65,110 @@ namespace PalaSoliisi
 		{
 			get { return _article; }
 		}
+		public ProtoDialog Dialog
+		{
+			get { return _dialogue; }
+		}
+		  public CellOccupierType Obstacle
+		{
+			get { return CellOccupierType.Obstacle; }
+		}
 
 		// Rakentaja. Käytetään alustamaan olio.
 		public Level()
 		{
-			// _current muuttujaan asetetaan viittaus juuri juotuun Level-olioon.
-			// Tälläön Current-propertyn kautta muut oliot pääsevät käsiksi Level-olioon.
 			_current = this;
 		}
 		public override void _Ready()
 		{
-			_inGameMenu = GetNode<Control>("InGameMenu");
+			_inGameMenu = GetNode<Control>("UI/InGameMenu");
 			_inGameMenu.Hide();
 			_grid = GetNode<Grid>("Grid");
 			if (_grid == null)
 			{
 				GD.PrintErr("Gridiä ei löytynyt Levelin lapsinodeista!");
 			}
+				_settingsButton.Connect("gui_input", new Callable(this, nameof(OnSettingsGuiInput)));
 
-				_settingsButton.Connect(Button.SignalName.Pressed,
-				new Callable(this, nameof(OnSettingsPressed)));
+				_articleButton.Connect(Button.SignalName.Pressed,
+				new Callable(this, nameof(OnArticlePressed)));
+
 			ResetGame();
 		}
 		public void ResetGame()
 		{
-			// Destroy previous bear if it exists
-			if (_bear != null)
-			{
-				_bear.QueueFree();
-				_bear = null;
-			}
-
-			// reate bear
-			_bear = CreateBear();
-			AddChild(_bear);
-
-			//Articles to zero
 			ArticlePieces= 0;
-			CreateArticles();
-
+			Dialogue();
 		}
 		public override void _Process(double delta)
 		{
-
 		}
 
 		private void OnSettingsPressed()
 		{
+			_UIpressed = true;
 			if (_showInGameMenu)
 			{
+				GetTree().Paused = false;
 				_showInGameMenu = false;
 				_inGameMenu.Hide();
 			}
 			else
 			{
+				GetTree().Paused = true;
 				_showInGameMenu = true;
 				_inGameMenu.Show();
 			}
-			if (_showInGameMenu)
+
+		}
+		private void OnArticlePressed()
+		{
+			if(!_showInGameMenu)
+			{
+			ArticlePieces++;
+			_scoreUIControl.SetScore(_articlePieces);
+			}
+			else
 			{
 				return;
 			}
-		}
-
-		private Bear CreateBear()
-		{
-			if (_bearScene == null)
+			if(_articlePieces == 1)
 			{
-				_bearScene = ResourceLoader.Load<PackedScene>(_bearScenePath);
-				if (_bearScene == null)
+				_articleButton.GlobalPosition = new Vector2(100, 100);
+			}
+			else if (_articlePieces == 2)
+			{
+				_articleButton.GlobalPosition = new Vector2(10, 10);
+			}
+			else
+			{
+				_articleButton.GlobalPosition = new Vector2(50, 50);
+			}
+		}
+			private void OnSettingsGuiInput(InputEvent @event)
+		{
+			if (@event is InputEventMouseButton mb)
+			{
+				if (mb.ButtonIndex == MouseButton.Left && mb.Pressed)
 				{
-					GD.PrintErr("Bear can't be found");
-					return null;
+					OnSettingsPressed();
 				}
 			}
-			return _bearScene.Instantiate<Bear>();
+		}
+		public void Dialogue()
+		{
+			var dialogueBox = GetNode<Control>("DialogueBox");
+			dialogueBox.Call("start");
+			var isRunning = (bool)dialogueBox.Call("is_running");
+			 if (isRunning)
+			{     _showDialogue = false;
+			}
+			else
+			{
+				_showDialogue = true;
+			}
+
+			return;
 		}
 		public void CreateArticles()
 		{
@@ -153,7 +187,6 @@ namespace PalaSoliisi
 					return;
 				}
 			}
-
 			_article = _articleScene.Instantiate<Article>();
 			AddChild(_article);
 

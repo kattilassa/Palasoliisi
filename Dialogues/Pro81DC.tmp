@@ -1,0 +1,38 @@
+[gd_scene load_steps=10 format=3 uid="uid://dbjeqtfsboy0j"]
+
+[ext_resource type="Script" path="res://Dialogues/ProtoDialog.cs" id="1_2424p"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="2_iii5e"]
+[ext_resource type="Resource" uid="uid://dc0xpmus4ce1k" path="res://Bernand_first_scene.tres" id="3_nfwka"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeWait.gd" id="5_xs3gx"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeGhost.gd" id="6_us3gl"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="7_okvsh"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_lhdac"]
+script = ExtResource("5_xs3gx")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ueyag"]
+script = ExtResource("6_us3gl")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_1bvc0"]
+script = ExtResource("7_okvsh")
+
+[node name="Control" type="Control"]
+z_index = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2424p")
+
+[node name="DialogueBox" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 135.0
+offset_right = 434.0
+offset_bottom = 253.0
+script = ExtResource("2_iii5e")
+data = ExtResource("3_nfwka")
+start_id = "first"
+custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_lhdac"), SubResource("RichTextEffect_ueyag"), SubResource("RichTextEffect_1bvc0")])

@@ -2,73 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://bpvxxnc6ta86y" path="res://art/Paw.png" id="1_57hhc"]
 
-[sub_resource type="Animation" id="Animation_1sv0o"]
-resource_name = "paw_movement"
-length = 6.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Paw-fourth:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2(251.063, 326.063)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Paw-third:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.766667, 0.966667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [Vector2(302.063, 314.063), Vector2(377, 216), Vector2(365, 202)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Paw-second:position")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.966667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [Vector2(288.063, 272.063), Vector2(344, 211), Vector2(364, 237)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Paw-first:position")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.266667, 0.966667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [Vector2(339.063, 276.063), Vector2(350, 244), Vector2(329, 241)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Paw-fifth:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(274, 371)]
-}
-
 [sub_resource type="Animation" id="Animation_7qn1e"]
-length = 0.001
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -76,7 +11,7 @@ tracks/0/path = NodePath("Paw-fourth:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(1.46667),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(307, 245)]
@@ -88,7 +23,7 @@ tracks/1/path = NodePath("Paw-second:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.433333),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(344, 191)]
@@ -103,7 +38,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(395, 195)]
+"values": [Vector2(40, 40)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -112,7 +47,7 @@ tracks/3/path = NodePath("Paw-third:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.9),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(431, 151)]
@@ -129,6 +64,191 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(264, 373)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Paw-first:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.993092]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Paw-third:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.830777]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Paw-fifth:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.993092]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Paw-fourth:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.993092]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Paw-second:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.830777]
+}
+
+[sub_resource type="Animation" id="Animation_1sv0o"]
+resource_name = "paw_movement"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Paw-fourth:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4.53333, 6.53333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(251.063, 326.063), Vector2(343, 188), Vector2(417, 100), Vector2(516, 40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Paw-third:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.56667, 4.1, 6.53333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(302.063, 314.063), Vector2(319, 203), Vector2(405, 125), Vector2(491, 48)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Paw-second:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 3.56667, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(288.063, 272.063), Vector2(325, 230), Vector2(378, 126), Vector2(483, 73)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Paw-first:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.466667, 3.03333, 5.53333, 6.53333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(339.063, 276.063), Vector2(305, 248), Vector2(369, 153), Vector2(455, 77), Vector2(543, -5.96046e-08)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Paw-fifth:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.53333, 4.96667, 6.53333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(274, 371), Vector2(344, 162), Vector2(445, 102), Vector2(519, 13)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Paw-first:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.466667, 3.03333, 5.53333, 6.53333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0.0139626, 0.666716, 0.830777, 0.5044]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Paw-second:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(3.56667, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0.830777, 0.830777]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Paw-third:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.56667, 4.1, 6.53333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0.5044, 1.09432, 0.603884]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Paw-fourth:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2, 4.5, 6.53333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0.666716, 0.993092, 0.993092]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Paw-fifth:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(2.53333, 4.96667, 6.53333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0.993092, 0.993092, 0.993092]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l0aow"]
 _data = {
@@ -139,32 +259,32 @@ _data = {
 [node name="Node2D" type="Node2D"]
 
 [node name="Paw-first" type="Sprite2D" parent="."]
-position = Vector2(395, 195)
-rotation = 0.818559
+position = Vector2(40, 40)
+rotation = 0.993092
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_57hhc")
 
 [node name="Paw-second" type="Sprite2D" parent="."]
 position = Vector2(344, 191)
-rotation = 0.818559
+rotation = 0.830777
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_57hhc")
 
 [node name="Paw-third" type="Sprite2D" parent="."]
 position = Vector2(431, 151)
-rotation = 0.818559
+rotation = 0.830777
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_57hhc")
 
 [node name="Paw-fourth" type="Sprite2D" parent="."]
 position = Vector2(307, 245)
-rotation = 0.818559
+rotation = 0.993092
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_57hhc")
 
 [node name="Paw-fifth" type="Sprite2D" parent="."]
 position = Vector2(264, 373)
-rotation = 0.818559
+rotation = 0.993092
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_57hhc")
 

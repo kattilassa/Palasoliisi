@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://ih20x2pyndt8"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_g31o6"]
+
+[resource]
+script = ExtResource("1_g31o6")
+starts = {
+"proto": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(-485, -240),
+"start_id": "proto"
+},
+"1_1": {
+"dialogue": "test",
+"offset": Vector2(-220, -320),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": "test"
+}
+},
+"size": Vector2(300, 256),
+"speaker": 1
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = "res://Character/Characters - Copy.tres"
