@@ -201,6 +201,23 @@ namespace PalaSoliisi
 			return null;
 		}
 
+		public CardBack GetCardBack(Vector2I gridPosition)
+		{
+			if (!IsValidCoordinate(gridPosition))
+			{
+				return null;
+			}
+
+			Cell cell = _cells[gridPosition.X, gridPosition.Y];
+
+			if (cell.Occupier is CardBack)
+			{
+				return cell.Occupier as CardBack;
+			}
+
+			return null;
+		}
+
 		public bool IsCellClicked(Vector2 clickPosition, out Vector2I gridCoordinate)
 		{
 			// Oletetaan, että näitä propertyjä on saatavilla

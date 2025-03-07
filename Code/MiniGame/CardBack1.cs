@@ -8,7 +8,12 @@ namespace PalaSoliisi
         public override void Turn()
         {
             GD.Print("Turn card");
-            QueueFree();
+            this.Hide();
+        }
+
+        public override void Cover()
+        {
+            this.Show();
         }
 	}
 }

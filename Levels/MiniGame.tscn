@@ -20,9 +20,9 @@ tile_map_data = PackedByteArray("AAD+////AAAAAAIAAAD+//7/AAAAAAIAAAD///7/AAAAAAI
 tile_set = ExtResource("1_kqe58")
 
 [node name="Grid" parent="." instance=ExtResource("2_no4ox")]
-visible = true
-_width = 2
+_width = 4
 _height = 2
+_cellSize = Vector2i(64, 64)
 
 [node name="Settings" type="TextureButton" parent="."]
 anchors_preset = 15

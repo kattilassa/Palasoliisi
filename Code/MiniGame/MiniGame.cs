@@ -8,21 +8,31 @@ namespace PalaSoliisi
 	{
 		[Export] private string _card1ScenePath = "res://Levels/Collectables/Card1.tscn";
 		[Export] private string _card2ScenePath = "res://Levels/Collectables/Card2.tscn";
+		[Export] private string _card3ScenePath = "res://Levels/Collectables/Card3.tscn";
+		[Export] private string _card4ScenePath = "res://Levels/Collectables/Card4.tscn";
 		[Export] private string _cardBack1ScenePath = "res://Levels/Collectables/CardBack1.tscn";
 
 		private PackedScene _card1Scene = null;
 		private PackedScene _card2Scene = null;
+		private PackedScene _card3Scene = null;
+		private PackedScene _card4Scene = null;
 		private PackedScene _cardBack1Scene = null;
 
 		private static MiniGame _current = null;
 		private Grid _grid = null;
+		private int _score = 0;
+		private int _turnsTaken = 0;
+
 		private Card1 _card1 = null;
-		private Card1 _card2 = null;
+		private Card2 _card2 = null;
+		private Card3 _card3 = null;
+		private Card4 _card4 = null;
 		private CardBack _cardBack1 = null;
 
 		private List<Card> _placedCards = new List<Card>();
 		private List<CardBack> _placedCardBacks = new List<CardBack>();
 		private List<Card> _turnedCards = new List<Card>();
+		private List<CardBack> _turnedCardBacks = new List<CardBack>();
 
 		public MiniGame()
 		{
@@ -67,13 +77,17 @@ namespace PalaSoliisi
 						clickedCardBack.Turn(); // Käännä kortti
 
 						Card turnedCard = _placedCards.Find(c => c.GridPosition == gridCoord);
-						if (turnedCard != null)
+						CardBack turnedCardBack = _placedCardBacks.Find(cb => cb.GridPosition == gridCoord);
+
+						if (turnedCard != null && turnedCardBack != null)
 						{
 							_turnedCards.Add(turnedCard); // Lisää käännettyjen korttien listaan
+							_turnedCardBacks.Add(turnedCardBack);
 
 							if (_turnedCards.Count == 2) // Kun kaksi korttia on käännetty
 							{
 								CheckPair();
+								_turnsTaken++;
 							}
 						}
 					}
@@ -103,7 +117,9 @@ namespace PalaSoliisi
 			Dictionary<string, PackedScene> cardScenes = new Dictionary<string, PackedScene>
 			{
 				{ "card1", _card1Scene ?? ResourceLoader.Load<PackedScene>(_card1ScenePath) },
-				{ "card2", _card2Scene ?? ResourceLoader.Load<PackedScene>(_card2ScenePath) }
+				{ "card2", _card2Scene ?? ResourceLoader.Load<PackedScene>(_card2ScenePath) },
+				{ "card3", _card3Scene ?? ResourceLoader.Load<PackedScene>(_card3ScenePath) },
+				{ "card4", _card4Scene ?? ResourceLoader.Load<PackedScene>(_card4ScenePath) }
 			};
 
 			foreach (var key in cardScenes.Keys)
@@ -167,7 +183,7 @@ namespace PalaSoliisi
 			}
 		}
 
-		private void CheckPair()
+		private async void CheckPair()
 		{
 			if (_turnedCards.Count != 2)
 				return;
@@ -178,13 +194,31 @@ namespace PalaSoliisi
 			if (card1.GetType() == card2.GetType()) // Jos kortit ovat samaa tyyppiä
 			{
 				GD.Print("Pari löytyi!");
+				_score++;
 			}
 			else
 			{
 				GD.Print("Ei pari, käännetään takaisin.");
+				// ?? 1 sek viive ??
+				await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
+				TurnPair();
 			}
 
 			_turnedCards.Clear(); // Tyhjennä lista seuraavaa paria varten
+			_turnedCardBacks.Clear();
+		}
+
+		private void TurnPair()
+		{
+			if (_turnedCardBacks.Count != 2)
+				return;
+
+			for (int i = 0 ; i < _turnedCardBacks.Count ; i++)
+			{
+				_turnedCardBacks[i].Cover();
+			}
+
+			_turnedCardBacks.Clear(); // Tyhjennä lista seuraavaa paria varten
 		}
 	}
 }

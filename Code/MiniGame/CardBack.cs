@@ -25,5 +25,6 @@ namespace PalaSoliisi
 		}
 
         public abstract void Turn();
+		public abstract void Cover();
 	}
 }
