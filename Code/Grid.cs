@@ -167,7 +167,7 @@ namespace PalaSoliisi
 			return cell.Occupier.Type == CellOccupierType.Collectable;
 		}
 
-		public Collectable GetCollectable(Vector2I gridPosition)
+		public ICellOccupier GetCollectable(Vector2I gridPosition)
 		{
 			if (!IsValidCoordinate(gridPosition))
 			{
@@ -179,6 +179,40 @@ namespace PalaSoliisi
 			if (cell.Occupier is Collectable)
 			{
 				return cell.Occupier as Collectable;
+			}
+
+			return null;
+		}
+
+		public Card GetCard(Vector2I gridPosition)
+		{
+			if (!IsValidCoordinate(gridPosition))
+			{
+				return null;
+			}
+
+			Cell cell = _cells[gridPosition.X, gridPosition.Y];
+
+			if (cell.Occupier is Card)
+			{
+				return cell.Occupier as Card;
+			}
+
+			return null;
+		}
+
+		public CardBack GetCardBack(Vector2I gridPosition)
+		{
+			if (!IsValidCoordinate(gridPosition))
+			{
+				return null;
+			}
+
+			Cell cell = _cells[gridPosition.X, gridPosition.Y];
+
+			if (cell.Occupier is CardBack)
+			{
+				return cell.Occupier as CardBack;
 			}
 
 			return null;

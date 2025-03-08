@@ -8,12 +8,17 @@ namespace PalaSoliisi
 	{
 		private static Level _current = null;
 		public bool _showInGameMenu = false;
+
+		public Control _inGameMenu;
+		[Export] public TextureButton _settingsButton = null;
+
 		public bool _showDialogue = false;
 		public bool _settingsClose = false;
 		public bool _UIpressed = false;
 		private Control _inGameMenu;
 		[Export] private TextureButton _settingsButton = null;
 		[Export] private TextureButton _articleButton = null;
+
 		public static Level Current
 		{
 			get { return _current; }
@@ -104,7 +109,7 @@ namespace PalaSoliisi
 		{
 		}
 
-		private void OnSettingsPressed()
+		public void OnSettingsPressed()
 		{
 			_UIpressed = true;
 			if (_showInGameMenu)
