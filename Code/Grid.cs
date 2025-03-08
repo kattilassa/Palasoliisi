@@ -221,8 +221,8 @@ namespace PalaSoliisi
 		public bool IsCellClicked(Vector2 clickPosition, out Vector2I gridCoordinate)
 		{
 			// Oletetaan, että näitä propertyjä on saatavilla
-			Vector2 cellSize = Level.Current.Grid.CellSize;
-			Vector2 gridOffset = Level.Current.Grid.Offset;
+			Vector2 cellSize = MiniGame.Current.Grid.CellSize;
+			Vector2 gridOffset = MiniGame.Current.Grid.Offset;
 
 			// Muunna klikkauspaikka ruudukon koordinaateiksi
 			int cellX = (int)Math.Floor((clickPosition.X + gridOffset.X) / cellSize.X);
@@ -230,7 +230,7 @@ namespace PalaSoliisi
 			gridCoordinate = new Vector2I(cellX, cellY);
 
 			// Tarkista, että ruudun koordinaatit ovat kelvolliset
-			return Level.Current.Grid.IsValidCoordinate(gridCoordinate);
+			return MiniGame.Current.Grid.IsValidCoordinate(gridCoordinate);
 		}
 
 	}

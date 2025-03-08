@@ -9,9 +9,6 @@ namespace PalaSoliisi
 		private static Level _current = null;
 		public bool _showInGameMenu = false;
 
-		public Control _inGameMenu;
-		[Export] public TextureButton _settingsButton = null;
-
 		public bool _showDialogue = false;
 		public bool _settingsClose = false;
 		public bool _UIpressed = false;
@@ -150,7 +147,7 @@ namespace PalaSoliisi
 				_articleButton.GlobalPosition = new Vector2(50, 50);
 			}
 		}
-			private void OnSettingsGuiInput(InputEvent @event)
+			public void OnSettingsGuiInput(InputEvent @event)
 		{
 			if (@event is InputEventMouseButton mb)
 			{

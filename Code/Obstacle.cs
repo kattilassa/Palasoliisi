@@ -5,7 +5,7 @@ namespace PalaSoliisi
 {
 	public partial class Obstacle : Collectable
 	{
-		  public CellOccupierType Type
+		public CellOccupierType Type
 		{
 			get { return CellOccupierType.Obstacle; }
 		}

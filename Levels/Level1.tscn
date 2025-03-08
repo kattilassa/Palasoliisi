@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bpvxxnc6ta86y" path="res://art/Paw.png" id="11_wi3xy"]
 [ext_resource type="Theme" uid="uid://c7sdrp3ltdq24" path="res://addons/dialogue_nodes/themes/pixelart.theme" id="12_6oeu2"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="12_v47gt"]
-[ext_resource type="Resource" uid="uid://dc0xpmus4ce1k" path="res://Bernand_first_scene.tres" id="13_v4oxk"]
+[ext_resource type="Resource" path="res://Bernand_first_scene.tres" id="13_v4oxk"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeWait.gd" id="14_g4w2e"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeGhost.gd" id="15_45o0a"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="16_xve5m"]

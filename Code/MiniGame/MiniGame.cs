@@ -8,7 +8,7 @@ namespace PalaSoliisi
 	/// <summary>
 	/// Memory card game.
 	/// </summary>
-	public partial class MiniGame : Level
+	public partial class MiniGame : Node2D
 	{
 		[Export] private string _card1ScenePath = "res://Levels/Collectables/Card1.tscn";
 		[Export] private string _card2ScenePath = "res://Levels/Collectables/Card2.tscn";
@@ -16,6 +16,7 @@ namespace PalaSoliisi
 		[Export] private string _card4ScenePath = "res://Levels/Collectables/Card4.tscn";
 		[Export] private string _cardBack1ScenePath = "res://Levels/Collectables/CardBack1.tscn";
 		[Export] private MiniGameControl _miniGameControl = null;
+		[Export] private TextureButton _settingsButton = null;
 
 		private PackedScene _card1Scene = null;
 		private PackedScene _card2Scene = null;
@@ -25,6 +26,11 @@ namespace PalaSoliisi
 
 		private static MiniGame _current = null;
 		private Grid _grid = null;
+		private Control _inGameMenu;
+		public bool _showInGameMenu = false;
+		private bool _settingsClose = false;
+		public bool _UIpressed = false;
+
 		// Score of matching pairs found
 		private int _pairsFound = 0;
 		// Score of turns taken
@@ -43,6 +49,15 @@ namespace PalaSoliisi
 		// List of cards that are flipped within a turn
 		private List<Card> _turnedCards = new List<Card>();
 		private List<CardBack> _turnedCardBacks = new List<CardBack>();
+
+		public static MiniGame Current
+		{
+			get { return _current; }
+		}
+		public Grid Grid
+		{
+			get { return _grid; }
+		}
 
 		public MiniGame()
 		{
@@ -94,15 +109,19 @@ namespace PalaSoliisi
 
 		public override void _Ready()
 		{
-			// Calls the initialization in Level
-			base._Ready();
 
-			// Initalizes grid
-        	_grid = GetNode<Grid>("Grid");
+			_inGameMenu = GetNode<Control>("UI/InGameMenu");
+			_inGameMenu.Hide();
+
+			// Initializes Grid
+			_grid = GetNode<Grid>("Grid");
 			if (_grid == null)
 			{
-				GD.PrintErr("Couldn't find Grid in nodetree!");
+				GD.PrintErr("Grid could not be found in nodetree!");
 			}
+
+			_settingsButton.Connect(Button.SignalName.Pressed,
+				new Callable(this, nameof(OnSettingsPressed)));
 
 			ResetMiniGame();
 
@@ -155,6 +174,24 @@ namespace PalaSoliisi
                 }
             }
         }
+
+		public void OnSettingsPressed()
+		{
+			_UIpressed = true;
+			if (_showInGameMenu)
+			{
+				GetTree().Paused = false;
+				_showInGameMenu = false;
+				_inGameMenu.Hide();
+			}
+			else
+			{
+				GetTree().Paused = true;
+				_showInGameMenu = true;
+				_inGameMenu.Show();
+			}
+
+		}
 
 		/// <summary>
 		/// Reset MiniGame. Resets score for found pairs and taken turns. Places new cards
