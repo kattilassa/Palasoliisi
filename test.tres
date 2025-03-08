@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://bjd1qtxktgrq2"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_80lc1"]
+
+[resource]
+script = ExtResource("1_80lc1")
+starts = {
+"TEST": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(-340, -100),
+"start_id": "TEST"
+},
+"1_1": {
+"dialogue": "What a night.. I had a nightmare where the whole town was black and white with no colors in sight. Oh! my dear cousin is calling - I should pick up the phone.",
+"offset": Vector2(-80, -100),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": "Answer the phone"
+}
+},
+"size": Vector2(300, 240),
+"speaker": ""
+},
+"1_2": {
+"dialogue": "Oh! my dear cousin is calling - I should pick up the phone.",
+"offset": Vector2(300, -120),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": "Answer the phone"
+}
+},
+"size": Vector2(300, 240),
+"speaker": ""
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = ""

@@ -1,40 +1,42 @@
 using Godot;
+using PalaSoliisi;
 using System;
 
 public partial class Bernand : CharacterBody2D
 {
-	public const float Speed = 300.0f;
-	public const float JumpVelocity = -400.0f;
+	[Export]
+    public int Speed { get; set; } = 400;
+    private Vector2 _target;
 
-	public override void _PhysicsProcess(double delta)
-	{
-		Vector2 velocity = Velocity;
+    public override void _Input(InputEvent @event)
+    {
 
-		// Add the gravity.
-		if (!IsOnFloor())
+		if (Level.Current._UIpressed || Level.Current._showInGameMenu)
 		{
-			velocity += GetGravity() * (float)delta;
+			Level.Current._UIpressed = false;
+			return;
 		}
+		if (@event is InputEventMouseButton mouseEvent
+                && mouseEvent.ButtonIndex == MouseButton.Left
+                && !mouseEvent.Pressed)
+        {
+            _target = GetGlobalMousePosition();
+        }
 
-		// Handle Jump.
-		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
+		if (@event is InputEventScreenTouch touchEvent
+			&& touchEvent.Pressed
+			&& touchEvent.Index == 0)
 		{
-			velocity.Y = JumpVelocity;
+			_target = GetGlobalMousePosition();
 		}
-
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
-		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-		if (direction != Vector2.Zero)
-		{
-			velocity.X = direction.X * Speed;
-		}
-		else
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-		}
-
-		Velocity = velocity;
-		MoveAndSlide();
 	}
+    public override void _PhysicsProcess(double delta)
+    {
+        Velocity = Position.DirectionTo(_target) * Speed;
+        //LookAt(_target);
+        if (Position.DistanceTo(_target) > 10)
+        {
+            MoveAndSlide();
+        }
+    }
 }

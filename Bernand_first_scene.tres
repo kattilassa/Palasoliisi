@@ -1,0 +1,76 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://dc0xpmus4ce1k"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_if737"]
+
+[resource]
+script = ExtResource("1_if737")
+starts = {
+"first": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(-451, -288),
+"start_id": "first"
+},
+"1_1": {
+"dialogue": "Ah! It's nice to be back in my hometown. My dear cousin Gloria has been acting so weird lately. I couldn't bear the thought of not coming to visit her, so here I am.",
+"offset": Vector2(-260, -400),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": "Pick up the phone"
+}
+},
+"size": Vector2(300, 257),
+"speaker": 0
+},
+"1_2": {
+"dialogue": " Let me get my bearings and I'll try to find her. I wonder what - oh, she's calling me now.",
+"offset": Vector2(80, -420),
+"options": {
+0: {
+"condition": {},
+"link": &"1_4",
+"text": "Pick up the phone"
+},
+1: {
+"condition": {},
+"link": &"1_3",
+"text": "Don't answer the phone"
+}
+},
+"size": Vector2(300, 257),
+"speaker": 0
+},
+"1_3": {
+"dialogue": "I’m not that antisocial of a bear to ignore the phone.",
+"offset": Vector2(420, -240),
+"options": {
+0: {
+"condition": {},
+"link": &"1_4",
+"text": "Hello Gloria!"
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_4": {
+"dialogue": "How have you been?",
+"offset": Vector2(420, -480),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = "res://examples/PalasoliisiCharacters.tres"

@@ -4,6 +4,8 @@
 [ext_resource type="AudioStream" uid="uid://dtdqqdvnuj05q" path="res://music/paper.mp3" id="2_ci830"]
 
 [node name="VolumeSettings" type="VBoxContainer"]
+offset_right = 280.0
+offset_bottom = 80.0
 
 [node name="VolumeSetting" parent="." instance=ExtResource("1_fij5k")]
 layout_mode = 2

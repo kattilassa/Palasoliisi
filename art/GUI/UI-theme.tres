@@ -97,3 +97,4 @@ Button/styles/hover = SubResource("StyleBoxFlat_latv5")
 Button/styles/normal = SubResource("StyleBoxFlat_pv77b")
 Button/styles/pressed = SubResource("StyleBoxFlat_t6rlq")
 Panel/styles/panel = null
+VSlider/icons/grabber = null

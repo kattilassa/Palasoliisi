@@ -10,6 +10,7 @@ namespace PalaSoliisi
 		[Export] private int _width = 0;
 		[Export] private int _height = 0;
 
+
 		// Vector2I on integeriä kullekin koordinaatille yksikkönä käyttävä vektorityyppi.
 		[Export] private Vector2I _cellSize = Vector2I.Zero;
 
@@ -70,7 +71,6 @@ namespace PalaSoliisi
 					Cell cell = cellScene.Instantiate<Cell>();
 					// Lisää juuri luotu Cell-olio gridin Nodepuuhun.
 					AddChild(cell);
-
 					// Vector2 worldPosition = new Vector2(x * _cellSize.X, y * _cellSize.Y) - offset;
 					// cell.Position = worldPosition;
 

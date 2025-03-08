@@ -1,3 +1,22 @@
-[gd_scene format=3 uid="uid://b7ja6u6vab2x5"]
+[gd_scene load_steps=8 format=3 uid="uid://b7ja6u6vab2x5"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="1_rawl3"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeWait.gd" id="2_d7dn7"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeGhost.gd" id="3_ng4bx"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="4_fhjjf"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_mdeai"]
+script = ExtResource("2_d7dn7")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_f83ix"]
+script = ExtResource("3_ng4bx")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_egx0b"]
+script = ExtResource("4_fhjjf")
+
+[node name="DialogueBox" type="Panel"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_rawl3")
+custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_mdeai"), SubResource("RichTextEffect_f83ix"), SubResource("RichTextEffect_egx0b")])

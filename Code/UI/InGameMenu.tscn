@@ -10,4 +10,5 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VolumeSettings" parent="." instance=ExtResource("1_o5jel")]
+z_index = 1
 layout_mode = 2
