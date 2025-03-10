@@ -15,7 +15,6 @@ _settingsButton = NodePath("Settings")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Grid" parent="." instance=ExtResource("2_no4ox")]
-visible = true
 _width = 4
 _height = 2
 _cellSize = Vector2i(64, 64)

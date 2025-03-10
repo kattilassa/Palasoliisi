@@ -129,9 +129,9 @@ namespace PalaSoliisi
 
 		public override void _Input(InputEvent @event)
         {
-            if (@event is InputEventMouseButton mouseEvent
-                && mouseEvent.ButtonIndex == MouseButton.Left
-                && !mouseEvent.Pressed)
+        	if (@event is InputEventScreenTouch touchEvent
+			&& touchEvent.Pressed
+			&& touchEvent.Index == 0)
             {
                 Vector2 clickPos = GetGlobalMousePosition();
 
