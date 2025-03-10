@@ -140,10 +140,9 @@ namespace PalaSoliisi
 		public override void _Input(InputEvent @event)
         {
         	if (@event is InputEventScreenTouch touchEvent
-			&& touchEvent.Pressed
 			&& touchEvent.Index == 0)
             {
-                Vector2 clickPos = GetGlobalMousePosition();
+                Vector2 clickPos = GetViewport().GetCanvasTransform().AffineInverse() * touchEvent.Position;
 
                 if (Grid.IsCellClicked(clickPos, out Vector2I gridCoord))
                 {

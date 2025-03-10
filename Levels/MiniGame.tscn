@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://gugyeq2bngsf" path="res://Code/UI/MiniGameUI.tscn" id="7_ecxnm"]
 
 [node name="MiniGame" type="Node2D" node_paths=PackedStringArray("_miniGameControl", "_settingsButton")]
-process_mode = 3
 script = ExtResource("1_ud83l")
 _miniGameControl = NodePath("UI/MiniGameUI")
 _settingsButton = NodePath("Settings")

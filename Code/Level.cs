@@ -193,14 +193,11 @@ namespace PalaSoliisi
 			}
 		}
 
-			public void OnSettingsGuiInput(InputEvent @event)
+		public void OnSettingsGuiInput(InputEvent @event)
 		{
-			if (@event is InputEventMouseButton mb)
+			if (@event is InputEventScreenTouch touchEvent && touchEvent.Pressed)
 			{
-				if (mb.ButtonIndex == MouseButton.Left && mb.Pressed)
-				{
-					OnSettingsPressed();
-				}
+				OnSettingsPressed();
 			}
 		}
 
