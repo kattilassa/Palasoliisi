@@ -84,13 +84,13 @@ namespace PalaSoliisi
 		}
 		public override void _Ready()
 		{
-			_inGameMenu = GetNode<Control>("InGameMenu");
+			_inGameMenu = GetNode<Control>("UI/InGameMenu");
 			_inGameMenu.Hide();
-			_grid = GetNode<Grid>("Grid");
-			if (_grid == null)
-			{
-				GD.PrintErr("Gridiä ei löytynyt Levelin lapsinodeista!");
-			}
+			//_grid = GetNode<Grid>("Grid");
+			//if (_grid == null)
+			//{
+			//	GD.PrintErr("Gridiä ei löytynyt Levelin lapsinodeista!");
+			//}
 				_settingsButton.Connect("gui_input", new Callable(this, nameof(OnSettingsGuiInput)));
 
 				_articleButton.Connect(Button.SignalName.Pressed,
