@@ -6,34 +6,36 @@ namespace PalaSoliisi
 {
 	public partial class Level : Node2D
 	{
-		private static Level _current = null;
-		public bool _showInGameMenu = false;
-
-		public bool _showDialogue = false;
-		public bool _settingsClose = false;
-		public bool _UIpressed = false;
-		private Control _inGameMenu;
 		[Export] private TextureButton _settingsButton = null;
 		[Export] private TextureButton _articleButton = null;
 		[Export] private TextureButton _computerButton = null;
-
-		public static Level Current
-		{
-			get { return _current; }
-		}
-		[Export] private string _articleScenePath = "res://Levels/Collectables/Article.tscn";
+		[Export] private CharacterBody2D _bear = null;
 		[Export] private ScoreUIControl _scoreUIControl = null;
+		[Export] private string _articleScenePath = "res://Levels/Collectables/Article.tscn";
+		[Export] private string _miniGameScenePath = "res://Levels/MiniGame.tscn";
 
-        private Grid _grid = null;
-		private PackedScene _bearScene = null;
 		private PackedScene _articleScene = null;
 		private PackedScene _obstacleScene = null;
 		private PackedScene _dialogueScene = null;
-		private int _articlePieces = 0;
-		private Bear _bear = null;
+		private PackedScene _miniGameScene = null;
+
+		private static Level _current = null;
 		private Article _article = null;
 		private Obstacle _obstacle = null;
 		private ProtoDialog _dialogue = null;
+		private MiniGame _miniGame = null;
+		private Grid _grid = null;
+
+		private Control _inGameMenu;
+		private Control _UI;
+
+		public bool _showInGameMenu = false;
+		public bool _showDialogue = false;
+		public bool _settingsClose = false;
+		public bool _UIpressed = false;
+
+		private int _articlePieces = 0;
+		private int _miniGamesPlayed = 0;
 
 		public int ArticlePieces
 		{
@@ -55,14 +57,34 @@ namespace PalaSoliisi
 				}
 			}
 		}
+		public int MiniGamesPlayed
+		{
+			get { return _miniGamesPlayed; }
+			set
+			{
+				if (value < 0)
+				{
+					_miniGamesPlayed = 0;
+				}
+				else
+				{
+					_miniGamesPlayed = value;
+				}
 
+				//if (_scoreUIControl != null)
+				//{
+				//	_scoreUIControl.SetScore(_articlePieces);
+				//}
+			}
+		}
+
+		public static Level Current
+		{
+			get { return _current; }
+		}
 		public Grid Grid
 		{
 			get { return _grid; }
-		}
-		public Bear Bear
-		{
-			get { return _bear; }
 		}
 		public Article Article
 		{
@@ -77,13 +99,15 @@ namespace PalaSoliisi
 			get { return CellOccupierType.Obstacle; }
 		}
 
-		// Rakentaja. Käytetään alustamaan olio.
+		// Constructor
 		public Level()
 		{
 			_current = this;
 		}
+
 		public override void _Ready()
 		{
+			_UI = GetNode<Control>("UI");
 			_inGameMenu = GetNode<Control>("UI/InGameMenu");
 			_inGameMenu.Hide();
 			//_grid = GetNode<Grid>("Grid");
@@ -91,9 +115,10 @@ namespace PalaSoliisi
 			//{
 			//	GD.PrintErr("Gridiä ei löytynyt Levelin lapsinodeista!");
 			//}
-				_settingsButton.Connect("gui_input", new Callable(this, nameof(OnSettingsGuiInput)));
+			_settingsButton.Connect("gui_input",
+				new Callable(this, nameof(OnSettingsGuiInput)));
 
-				_articleButton.Connect(Button.SignalName.Pressed,
+			_articleButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnArticlePressed)));
 
 			_computerButton.Connect(Button.SignalName.Pressed,
@@ -101,16 +126,18 @@ namespace PalaSoliisi
 
 			ResetGame();
 		}
+
 		public void ResetGame()
 		{
-			ArticlePieces= 0;
+			ArticlePieces = 0;
 			Dialogue();
 		}
+
 		public override void _Process(double delta)
 		{
 		}
 
-		public void OnSettingsPressed()
+		private void OnSettingsPressed()
 		{
 			_UIpressed = true;
 			if (_showInGameMenu)
@@ -127,12 +154,14 @@ namespace PalaSoliisi
 			}
 
 		}
+
 		private void OnArticlePressed()
 		{
+			ArticlePieces++;
+
 			if(!_showInGameMenu)
 			{
-			ArticlePieces++;
-			_scoreUIControl.SetScore(_articlePieces);
+				_scoreUIControl.SetScore(_articlePieces);
 			}
 			else
 			{
@@ -152,6 +181,8 @@ namespace PalaSoliisi
 				_articleButton.Hide();
 			}
 
+			// Start minigame when article collected
+			StartMiniGame();
 		}
 
 		private void OnComputerPressed()
@@ -172,6 +203,16 @@ namespace PalaSoliisi
 				}
 			}
 		}
+
+		/// <summary>
+		/// Toggle UI visibility
+		/// </summary>
+		/// <param name="visible">True if UI visible</param>
+		private void UIVisible(bool visible)
+		{
+			_UI.Visible = visible;
+		}
+
 		public void Dialogue()
 		{
 			var dialogueBox = GetNode<Control>("DialogueBox");
@@ -187,6 +228,7 @@ namespace PalaSoliisi
 
 			return;
 		}
+
 		public void CreateArticles()
 		{
 			if (_article != null)
@@ -212,6 +254,62 @@ namespace PalaSoliisi
 			{
 				_article.SetPosition(freeCell.GridPosition);
 			}
+		}
+
+		/// <summary>
+		/// Opens MiniGame scene when article collected
+		/// </summary>
+		public void StartMiniGame()
+		{
+			// Pause game and hide UI and character
+			GetTree().Paused = true;
+			_bear.Hide();
+			_settingsButton.Hide();
+			UIVisible(false);
+
+			// Delete previous minigame
+			if (_miniGame != null)
+			{
+				_miniGame.QueueFree();
+				_miniGame = null;
+			}
+
+			if (_miniGameScene == null)
+			{
+				//Initialize new minigame
+				_miniGameScene = ResourceLoader.Load<PackedScene>(_miniGameScenePath);
+				if (_miniGameScene == null)
+				{
+					GD.PrintErr("MiniGame can't be found");
+					return;
+				}
+			}
+			_miniGame = _miniGameScene.Instantiate<MiniGame>();
+			AddChild(_miniGame);
+
+			// When minigame completed close minigame
+			_miniGame.Connect(nameof(MiniGame.MiniGameCompleted),
+			new Callable(this, nameof(OnMiniGameCompleted)));
+		}
+
+		/// <summary>
+		/// Close minigame when completed.
+		/// </summary>
+		public async void OnMiniGameCompleted()
+		{
+			MiniGamesPlayed++;
+
+			// Wait 1 sec before closing minigame window
+			await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
+			// Close minigame
+			_miniGame.QueueFree();
+			_miniGame = null;
+
+			// Unpause game and set UI and character back to visible
+			GetTree().Paused = false;
+			_bear.Show();
+			_settingsButton.Show();
+			UIVisible(true);
 		}
 	}
 }

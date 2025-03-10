@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bwvbfdokg5du5" path="res://Character/bernand.tscn" id="10_38n62"]
 [ext_resource type="Theme" uid="uid://c7sdrp3ltdq24" path="res://addons/dialogue_nodes/themes/pixelart.theme" id="12_6oeu2"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="12_v47gt"]
-[ext_resource type="Resource" path="res://Bernand_first_scene.tres" id="13_v4oxk"]
+[ext_resource type="Resource" uid="uid://dc0xpmus4ce1k" path="res://Bernand_first_scene.tres" id="13_v4oxk"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeWait.gd" id="14_g4w2e"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeGhost.gd" id="15_45o0a"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="16_xve5m"]
@@ -26,11 +26,12 @@ script = ExtResource("15_45o0a")
 [sub_resource type="RichTextEffect" id="RichTextEffect_1bvc0"]
 script = ExtResource("16_xve5m")
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("_settingsButton", "_articleButton", "_computerButton", "_scoreUIControl")]
+[node name="Level" type="Node2D" node_paths=PackedStringArray("_settingsButton", "_articleButton", "_computerButton", "_bear", "_scoreUIControl")]
 script = ExtResource("1_uqqbp")
 _settingsButton = NodePath("UI/Settings")
 _articleButton = NodePath("TextureButton")
 _computerButton = NodePath("TextureButton2")
+_bear = NodePath("Camera2D/CharacterBody2D")
 _scoreUIControl = NodePath("UI/ScoreUI")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -96,6 +97,10 @@ stretch_mode = 4
 [node name="InGameMenu" parent="UI" instance=ExtResource("3_1pr6y")]
 layout_mode = 0
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="TextureButton" type="TextureButton" parent="."]
 offset_left = -210.0

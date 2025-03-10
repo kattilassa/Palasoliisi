@@ -10,6 +10,10 @@ namespace PalaSoliisi
 	/// </summary>
 	public partial class MiniGame : Node2D
 	{
+		// Game completed
+		[Signal]
+		public delegate void MiniGameCompletedEventHandler();
+
 		[Export] private string _card1ScenePath = "res://Levels/Collectables/Card1.tscn";
 		[Export] private string _card2ScenePath = "res://Levels/Collectables/Card2.tscn";
 		[Export] private string _card3ScenePath = "res://Levels/Collectables/Card3.tscn";
@@ -77,6 +81,12 @@ namespace PalaSoliisi
 				else
 				{
 					_pairsFound = value;
+
+					// Send signal when all pairs have been found
+					if (_pairsFound == 4)
+            		{
+        	        	EmitSignal(nameof(MiniGameCompleted));
+        	    	}
 				}
 
 				if (_miniGameControl != null)
@@ -175,15 +185,21 @@ namespace PalaSoliisi
             }
         }
 
-		public void OnSettingsPressed()
+		/// <summary>
+		/// Pauses game and shows InGameMenu when settings button pressed.
+		/// </summary>
+		private void OnSettingsPressed()
 		{
 			_UIpressed = true;
+
+			// If game already paused, continues game
 			if (_showInGameMenu)
 			{
 				GetTree().Paused = false;
 				_showInGameMenu = false;
 				_inGameMenu.Hide();
 			}
+			// Pause game
 			else
 			{
 				GetTree().Paused = true;
