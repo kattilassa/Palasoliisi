@@ -15,6 +15,7 @@ namespace PalaSoliisi
 		private Control _inGameMenu;
 		[Export] private TextureButton _settingsButton = null;
 		[Export] private TextureButton _articleButton = null;
+		[Export] private TextureButton _computerButton = null;
 
 		public static Level Current
 		{
@@ -95,6 +96,9 @@ namespace PalaSoliisi
 				_articleButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnArticlePressed)));
 
+			_computerButton.Connect(Button.SignalName.Pressed,
+				new Callable(this, nameof(OnComputerPressed)));
+
 			ResetGame();
 		}
 		public void ResetGame()
@@ -147,6 +151,15 @@ namespace PalaSoliisi
 				_articleButton.GlobalPosition = new Vector2(50, 50);
 			}
 		}
+
+		private void OnComputerPressed()
+		{
+			if(!_showInGameMenu)
+			{
+				GD.Print("Tietokonetta painettu");
+			}
+		}
+
 			public void OnSettingsGuiInput(InputEvent @event)
 		{
 			if (@event is InputEventMouseButton mb)
