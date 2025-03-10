@@ -146,10 +146,12 @@ namespace PalaSoliisi
 			{
 				_articleButton.GlobalPosition = new Vector2(10, 10);
 			}
-			else
+			else if (_articlePieces == 3)
 			{
 				_articleButton.GlobalPosition = new Vector2(50, 50);
+				_articleButton.Hide();
 			}
+
 		}
 
 		private void OnComputerPressed()
