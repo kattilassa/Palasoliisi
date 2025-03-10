@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bwvbfdokg5du5" path="res://Character/bernand.tscn" id="10_38n62"]
 [ext_resource type="Theme" uid="uid://c7sdrp3ltdq24" path="res://addons/dialogue_nodes/themes/pixelart.theme" id="12_6oeu2"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="12_v47gt"]
-[ext_resource type="Resource" uid="uid://dc0xpmus4ce1k" path="res://Bernand_first_scene.tres" id="13_v4oxk"]
+[ext_resource type="Resource" path="res://Bernand_first_scene.tres" id="13_v4oxk"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeWait.gd" id="14_g4w2e"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeGhost.gd" id="15_45o0a"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="16_xve5m"]
@@ -94,12 +94,8 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="InGameMenu" parent="UI" instance=ExtResource("3_1pr6y")]
-process_mode = 3
-z_index = 2
-layout_mode = 1
-offset_top = 24.0
-offset_right = -3.0
-offset_bottom = -24.0
+layout_mode = 0
+anchors_preset = 0
 
 [node name="TextureButton" type="TextureButton" parent="."]
 offset_left = -210.0
