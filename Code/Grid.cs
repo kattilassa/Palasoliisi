@@ -167,7 +167,7 @@ namespace PalaSoliisi
 			return cell.Occupier.Type == CellOccupierType.Collectable;
 		}
 
-		public Collectable GetCollectable(Vector2I gridPosition)
+		public ICellOccupier GetCollectable(Vector2I gridPosition)
 		{
 			if (!IsValidCoordinate(gridPosition))
 			{
@@ -184,11 +184,45 @@ namespace PalaSoliisi
 			return null;
 		}
 
+		public Card GetCard(Vector2I gridPosition)
+		{
+			if (!IsValidCoordinate(gridPosition))
+			{
+				return null;
+			}
+
+			Cell cell = _cells[gridPosition.X, gridPosition.Y];
+
+			if (cell.Occupier is Card)
+			{
+				return cell.Occupier as Card;
+			}
+
+			return null;
+		}
+
+		public CardBack GetCardBack(Vector2I gridPosition)
+		{
+			if (!IsValidCoordinate(gridPosition))
+			{
+				return null;
+			}
+
+			Cell cell = _cells[gridPosition.X, gridPosition.Y];
+
+			if (cell.Occupier is CardBack)
+			{
+				return cell.Occupier as CardBack;
+			}
+
+			return null;
+		}
+
 		public bool IsCellClicked(Vector2 clickPosition, out Vector2I gridCoordinate)
 		{
 			// Oletetaan, että näitä propertyjä on saatavilla
-			Vector2 cellSize = Level.Current.Grid.CellSize;
-			Vector2 gridOffset = Level.Current.Grid.Offset;
+			Vector2 cellSize = MiniGame.Current.Grid.CellSize;
+			Vector2 gridOffset = MiniGame.Current.Grid.Offset;
 
 			// Muunna klikkauspaikka ruudukon koordinaateiksi
 			int cellX = (int)Math.Floor((clickPosition.X + gridOffset.X) / cellSize.X);
@@ -196,7 +230,7 @@ namespace PalaSoliisi
 			gridCoordinate = new Vector2I(cellX, cellY);
 
 			// Tarkista, että ruudun koordinaatit ovat kelvolliset
-			return Level.Current.Grid.IsValidCoordinate(gridCoordinate);
+			return MiniGame.Current.Grid.IsValidCoordinate(gridCoordinate);
 		}
 
 	}

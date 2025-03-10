@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://b15035piso76o"]
+
+[ext_resource type="Script" path="res://Code/MiniGame/MiniGame.cs" id="1_ud83l"]
+[ext_resource type="PackedScene" uid="uid://biil78h7unvgi" path="res://Levels/Grid.tscn" id="2_no4ox"]
+[ext_resource type="Texture2D" uid="uid://divdppkpedkra" path="res://art/UI/setting.png" id="4_2d8ur"]
+[ext_resource type="Texture2D" uid="uid://bxec5xqh2iklr" path="res://art/UI/setting_pressed.png" id="5_2s15f"]
+[ext_resource type="PackedScene" uid="uid://bw1b55q33qgnr" path="res://Code/UI/InGameMenu.tscn" id="6_v4t5l"]
+[ext_resource type="PackedScene" uid="uid://gugyeq2bngsf" path="res://Code/UI/MiniGameUI.tscn" id="7_ecxnm"]
+
+[node name="MiniGame" type="Node2D" node_paths=PackedStringArray("_miniGameControl", "_settingsButton")]
+script = ExtResource("1_ud83l")
+_miniGameControl = NodePath("UI/MiniGameUI")
+_settingsButton = NodePath("Settings")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Grid" parent="." instance=ExtResource("2_no4ox")]
+_width = 4
+_height = 2
+_cellSize = Vector2i(64, 64)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -228.0
+offset_top = -128.0
+offset_right = 228.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MiniGameUI" parent="UI" instance=ExtResource("7_ecxnm")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 10
+anchor_bottom = 0.0
+grow_vertical = 1
+
+[node name="InGameMenu" parent="UI" instance=ExtResource("6_v4t5l")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -40.0
+offset_right = 140.0
+offset_bottom = 40.0
+
+[node name="Settings" type="TextureButton" parent="."]
+process_mode = 3
+z_index = 3
+custom_minimum_size = Vector2(50, 50)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 178.0
+offset_top = -128.0
+offset_right = 228.0
+offset_bottom = -78.0
+grow_horizontal = 0
+texture_normal = ExtResource("4_2d8ur")
+texture_pressed = ExtResource("5_2s15f")
+ignore_texture_size = true
+stretch_mode = 4
