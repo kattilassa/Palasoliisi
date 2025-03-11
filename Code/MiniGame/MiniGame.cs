@@ -10,6 +10,10 @@ namespace PalaSoliisi
 	/// </summary>
 	public partial class MiniGame : Node2D
 	{
+		// Game completed
+		[Signal]
+		public delegate void MiniGameCompletedEventHandler();
+
 		[Export] private string _card1ScenePath = "res://Levels/Collectables/Card1.tscn";
 		[Export] private string _card2ScenePath = "res://Levels/Collectables/Card2.tscn";
 		[Export] private string _card3ScenePath = "res://Levels/Collectables/Card3.tscn";
@@ -29,7 +33,6 @@ namespace PalaSoliisi
 		private Control _inGameMenu;
 		public bool _showInGameMenu = false;
 		private bool _settingsClose = false;
-		public bool _UIpressed = false;
 
 		// Score of matching pairs found
 		private int _pairsFound = 0;
@@ -77,6 +80,12 @@ namespace PalaSoliisi
 				else
 				{
 					_pairsFound = value;
+
+					// Send signal when all pairs have been found
+					if (_pairsFound == 4)
+            		{
+        	        	EmitSignal(nameof(MiniGameCompleted));
+        	    	}
 				}
 
 				if (_miniGameControl != null)
@@ -109,7 +118,6 @@ namespace PalaSoliisi
 
 		public override void _Ready()
 		{
-
 			_inGameMenu = GetNode<Control>("UI/InGameMenu");
 			_inGameMenu.Hide();
 
@@ -130,10 +138,10 @@ namespace PalaSoliisi
 		public override void _Input(InputEvent @event)
         {
         	if (@event is InputEventScreenTouch touchEvent
-			&& touchEvent.Pressed
-			&& touchEvent.Index == 0)
+			&& touchEvent.Index == 0
+			&& touchEvent.Pressed)
             {
-                Vector2 clickPos = GetGlobalMousePosition();
+                Vector2 clickPos = GetViewport().GetCanvasTransform().AffineInverse() * touchEvent.Position;
 
                 if (Grid.IsCellClicked(clickPos, out Vector2I gridCoord))
                 {
@@ -175,15 +183,19 @@ namespace PalaSoliisi
             }
         }
 
-		public void OnSettingsPressed()
+		/// <summary>
+		/// Pauses game and shows InGameMenu when settings button pressed.
+		/// </summary>
+		private void OnSettingsPressed()
 		{
-			_UIpressed = true;
+			// If game already paused, continues game
 			if (_showInGameMenu)
 			{
 				GetTree().Paused = false;
 				_showInGameMenu = false;
 				_inGameMenu.Hide();
 			}
+			// Pause game
 			else
 			{
 				GetTree().Paused = true;
@@ -199,9 +211,14 @@ namespace PalaSoliisi
 		/// </summary>
 		private void ResetMiniGame()
 		{
+			GetTree().Paused = false;
+
 			// Reset scores
 			PairsFound = 0;
 			TurnsTaken = 0;
+
+			_turnedCards.Clear();
+			_turnedCardBacks.Clear();
 
 			// Place new cards
 			PlaceCards();
@@ -306,36 +323,40 @@ namespace PalaSoliisi
 		/// </summary>
 		private async void CheckPair()
 		{
-			// Keeps score of number of turns taken
-			TurnsTaken++;
-
 			// Execute method only when 2 cells have been clikced
 			if (_turnedCards.Count != 2)
-				return;
-
-			Card card1 = _turnedCards[0];
-			Card card2 = _turnedCards[1];
-
-			// Check if matchinf pair
-			if (card1.GetType() == card2.GetType()) // Jos kortit ovat samaa tyyppiä
 			{
-				GD.Print("Pair found!");
-				// Keep score of number of pairs found
-				PairsFound++;
+				return;
 			}
-			// If pair does not match cover cards again
 			else
 			{
-				GD.Print("Pair not found.");
-				// Wait for a second before covering cards
-				await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
-				// Covers only selected pair
-				TurnPair();
-			}
+				Card card1 = _turnedCards[0];
+				Card card2 = _turnedCards[1];
 
-			// Clear lists for the next pair
-			_turnedCards.Clear();
-			_turnedCardBacks.Clear();
+				// Check if matching pair
+				if (card1.GetType() == card2.GetType())
+				{
+					GD.Print("Pair found!");
+					// Keep score of number of pairs found
+					PairsFound++;
+				}
+				// If pair does not match cover cards again
+				else
+				{
+					GD.Print("Pair not found.");
+					// Wait for a second before covering cards
+					await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
+					// Covers only selected pair
+					TurnPair();
+				}
+
+				// Keeps score of number of turns taken
+				TurnsTaken++;
+
+				// Clear lists for the next pair
+				_turnedCards.Clear();
+				_turnedCardBacks.Clear();
+			}
 		}
 
 		/// <summary>

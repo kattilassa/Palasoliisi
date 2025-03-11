@@ -39,11 +39,12 @@ script = ExtResource("15_45o0a")
 [sub_resource type="RichTextEffect" id="RichTextEffect_80eou"]
 script = ExtResource("16_xve5m")
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("_settingsButton", "_articleButton", "_computerButton", "_scoreUIControl")]
+[node name="Level" type="Node2D" node_paths=PackedStringArray("_settingsButton", "_articleButton", "_computerButton", "_bear", "_scoreUIControl")]
 script = ExtResource("1_uqqbp")
 _settingsButton = NodePath("UI/Settings")
 _articleButton = NodePath("TextureButton")
 _computerButton = NodePath("TextureButton2")
+_bear = NodePath("Camera2D/CharacterBody2D")
 _scoreUIControl = NodePath("UI/ScoreUI")
 
 [node name="Camera2D" type="Camera2D" parent="."]
