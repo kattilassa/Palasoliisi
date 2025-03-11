@@ -4,10 +4,10 @@
 [ext_resource type="TileSet" uid="uid://xu544k2gpeo7" path="res://art/leveltiles.tres" id="2_myw2y"]
 [ext_resource type="PackedScene" uid="uid://bw1b55q33qgnr" path="res://Code/UI/InGameMenu.tscn" id="3_1pr6y"]
 [ext_resource type="Texture2D" uid="uid://m2gha3ecoxug" path="res://art/House base.png" id="3_ithxu"]
-[ext_resource type="Texture2D" uid="uid://divdppkpedkra" path="res://art/UI/setting.png" id="4_saxcp"]
 [ext_resource type="Theme" uid="uid://dq18l0hyb3bqt" path="res://addons/dialogue_nodes/themes/bubblyClean.theme" id="5_1cjeq"]
-[ext_resource type="Texture2D" uid="uid://bxec5xqh2iklr" path="res://art/UI/setting_pressed.png" id="5_7ri4h"]
+[ext_resource type="Texture2D" uid="uid://cmffkqiiemf56" path="res://art/settings.1.png" id="6_biwi7"]
 [ext_resource type="PackedScene" uid="uid://b76xiux4rne1t" path="res://Code/UI/ScoreUI.tscn" id="7_dt16r"]
+[ext_resource type="Texture2D" uid="uid://bsir1syi7smu0" path="res://art/settings.2.png" id="7_xhxos"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBubble.gd" id="9_dw4qc"]
 [ext_resource type="Texture2D" uid="uid://8lawcytg4jte" path="res://art/UI/article.png" id="9_vu7l3"]
 [ext_resource type="PackedScene" uid="uid://bwvbfdokg5du5" path="res://Character/bernand.tscn" id="10_38n62"]
@@ -101,8 +101,8 @@ offset_right = -27.0
 offset_bottom = -207.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("4_saxcp")
-texture_pressed = ExtResource("5_7ri4h")
+texture_normal = ExtResource("6_biwi7")
+texture_pressed = ExtResource("7_xhxos")
 ignore_texture_size = true
 stretch_mode = 4
 
@@ -153,8 +153,8 @@ stretch_mode = 0
 clip_contents = false
 offset_left = -221.0
 offset_top = -1.0
-offset_right = -81.0
-offset_bottom = 22.0
+offset_right = -79.0
+offset_bottom = 24.0
 theme = ExtResource("5_1cjeq")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 bbcode_enabled = true

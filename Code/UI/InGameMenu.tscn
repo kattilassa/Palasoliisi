@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bw1b55q33qgnr"]
+[gd_scene load_steps=5 format=3 uid="uid://bw1b55q33qgnr"]
 
 [ext_resource type="PackedScene" uid="uid://b60yxlkl1xjot" path="res://Code/UI/Settings/VolumeSettings/VolumeSettings.tscn" id="1_o5jel"]
 [ext_resource type="Texture2D" uid="uid://chkx1ihjtc8hm" path="res://art/settingsbg.png" id="2_ie0o5"]
+[ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="3_qdc1a"]
+[ext_resource type="FontFile" uid="uid://cw6pyp0ft2pbd" path="res://art/Fonts/boldreel/Boldreel.otf" id="4_xoeml"]
 
 [node name="InGameMenu" type="CenterContainer"]
 anchors_preset = 15
@@ -21,7 +23,26 @@ expand_mode = 1
 process_mode = 3
 z_index = 5
 layout_mode = 2
-offset_left = 55.0
-offset_top = 35.0
-offset_right = 335.0
-offset_bottom = 115.0
+offset_left = 49.0
+offset_top = 41.0
+offset_right = 329.0
+offset_bottom = 121.0
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.524
+anchor_top = 0.117
+anchor_right = 0.524
+anchor_bottom = 0.117
+offset_left = -140.36
+offset_top = -3.55
+offset_right = 119.64
+offset_bottom = 21.45
+theme = ExtResource("3_qdc1a")
+theme_override_colors/font_outline_color = Color(0.286275, 0.215686, 0.207843, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_xoeml")
+theme_override_font_sizes/font_size = 20
+text = "SETTINGS"
+horizontal_alignment = 1
