@@ -13,10 +13,13 @@ namespace PalaSoliisi
 		public bool _showDialogue = false;
 		public bool _settingsClose = false;
 		public bool _UIpressed = false;
+		private Control _UI;
 		private Control _inGameMenu;
 		[Export] private TextureButton _settingsButton = null;
 		[Export] private TextureButton _articleButton = null;
 		[Export] private TextureButton _computerButton = null;
+		[Export] private string _miniGameScenePath = "res://Levels/MiniGame.tscn";
+		[Export] private CharacterBody2D _bear = null;
 
 		public static Level Current
 		{
@@ -26,12 +29,15 @@ namespace PalaSoliisi
 		[Export] private ScoreUIControl _scoreUIControl = null;
 
         private Grid _grid = null;
-		private PackedScene _bearScene = null;
+
 		private PackedScene _articleScene = null;
 		private PackedScene _obstacleScene = null;
 		private PackedScene _dialogueScene = null;
+		private PackedScene _miniGameScene = null;
+		private MiniGame _miniGame = null;
 		private int _articlePieces = 0;
-		private Bear _bear = null;
+		private int _miniGamesPlayed = 0;
+
 		private Article _article = null;
 		private Obstacle _obstacle = null;
 		private Node _dialogueBox;
@@ -59,13 +65,30 @@ namespace PalaSoliisi
 			}
 		}
 
+		public int MiniGamesPlayed
+		{
+			get { return _miniGamesPlayed; }
+			set
+			{
+				if (value < 0)
+				{
+					_miniGamesPlayed = 0;
+				}
+				else
+				{
+					_miniGamesPlayed = value;
+				}
+
+				//if (_scoreUIControl != null)
+				//{
+				//	_scoreUIControl.SetScore(_articlePieces);
+				//}
+			}
+		}
+
 		public Grid Grid
 		{
 			get { return _grid; }
-		}
-		public Bear Bear
-		{
-			get { return _bear; }
 		}
 		public Article Article
 		{
@@ -83,6 +106,7 @@ namespace PalaSoliisi
 		}
 		public override void _Ready()
 		{
+			_UI = GetNode<Control>("UI");
 			Timer = GetNode<Timer>("Timer");
 			_inGameMenu = GetNode<Control>("UI/InGameMenu");
 			_dialogueBox = GetNode("DialogueBox");
@@ -159,6 +183,18 @@ namespace PalaSoliisi
 				_dialogueBubble.Call("start", startId);
 			}
 
+			// Start minigame when article collected
+			StartMiniGame();
+
+		}
+
+		/// <summary>
+		/// Toggle UI visibility
+		/// </summary>
+		/// <param name="visible">True if UI visible</param>
+		private void UIVisible(bool visible)
+		{
+			_UI.Visible = visible;
 		}
 
 		private void OnComputerPressed()
@@ -185,6 +221,7 @@ namespace PalaSoliisi
 				}
 			}
 		}
+
 		public void Dialogue()
 		{
 			string startId = (string)_dialogueBox.Get("start_id");
@@ -219,6 +256,62 @@ namespace PalaSoliisi
 			{
 				_article.SetPosition(freeCell.GridPosition);
 			}
+		}
+
+		/// <summary>
+		/// Opens MiniGame scene when article collected
+		/// </summary>
+		public void StartMiniGame()
+		{
+			// Pause game and hide UI and character
+			GetTree().Paused = true;
+			_bear.Hide();
+			_settingsButton.Hide();
+			UIVisible(false);
+
+			// Delete previous minigame
+			if (_miniGame != null)
+			{
+				_miniGame.QueueFree();
+				_miniGame = null;
+			}
+
+			if (_miniGameScene == null)
+			{
+				//Initialize new minigame
+				_miniGameScene = ResourceLoader.Load<PackedScene>(_miniGameScenePath);
+				if (_miniGameScene == null)
+				{
+					GD.PrintErr("MiniGame can't be found");
+					return;
+				}
+			}
+			_miniGame = _miniGameScene.Instantiate<MiniGame>();
+			AddChild(_miniGame);
+
+			// When minigame completed close minigame
+			_miniGame.Connect(nameof(MiniGame.MiniGameCompleted),
+			new Callable(this, nameof(OnMiniGameCompleted)));
+		}
+
+		/// <summary>
+		/// Close minigame when completed.
+		/// </summary>
+		public async void OnMiniGameCompleted()
+		{
+			MiniGamesPlayed++;
+
+			// Wait 1 sec before closing minigame window
+			await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
+			// Close minigame
+			_miniGame.QueueFree();
+			_miniGame = null;
+
+			// Unpause game and set UI and character back to visible
+			GetTree().Paused = false;
+			_bear.Show();
+			_settingsButton.Show();
+			UIVisible(true);
 		}
 	}
 }
