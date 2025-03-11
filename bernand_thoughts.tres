@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://dom3qcv5xx1hp"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_f2wd5"]
+
+[resource]
+script = ExtResource("1_f2wd5")
+starts = {
+"first": &"0_1",
+"second": &"0_2"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(-438, -250),
+"start_id": "first"
+},
+"0_2": {
+"link": &"1_2",
+"offset": Vector2(-365, -55),
+"start_id": "second"
+},
+"1_1": {
+"dialogue": "Hmm I should look around",
+"offset": Vector2(-220, -360),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_2": {
+"dialogue": "I should check out the computer too",
+"offset": Vector2(-103, -29),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = "res://examples/PalasoliisiCharacters.tres"

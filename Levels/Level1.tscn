@@ -1,21 +1,25 @@
-[gd_scene load_steps=20 format=4 uid="uid://bu0y12c7gfv7e"]
+[gd_scene load_steps=27 format=4 uid="uid://bu0y12c7gfv7e"]
 
 [ext_resource type="Script" path="res://Code/Level.cs" id="1_uqqbp"]
 [ext_resource type="TileSet" uid="uid://xu544k2gpeo7" path="res://art/leveltiles.tres" id="2_myw2y"]
 [ext_resource type="PackedScene" uid="uid://bw1b55q33qgnr" path="res://Code/UI/InGameMenu.tscn" id="3_1pr6y"]
 [ext_resource type="Texture2D" uid="uid://m2gha3ecoxug" path="res://art/House base.png" id="3_ithxu"]
 [ext_resource type="Texture2D" uid="uid://divdppkpedkra" path="res://art/UI/setting.png" id="4_saxcp"]
+[ext_resource type="Theme" uid="uid://dq18l0hyb3bqt" path="res://addons/dialogue_nodes/themes/bubblyClean.theme" id="5_1cjeq"]
 [ext_resource type="Texture2D" uid="uid://bxec5xqh2iklr" path="res://art/UI/setting_pressed.png" id="5_7ri4h"]
 [ext_resource type="PackedScene" uid="uid://b76xiux4rne1t" path="res://Code/UI/ScoreUI.tscn" id="7_dt16r"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBubble.gd" id="9_dw4qc"]
 [ext_resource type="Texture2D" uid="uid://8lawcytg4jte" path="res://art/UI/article.png" id="9_vu7l3"]
 [ext_resource type="PackedScene" uid="uid://bwvbfdokg5du5" path="res://Character/bernand.tscn" id="10_38n62"]
+[ext_resource type="Resource" uid="uid://dom3qcv5xx1hp" path="res://bernand_thoughts.tres" id="10_wrf1k"]
 [ext_resource type="Theme" uid="uid://c7sdrp3ltdq24" path="res://addons/dialogue_nodes/themes/pixelart.theme" id="12_6oeu2"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="12_v47gt"]
-[ext_resource type="Resource" path="res://Bernand_first_scene.tres" id="13_v4oxk"]
+[ext_resource type="Resource" uid="uid://dc0xpmus4ce1k" path="res://Bernand_first_scene.tres" id="13_v4oxk"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeWait.gd" id="14_g4w2e"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeGhost.gd" id="15_45o0a"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="16_xve5m"]
 [ext_resource type="Texture2D" uid="uid://btg2o83fjag2w" path="res://art/TietokoneTietokone.png" id="18_b4exs"]
+[ext_resource type="AudioStream" uid="uid://2t8p7li1247q" path="res://music/best-adventure-ever-122726.mp3" id="20_x1onl"]
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_lhdac"]
 script = ExtResource("14_g4w2e")
@@ -24,6 +28,15 @@ script = ExtResource("14_g4w2e")
 script = ExtResource("15_45o0a")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_1bvc0"]
+script = ExtResource("16_xve5m")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_kjp2j"]
+script = ExtResource("14_g4w2e")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_0dtcu"]
+script = ExtResource("15_45o0a")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_80eou"]
 script = ExtResource("16_xve5m")
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("_settingsButton", "_articleButton", "_computerButton", "_scoreUIControl")]
@@ -77,7 +90,7 @@ offset_bottom = 27.0
 
 [node name="Settings" type="TextureButton" parent="UI"]
 process_mode = 3
-z_index = 3
+z_index = 4
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -94,8 +107,12 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="InGameMenu" parent="UI" instance=ExtResource("3_1pr6y")]
-layout_mode = 0
-anchors_preset = 0
+process_mode = 3
+layout_mode = 1
+offset_left = -2.0
+offset_top = 56.0
+offset_right = -2.0
+offset_bottom = -47.0
 
 [node name="TextureButton" type="TextureButton" parent="."]
 offset_left = -210.0
@@ -130,3 +147,29 @@ scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("18_b4exs")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="DialogueBubble" type="RichTextLabel" parent="." node_paths=PackedStringArray("follow_node")]
+clip_contents = false
+offset_left = -221.0
+offset_top = -1.0
+offset_right = -81.0
+offset_bottom = 22.0
+theme = ExtResource("5_1cjeq")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Sample dialogue."
+fit_content = true
+autowrap_mode = 0
+custom_effects = [SubResource("RichTextEffect_kjp2j"), SubResource("RichTextEffect_0dtcu"), SubResource("RichTextEffect_80eou")]
+script = ExtResource("9_dw4qc")
+data = ExtResource("10_wrf1k")
+start_id = "first"
+follow_node = NodePath("../Camera2D/CharacterBody2D")
+dialogue_custom_effects = [SubResource("RichTextEffect_kjp2j"), SubResource("RichTextEffect_0dtcu"), SubResource("RichTextEffect_80eou")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+position = Vector2(174, -108)
+stream = ExtResource("20_x1onl")
+autoplay = true
+bus = &"Music"

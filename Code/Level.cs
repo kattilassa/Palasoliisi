@@ -7,6 +7,7 @@ namespace PalaSoliisi
 	public partial class Level : Node2D
 	{
 		private static Level _current = null;
+		private Timer Timer;
 		public bool _showInGameMenu = false;
 
 		public bool _showDialogue = false;
@@ -33,7 +34,9 @@ namespace PalaSoliisi
 		private Bear _bear = null;
 		private Article _article = null;
 		private Obstacle _obstacle = null;
-		private ProtoDialog _dialogue = null;
+		private Node _dialogueBox;
+		private Node _dialogueBubble;
+
 
 		public int ArticlePieces
 		{
@@ -68,10 +71,6 @@ namespace PalaSoliisi
 		{
 			get { return _article; }
 		}
-		public ProtoDialog Dialog
-		{
-			get { return _dialogue; }
-		}
 		  public CellOccupierType Obstacle
 		{
 			get { return CellOccupierType.Obstacle; }
@@ -84,7 +83,10 @@ namespace PalaSoliisi
 		}
 		public override void _Ready()
 		{
+			Timer = GetNode<Timer>("Timer");
 			_inGameMenu = GetNode<Control>("UI/InGameMenu");
+			_dialogueBox = GetNode("DialogueBox");
+			_dialogueBubble = GetNode("DialogueBubble");
 			_inGameMenu.Hide();
 			//_grid = GetNode<Grid>("Grid");
 			//if (_grid == null)
@@ -105,6 +107,7 @@ namespace PalaSoliisi
 		{
 			ArticlePieces= 0;
 			Dialogue();
+
 		}
 		public override void _Process(double delta)
 		{
@@ -150,6 +153,10 @@ namespace PalaSoliisi
 			{
 				_articleButton.GlobalPosition = new Vector2(50, 50);
 				_articleButton.Hide();
+
+				string startId = (string)_dialogueBox.Get("start_id");
+				startId = "second";
+				_dialogueBubble.Call("start", startId);
 			}
 
 		}
@@ -159,6 +166,12 @@ namespace PalaSoliisi
 			if(!_showInGameMenu)
 			{
 				GD.Print("Tietokonetta painettu");
+
+				if (_articlePieces==3)
+				{
+				string startId = "quiz";
+				_dialogueBox.Call("start", startId);
+				}
 			}
 		}
 
@@ -174,16 +187,10 @@ namespace PalaSoliisi
 		}
 		public void Dialogue()
 		{
-			var dialogueBox = GetNode<Control>("DialogueBox");
-			dialogueBox.Call("start");
-			var isRunning = (bool)dialogueBox.Call("is_running");
-			 if (isRunning)
-			{     _showDialogue = false;
-			}
-			else
-			{
-				_showDialogue = true;
-			}
+			string startId = (string)_dialogueBox.Get("start_id");
+			_dialogueBox.Call("start", startId);
+
+			_dialogueBubble.Call("start");
 
 			return;
 		}
