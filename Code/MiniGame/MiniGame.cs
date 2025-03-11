@@ -140,7 +140,8 @@ namespace PalaSoliisi
 		public override void _Input(InputEvent @event)
         {
         	if (@event is InputEventScreenTouch touchEvent
-			&& touchEvent.Index == 0)
+			&& touchEvent.Index == 0
+			&& touchEvent.Pressed)
             {
                 Vector2 clickPos = GetViewport().GetCanvasTransform().AffineInverse() * touchEvent.Position;
 
@@ -217,6 +218,9 @@ namespace PalaSoliisi
 			// Reset scores
 			PairsFound = 0;
 			TurnsTaken = 0;
+
+			_turnedCards.Clear();
+			_turnedCardBacks.Clear();
 
 			// Place new cards
 			PlaceCards();
@@ -321,36 +325,40 @@ namespace PalaSoliisi
 		/// </summary>
 		private async void CheckPair()
 		{
-			// Keeps score of number of turns taken
-			TurnsTaken++;
-
 			// Execute method only when 2 cells have been clikced
 			if (_turnedCards.Count != 2)
-				return;
-
-			Card card1 = _turnedCards[0];
-			Card card2 = _turnedCards[1];
-
-			// Check if matchinf pair
-			if (card1.GetType() == card2.GetType()) // Jos kortit ovat samaa tyyppiä
 			{
-				GD.Print("Pair found!");
-				// Keep score of number of pairs found
-				PairsFound++;
+				return;
 			}
-			// If pair does not match cover cards again
 			else
 			{
-				GD.Print("Pair not found.");
-				// Wait for a second before covering cards
-				await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
-				// Covers only selected pair
-				TurnPair();
-			}
+				Card card1 = _turnedCards[0];
+				Card card2 = _turnedCards[1];
 
-			// Clear lists for the next pair
-			_turnedCards.Clear();
-			_turnedCardBacks.Clear();
+				// Check if matching pair
+				if (card1.GetType() == card2.GetType())
+				{
+					GD.Print("Pair found!");
+					// Keep score of number of pairs found
+					PairsFound++;
+				}
+				// If pair does not match cover cards again
+				else
+				{
+					GD.Print("Pair not found.");
+					// Wait for a second before covering cards
+					await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
+					// Covers only selected pair
+					TurnPair();
+				}
+
+				// Keeps score of number of turns taken
+				TurnsTaken++;
+
+				// Clear lists for the next pair
+				_turnedCards.Clear();
+				_turnedCardBacks.Clear();
+			}
 		}
 
 		/// <summary>
