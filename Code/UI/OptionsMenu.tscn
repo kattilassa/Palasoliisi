@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bwhnsrfbstgmb"]
+[gd_scene load_steps=14 format=3 uid="uid://bwhnsrfbstgmb"]
 
 [ext_resource type="Script" path="res://Code/UI/OptionsMenu.cs" id="1_ekxvf"]
 [ext_resource type="Texture2D" uid="uid://bguhdq03svjjk" path="res://art/UI/bg.png" id="2_gc4qa"]
+[ext_resource type="Texture2D" uid="uid://cmkf320k2hfw8" path="res://art/Test2(1).png" id="3_526j0"]
 [ext_resource type="PackedScene" uid="uid://di3083dy1c8dm" path="res://Code/UI/BernandUI.tscn" id="3_le24b"]
 [ext_resource type="AudioStream" uid="uid://dwkwx2v0ks8oy" path="res://music/menu-drift-away-dusk-fss-no-copyright-music-234393.mp3" id="4_chgfv"]
 [ext_resource type="PackedScene" uid="uid://b60yxlkl1xjot" path="res://Code/UI/Settings/VolumeSettings/VolumeSettings.tscn" id="4_sg1lq"]
@@ -103,6 +104,11 @@ layout_mode = 2
 texture = ExtResource("2_gc4qa")
 expand_mode = 5
 stretch_mode = 6
+
+[node name="BGImage2" type="TextureRect" parent="BackGround"]
+layout_mode = 2
+texture = ExtResource("3_526j0")
+expand_mode = 5
 
 [node name="ButtonMenu" type="HBoxContainer" parent="."]
 layout_mode = 1

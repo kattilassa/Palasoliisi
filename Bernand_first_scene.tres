@@ -5,13 +5,19 @@
 [resource]
 script = ExtResource("1_if737")
 starts = {
-"first": &"0_1"
+"first": &"0_1",
+"quiz": &"0_2"
 }
 nodes = {
 "0_1": {
 "link": &"1_1",
 "offset": Vector2(-451, -288),
 "start_id": "first"
+},
+"0_2": {
+"link": &"1_5",
+"offset": Vector2(-460, -80),
+"start_id": "quiz"
 },
 "1_1": {
 "dialogue": "Ah! It's nice to be back in my hometown. My dear cousin Gloria has been acting so weird lately. I couldn't bear the thought of not coming to visit her, so here I am.",
@@ -41,7 +47,7 @@ nodes = {
 "text": "Don't answer the phone"
 }
 },
-"size": Vector2(300, 257),
+"size": Vector2(300, 290),
 "speaker": 0
 },
 "1_3": {
@@ -54,7 +60,7 @@ nodes = {
 "text": "Hello Gloria!"
 }
 },
-"size": Vector2(300, 240),
+"size": Vector2(300, 257),
 "speaker": 0
 },
 "1_4": {
@@ -69,8 +75,87 @@ nodes = {
 },
 "size": Vector2(300, 240),
 "speaker": 0
+},
+"1_5": {
+"dialogue": "\"Propagandaa sisältävä lause\" Hmm...this sounds like...",
+"offset": Vector2(-240, -80),
+"options": {
+0: {
+"condition": {},
+"link": &"1_6",
+"text": "Propaganda!"
+},
+1: {
+"condition": {},
+"link": &"1_7",
+"text": "Misinformation!"
+},
+2: {
+"condition": {},
+"link": &"1_7",
+"text": "Fake news!"
+}
+},
+"size": Vector2(300, 323),
+"speaker": 0
+},
+"1_6": {
+"dialogue": "Right! *tietoa propagandasta* ",
+"offset": Vector2(80, -80),
+"options": {
+0: {
+"condition": {},
+"link": &"4_1",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_7": {
+"dialogue": "Hmm not quite, this seems more like propaganda!",
+"offset": Vector2(140, 220),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_8": {
+"dialogue": "WOW, you scored {{points}} points!",
+"offset": Vector2(760, -40),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"2_1": {
+"comment": "",
+"offset": Vector2(-328.977, -558.927),
+"size": Vector2(200, 100)
+},
+"4_1": {
+"link": &"1_8",
+"offset": Vector2(400, 80),
+"type": 1,
+"value": "1",
+"variable": "points"
 }
 }
-variables = {}
-strays = Array[String]([])
+variables = {
+"points": {
+"type": 2,
+"value": 0
+}
+}
+strays = Array[String](["2_1"])
 characters = "res://examples/PalasoliisiCharacters.tres"
