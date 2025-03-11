@@ -58,7 +58,7 @@ z_index = 2
 layout_mode = 1
 
 [node name="Settings" type="TextureButton" parent="."]
-process_mode = 2
+process_mode = 3
 z_index = 3
 custom_minimum_size = Vector2(50, 50)
 anchors_preset = 1

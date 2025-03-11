@@ -33,7 +33,6 @@ namespace PalaSoliisi
 		private Control _inGameMenu;
 		public bool _showInGameMenu = false;
 		private bool _settingsClose = false;
-		public bool _UIpressed = false;
 
 		// Score of matching pairs found
 		private int _pairsFound = 0;
@@ -119,7 +118,6 @@ namespace PalaSoliisi
 
 		public override void _Ready()
 		{
-
 			_inGameMenu = GetNode<Control>("UI/InGameMenu");
 			_inGameMenu.Hide();
 
@@ -190,8 +188,6 @@ namespace PalaSoliisi
 		/// </summary>
 		private void OnSettingsPressed()
 		{
-			_UIpressed = true;
-
 			// If game already paused, continues game
 			if (_showInGameMenu)
 			{
@@ -215,6 +211,8 @@ namespace PalaSoliisi
 		/// </summary>
 		private void ResetMiniGame()
 		{
+			GetTree().Paused = false;
+
 			// Reset scores
 			PairsFound = 0;
 			TurnsTaken = 0;
