@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://b8de81gowhv60"]
 
-[ext_resource type="Texture2D" uid="uid://ctscrbqw6ehtp" path="res://art/Collectables/radioactive.png" id="1_haoad"]
+[ext_resource type="Texture2D" uid="uid://bqktixbf5643q" path="res://art/Cards/cardpaw.png" id="1_628ct"]
 [ext_resource type="Script" path="res://Code/MiniGame/Card3.cs" id="2_dk2se"]
 
 [node name="Sprite2D" type="Sprite2D"]
-scale = Vector2(2, 2)
-texture = ExtResource("1_haoad")
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_628ct")
 script = ExtResource("2_dk2se")

@@ -67,6 +67,10 @@ namespace PalaSoliisi
 			{
 				for (int y = 0; y < _height; ++y)
 				{
+					if (y == 1)
+					{
+						continue;
+					}
 					// Luo uusi olio Cell-scenestä.
 					Cell cell = cellScene.Instantiate<Cell>();
 					// Lisää juuri luotu Cell-olio gridin Nodepuuhun.

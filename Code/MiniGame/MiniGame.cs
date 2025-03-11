@@ -268,6 +268,7 @@ namespace PalaSoliisi
 
 					// Get random free position from grid and set position
 					Cell freeCell = Grid.GetRandomFreeCell();
+
 					if (Grid.OccupyCell(card, freeCell.GridPosition))
 					{
 						card.SetPosition(freeCell.GridPosition);

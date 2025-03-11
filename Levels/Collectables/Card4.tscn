@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://n0c8o0k3ndjw"]
 
-[ext_resource type="Texture2D" uid="uid://bwnic2qdiuuoc" path="res://art/pngegg(1).png" id="1_l1gc7"]
+[ext_resource type="Texture2D" uid="uid://crtvxw3yhb6x3" path="res://art/Cards/cardsuurennus.png" id="1_xyb2d"]
 [ext_resource type="Script" path="res://Code/MiniGame/Card4.cs" id="2_lk75c"]
 
 [node name="Sprite2D" type="Sprite2D"]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_l1gc7")
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_xyb2d")
 script = ExtResource("2_lk75c")

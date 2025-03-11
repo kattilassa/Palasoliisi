@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://b15035piso76o"]
+[gd_scene load_steps=9 format=3 uid="uid://b15035piso76o"]
 
 [ext_resource type="Script" path="res://Code/MiniGame/MiniGame.cs" id="1_ud83l"]
-[ext_resource type="Texture2D" uid="uid://drldl1k7smfym" path="res://icon.svg" id="2_6477h"]
 [ext_resource type="PackedScene" uid="uid://biil78h7unvgi" path="res://Levels/Grid.tscn" id="2_no4ox"]
-[ext_resource type="Texture2D" uid="uid://divdppkpedkra" path="res://art/UI/setting.png" id="4_2d8ur"]
-[ext_resource type="Texture2D" uid="uid://bxec5xqh2iklr" path="res://art/UI/setting_pressed.png" id="5_2s15f"]
+[ext_resource type="Texture2D" uid="uid://dhu3dxhvb65o0" path="res://art/Test2.png" id="2_prftr"]
+[ext_resource type="Texture2D" uid="uid://chkx1ihjtc8hm" path="res://art/settingsbg.png" id="3_32kqn"]
+[ext_resource type="Texture2D" uid="uid://cmffkqiiemf56" path="res://art/settings.1.png" id="6_u5vp5"]
 [ext_resource type="PackedScene" uid="uid://bw1b55q33qgnr" path="res://Code/UI/InGameMenu.tscn" id="6_v4t5l"]
+[ext_resource type="Texture2D" uid="uid://bsir1syi7smu0" path="res://art/settings.2.png" id="7_4aeeu"]
 [ext_resource type="PackedScene" uid="uid://gugyeq2bngsf" path="res://Code/UI/MiniGameUI.tscn" id="7_ecxnm"]
 
 [node name="MiniGame" type="Node2D" node_paths=PackedStringArray("_miniGameControl", "_settingsButton")]
@@ -26,12 +27,30 @@ offset_right = 228.0
 offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_6477h")
+texture = ExtResource("2_prftr")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Camera2D/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -213.0
+offset_top = -82.0
+offset_right = 209.0
+offset_bottom = 99.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_32kqn")
+expand_mode = 1
 
 [node name="Grid" parent="." instance=ExtResource("2_no4ox")]
+visible = true
 _width = 4
-_height = 2
-_cellSize = Vector2i(64, 64)
+_height = 3
+_cellSize = Vector2i(80, 48)
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -56,6 +75,8 @@ grow_vertical = 1
 process_mode = 3
 z_index = 2
 layout_mode = 1
+offset_top = 53.0
+offset_bottom = -53.0
 
 [node name="Settings" type="TextureButton" parent="."]
 process_mode = 3
@@ -69,7 +90,7 @@ offset_top = -110.0
 offset_right = 204.0
 offset_bottom = -83.0
 grow_horizontal = 0
-texture_normal = ExtResource("4_2d8ur")
-texture_pressed = ExtResource("5_2s15f")
+texture_normal = ExtResource("6_u5vp5")
+texture_pressed = ExtResource("7_4aeeu")
 ignore_texture_size = true
 stretch_mode = 4
