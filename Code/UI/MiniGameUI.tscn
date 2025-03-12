@@ -11,26 +11,36 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_m6glx")
-_pairsScore = NodePath("VBoxContainer/Pairs")
-_turnsScore = NodePath("VBoxContainer/Turns")
+_pairsScore = NodePath("HBoxContainer/Pairs")
+_turnsScore = NodePath("HBoxContainer/Turns")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(0, 50)
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(275, 20)
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 50.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -137.5
+offset_top = 5.0
+offset_right = 137.5
+offset_bottom = 25.0
 grow_horizontal = 2
-alignment = 1
 
-[node name="Pairs" type="Label" parent="VBoxContainer"]
+[node name="Pairs" type="Label" parent="HBoxContainer"]
+layout_direction = 1
 layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 8
 theme = ExtResource("1_qjjbb")
 text = "Pairs found: 00"
-horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Turns" type="Label" parent="VBoxContainer"]
+[node name="Turns" type="Label" parent="HBoxContainer"]
+layout_direction = 1
 layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
 theme = ExtResource("1_qjjbb")
 text = "Turns taken: 00"
-horizontal_alignment = 1
+horizontal_alignment = 2
+vertical_alignment = 1

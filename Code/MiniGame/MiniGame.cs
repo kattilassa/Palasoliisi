@@ -150,30 +150,44 @@ namespace PalaSoliisi
 					// Finds CardBack that is located in the clicked cell
 					CardBack clickedCardBack = _placedCardBacks.Find(cb => cb.GridPosition == gridCoord);
 
-					if (clickedCardBack != null)
+					if (_turnedCardBacks.Count < 2)
 					{
-						// Turn the clicked card
-						clickedCardBack.Turn();
-
-						// Finds Card that is located in the clicked cell
-						Card turnedCard = _placedCards.Find(c => c.GridPosition == gridCoord);
-
-						if (turnedCard != null && clickedCardBack != null)
+						if (clickedCardBack != null)
 						{
-							// Add to the list of turned cards
-							_turnedCards.Add(turnedCard);
-							_turnedCardBacks.Add(clickedCardBack);
+							// Turn the clicked card
+							clickedCardBack.Turn();
 
-							// When 2 cards gave been clicked check if matching pair
-							if (_turnedCards.Count == 2)
+							// Finds Card that is located in the clicked cell
+							Card turnedCard = _placedCards.Find(c => c.GridPosition == gridCoord);
+
+							if(!_turnedCards.Contains(turnedCard))
 							{
-								CheckPair();
+								if (turnedCard != null && clickedCardBack != null)
+								{
+									// Add to the list of turned cards
+									_turnedCards.Add(turnedCard);
+									_turnedCardBacks.Add(clickedCardBack);
+
+									// When 2 cards gave been clicked check if matching pair
+									if (_turnedCards.Count == 2)
+									{
+										CheckPair();
+									}
+								}
 							}
+							else
+							{
+								GD.Print("Already turned card");
+							}
+						}
+						else
+						{
+							GD.Print("Clickes cell does not have CardBack");
 						}
 					}
 					else
 					{
-						GD.Print("Clickes cell does not have CardBack");
+						GD.Print("Too many cards turned");
 					}
                 }
                 else
