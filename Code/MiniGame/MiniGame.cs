@@ -52,6 +52,7 @@ namespace PalaSoliisi
 		// List of cards that are flipped within a turn
 		private List<Card> _turnedCards = new List<Card>();
 		private List<CardBack> _turnedCardBacks = new List<CardBack>();
+		private List<Card> _matchedCards = new List<Card>();
 
 		public static MiniGame Current
 		{
@@ -160,7 +161,7 @@ namespace PalaSoliisi
 							// Finds Card that is located in the clicked cell
 							Card turnedCard = _placedCards.Find(c => c.GridPosition == gridCoord);
 
-							if(!_turnedCards.Contains(turnedCard))
+							if(!_turnedCards.Contains(turnedCard) && !_matchedCards.Contains(turnedCard))
 							{
 								if (turnedCard != null && clickedCardBack != null)
 								{
@@ -354,6 +355,9 @@ namespace PalaSoliisi
 					GD.Print("Pair found!");
 					// Keep score of number of pairs found
 					PairsFound++;
+					// Add pair to a list to keep track so they can't be chosen again
+					_matchedCards.Add(card1);
+					_matchedCards.Add(card2);
 				}
 				// If pair does not match cover cards again
 				else
