@@ -52,6 +52,7 @@ namespace PalaSoliisi
 		// List of cards that are flipped within a turn
 		private List<Card> _turnedCards = new List<Card>();
 		private List<CardBack> _turnedCardBacks = new List<CardBack>();
+		private List<Card> _matchedCards = new List<Card>();
 
 		public static MiniGame Current
 		{
@@ -150,30 +151,44 @@ namespace PalaSoliisi
 					// Finds CardBack that is located in the clicked cell
 					CardBack clickedCardBack = _placedCardBacks.Find(cb => cb.GridPosition == gridCoord);
 
-					if (clickedCardBack != null)
+					if (_turnedCardBacks.Count < 2)
 					{
-						// Turn the clicked card
-						clickedCardBack.Turn();
-
-						// Finds Card that is located in the clicked cell
-						Card turnedCard = _placedCards.Find(c => c.GridPosition == gridCoord);
-
-						if (turnedCard != null && clickedCardBack != null)
+						if (clickedCardBack != null)
 						{
-							// Add to the list of turned cards
-							_turnedCards.Add(turnedCard);
-							_turnedCardBacks.Add(clickedCardBack);
+							// Turn the clicked card
+							clickedCardBack.Turn();
 
-							// When 2 cards gave been clicked check if matching pair
-							if (_turnedCards.Count == 2)
+							// Finds Card that is located in the clicked cell
+							Card turnedCard = _placedCards.Find(c => c.GridPosition == gridCoord);
+
+							if(!_turnedCards.Contains(turnedCard) && !_matchedCards.Contains(turnedCard))
 							{
-								CheckPair();
+								if (turnedCard != null && clickedCardBack != null)
+								{
+									// Add to the list of turned cards
+									_turnedCards.Add(turnedCard);
+									_turnedCardBacks.Add(clickedCardBack);
+
+									// When 2 cards gave been clicked check if matching pair
+									if (_turnedCards.Count == 2)
+									{
+										CheckPair();
+									}
+								}
 							}
+							else
+							{
+								GD.Print("Already turned card");
+							}
+						}
+						else
+						{
+							GD.Print("Clickes cell does not have CardBack");
 						}
 					}
 					else
 					{
-						GD.Print("Clickes cell does not have CardBack");
+						GD.Print("Too many cards turned");
 					}
                 }
                 else
@@ -340,6 +355,9 @@ namespace PalaSoliisi
 					GD.Print("Pair found!");
 					// Keep score of number of pairs found
 					PairsFound++;
+					// Add pair to a list to keep track so they can't be chosen again
+					_matchedCards.Add(card1);
+					_matchedCards.Add(card2);
 				}
 				// If pair does not match cover cards again
 				else
