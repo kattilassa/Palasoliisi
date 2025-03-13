@@ -13,13 +13,15 @@ namespace PalaSoliisi
 		public bool _showDialogue = false;
 		public bool _settingsClose = false;
 		public bool _UIpressed = false;
+		public bool _isMiniGameRunning = false;
+
 		private Control _UI;
 		private Control _inGameMenu;
 		[Export] private TextureButton _settingsButton = null;
 		[Export] private TextureButton _articleButton = null;
 		[Export] private TextureButton _computerButton = null;
 		[Export] private string _miniGameScenePath = "res://Levels/MiniGame.tscn";
-		[Export] private CharacterBody2D _bear = null;
+		[Export] private Bernand _bear = null;
 
 		public static Level Current
 		{
@@ -78,11 +80,6 @@ namespace PalaSoliisi
 				{
 					_miniGamesPlayed = value;
 				}
-
-				//if (_scoreUIControl != null)
-				//{
-				//	_scoreUIControl.SetScore(_articlePieces);
-				//}
 			}
 		}
 
@@ -132,9 +129,6 @@ namespace PalaSoliisi
 			ArticlePieces= 0;
 			Dialogue();
 
-		}
-		public override void _Process(double delta)
-		{
 		}
 
 		public void OnSettingsPressed()
@@ -265,9 +259,11 @@ namespace PalaSoliisi
 		{
 			// Pause game and hide UI and character
 			GetTree().Paused = true;
-			_bear.Hide();
-			_settingsButton.Hide();
 			UIVisible(false);
+			_bear.Hide();
+			_bear.StopMovement();
+			_settingsButton.Hide();
+			_isMiniGameRunning = true;
 
 			// Delete previous minigame
 			if (_miniGame != null)
@@ -309,9 +305,11 @@ namespace PalaSoliisi
 
 			// Unpause game and set UI and character back to visible
 			GetTree().Paused = false;
-			_bear.Show();
-			_settingsButton.Show();
 			UIVisible(true);
+			_bear.Show();
+			_bear.StartMovement();
+			_settingsButton.Show();
+			_isMiniGameRunning = false;
 		}
 	}
 }
