@@ -69,7 +69,9 @@ tile_map_data = PackedByteArray("AADx//n/BQAAAAAAAADx//r/BQAAAAAAAADx//v/BQAAAAA
 tile_set = ExtResource("2_myw2y")
 
 [node name="CharacterBody2D" parent="Camera2D" instance=ExtResource("10_38n62")]
+process_mode = 1
 z_index = 2
+Speed = 200
 
 [node name="UI" type="Control" parent="."]
 z_index = 3
