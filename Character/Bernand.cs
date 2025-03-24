@@ -7,7 +7,7 @@ public partial class Bernand : CharacterBody2D
 	[Export]
     public int Speed { get; set; } = 400;
     private Vector2 _target;
-    private bool _isPaused = false;
+    public bool _isPaused = false;
 
     public override void _Process(double delta)
     {
@@ -28,31 +28,26 @@ public partial class Bernand : CharacterBody2D
 
     public override void _Input(InputEvent @event)
     {
-        if (Level.Current._isMiniGameRunning)
+        if (Level.Current._isMiniGameRunning || Level.Current._isDialogueRunning)
         {
             return;
         }
-        else
+        if (Level.Current._UIpressed)
         {
-            if (Level.Current._UIpressed || Level.Current._showInGameMenu)
-            {
-                Level.Current._UIpressed = false;
                 return;
-            }
-            if (@event is InputEventMouseButton mouseEvent
-                    && mouseEvent.ButtonIndex == MouseButton.Left
-                    && !mouseEvent.Pressed)
-            {
-                _target = GetGlobalMousePosition();
-            }
-
-            if (@event is InputEventScreenTouch touchEvent
-                && touchEvent.Pressed
-                && touchEvent.Index == 0)
-            {
-                _target = GetGlobalMousePosition();
-            }
         }
+        else if (@event is InputEventMouseButton mouseEvent
+            && mouseEvent.ButtonIndex == MouseButton.Left
+            && !mouseEvent.Pressed)
+        {
+            _target = GetGlobalMousePosition();
+        }
+            //if (@event is InputEventScreenTouch touchEvent
+             //   && touchEvent.Pressed
+            //    && touchEvent.Index == 0)
+            //{
+              //  _target = GetGlobalMousePosition();
+            //}
 	}
 
     public void StopMovement()

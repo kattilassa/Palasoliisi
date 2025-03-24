@@ -1,0 +1,221 @@
+[gd_scene load_steps=31 format=4 uid="uid://bu0y12c7gfv7e"]
+
+[ext_resource type="Script" path="res://Code/Level.cs" id="1_uqqbp"]
+[ext_resource type="Texture2D" uid="uid://bjxo38brfpjof" path="res://art/House_base_curtain.png" id="2_h33wx"]
+[ext_resource type="TileSet" uid="uid://xu544k2gpeo7" path="res://art/leveltiles.tres" id="2_myw2y"]
+[ext_resource type="PackedScene" uid="uid://bw1b55q33qgnr" path="res://Code/UI/InGameMenu.tscn" id="3_1pr6y"]
+[ext_resource type="Theme" uid="uid://dq18l0hyb3bqt" path="res://addons/dialogue_nodes/themes/bubblyClean.theme" id="5_1cjeq"]
+[ext_resource type="Texture2D" uid="uid://cmffkqiiemf56" path="res://art/settings.1.png" id="6_biwi7"]
+[ext_resource type="FontFile" uid="uid://cw6pyp0ft2pbd" path="res://art/Fonts/boldreel/Boldreel.otf" id="6_kuk3a"]
+[ext_resource type="PackedScene" uid="uid://b76xiux4rne1t" path="res://Code/UI/ScoreUI.tscn" id="7_dt16r"]
+[ext_resource type="Texture2D" uid="uid://bsir1syi7smu0" path="res://art/settings.2.png" id="7_xhxos"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBubble.gd" id="9_dw4qc"]
+[ext_resource type="Texture2D" uid="uid://8lawcytg4jte" path="res://art/UI/article.png" id="9_vu7l3"]
+[ext_resource type="PackedScene" uid="uid://bwvbfdokg5du5" path="res://Character/bernand.tscn" id="10_38n62"]
+[ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="10_v3aap"]
+[ext_resource type="Resource" uid="uid://dom3qcv5xx1hp" path="res://bernand_thoughts.tres" id="10_wrf1k"]
+[ext_resource type="Theme" uid="uid://c7sdrp3ltdq24" path="res://addons/dialogue_nodes/themes/pixelart.theme" id="12_6oeu2"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="12_v47gt"]
+[ext_resource type="Resource" uid="uid://dc0xpmus4ce1k" path="res://Bernand_first_scene.tres" id="13_v4oxk"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeWait.gd" id="14_g4w2e"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeGhost.gd" id="15_45o0a"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="16_xve5m"]
+[ext_resource type="Texture2D" uid="uid://btg2o83fjag2w" path="res://art/TietokoneTietokone.png" id="18_b4exs"]
+[ext_resource type="AudioStream" uid="uid://wteveke4gnd1" path="res://music/sneaky-feet-150618.mp3" id="20_55ul1"]
+[ext_resource type="Texture2D" uid="uid://bsl1g8st8fkjc" path="res://art/Puhelin.png" id="22_38mqv"]
+
+[sub_resource type="Theme" id="Theme_0snlr"]
+default_font = ExtResource("6_kuk3a")
+Label/constants/outline_size = 4
+Label/fonts/font = ExtResource("6_kuk3a")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_lhdac"]
+script = ExtResource("14_g4w2e")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ueyag"]
+script = ExtResource("15_45o0a")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_1bvc0"]
+script = ExtResource("16_xve5m")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_kjp2j"]
+script = ExtResource("14_g4w2e")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_0dtcu"]
+script = ExtResource("15_45o0a")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_80eou"]
+script = ExtResource("16_xve5m")
+
+[node name="Level" type="Node2D" node_paths=PackedStringArray("_settingsButton", "_articleButton", "_computerButton", "_phoneButton", "_menuButton", "_scoreUIControl")]
+script = ExtResource("1_uqqbp")
+_settingsButton = NodePath("UI/Settings")
+_articleButton = NodePath("piece")
+_computerButton = NodePath("computer")
+_phoneButton = NodePath("Phonebutton")
+_menuButton = NodePath("UI/Button")
+_scoreUIControl = NodePath("UI/ScoreUI")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -232.0
+offset_top = -131.0
+offset_right = 235.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_h33wx")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="borders" type="TileMapLayer" parent="Camera2D"]
+visible = false
+z_index = 1
+tile_map_data = PackedByteArray("AADx//n/BQAAAAAAAADx//r/BQAAAAAAAADx//v/BQAAAAAAAADx//z/BQAAAAAAAADx//3/BQAAAAAAAADx//7/BQAAAAAAAADx////BQAAAAAAAADx/wAABQAAAAAAAADx/wEABQAAAAAAAADx/wIABQAAAAAAAADx/wMABQAAAAAAAADx/wQABQAAAAAAAADx/wUABQAAAAAAAADx/wYABQAAAAAAAADx/wcABQAAAAAAAAAOAPn/BQAAAAAAAAAOAPr/BQAAAAAAAAAOAPv/BQAAAAAAAAAOAPz/BQAAAAAAAAAOAP3/BQAAAAAAAAAOAP7/BQAAAAAAAAAOAP//BQAAAAAAAAAOAAAABQAAAAAAAAAOAAEABQAAAAAAAAAOAAIABQAAAAAAAAAOAAMABQAAAAAAAAAOAAQABQAAAAAAAAAOAAUABQAAAAAAAAAOAAYABQAAAAAAAAAOAAcABQAAAAAAAADy/wcABQAAAAAAAADz/wcABQAAAAAAAAD0/wcABQAAAAAAAAD1/wcABQAAAAAAAAD2/wcABQAAAAAAAAD3/wcABQAAAAAAAAD4/wcABQAAAAAAAAD5/wcABQAAAAAAAAD6/wcABQAAAAAAAAD7/wcABQAAAAAAAAD8/wcABQAAAAAAAAD9/wcABQAAAAAAAAD+/wcABQAAAAAAAAD//wcABQAAAAAAAAAAAAcABQAAAAAAAAABAAcABQAAAAAAAAACAAcABQAAAAAAAAADAAcABQAAAAAAAAAEAAcABQAAAAAAAAAFAAcABQAAAAAAAAAGAAcABQAAAAAAAAAHAAcABQAAAAAAAAAIAAcABQAAAAAAAAAJAAcABQAAAAAAAAAKAAcABQAAAAAAAAALAAcABQAAAAAAAAAMAAcABQAAAAAAAAANAAcABQAAAAAAAADx//j/BQAAAAAAAADy//j/BQAAAAAAAADz//j/BQAAAAAAAAD0//j/BQAAAAAAAAD1//j/BQAAAAAAAAD2//j/BQAAAAAAAAD3//j/BQAAAAAAAAD4//j/BQAAAAAAAAD5//j/BQAAAAAAAAD6//j/BQAAAAAAAAD7//j/BQAAAAAAAAD8//j/BQAAAAAAAAD9//j/BQAAAAAAAAD+//j/BQAAAAAAAAD///j/BQAAAAAAAAAAAPj/BQAAAAAAAAABAPj/BQAAAAAAAAACAPj/BQAAAAAAAAADAPj/BQAAAAAAAAAEAPj/BQAAAAAAAAAFAPj/BQAAAAAAAAAGAPj/BQAAAAAAAAAHAPj/BQAAAAAAAAAIAPj/BQAAAAAAAAAJAPj/BQAAAAAAAAAKAPj/BQAAAAAAAAALAPj/BQAAAAAAAAAMAPj/BQAAAAAAAAANAPj/BQAAAAAAAAAOAPj/BQAAAAAAAADy//n/BQAAAAAAAADy//r/BQAAAAAAAADy//v/BQAAAAAAAADz//n/BQAAAAAAAADz//r/BQAAAAAAAADz//v/BQAAAAAAAAD0//n/BQAAAAAAAAD0//r/BQAAAAAAAAD0//v/BQAAAAAAAAD1//n/BQAAAAAAAAD1//r/BQAAAAAAAAD1//v/BQAAAAAAAAD2//n/BQAAAAAAAAD2//r/BQAAAAAAAAD2//v/BQAAAAAAAAD3//n/BQAAAAAAAAD3//r/BQAAAAAAAAD3//v/BQAAAAAAAAD4//n/BQAAAAAAAAD4//r/BQAAAAAAAAD4//v/BQAAAAAAAAD5//n/BQAAAAAAAAD5//r/BQAAAAAAAAD5//v/BQAAAAAAAAD6//n/BQAAAAAAAAD6//r/BQAAAAAAAAD6//v/BQAAAAAAAAD7//n/BQAAAAAAAAD7//r/BQAAAAAAAAD7//v/BQAAAAAAAAD8//n/BQAAAAAAAAD8//r/BQAAAAAAAAD8//v/BQAAAAAAAAD9//n/BQAAAAAAAAD9//r/BQAAAAAAAAD9//v/BQAAAAAAAAD+//n/BQAAAAAAAAD+//r/BQAAAAAAAAD+//v/BQAAAAAAAAD///n/BQAAAAAAAAD///r/BQAAAAAAAAD///v/BQAAAAAAAAAAAPn/BQAAAAAAAAAAAPr/BQAAAAAAAAAAAPv/BQAAAAAAAAABAPn/BQAAAAAAAAABAPr/BQAAAAAAAAABAPv/BQAAAAAAAAACAPn/BQAAAAAAAAACAPr/BQAAAAAAAAACAPv/BQAAAAAAAAADAPn/BQAAAAAAAAADAPr/BQAAAAAAAAADAPv/BQAAAAAAAAAEAPn/BQAAAAAAAAAEAPr/BQAAAAAAAAAEAPv/BQAAAAAAAAAFAPn/BQAAAAAAAAAFAPr/BQAAAAAAAAAFAPv/BQAAAAAAAAAGAPn/BQAAAAAAAAAGAPr/BQAAAAAAAAAGAPv/BQAAAAAAAAAHAPn/BQAAAAAAAAAHAPr/BQAAAAAAAAAHAPv/BQAAAAAAAAAIAPn/BQAAAAAAAAAIAPr/BQAAAAAAAAAIAPv/BQAAAAAAAAAJAPn/BQAAAAAAAAAJAPr/BQAAAAAAAAAJAPv/BQAAAAAAAAAKAPn/BQAAAAAAAAAKAPr/BQAAAAAAAAAKAPv/BQAAAAAAAAALAPn/BQAAAAAAAAALAPr/BQAAAAAAAAALAPv/BQAAAAAAAAAMAPn/BQAAAAAAAAAMAPr/BQAAAAAAAAAMAPv/BQAAAAAAAAANAPn/BQAAAAAAAAANAPr/BQAAAAAAAAANAPv/BQAAAAAAAAAIAPz/BQAAAAAAAAAJAPz/BQAAAAAAAAAJAP3/BQAAAAAAAAAIAP3/BQAAAAAAAADz//z/BQAAAAAAAADy//z/BQAAAAAAAADy//3/BQAAAAAAAADz//3/BQAAAAAAAAD0//3/BQAAAAAAAAD0//z/BQAAAAAAAAAGAPz/BQAAAAAAAAAHAPz/BQAAAAAAAAAHAP3/BQAAAAAAAAAGAP3/BQAAAAAAAAA=")
+tile_set = ExtResource("2_myw2y")
+
+[node name="Bernand" parent="Camera2D" instance=ExtResource("10_38n62")]
+process_mode = 1
+z_index = 2
+Speed = 200
+
+[node name="UI" type="Control" parent="."]
+z_index = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -228.0
+offset_top = -126.0
+offset_right = 228.0
+offset_bottom = 127.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreUI" parent="UI" instance=ExtResource("7_dt16r")]
+layout_mode = 1
+offset_left = 1.0
+offset_top = 5.0
+offset_right = -307.0
+offset_bottom = 30.0
+theme = SubResource("Theme_0snlr")
+
+[node name="Settings" type="TextureButton" parent="UI"]
+process_mode = 3
+z_index = 4
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 405.0
+offset_top = 9.0
+offset_right = -13.0
+offset_bottom = -207.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("6_biwi7")
+texture_pressed = ExtResource("7_xhxos")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="InGameMenu" parent="UI" instance=ExtResource("3_1pr6y")]
+process_mode = 3
+z_index = 5
+layout_mode = 1
+offset_left = -2.0
+offset_top = 56.0
+offset_right = -2.0
+offset_bottom = -47.0
+
+[node name="Button" type="Button" parent="UI"]
+process_mode = 3
+z_index = 8
+layout_mode = 0
+offset_left = 153.0
+offset_top = 32.0
+offset_right = 309.0
+offset_bottom = 57.0
+theme = ExtResource("10_v3aap")
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("6_kuk3a")
+text = "back to main menu"
+flat = true
+
+[node name="piece" type="TextureButton" parent="."]
+offset_left = 106.0
+offset_top = 39.0
+offset_right = 130.0
+offset_bottom = 63.0
+texture_normal = ExtResource("9_vu7l3")
+texture_pressed = ExtResource("9_vu7l3")
+texture_hover = ExtResource("9_vu7l3")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="DialogueBox" type="Panel" parent="."]
+process_mode = 3
+visible = false
+z_index = 3
+offset_left = -223.0
+offset_top = -2.0
+offset_right = 210.0
+offset_bottom = 116.0
+theme = ExtResource("12_6oeu2")
+script = ExtResource("12_v47gt")
+data = ExtResource("13_v4oxk")
+start_id = "first"
+custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_lhdac"), SubResource("RichTextEffect_ueyag"), SubResource("RichTextEffect_1bvc0")])
+
+[node name="computer" type="TextureButton" parent="."]
+offset_left = 93.0
+offset_top = -91.0
+offset_right = 221.0
+offset_bottom = 50.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("18_b4exs")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="DialogueBubble" type="RichTextLabel" parent="." node_paths=PackedStringArray("follow_node")]
+z_index = 4
+clip_contents = false
+offset_left = -221.0
+offset_top = -1.0
+offset_right = -79.0
+offset_bottom = 24.0
+theme = ExtResource("5_1cjeq")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Sample dialogue."
+fit_content = true
+autowrap_mode = 0
+custom_effects = [SubResource("RichTextEffect_kjp2j"), SubResource("RichTextEffect_0dtcu"), SubResource("RichTextEffect_80eou")]
+script = ExtResource("9_dw4qc")
+data = ExtResource("10_wrf1k")
+start_id = "first"
+follow_node = NodePath("../Camera2D/Bernand")
+tail_color = Color(0.286275, 0.215686, 0.207843, 1)
+dialogue_custom_effects = [SubResource("RichTextEffect_kjp2j"), SubResource("RichTextEffect_0dtcu"), SubResource("RichTextEffect_80eou")]
+max_options_count = 1
+next_icon = null
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+position = Vector2(174, -108)
+stream = ExtResource("20_55ul1")
+autoplay = true
+bus = &"Music"
+
+[node name="Phonebutton" type="TextureButton" parent="."]
+offset_left = -225.0
+offset_top = -82.0
+offset_right = -162.0
+offset_bottom = -19.0
+texture_normal = ExtResource("22_38mqv")
+texture_pressed = ExtResource("22_38mqv")
+ignore_texture_size = true
+stretch_mode = 4

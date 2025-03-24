@@ -5,7 +5,9 @@
 [resource]
 script = ExtResource("1_if737")
 starts = {
+"computer": &"0_4",
 "first": &"0_1",
+"phone": &"0_3",
 "quiz": &"0_2"
 }
 nodes = {
@@ -19,6 +21,16 @@ nodes = {
 "offset": Vector2(-460, -80),
 "start_id": "quiz"
 },
+"0_3": {
+"link": &"1_3",
+"offset": Vector2(-440, -520),
+"start_id": "phone"
+},
+"0_4": {
+"link": &"1_4",
+"offset": Vector2(558.61, -319),
+"start_id": "computer"
+},
 "1_1": {
 "dialogue": "Ah! It's nice to be back in my hometown. My dear cousin Gloria has been acting so weird lately. I couldn't bear the thought of not coming to visit her, so here I am.",
 "offset": Vector2(-260, -400),
@@ -26,51 +38,46 @@ nodes = {
 0: {
 "condition": {},
 "link": &"1_2",
-"text": "Pick up the phone"
+"text": ""
 }
 },
 "size": Vector2(300, 257),
 "speaker": 0
 },
 "1_2": {
-"dialogue": " Let me get my bearings and I'll try to find her. I wonder what - oh, she's calling me now.",
+"dialogue": "I wonder what - oh, she's calling me now.",
 "offset": Vector2(80, -420),
 "options": {
 0: {
 "condition": {},
-"link": &"1_4",
-"text": "Pick up the phone"
-},
-1: {
-"condition": {},
-"link": &"1_3",
-"text": "Don't answer the phone"
+"link": "END",
+"text": "I should pick up the phone"
 }
 },
 "size": Vector2(300, 290),
 "speaker": 0
 },
 "1_3": {
-"dialogue": "I’m not that antisocial of a bear to ignore the phone.",
-"offset": Vector2(420, -240),
+"dialogue": "Hey Gloria! I'm here, and- oh? You left me something to read? That's so kind, but- oh... she hung up on me...",
+"offset": Vector2(-160, -620),
 "options": {
 0: {
 "condition": {},
-"link": &"1_4",
-"text": "Hello Gloria!"
+"link": "END",
+"text": "I should look around"
 }
 },
 "size": Vector2(300, 257),
 "speaker": 0
 },
 "1_4": {
-"dialogue": "How have you been?",
-"offset": Vector2(420, -480),
+"dialogue": "I need to check my computer.",
+"offset": Vector2(780, -360),
 "options": {
 0: {
 "condition": {},
 "link": "END",
-"text": ""
+"text": "Go to the computer"
 }
 },
 "size": Vector2(300, 240),
@@ -138,11 +145,6 @@ nodes = {
 "size": Vector2(300, 240),
 "speaker": 0
 },
-"2_1": {
-"comment": "",
-"offset": Vector2(-328.977, -558.927),
-"size": Vector2(200, 100)
-},
 "4_1": {
 "link": &"1_8",
 "offset": Vector2(400, 80),
@@ -157,5 +159,5 @@ variables = {
 "value": 0
 }
 }
-strays = Array[String](["2_1"])
+strays = Array[String]([])
 characters = "res://examples/PalasoliisiCharacters.tres"

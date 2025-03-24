@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b15035piso76o"]
+[gd_scene load_steps=10 format=3 uid="uid://b15035piso76o"]
 
 [ext_resource type="Script" path="res://Code/MiniGame/MiniGame.cs" id="1_ud83l"]
 [ext_resource type="PackedScene" uid="uid://biil78h7unvgi" path="res://Levels/Grid.tscn" id="2_no4ox"]
 [ext_resource type="Texture2D" uid="uid://dhu3dxhvb65o0" path="res://art/Test2.png" id="2_prftr"]
-[ext_resource type="Texture2D" uid="uid://chkx1ihjtc8hm" path="res://art/settingsbg.png" id="3_32kqn"]
+[ext_resource type="Texture2D" uid="uid://b3nh22r7e4cko" path="res://art/card.png" id="3_3xnwm"]
+[ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="6_7meq3"]
 [ext_resource type="Texture2D" uid="uid://cmffkqiiemf56" path="res://art/settings.1.png" id="6_u5vp5"]
 [ext_resource type="PackedScene" uid="uid://bw1b55q33qgnr" path="res://Code/UI/InGameMenu.tscn" id="6_v4t5l"]
 [ext_resource type="Texture2D" uid="uid://bsir1syi7smu0" path="res://art/settings.2.png" id="7_4aeeu"]
@@ -11,6 +12,7 @@
 
 [node name="MiniGame" type="Node2D" node_paths=PackedStringArray("_miniGameControl", "_settingsButton")]
 process_mode = 1
+z_index = 5
 script = ExtResource("1_ud83l")
 _miniGameControl = NodePath("UI/MiniGameUI")
 _settingsButton = NodePath("Settings")
@@ -37,13 +39,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -235.0
-offset_top = -107.0
-offset_right = 235.0
-offset_bottom = 108.0
+offset_left = -245.0
+offset_top = -112.0
+offset_right = 260.0
+offset_bottom = 119.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_32kqn")
+texture = ExtResource("3_3xnwm")
 expand_mode = 1
 
 [node name="Grid" parent="." instance=ExtResource("2_no4ox")]
@@ -63,13 +65,10 @@ offset_right = 228.0
 offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("6_7meq3")
 
 [node name="MiniGameUI" parent="UI" instance=ExtResource("7_ecxnm")]
-custom_minimum_size = Vector2(0, 50)
 layout_mode = 1
-anchors_preset = 10
-anchor_bottom = 0.0
-grow_vertical = 1
 
 [node name="InGameMenu" parent="UI" instance=ExtResource("6_v4t5l")]
 process_mode = 3
@@ -77,6 +76,7 @@ z_index = 2
 layout_mode = 1
 offset_top = 53.0
 offset_bottom = -53.0
+theme = ExtResource("6_7meq3")
 
 [node name="Settings" type="TextureButton" parent="."]
 process_mode = 3
@@ -85,10 +85,10 @@ custom_minimum_size = Vector2(26, 27)
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 178.0
-offset_top = -110.0
-offset_right = 204.0
-offset_bottom = -83.0
+offset_left = 181.0
+offset_top = -119.0
+offset_right = 217.0
+offset_bottom = -82.0
 grow_horizontal = 0
 texture_normal = ExtResource("6_u5vp5")
 texture_pressed = ExtResource("7_4aeeu")

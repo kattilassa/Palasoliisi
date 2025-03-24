@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://dvhlf4h17hnyj"]
 
 [ext_resource type="Script" path="res://Code/UI/MainMenuController.cs" id="1_wyj4e"]
-[ext_resource type="Texture2D" uid="uid://cmkf320k2hfw8" path="res://art/Test2(1).png" id="2_i3rqf"]
+[ext_resource type="Texture2D" uid="uid://duwv4nc1d5ugk" path="res://art/bg_456_x_256_px.png" id="2_2maoa"]
+[ext_resource type="AudioStream" uid="uid://cm2ydwo3ni650" path="res://music/a-private-detective-198349.mp3" id="3_6xx7f"]
 [ext_resource type="PackedScene" uid="uid://di3083dy1c8dm" path="res://Code/UI/BernandUI.tscn" id="3_10f56"]
-[ext_resource type="AudioStream" uid="uid://dwkwx2v0ks8oy" path="res://music/menu-drift-away-dusk-fss-no-copyright-music-234393.mp3" id="3_k1wdd"]
 [ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="3_o21db"]
 [ext_resource type="Script" path="res://Code/UI/Info.cs" id="6_s8jbw"]
 
@@ -82,6 +82,7 @@ _data = {
 }
 
 [node name="Menu" type="Control" node_paths=PackedStringArray("_newGameButton", "_optionsButton", "_quitButton")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -105,13 +106,14 @@ grow_vertical = 2
 
 [node name="BGImage" type="TextureRect" parent="BackGround"]
 layout_mode = 2
-texture = ExtResource("2_i3rqf")
+texture = ExtResource("2_2maoa")
 expand_mode = 5
 
 [node name="TEMP-DELETE-ME" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_k1wdd")
+stream = ExtResource("3_6xx7f")
 autoplay = true
 bus = &"Music"
+parameters/looping = false
 
 [node name="GameName" type="Label" parent="."]
 custom_minimum_size = Vector2(42, 40)
@@ -119,8 +121,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 40.0
-offset_bottom = -159.0
+offset_top = 50.0
+offset_bottom = -149.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_o21db")
@@ -162,6 +164,7 @@ size_flags_horizontal = 4
 alignment = 1
 
 [node name="NewGamebutton" type="Button" parent="ButtonMenu"]
+process_mode = 3
 custom_minimum_size = Vector2(-1.23, 0)
 layout_mode = 2
 theme = ExtResource("3_o21db")

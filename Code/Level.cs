@@ -1,28 +1,32 @@
 using Godot;
 using PalaSoliisi.UI;
 using System;
+using System.Threading.Tasks;
 
 namespace PalaSoliisi
 {
 	public partial class Level : Node2D
 	{
 		private static Level _current = null;
-		private Timer Timer;
+		private SceneTree _inGameSceneTree = null;
 		public bool _showInGameMenu = false;
-
 		public bool _showDialogue = false;
 		public bool _settingsClose = false;
 		public bool _UIpressed = false;
 		public bool _isMiniGameRunning = false;
-
+		public bool _isDialogueRunning = false;
 		private Control _UI;
 		private Control _inGameMenu;
 		[Export] private TextureButton _settingsButton = null;
 		[Export] private TextureButton _articleButton = null;
 		[Export] private TextureButton _computerButton = null;
+		[Export] private TextureButton _phoneButton = null;
+		[Export] private Button _menuButton = null;
 		[Export] private string _miniGameScenePath = "res://Levels/MiniGame.tscn";
-		[Export] private Bernand _bear = null;
-
+		private SceneTree _optionsSceneTree = null;
+		private Bernand _bernand = null;
+		public bool isRunning;
+		public bool callAnswered = false;
 		public static Level Current
 		{
 			get { return _current; }
@@ -103,17 +107,19 @@ namespace PalaSoliisi
 		}
 		public override void _Ready()
 		{
+			base._Ready();
+			_inGameSceneTree = GetTree();
+			_menuButton.Hide();
 			_UI = GetNode<Control>("UI");
-			Timer = GetNode<Timer>("Timer");
 			_inGameMenu = GetNode<Control>("UI/InGameMenu");
 			_dialogueBox = GetNode("DialogueBox");
 			_dialogueBubble = GetNode("DialogueBubble");
 			_inGameMenu.Hide();
-			//_grid = GetNode<Grid>("Grid");
-			//if (_grid == null)
-			//{
-			//	GD.PrintErr("Gridiä ei löytynyt Levelin lapsinodeista!");
-			//}
+			_bernand = GetNode<Bernand>("Camera2D/Bernand");
+			 _dialogueBox.Connect("dialogue_ended", new Callable(this, nameof(OnDialogueEnded)));
+			 _dialogueBox.Connect("dialogue_started", new Callable(this, nameof(OnDialogueStarted)));
+			  _dialogueBubble.Connect("dialogue_started", new Callable(this, nameof(OnDialogueBubbleStarted)));
+			_menuButton.Connect(Button.SignalName.Pressed, new Callable(this, nameof(OnMenuPressed)));
 				_settingsButton.Connect("gui_input", new Callable(this, nameof(OnSettingsGuiInput)));
 
 				_articleButton.Connect(Button.SignalName.Pressed,
@@ -122,15 +128,16 @@ namespace PalaSoliisi
 			_computerButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnComputerPressed)));
 
+				_phoneButton.Connect(Button.SignalName.Pressed,
+				new Callable(this, nameof(OnPhonePressed)));
 			ResetGame();
 		}
 		public void ResetGame()
 		{
 			ArticlePieces= 0;
+			_articleButton.Hide();
 			Dialogue();
-
 		}
-
 		public void OnSettingsPressed()
 		{
 			_UIpressed = true;
@@ -139,42 +146,50 @@ namespace PalaSoliisi
 				GetTree().Paused = false;
 				_showInGameMenu = false;
 				_inGameMenu.Hide();
+				_menuButton.Hide();
+				Movement();
 			}
 			else
 			{
 				GetTree().Paused = true;
 				_showInGameMenu = true;
 				_inGameMenu.Show();
+				_menuButton.Show();
+				Movement();
 			}
 
 		}
-		private void OnArticlePressed()
+		private async void OnArticlePressed()
 		{
-			if(!_showInGameMenu)
+			bool firstButton = true;
+			bool secondButton = true;
+			bool thirdButton = true;
+			await timerAsync(1);
+			//if(!_showInGameMenu)
+			//{
+			//ArticlePieces++;
+			//_scoreUIControl.SetScore(_articlePieces);
+			//}
+			//else
+			//{
+			//	return;
+			//}
+			if(_articlePieces == 0 && firstButton)
 			{
-			ArticlePieces++;
-			_scoreUIControl.SetScore(_articlePieces);
+				firstButton=false;
+				_articleButton.GlobalPosition = new Vector2(-67, -32);
 			}
-			else
+			else if (_articlePieces == 1 && secondButton)
 			{
-				return;
+				secondButton=false;
+				_articleButton.GlobalPosition = new Vector2(-107, 65);
 			}
-			if(_articlePieces == 1)
+			else if (_articlePieces >= 2 && thirdButton)
 			{
-				_articleButton.GlobalPosition = new Vector2(100, 100);
-			}
-			else if (_articlePieces == 2)
-			{
-				_articleButton.GlobalPosition = new Vector2(10, 10);
-			}
-			else if (_articlePieces == 3)
-			{
-				_articleButton.GlobalPosition = new Vector2(50, 50);
+				thirdButton=false;
 				_articleButton.Hide();
-
-				string startId = (string)_dialogueBox.Get("start_id");
-				startId = "second";
-				_dialogueBubble.Call("start", startId);
+				string startId = "computer";
+				_dialogueBox.Call("start", startId);
 			}
 
 			// Start minigame when article collected
@@ -193,7 +208,7 @@ namespace PalaSoliisi
 
 		private void OnComputerPressed()
 		{
-			if(!_showInGameMenu)
+			if(!_showInGameMenu && !_isDialogueRunning)
 			{
 				GD.Print("Tietokonetta painettu");
 
@@ -202,6 +217,77 @@ namespace PalaSoliisi
 				string startId = "quiz";
 				_dialogueBox.Call("start", startId);
 				}
+				else if (!_isDialogueRunning)
+				{
+				Random rnd = new Random();
+				int randomDialogue = rnd.Next(1, 6);
+				String startID = $"{randomDialogue}";
+
+				switch (randomDialogue)
+				{
+					case 1:
+					_dialogueBubble.Call("start", $"{randomDialogue}");
+					break;
+					case 2:
+					_dialogueBubble.Call("start", $"{randomDialogue}");
+					break;
+					case 3:
+					_dialogueBubble.Call("start", $"{randomDialogue}");
+					break;
+					case 4:
+					_dialogueBubble.Call("start", $"{randomDialogue}");
+					break;
+					case 5:
+					_dialogueBubble.Call("start", $"{randomDialogue}");
+					break;
+				}
+			}
+			}
+		}
+
+		private async Task timerAsync(float time)
+		{
+		 await ToSignal(GetTree().CreateTimer(time), "timeout");
+		}
+		private async void Movement()
+		{
+		await timerAsync(1);
+		 _UIpressed=false;
+		}
+		public void OnDialogueEnded()
+		{
+				_isDialogueRunning = false;
+		}
+		public async void OnDialogueBubbleEnded()
+		{
+			    await timerAsync(1);
+		  		_dialogueBubble.Call("_on_dialogue_ended");
+				_isDialogueRunning = false;
+		}
+		public async void OnDialogueBubbleStarted(string id)
+		{
+				_isDialogueRunning = true;
+			    await timerAsync(1);
+		  		_dialogueBubble.Call("_on_dialogue_ended");
+				_isDialogueRunning = false;
+		}
+		private void OnDialogueStarted(string id)
+		{
+			_isDialogueRunning = true;
+		}
+			private async void OnPhonePressed()
+		{
+			if(!_showInGameMenu & _articlePieces==0 & !callAnswered)
+			{
+				callAnswered=true;
+				await timerAsync(1);
+				_dialogueBox.Call("start", "phone");
+				_articleButton.Show();
+			}
+			else if (callAnswered)
+			{
+				string startId = "first";
+				_dialogueBubble.Call("start", startId);
 			}
 		}
 
@@ -215,14 +301,15 @@ namespace PalaSoliisi
 				}
 			}
 		}
-
+		public void OnMenuPressed()
+		{
+			_inGameSceneTree.ChangeSceneToFile("res://Code/UI/MainMenu.tscn");
+			GetTree().Paused = false;
+		}
 		public void Dialogue()
 		{
 			string startId = (string)_dialogueBox.Get("start_id");
 			_dialogueBox.Call("start", startId);
-
-			_dialogueBubble.Call("start");
-
 			return;
 		}
 		public void CreateArticles()
@@ -260,8 +347,8 @@ namespace PalaSoliisi
 			// Pause game and hide UI and character
 			GetTree().Paused = true;
 			UIVisible(false);
-			_bear.Hide();
-			_bear.StopMovement();
+			_bernand.Hide();
+			_bernand.StopMovement();
 			_settingsButton.Hide();
 			_isMiniGameRunning = true;
 
@@ -296,7 +383,8 @@ namespace PalaSoliisi
 		public async void OnMiniGameCompleted()
 		{
 			MiniGamesPlayed++;
-
+			ArticlePieces++;
+			_scoreUIControl.SetScore(_articlePieces);
 			// Wait 1 sec before closing minigame window
 			await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
 			// Close minigame
@@ -306,8 +394,8 @@ namespace PalaSoliisi
 			// Unpause game and set UI and character back to visible
 			GetTree().Paused = false;
 			UIVisible(true);
-			_bear.Show();
-			_bear.StartMovement();
+			_bernand.Show();
+			_bernand.StartMovement();
 			_settingsButton.Show();
 			_isMiniGameRunning = false;
 		}
