@@ -26,6 +26,8 @@ namespace PalaSoliisi
 		private SceneTree _optionsSceneTree = null;
 		private Bernand _bernand = null;
 		public bool isRunning;
+		private AnimationPlayer _animationPlayer;
+		private AudioStreamPlayer _ringtonePlayer;
 		public bool callAnswered = false;
 		public static Level Current
 		{
@@ -48,7 +50,8 @@ namespace PalaSoliisi
 		private Obstacle _obstacle = null;
 		private Node _dialogueBox;
 		private Node _dialogueBubble;
-
+		public bool _isAnswered = true;
+		public TextureRect _phoneEffect;
 
 		public int ArticlePieces
 		{
@@ -120,7 +123,9 @@ namespace PalaSoliisi
 			 _dialogueBox.Connect("dialogue_started", new Callable(this, nameof(OnDialogueStarted)));
 			  _dialogueBubble.Connect("dialogue_started", new Callable(this, nameof(OnDialogueBubbleStarted)));
 			_menuButton.Connect(Button.SignalName.Pressed, new Callable(this, nameof(OnMenuPressed)));
-				_settingsButton.Connect("gui_input", new Callable(this, nameof(OnSettingsGuiInput)));
+			_settingsButton.Connect("gui_input", new Callable(this, nameof(OnSettingsGuiInput)));
+			_phoneEffect = GetNode<TextureRect>("alarmed");
+			_phoneEffect.Hide();
 
 				_articleButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnArticlePressed)));
@@ -130,6 +135,17 @@ namespace PalaSoliisi
 
 				_phoneButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnPhonePressed)));
+
+				_animationPlayer = GetNode<AnimationPlayer>("piece/AnimationPlayer");
+
+
+				foreach (var child in GetChildren())
+					{
+						if (child is AudioStreamPlayer audioStreamPlayerChild)
+						{
+							_ringtonePlayer = audioStreamPlayerChild;
+						}
+					}
 			ResetGame();
 		}
 		public void ResetGame()
@@ -178,6 +194,7 @@ namespace PalaSoliisi
 			{
 				firstButton=false;
 				_articleButton.GlobalPosition = new Vector2(-67, -32);
+				_animationPlayer.Play("reminder");
 			}
 			else if (_articlePieces == 1 && secondButton)
 			{
@@ -257,6 +274,16 @@ namespace PalaSoliisi
 		public void OnDialogueEnded()
 		{
 				_isDialogueRunning = false;
+				if(_articlePieces==0 && _isAnswered)
+				{
+					_isAnswered = false;
+					_phoneEffect.Visible = true;
+					Ringing();
+				}
+				if(!_isAnswered)
+				{
+
+				}
 		}
 		public async void OnDialogueBubbleEnded()
 		{
@@ -277,12 +304,20 @@ namespace PalaSoliisi
 		}
 			private async void OnPhonePressed()
 		{
+			_animationPlayer.Stop();
+			_phoneEffect.Hide();
+			if (_ringtonePlayer.Playing)
+			{
+				_ringtonePlayer.Stop();
+			}
 			if(!_showInGameMenu & _articlePieces==0 & !callAnswered)
 			{
 				callAnswered=true;
 				await timerAsync(1);
 				_dialogueBox.Call("start", "phone");
+				await timerAsync(5);
 				_articleButton.Show();
+				_animationPlayer.Play("flying_magazine");
 			}
 			else if (callAnswered)
 			{
@@ -303,13 +338,22 @@ namespace PalaSoliisi
 		}
 		public void OnMenuPressed()
 		{
-			_inGameSceneTree.ChangeSceneToFile("res://Code/UI/MainMenu.tscn");
 			GetTree().Paused = false;
+			_inGameSceneTree.ChangeSceneToFile("res://Code/UI/MainMenu.tscn");
 		}
 		public void Dialogue()
 		{
 			string startId = (string)_dialogueBox.Get("start_id");
 			_dialogueBox.Call("start", startId);
+		}
+		public void Ringing()
+		{
+			_animationPlayer.Play("alarmed");
+			_ringtonePlayer.Play();
+			return;
+		}
+		public void callEnded()
+		{
 			return;
 		}
 		public void CreateArticles()

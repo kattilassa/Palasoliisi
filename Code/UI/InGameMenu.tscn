@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bw1b55q33qgnr"]
 
+[ext_resource type="Texture2D" uid="uid://b3nh22r7e4cko" path="res://art/card.png" id="1_n3vpn"]
 [ext_resource type="PackedScene" uid="uid://b60yxlkl1xjot" path="res://Code/UI/Settings/VolumeSettings/VolumeSettings.tscn" id="1_o5jel"]
-[ext_resource type="Texture2D" uid="uid://chkx1ihjtc8hm" path="res://art/settingsbg.png" id="2_ie0o5"]
 [ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="3_qdc1a"]
 [ext_resource type="FontFile" uid="uid://cw6pyp0ft2pbd" path="res://art/Fonts/boldreel/Boldreel.otf" id="4_xoeml"]
 
@@ -16,7 +16,7 @@ grow_vertical = 2
 z_index = 3
 custom_minimum_size = Vector2(390, 150)
 layout_mode = 2
-texture = ExtResource("2_ie0o5")
+texture = ExtResource("1_n3vpn")
 expand_mode = 1
 
 [node name="VolumeSettings" parent="TextureRect" instance=ExtResource("1_o5jel")]
@@ -25,7 +25,7 @@ z_index = 5
 layout_mode = 2
 offset_left = 49.0
 offset_top = 40.0
-offset_right = 329.0
+offset_right = 324.0
 offset_bottom = 120.0
 
 [node name="Label" type="Label" parent="TextureRect"]
@@ -35,9 +35,9 @@ anchor_left = 0.524
 anchor_top = 0.117
 anchor_right = 0.524
 anchor_bottom = 0.117
-offset_left = -140.36
+offset_left = -158.36
 offset_top = -2.55
-offset_right = 119.64
+offset_right = 126.64
 offset_bottom = 22.45
 theme = ExtResource("3_qdc1a")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

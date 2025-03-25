@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://bu0y12c7gfv7e"]
+[gd_scene load_steps=43 format=4 uid="uid://bu0y12c7gfv7e"]
 
 [ext_resource type="Script" path="res://Code/Level.cs" id="1_uqqbp"]
 [ext_resource type="Texture2D" uid="uid://bjxo38brfpjof" path="res://art/House_base_curtain.png" id="2_h33wx"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cshrjlg34sfbb" path="res://art/sammakko_herätyskello.png" id="8_i0hin"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBubble.gd" id="9_dw4qc"]
 [ext_resource type="Texture2D" uid="uid://y33o4rvw4hhu" path="res://art/vaatekaappi1.png" id="9_jrs01"]
+[ext_resource type="Texture2D" uid="uid://8lawcytg4jte" path="res://art/UI/article.png" id="9_vu7l3"]
 [ext_resource type="PackedScene" uid="uid://bwvbfdokg5du5" path="res://Character/bernand.tscn" id="10_38n62"]
 [ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="10_v3aap"]
 [ext_resource type="Resource" uid="uid://dom3qcv5xx1hp" path="res://bernand_thoughts.tres" id="10_wrf1k"]
@@ -29,14 +30,31 @@
 [ext_resource type="Texture2D" uid="uid://btg2o83fjag2w" path="res://art/TietokoneTietokone.png" id="18_b4exs"]
 [ext_resource type="AudioStream" uid="uid://wteveke4gnd1" path="res://music/sneaky-feet-150618.mp3" id="20_55ul1"]
 [ext_resource type="Texture2D" uid="uid://bsl1g8st8fkjc" path="res://art/Puhelin.png" id="22_38mqv"]
-[ext_resource type="Texture2D" uid="uid://cwj4ivmip8cdq" path="res://art/nallenappi.png" id="31_me71k"]
-[ext_resource type="Texture2D" uid="uid://chduo7ebrwpte" path="res://art/phonecall.png" id="31_rneb0"]
-[ext_resource type="AudioStream" uid="uid://8uaq1wqwu34a" path="res://music/phone-ringtone.mp3" id="32_583xg"]
+[ext_resource type="Texture2D" uid="uid://byds7vfg4s1j8" path="res://art/artikkelipala_harmaa.png" id="31_rmtut"]
+[ext_resource type="AudioStream" uid="uid://8uaq1wqwu34a" path="res://music/phone-ringtone-home-280348.mp3" id="32_583xg"]
 
 [sub_resource type="Theme" id="Theme_0snlr"]
 default_font = ExtResource("6_kuk3a")
 Label/constants/outline_size = 4
 Label/fonts/font = ExtResource("6_kuk3a")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_lhdac"]
+script = ExtResource("14_g4w2e")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ueyag"]
+script = ExtResource("15_45o0a")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_1bvc0"]
+script = ExtResource("16_xve5m")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_kjp2j"]
+script = ExtResource("14_g4w2e")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_0dtcu"]
+script = ExtResource("15_45o0a")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_80eou"]
+script = ExtResource("16_xve5m")
 
 [sub_resource type="Animation" id="Animation_m8u8h"]
 length = 0.001
@@ -75,58 +93,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(23, 20)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../alarmed:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-197, -102)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../alarmed:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.774926]
-}
-
-[sub_resource type="Animation" id="Animation_2xebp"]
-resource_name = "alarmed"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../alarmed:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.433333, 0.633333, 0.833333, 1.03333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-197, -101), Vector2(-197, -101), Vector2(-206, -101), Vector2(-188, -101), Vector2(-202, -101), Vector2(-197, -101)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../alarmed:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.433333, 0.633333, 0.833333, 1.03333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.774926, 0.774926, 0.581195, 0.968658, 0.581195, 0.774926]
 }
 
 [sub_resource type="Animation" id="Animation_bjfo2"]
@@ -167,65 +133,17 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(23, 20), Vector2(23, 20)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-
-[sub_resource type="Animation" id="Animation_xwvc0"]
-resource_name = "reminder"
-length = 4.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(2.83333, 3.36667, 3.96667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.261799, 0.523599, 0.261799]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dmvwt"]
 _data = {
 "RESET": SubResource("Animation_m8u8h"),
-"alarmed": SubResource("Animation_2xebp"),
-"flying_magazine": SubResource("Animation_bjfo2"),
-"reminder": SubResource("Animation_xwvc0")
+"flying_magazine": SubResource("Animation_bjfo2")
 }
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_lhdac"]
-script = ExtResource("14_g4w2e")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_ueyag"]
-script = ExtResource("15_45o0a")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_1bvc0"]
-script = ExtResource("16_xve5m")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_kjp2j"]
-script = ExtResource("14_g4w2e")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_0dtcu"]
-script = ExtResource("15_45o0a")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_80eou"]
-script = ExtResource("16_xve5m")
-
-[node name="Level" type="Node2D" node_paths=PackedStringArray("_settingsButton", "_articleButton", "_computerButton", "_phoneButton", "_menuButton", "_scoreUIControl")]
+[node name="Level" type="Node2D" node_paths=PackedStringArray("_settingsButton", "_newsButton", "_articleButton", "_computerButton", "_phoneButton", "_menuButton", "_scoreUIControl")]
 script = ExtResource("1_uqqbp")
 _settingsButton = NodePath("UI/Settings")
+_newsButton = NodePath("magazine")
 _articleButton = NodePath("piece")
 _computerButton = NodePath("computer")
 _phoneButton = NodePath("Phonebutton")
@@ -381,23 +299,17 @@ text = "back to main menu"
 flat = true
 
 [node name="piece" type="TextureButton" parent="."]
+visible = false
 z_index = 3
-offset_left = 30.0
-offset_top = -58.0
-offset_right = 53.0
-offset_bottom = -38.0
-rotation = -0.270526
-texture_normal = ExtResource("31_me71k")
-texture_pressed = ExtResource("31_me71k")
-texture_hover = ExtResource("31_me71k")
+offset_left = 36.0
+offset_top = -35.0
+offset_right = 57.0
+offset_bottom = -14.0
+texture_normal = ExtResource("9_vu7l3")
+texture_pressed = ExtResource("9_vu7l3")
+texture_hover = ExtResource("9_vu7l3")
 ignore_texture_size = true
 stretch_mode = 0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="piece"]
-libraries = {
-"": SubResource("AnimationLibrary_dmvwt")
-}
-autoplay = "reminder"
 
 [node name="DialogueBox" type="Panel" parent="."]
 process_mode = 3
@@ -465,14 +377,20 @@ texture_pressed = ExtResource("22_38mqv")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="alarmed" type="TextureRect" parent="."]
-offset_left = -197.0
-offset_top = -102.0
-offset_right = -176.0
-offset_bottom = -81.0
-rotation = 0.774926
-texture = ExtResource("31_rneb0")
-expand_mode = 1
+[node name="magazine" type="TextureButton" parent="."]
+offset_left = 30.0
+offset_top = -58.0
+offset_right = 53.0
+offset_bottom = -38.0
+rotation = -0.270526
+texture_normal = ExtResource("31_rmtut")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="magazine"]
+libraries = {
+"": SubResource("AnimationLibrary_dmvwt")
+}
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("32_583xg")

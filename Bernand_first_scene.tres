@@ -32,20 +32,33 @@ nodes = {
 "start_id": "computer"
 },
 "1_1": {
-"dialogue": "Ah! It's nice to be back in my hometown. My dear cousin Gloria has been acting so weird lately. I couldn't bear the thought of not coming to visit her, so here I am.",
+"dialogue": "Palasoliisi: You will be playing as me – Bernand Bartholomeu, but friends and family call me Bear. I came back to my home village because my dear aunt Gloria has been acting strange. There’s been rumors about a false news outbreak and it’s my duty to help the villagers and Break The Fake! ",
 "offset": Vector2(-260, -400),
 "options": {
 0: {
 "condition": {},
 "link": &"1_2",
-"text": ""
+"text": "Let's find out the truth"
+}
+},
+"size": Vector2(300, 257),
+"speaker": 0
+},
+"1_10": {
+"dialogue": "What are you talking abou- oh... she hung up on me... - I better check out the magazine...",
+"offset": Vector2(440, -700),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": "Read the magazine"
 }
 },
 "size": Vector2(300, 257),
 "speaker": 0
 },
 "1_2": {
-"dialogue": "I wonder what - oh, she's calling me now.",
+"dialogue": "It's nice to be back in my hometown. My dear cousin Gloria has been acting so weird lately. I couldn't bear the thought of not coming to visit her, so here I am. Oh! someone is calling.",
 "offset": Vector2(80, -420),
 "options": {
 0: {
@@ -58,13 +71,13 @@ nodes = {
 "speaker": 0
 },
 "1_3": {
-"dialogue": "Hey Gloria! I'm here, and- oh? You left me something to read? That's so kind, but- oh... she hung up on me...",
-"offset": Vector2(-160, -620),
+"dialogue": "Hey Gloria, I was just thinking about you.",
+"offset": Vector2(-200, -700),
 "options": {
 0: {
 "condition": {},
-"link": "END",
-"text": "I should look around"
+"link": &"1_9",
+"text": ""
 }
 },
 "size": Vector2(300, 257),
@@ -80,7 +93,7 @@ nodes = {
 "text": "Go to the computer"
 }
 },
-"size": Vector2(300, 240),
+"size": Vector2(300, 257),
 "speaker": 0
 },
 "1_5": {
@@ -144,6 +157,19 @@ nodes = {
 },
 "size": Vector2(300, 240),
 "speaker": 0
+},
+"1_9": {
+"dialogue": "I hope you haven’t been eating any honey lately... I can’t speak about this on the phone – THEY are listening to me!!! Go read the magazine - don't be a SHEEP!!",
+"offset": Vector2(120, -700),
+"options": {
+0: {
+"condition": {},
+"link": &"1_10",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": "Gloria"
 },
 "4_1": {
 "link": &"1_8",
