@@ -1,5 +1,6 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://chq23h1hhmktp"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://chq23h1hhmktp"]
 
+[ext_resource type="Texture2D" uid="uid://b3nh22r7e4cko" path="res://art/card.png" id="1_apby1"]
 [ext_resource type="FontFile" uid="uid://cw6pyp0ft2pbd" path="res://art/Fonts/boldreel/Boldreel.otf" id="1_tr62e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8r3o"]
@@ -71,6 +72,9 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t27xy"]
+texture = ExtResource("1_apby1")
+
 [resource]
 default_font = ExtResource("1_tr62e")
 Button/colors/font_color = Color(1, 1, 1, 1)
@@ -99,5 +103,5 @@ Button/styles/pressed = SubResource("StyleBoxFlat_t6rlq")
 HSlider/icons/tick = null
 HSlider/styles/slider = null
 Label/constants/outline_size = 4
-Panel/styles/panel = null
+Panel/styles/panel = SubResource("StyleBoxTexture_t27xy")
 VSlider/icons/grabber = null
