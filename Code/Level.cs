@@ -23,6 +23,7 @@ namespace PalaSoliisi
 		[Export] private TextureButton _phoneButton = null;
 		[Export] private Button _menuButton = null;
 		[Export] private string _miniGameScenePath = "res://Levels/MiniGame.tscn";
+		[Export] private string _howToPlayScenePath = "res://Levels/HowToPlay.tscn";
 		private SceneTree _optionsSceneTree = null;
 		private Bernand _bernand = null;
 		public bool isRunning;
@@ -40,7 +41,10 @@ namespace PalaSoliisi
 		private PackedScene _obstacleScene = null;
 		private PackedScene _dialogueScene = null;
 		private PackedScene _miniGameScene = null;
+		private PackedScene _howToPlayScene = null;
 		private MiniGame _miniGame = null;
+		private PopUp _howToPlay = null;
+
 		private int _articlePieces = 0;
 		private int _miniGamesPlayed = 0;
 
@@ -108,6 +112,26 @@ namespace PalaSoliisi
 		public override void _Ready()
 		{
 			base._Ready();
+
+			if (_howToPlay != null)
+			{
+				_howToPlay.QueueFree();
+				_howToPlay = null;
+			}
+
+			if (_howToPlayScene == null)
+			{
+				//Initialize new minigame
+				_howToPlayScene = ResourceLoader.Load<PackedScene>(_howToPlayScenePath);
+				if (_howToPlayScene == null)
+				{
+					GD.PrintErr("PopUp can't be found");
+					return;
+				}
+			}
+			_howToPlay = _howToPlayScene.Instantiate<PopUp>();
+			AddChild(_howToPlay);
+
 			_inGameSceneTree = GetTree();
 			_menuButton.Hide();
 			_UI = GetNode<Control>("UI");
@@ -136,7 +160,7 @@ namespace PalaSoliisi
 		{
 			ArticlePieces= 0;
 			_articleButton.Hide();
-			Dialogue();
+			// Dialogue();
 		}
 		public void OnSettingsPressed()
 		{

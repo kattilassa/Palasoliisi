@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b15035piso76o"]
+[gd_scene load_steps=11 format=3 uid="uid://b15035piso76o"]
 
 [ext_resource type="Script" path="res://Code/MiniGame/MiniGame.cs" id="1_ud83l"]
 [ext_resource type="PackedScene" uid="uid://biil78h7unvgi" path="res://Levels/Grid.tscn" id="2_no4ox"]
@@ -10,12 +10,16 @@
 [ext_resource type="Texture2D" uid="uid://bsir1syi7smu0" path="res://art/settings.2.png" id="7_4aeeu"]
 [ext_resource type="PackedScene" uid="uid://gugyeq2bngsf" path="res://Code/UI/MiniGameUI.tscn" id="7_ecxnm"]
 
-[node name="MiniGame" type="Node2D" node_paths=PackedStringArray("_miniGameControl", "_settingsButton")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ch8hc"]
+bg_color = Color(0.286275, 0.215686, 0.207843, 1)
+
+[node name="MiniGame" type="Node2D" node_paths=PackedStringArray("_miniGameControl", "_settingsButton", "_instructions")]
 process_mode = 1
-z_index = 5
+z_index = 7
 script = ExtResource("1_ud83l")
 _miniGameControl = NodePath("UI/MiniGameUI")
 _settingsButton = NodePath("Settings")
+_instructions = NodePath("Instructions")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -94,3 +98,39 @@ texture_normal = ExtResource("6_u5vp5")
 texture_pressed = ExtResource("7_4aeeu")
 ignore_texture_size = true
 stretch_mode = 4
+
+[node name="Instructions" type="Panel" parent="."]
+z_index = 10
+custom_minimum_size = Vector2(350, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_7meq3")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ch8hc")
+
+[node name="Label" type="Label" parent="Instructions"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -25.0
+offset_right = 50.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_7meq3")
+text = "Click to flip the cards and find pairs. "
+horizontal_alignment = 1
+vertical_alignment = 1
