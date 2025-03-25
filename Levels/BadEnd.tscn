@@ -1,0 +1,116 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5p5wf6ksi2o"]
+
+[ext_resource type="Texture2D" uid="uid://cq3w0iwvwctwb" path="res://art/BadEnd.png" id="1_cgwq8"]
+[ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="2_vuaj7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5rbag"]
+font_size = 23
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="GoodEnd" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Background" type="TextureRect" parent="Camera2D"]
+offset_left = -228.0
+offset_top = -128.0
+offset_right = 228.0
+offset_bottom = 128.0
+texture = ExtResource("1_cgwq8")
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(456, 256)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="Label" parent="Control"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 1
+offset_right = 200.0
+offset_bottom = 40.0
+theme = ExtResource("2_vuaj7")
+text = "Oh no !"
+label_settings = SubResource("LabelSettings_5rbag")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Control"]
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -90.0
+offset_right = 225.0
+offset_bottom = -50.0
+grow_vertical = 2
+theme = ExtResource("2_vuaj7")
+theme_override_font_sizes/font_size = 15
+text = "The misinformation has spreaded
+throughout the village!"
+
+[node name="TestScoreLabel" type="Label" parent="Control"]
+custom_minimum_size = Vector2(230, 30)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -45.0
+offset_right = 235.0
+offset_bottom = -15.0
+grow_vertical = 2
+theme = ExtResource("2_vuaj7")
+text = "Test score: 00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MiniGameScoreLabel" type="Label" parent="Control"]
+custom_minimum_size = Vector2(230, 30)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -15.0
+offset_right = 180.0
+offset_bottom = 15.0
+grow_vertical = 2
+theme = ExtResource("2_vuaj7")
+text = "MiniGame score: 00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButton" type="Button" parent="Control"]
+custom_minimum_size = Vector2(75, 30)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -51.0
+offset_right = 95.0
+offset_bottom = -21.0
+grow_vertical = 0
+theme = ExtResource("2_vuaj7")
+text = "Menu"
+
+[node name="InfoButton" type="Button" parent="Control"]
+custom_minimum_size = Vector2(75, 30)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 115.0
+offset_top = -51.0
+offset_right = 190.0
+offset_bottom = -21.0
+grow_vertical = 0
+theme = ExtResource("2_vuaj7")
+text = "Info"

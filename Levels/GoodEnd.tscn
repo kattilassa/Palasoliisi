@@ -1,0 +1,123 @@
+[gd_scene load_steps=4 format=3 uid="uid://h351eunrlcw1"]
+
+[ext_resource type="Texture2D" uid="uid://c7iekwdccic4b" path="res://art/GoodEnd.png" id="1_2xlxa"]
+[ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="2_rc13w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5rbag"]
+font_size = 23
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="GoodEnd" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Background" type="TextureRect" parent="Camera2D"]
+offset_left = -228.0
+offset_top = -128.0
+offset_right = 228.0
+offset_bottom = 128.0
+texture = ExtResource("1_2xlxa")
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(456, 256)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="Label" parent="Control"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -227.0
+offset_top = 4.0
+offset_right = -27.0
+offset_bottom = 44.0
+grow_horizontal = 0
+theme = ExtResource("2_rc13w")
+text = "Congratulations !"
+label_settings = SubResource("LabelSettings_5rbag")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Control"]
+custom_minimum_size = Vector2(230, 50)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -237.0
+offset_top = -86.0
+offset_right = -7.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("2_rc13w")
+theme_override_font_sizes/font_size = 15
+text = "You have successfully
+convinced Gloria of the truth
+and saved all the villagers!"
+
+[node name="TestScoreLabel" type="Label" parent="Control"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -30.0
+offset_right = 200.0
+grow_vertical = 2
+theme = ExtResource("2_rc13w")
+text = "Test score: 00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MiniGameScoreLabel" type="Label" parent="Control"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = 1.0
+offset_right = 200.0
+offset_bottom = 31.0
+grow_vertical = 2
+theme = ExtResource("2_rc13w")
+text = "MiniGame score: 00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButton" type="Button" parent="Control"]
+custom_minimum_size = Vector2(75, 30)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = 37.0
+offset_right = 95.0
+offset_bottom = 67.0
+grow_vertical = 2
+theme = ExtResource("2_rc13w")
+text = "Menu"
+
+[node name="InfoButton" type="Button" parent="Control"]
+custom_minimum_size = Vector2(75, 30)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 120.0
+offset_top = 37.0
+offset_right = 195.0
+offset_bottom = 67.0
+grow_vertical = 2
+theme = ExtResource("2_rc13w")
+text = "Info"
