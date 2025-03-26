@@ -5,15 +5,17 @@
 [resource]
 script = ExtResource("1_if737")
 starts = {
+"callGloria": &"0_6",
 "computer": &"0_4",
 "first": &"0_1",
+"firstClue": &"0_5",
 "phone": &"0_3",
 "quiz": &"0_2"
 }
 nodes = {
 "0_1": {
 "link": &"1_1",
-"offset": Vector2(-451, -288),
+"offset": Vector2(-560, -560),
 "start_id": "first"
 },
 "0_2": {
@@ -23,7 +25,7 @@ nodes = {
 },
 "0_3": {
 "link": &"1_3",
-"offset": Vector2(-440, -520),
+"offset": Vector2(-460, -880),
 "start_id": "phone"
 },
 "0_4": {
@@ -31,9 +33,19 @@ nodes = {
 "offset": Vector2(558.61, -319),
 "start_id": "computer"
 },
+"0_5": {
+"link": &"1_11",
+"offset": Vector2(-397.643, -1093.18),
+"start_id": "firstClue"
+},
+"0_6": {
+"link": &"1_12",
+"offset": Vector2(160, -1120),
+"start_id": "callGloria"
+},
 "1_1": {
 "dialogue": "Palasoliisi: You will be playing as me – Bernand Bartholomeu, but friends and family call me Bear. I came back to my home village because my dear aunt Gloria has been acting strange. There’s been rumors about a false news outbreak and it’s my duty to help the villagers and Break The Fake! ",
-"offset": Vector2(-260, -400),
+"offset": Vector2(-360, -540),
 "options": {
 0: {
 "condition": {},
@@ -46,7 +58,7 @@ nodes = {
 },
 "1_10": {
 "dialogue": "What are you talking abou- oh... she hung up on me... - I better check out the magazine...",
-"offset": Vector2(440, -700),
+"offset": Vector2(420, -860),
 "options": {
 0: {
 "condition": {},
@@ -57,9 +69,113 @@ nodes = {
 "size": Vector2(300, 257),
 "speaker": 0
 },
+"1_11": {
+"dialogue": "I should call Gloria back...",
+"offset": Vector2(-160, -1140),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_12": {
+"dialogue": "Hey Gloria, I read the article and the author is known for using manipulation tactics such as “Quote mining” and “Cherry picking”.",
+"offset": Vector2(360, -1180),
+"options": {
+0: {
+"condition": {},
+"link": &"1_13",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_13": {
+"dialogue": "What are you on about and how did you know I’ve been picking cherries lately? There’s pie in the oven right now... are you one of THEM!?",
+"offset": Vector2(680, -1180),
+"options": {
+0: {
+"condition": {},
+"link": &"1_14",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 1
+},
+"1_14": {
+"dialogue": "I'm just gonna ignore that... to be clear “Quote mining” means to pick and choose a short sentence from someone’s longer speech and taking it out of context to push your own views.",
+"offset": Vector2(1020, -1160),
+"options": {
+0: {
+"condition": {},
+"link": &"1_15",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_15": {
+"dialogue": "Haven’t heard of that before... you people are always coming up with new words to confuse us. Answer me about the cherries!!",
+"offset": Vector2(1360, -1140),
+"options": {
+0: {
+"condition": {},
+"link": &"1_16",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 1
+},
+"1_16": {
+"dialogue": "You got me all wrong, “Cherry picking” means picking only the data and information that you already agree with and which aligns with your own views. It leaves out the rest of the information that doesn’t fit your agenda.",
+"offset": Vector2(1700, -1120),
+"options": {
+0: {
+"condition": {},
+"link": &"1_17",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_17": {
+"dialogue": "Okay I’ll look into that more... The Mayor sent the whole village test samples of honey along with a information flier about the product. I don’t want to get microchipped so I didn’t eat it. If you think you know better go check it out yourself...",
+"offset": Vector2(2040, -1160),
+"options": {
+0: {
+"condition": {},
+"link": &"1_18",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 1
+},
+"1_18": {
+"dialogue": " In fact I did receive something but where exactly did I leave it.. I should check the kitchen area...",
+"offset": Vector2(2400, -1180),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
 "1_2": {
 "dialogue": "My dear cousin Gloria has been acting so weird lately. I couldn't bear the thought of not coming to visit her, so here I am. Oh! someone is calling.",
-"offset": Vector2(80, -420),
+"offset": Vector2(-20, -520),
 "options": {
 0: {
 "condition": {},
@@ -72,7 +188,7 @@ nodes = {
 },
 "1_3": {
 "dialogue": "Hey Gloria, I was just thinking about you.",
-"offset": Vector2(-200, -700),
+"offset": Vector2(-240, -860),
 "options": {
 0: {
 "condition": {},
@@ -160,7 +276,7 @@ nodes = {
 },
 "1_9": {
 "dialogue": "I hope you haven’t been eating any honey lately... I can’t speak about this on the phone – THEY are listening to me!!! Go read the magazine - don't be a SHEEP!!",
-"offset": Vector2(120, -700),
+"offset": Vector2(100, -860),
 "options": {
 0: {
 "condition": {},

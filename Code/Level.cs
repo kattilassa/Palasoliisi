@@ -22,6 +22,7 @@ namespace PalaSoliisi
 		[Export] private TextureButton _articleButton = null;
 		[Export] private TextureButton _computerButton = null;
 		[Export] private TextureButton _phoneButton = null;
+		[Export] private TextureButton _exitMenuButton = null;
 		[Export] private Button _exitClueButton = null;
 		[Export] private Button _menuButton = null;
 		[Export] private string _miniGameScenePath = "res://Levels/MiniGame.tscn";
@@ -30,8 +31,12 @@ namespace PalaSoliisi
 		private Bernand _bernand = null;
 		public bool isRunning;
 		private AnimationPlayer _animationPlayer;
-		private AudioStreamPlayer _ringtonePlayer;
-		public bool callAnswered = false;
+		private AudioStreamPlayer _soundPlayer;
+        private AudioStream _ringtoneSound;
+        private AudioStream _paperSound;
+        private AudioStream _callEndedSound;
+        private AudioStream _callStartedSound;
+        public bool callAnswered = false;
 		public static Level Current
 		{
 			get { return _current; }
@@ -153,11 +158,15 @@ namespace PalaSoliisi
 			_settingsButton.Connect("gui_input", new Callable(this, nameof(OnSettingsGuiInput)));
 			_phoneEffect = GetNode<TextureRect>("alarmed");
 			_phoneEffect.Hide();
+			_exitMenuButton.Hide();
 			_clueCard = GetNode<TextureRect>("Clue");
 			_clueLabel = GetNode<Label>("Clue/Label");
 
 				_articleButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnArticlePressed)));
+
+				_exitMenuButton.Connect(Button.SignalName.Pressed,
+				new Callable(this, nameof(OnSettingsPressed)));
 
 				_exitClueButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(clueExit)));
@@ -170,7 +179,14 @@ namespace PalaSoliisi
 
 				_animationPlayer = GetNode<AnimationPlayer>("piece/AnimationPlayer");
 
+				_soundPlayer = GetNode<AudioStreamPlayer>("SoundPlayer");
+				 _ringtoneSound = GD.Load<AudioStream>("res://music/phone-ringtone.mp3");
+				 _paperSound = GD.Load<AudioStream>("res://music/paper.mp3");
+				  _callEndedSound = GD.Load<AudioStream>("res://music/unavailable.mp3");
+				  _callStartedSound = GD.Load<AudioStream>("res://music/phoneCall.mp3");
 
+
+/*
 				foreach (var child in GetChildren())
 					{
 						if (child is AudioStreamPlayer audioStreamPlayerChild)
@@ -178,6 +194,7 @@ namespace PalaSoliisi
 							_ringtonePlayer = audioStreamPlayerChild;
 						}
 					}
+*/
 			ResetGame();
 		}
 		public void ResetGame()
@@ -195,6 +212,7 @@ namespace PalaSoliisi
 				_showInGameMenu = false;
 				_inGameMenu.Hide();
 				_menuButton.Hide();
+				_exitMenuButton.Hide();
 				Movement();
 			}
 			else
@@ -203,6 +221,7 @@ namespace PalaSoliisi
 				_showInGameMenu = true;
 				_inGameMenu.Show();
 				_menuButton.Show();
+				_exitMenuButton.Show();
 				Movement();
 			}
 
@@ -213,6 +232,7 @@ namespace PalaSoliisi
 			bool secondButton = true;
 			bool thirdButton = true;
 			await timerAsync(1);
+			PlaySound(_paperSound);
 			//if(!_showInGameMenu)
 			//{
 			//ArticlePieces++;
@@ -338,23 +358,27 @@ namespace PalaSoliisi
 		{
 			_animationPlayer.Stop();
 			_phoneEffect.Hide();
-			if (_ringtonePlayer.Playing)
+			if (_soundPlayer.Playing)
 			{
-				_ringtonePlayer.Stop();
+				_soundPlayer.Stop();
 			}
 			if(!_showInGameMenu & _articlePieces==0 & !callAnswered)
 			{
 				callAnswered=true;
 				await timerAsync(1);
-				_dialogueBox.Call("start", "phone");
+				dialogueStarter("phone");
+				//_dialogueBox.Call("start", "phone");
 				await timerAsync(5);
 				_articleButton.Show();
 				_animationPlayer.Play("flying_magazine");
+				PlaySound(_paperSound);
 			}
-			else if (callAnswered)
+			else if (callAnswered && _articlePieces==1)
 			{
-				string startId = "first";
-				_dialogueBubble.Call("start", startId);
+				PlaySound(_callStartedSound);
+				await timerAsync(2);
+				_soundPlayer.Stop();
+				dialogueStarter("callGloria");
 			}
 		}
 
@@ -381,9 +405,24 @@ namespace PalaSoliisi
 		public void Ringing()
 		{
 			_animationPlayer.Play("alarmed");
-			_ringtonePlayer.Play();
+			//_ringtonePlayer.Play();
+			PlaySound(_ringtoneSound);
 			return;
 		}
+
+		public void PlaySound(AudioStream sound)
+		{
+			// Check if the _soundPlayer is initialized and if the sound parameter is not null
+			if (_soundPlayer != null && sound != null)
+			{
+				// Assign the sound stream to the AudioStreamPlayer
+				_soundPlayer.Stream = sound;
+
+				// Play the sound
+				_soundPlayer.Play();
+			}
+		}
+
 		public void callEnded()
 		{
 			return;
@@ -415,15 +454,25 @@ namespace PalaSoliisi
 			}
 		}
 
-		 private async void showClueLabel()
+		 private void showClueLabel()
 		{
 			_clueCard.Show();
 		}
 
-		private async void clueExit()
+		private void clueExit()
 		{
 			_clueCard.Hide();
 
+			if(_articlePieces==1)
+			{
+				dialogueStarter("firstClue");
+
+			}
+		}
+
+		private void dialogueStarter(string dialogueID)
+		{
+				_dialogueBox.Call("start", dialogueID);
 		}
 		/// <summary>
 		/// Opens MiniGame scene when article collected

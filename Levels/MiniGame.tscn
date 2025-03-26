@@ -74,7 +74,6 @@ theme = ExtResource("6_7meq3")
 layout_mode = 1
 
 [node name="InGameMenu" parent="UI" instance=ExtResource("6_v4t5l")]
-process_mode = 3
 z_index = 2
 layout_mode = 1
 offset_top = 53.0
