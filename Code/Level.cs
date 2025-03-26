@@ -15,12 +15,14 @@ namespace PalaSoliisi
 		public bool _UIpressed = false;
 		public bool _isMiniGameRunning = false;
 		public bool _isDialogueRunning = false;
+		private Label _clueLabel;
 		private Control _UI;
 		private Control _inGameMenu;
 		[Export] private TextureButton _settingsButton = null;
 		[Export] private TextureButton _articleButton = null;
 		[Export] private TextureButton _computerButton = null;
 		[Export] private TextureButton _phoneButton = null;
+		[Export] private Button _exitClueButton = null;
 		[Export] private Button _menuButton = null;
 		[Export] private string _miniGameScenePath = "res://Levels/MiniGame.tscn";
 		[Export] private string _howToPlayScenePath = "res://Levels/HowToPlay.tscn";
@@ -56,6 +58,7 @@ namespace PalaSoliisi
 		private Node _dialogueBubble;
 		public bool _isAnswered = true;
 		public TextureRect _phoneEffect;
+		public TextureRect _clueCard;
 
 		public int ArticlePieces
 		{
@@ -150,9 +153,14 @@ namespace PalaSoliisi
 			_settingsButton.Connect("gui_input", new Callable(this, nameof(OnSettingsGuiInput)));
 			_phoneEffect = GetNode<TextureRect>("alarmed");
 			_phoneEffect.Hide();
+			_clueCard = GetNode<TextureRect>("Clue");
+			_clueLabel = GetNode<Label>("Clue/Label");
 
 				_articleButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnArticlePressed)));
+
+				_exitClueButton.Connect(Button.SignalName.Pressed,
+				new Callable(this, nameof(clueExit)));
 
 			_computerButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnComputerPressed)));
@@ -407,6 +415,16 @@ namespace PalaSoliisi
 			}
 		}
 
+		 private async void showClueLabel()
+		{
+			_clueCard.Show();
+		}
+
+		private async void clueExit()
+		{
+			_clueCard.Hide();
+
+		}
 		/// <summary>
 		/// Opens MiniGame scene when article collected
 		/// </summary>
@@ -466,6 +484,7 @@ namespace PalaSoliisi
 			_bernand.StartMovement();
 			_settingsButton.Show();
 			_isMiniGameRunning = false;
+			showClueLabel();
 		}
 	}
 }

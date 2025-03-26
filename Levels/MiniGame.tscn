@@ -13,13 +13,12 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ch8hc"]
 bg_color = Color(0.286275, 0.215686, 0.207843, 1)
 
-[node name="MiniGame" type="Node2D" node_paths=PackedStringArray("_miniGameControl", "_settingsButton", "_instructions")]
+[node name="MiniGame" type="Node2D" node_paths=PackedStringArray("_miniGameControl", "_settingsButton")]
 process_mode = 1
 z_index = 7
 script = ExtResource("1_ud83l")
 _miniGameControl = NodePath("UI/MiniGameUI")
 _settingsButton = NodePath("Settings")
-_instructions = NodePath("Instructions")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

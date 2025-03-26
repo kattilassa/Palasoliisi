@@ -38,7 +38,7 @@ nodes = {
 0: {
 "condition": {},
 "link": &"1_2",
-"text": "Let's find out the truth"
+"text": "Let's find out the truth!"
 }
 },
 "size": Vector2(300, 257),
@@ -58,13 +58,13 @@ nodes = {
 "speaker": 0
 },
 "1_2": {
-"dialogue": "It's nice to be back in my hometown. My dear cousin Gloria has been acting so weird lately. I couldn't bear the thought of not coming to visit her, so here I am. Oh! someone is calling.",
+"dialogue": "My dear cousin Gloria has been acting so weird lately. I couldn't bear the thought of not coming to visit her, so here I am. Oh! someone is calling.",
 "offset": Vector2(80, -420),
 "options": {
 0: {
 "condition": {},
 "link": "END",
-"text": "I should pick up the phone"
+"text": "I should pick up the phone..."
 }
 },
 "size": Vector2(300, 290),
@@ -169,7 +169,7 @@ nodes = {
 }
 },
 "size": Vector2(300, 240),
-"speaker": "Gloria"
+"speaker": 1
 },
 "4_1": {
 "link": &"1_8",
