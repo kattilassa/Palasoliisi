@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4egm6mtlxm61"
-path="res://.godot/imported/diamond.png-fc7df5524e0e36331e3e3bc550e6bf6d.ctex"
+uid="uid://ctscrbqw6ehtp"
+path="res://.godot/imported/radioactive.png-f7eaf74e51c490a15b57548f8aa24f91.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Collectables/diamond.png"
-dest_files=["res://.godot/imported/diamond.png-fc7df5524e0e36331e3e3bc550e6bf6d.ctex"]
+source_file="res://art/Cards/Collectables/radioactive.png"
+dest_files=["res://.godot/imported/radioactive.png-f7eaf74e51c490a15b57548f8aa24f91.ctex"]
 
 [params]
 

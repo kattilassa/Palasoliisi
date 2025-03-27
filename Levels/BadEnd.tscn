@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c5p5wf6ksi2o"]
 
-[ext_resource type="Texture2D" uid="uid://cq3w0iwvwctwb" path="res://art/BadEnd.png" id="1_cgwq8"]
+[ext_resource type="Texture2D" uid="uid://bp77o3qu167hg" path="res://art/BadEnd.png" id="1_je1v0"]
 [ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="2_vuaj7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5rbag"]
@@ -17,7 +17,7 @@ offset_left = -228.0
 offset_top = -128.0
 offset_right = 228.0
 offset_bottom = 128.0
-texture = ExtResource("1_cgwq8")
+texture = ExtResource("1_je1v0")
 
 [node name="Control" type="Control" parent="."]
 custom_minimum_size = Vector2(456, 256)

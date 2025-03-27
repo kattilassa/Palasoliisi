@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s0ai30mj3xa"
-path="res://.godot/imported/fbgloria.png-a4677712aaf8ae64e31b87350e787b28.ctex"
+uid="uid://dys81umq2bm3o"
+path="res://.godot/imported/Bernard1.0.png-33549e131c0e66167fc1230209a2f5f3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/fbgloria.png"
-dest_files=["res://.godot/imported/fbgloria.png-a4677712aaf8ae64e31b87350e787b28.ctex"]
+source_file="res://art/Cards/Collectables/Bernard1.0.png"
+dest_files=["res://.godot/imported/Bernard1.0.png-33549e131c0e66167fc1230209a2f5f3.ctex"]
 
 [params]
 

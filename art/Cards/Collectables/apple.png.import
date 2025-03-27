@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dys81umq2bm3o"
-path="res://.godot/imported/Bernard1.0.png-dfd512bc5cf27ca2b44271b7d06c1a60.ctex"
+uid="uid://dlfxcfn617k2b"
+path="res://.godot/imported/apple.png-b370e1054358e5c125fed54bbec1e10e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Collectables/Bernard1.0.png"
-dest_files=["res://.godot/imported/Bernard1.0.png-dfd512bc5cf27ca2b44271b7d06c1a60.ctex"]
+source_file="res://art/Cards/Collectables/apple.png"
+dest_files=["res://.godot/imported/apple.png-b370e1054358e5c125fed54bbec1e10e.ctex"]
 
 [params]
 

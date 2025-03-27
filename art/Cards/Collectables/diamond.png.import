@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bp77o3qu167hg"
-path="res://.godot/imported/BadEnd.png-31f73a9f4515372a22bacbeade2bd671.ctex"
+uid="uid://c4egm6mtlxm61"
+path="res://.godot/imported/diamond.png-ecac8fc36194dba95f97c91726bf609b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/BadEnd.png"
-dest_files=["res://.godot/imported/BadEnd.png-31f73a9f4515372a22bacbeade2bd671.ctex"]
+source_file="res://art/Cards/Collectables/diamond.png"
+dest_files=["res://.godot/imported/diamond.png-ecac8fc36194dba95f97c91726bf609b.ctex"]
 
 [params]
 
