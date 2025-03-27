@@ -15,14 +15,20 @@ namespace PalaSoliisi
 		public bool _UIpressed = false;
 		public bool _isMiniGameRunning = false;
 		public bool _isDialogueRunning = false;
-		private Label _clueLabel;
+		[Export] public Label _clueLabel;
 		private Control _UI;
 		private Control _inGameMenu;
 		[Export] private TextureButton _settingsButton = null;
 		[Export] private TextureButton _articleButton = null;
 		[Export] private TextureButton _computerButton = null;
+		[Export] private TextureButton _fridgeButton = null;
+		[Export] private TextureButton _tableButton = null;
 		[Export] private TextureButton _phoneButton = null;
 		[Export] private TextureButton _exitMenuButton = null;
+		[Export] private TextureButton _bedButton = null;
+		[Export] private TextureButton _frogButton = null;
+		[Export] private TextureButton _closetButton = null;
+		[Export] private TextureButton _briefcaseButton = null;
 		[Export] private Button _exitClueButton = null;
 		[Export] private Button _menuButton = null;
 		[Export] private string _miniGameScenePath = "res://Levels/MiniGame.tscn";
@@ -36,13 +42,20 @@ namespace PalaSoliisi
         private AudioStream _paperSound;
         private AudioStream _callEndedSound;
         private AudioStream _callStartedSound;
+        private AudioStream _dingSound;
+        private AudioStream _clickSound;
+        private AudioStream _cabinetSound;
+        private AudioStream _bedSound;
+        private AudioStream _backpackSound;
         public bool callAnswered = false;
+		public bool callGloria= false;
 		public static Level Current
 		{
 			get { return _current; }
 		}
 		[Export] private string _articleScenePath = "res://Levels/Collectables/Article.tscn";
 		[Export] private ScoreUIControl _scoreUIControl = null;
+		[Export] AudioStreamPlayer _ringtonePlayer;
 
         private Grid _grid = null;
 
@@ -65,7 +78,8 @@ namespace PalaSoliisi
 		public TextureRect _phoneEffect;
 		public TextureRect _clueCard;
 
-		public int ArticlePieces
+
+        public int ArticlePieces
 		{
 			get { return _articlePieces; }
 			set
@@ -147,7 +161,7 @@ namespace PalaSoliisi
 			_menuButton.Hide();
 			_UI = GetNode<Control>("UI");
 			_inGameMenu = GetNode<Control>("UI/InGameMenu");
-			_dialogueBox = GetNode("DialogueBox");
+			_dialogueBox = GetNode("UI/DialogueBox");
 			_dialogueBubble = GetNode("DialogueBubble");
 			_inGameMenu.Hide();
 			_bernand = GetNode<Bernand>("Camera2D/Bernand");
@@ -160,7 +174,7 @@ namespace PalaSoliisi
 			_phoneEffect.Hide();
 			_exitMenuButton.Hide();
 			_clueCard = GetNode<TextureRect>("Clue");
-			_clueLabel = GetNode<Label>("Clue/Label");
+			_clueLabel = GetNode<Label>("Clue/clue");
 
 				_articleButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnArticlePressed)));
@@ -177,6 +191,17 @@ namespace PalaSoliisi
 				_phoneButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnPhonePressed)));
 
+				_fridgeButton.Connect(Button.SignalName.Pressed,
+				new Callable(this, nameof(OnFridgePressed)));
+				_tableButton.Connect(Button.SignalName.Pressed,
+				new Callable(this, nameof(OnTablePressed)));
+					_bedButton.Connect(Button.SignalName.Pressed,
+				new Callable(this, nameof(OnBedPressed)));
+				_frogButton.Connect(Button.SignalName.Pressed,
+				new Callable(this, nameof(OnFrogPressed)));
+
+				_closetButton.Connect(Button.SignalName.Pressed,
+				new Callable(this, nameof(OnClosetPressed)));
 				_animationPlayer = GetNode<AnimationPlayer>("piece/AnimationPlayer");
 
 				_soundPlayer = GetNode<AudioStreamPlayer>("SoundPlayer");
@@ -184,24 +209,80 @@ namespace PalaSoliisi
 				 _paperSound = GD.Load<AudioStream>("res://music/paper.mp3");
 				  _callEndedSound = GD.Load<AudioStream>("res://music/unavailable.mp3");
 				  _callStartedSound = GD.Load<AudioStream>("res://music/phoneCall.mp3");
+				 _dingSound = GD.Load<AudioStream>("res://music/ding.mp3");
+				 _clickSound = GD.Load<AudioStream>("res://music/click.mp3");
+				 _cabinetSound = GD.Load<AudioStream>("res://music/cabinet.mp3");
+				 _bedSound = GD.Load<AudioStream>("res://music/bed.mp3");
+				_backpackSound = GD.Load<AudioStream>("res://music/bed.mp3");
 
 
-/*
-				foreach (var child in GetChildren())
-					{
-						if (child is AudioStreamPlayer audioStreamPlayerChild)
-						{
-							_ringtonePlayer = audioStreamPlayerChild;
-						}
-					}
-*/
 			ResetGame();
 		}
-		public void ResetGame()
+
+        public void OnClosetPressed()
+        {
+            PlaySound(_cabinetSound);
+        }
+
+		 public void OnBriefcasePressed()
+        {
+            PlaySound(_backpackSound);
+        }
+
+        public void OnBedPressed()
+        {
+			PlaySound(_bedSound);
+			if(_articlePieces==2)
+			{
+				_dialogueBubble.Call("start", "clue");
+				_articleButton.Show();
+			}
+			else
+			{
+				_dialogueBubble.Call("start", "bed");
+			}
+        }
+
+        public void OnFrogPressed()
+        {
+            PlaySound(_dingSound);
+        }
+
+        public void ResetGame()
 		{
 			ArticlePieces= 0;
 			_articleButton.Hide();
 			// Dialogue();
+		}
+
+		public void OnFridgePressed()
+		{
+			PlaySound(_cabinetSound);
+			GD.Print("jääkaappi");
+			if (callGloria &&_articlePieces == 1)
+			{
+				_dialogueBubble.Call("start", "honey");
+			}
+			else
+			{
+				_dialogueBubble.Call("start", "fridge");
+			}
+		}
+
+		public void OnTablePressed()
+		{
+			PlaySound(_cabinetSound);
+			GD.Print("pöytä");
+			GD.Print("jääkaappi");
+			if (callGloria &&_articlePieces == 1)
+			{
+				_dialogueBubble.Call("start", "honeyfound");
+				_articleButton.Show();
+			}
+			else
+			{
+				_dialogueBubble.Call("start", "honeyhere");
+			}
 		}
 		public void OnSettingsPressed()
 		{
@@ -243,22 +324,20 @@ namespace PalaSoliisi
 			//	return;
 			//}
 			if(_articlePieces == 0 && firstButton)
-			{
+			{ _articleButton.Hide();
 				firstButton=false;
-				_articleButton.GlobalPosition = new Vector2(-67, -32);
+				_articleButton.GlobalPosition = new Vector2(87, -91);
 				_animationPlayer.Play("reminder");
 			}
 			else if (_articlePieces == 1 && secondButton)
-			{
+			{ 	_articleButton.Hide();
 				secondButton=false;
-				_articleButton.GlobalPosition = new Vector2(-107, 65);
+				_articleButton.GlobalPosition = new Vector2(-176, 34);
 			}
 			else if (_articlePieces >= 2 && thirdButton)
 			{
 				thirdButton=false;
 				_articleButton.Hide();
-				string startId = "computer";
-				_dialogueBox.Call("start", startId);
 			}
 
 			// Start minigame when article collected
@@ -277,14 +356,14 @@ namespace PalaSoliisi
 
 		private void OnComputerPressed()
 		{
+			PlaySound(_clickSound);
 			if(!_showInGameMenu && !_isDialogueRunning)
 			{
 				GD.Print("Tietokonetta painettu");
 
 				if (_articlePieces==3)
 				{
-				string startId = "quiz";
-				_dialogueBox.Call("start", startId);
+					dialogueStarter("quiz");
 				}
 				else if (!_isDialogueRunning)
 				{
@@ -354,13 +433,21 @@ namespace PalaSoliisi
 		{
 			_isDialogueRunning = true;
 		}
+
+		private void DialogueAnimationSkipper()
+		{
+			if(_isDialogueRunning);
+			{
+
+			}
+		}
 			private async void OnPhonePressed()
 		{
 			_animationPlayer.Stop();
 			_phoneEffect.Hide();
-			if (_soundPlayer.Playing)
+			if (_ringtonePlayer.Playing)
 			{
-				_soundPlayer.Stop();
+				_ringtonePlayer.Stop();
 			}
 			if(!_showInGameMenu & _articlePieces==0 & !callAnswered)
 			{
@@ -372,9 +459,12 @@ namespace PalaSoliisi
 				_articleButton.Show();
 				_animationPlayer.Play("flying_magazine");
 				PlaySound(_paperSound);
+				await timerAsync(10);
+				_animationPlayer.Play("reminder");
 			}
-			else if (callAnswered && _articlePieces==1)
+			else if (!callGloria && _articlePieces==1)
 			{
+				callGloria=true;
 				PlaySound(_callStartedSound);
 				await timerAsync(2);
 				_soundPlayer.Stop();
@@ -405,8 +495,8 @@ namespace PalaSoliisi
 		public void Ringing()
 		{
 			_animationPlayer.Play("alarmed");
-			//_ringtonePlayer.Play();
-			PlaySound(_ringtoneSound);
+			_ringtonePlayer.Play();
+			//PlaySound(_ringtoneSound);
 			return;
 		}
 
@@ -457,6 +547,31 @@ namespace PalaSoliisi
 		 private void showClueLabel()
 		{
 			_clueCard.Show();
+
+			if (_articlePieces==2)
+			{
+
+			_clueLabel.Text = @"Hello dear villagers!
+			Find facts about the Mayor’s honey business
+			Certificated by scientists from Honey Science Inc.
+
+			Bear scientist: The honey making process is strict and we don’t let any foreign objects get in.
+			Worry not this honey is safe to consume!
+			-CredibleSource.com-
+			Signed by, The Mayor.";
+			}
+			else if (_articlePieces==3)
+			{
+			_clueLabel.Text = @"GLORIA REVEALS the truth!
+
+				Village mayor is actually a robot in a mechanical bear suit trying to turn us into robots by eating microchips!
+
+				Sources: Gloria, neighbor, various people from gloriareveals.com
+
+				Author: Gloria Graves
+				www.gloriareveals.bear";
+			}
+
 		}
 
 		private void clueExit()
@@ -466,7 +581,14 @@ namespace PalaSoliisi
 			if(_articlePieces==1)
 			{
 				dialogueStarter("firstClue");
-
+			}
+			else if (_articlePieces==2)
+			{
+				dialogueStarter("secondClue");
+			}
+			else if(_articlePieces==3)
+			{
+				dialogueStarter("thirdClue");
 			}
 		}
 

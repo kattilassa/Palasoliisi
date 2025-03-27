@@ -10,7 +10,9 @@ starts = {
 "first": &"0_1",
 "firstClue": &"0_5",
 "phone": &"0_3",
-"quiz": &"0_2"
+"quiz": &"0_2",
+"secondClue": &"0_7",
+"thirdClue": &"0_8"
 }
 nodes = {
 "0_1": {
@@ -42,6 +44,16 @@ nodes = {
 "link": &"1_12",
 "offset": Vector2(160, -1120),
 "start_id": "callGloria"
+},
+"0_7": {
+"link": &"1_19",
+"offset": Vector2(-400, -1240),
+"start_id": "secondClue"
+},
+"0_8": {
+"link": &"1_23",
+"offset": Vector2(-385.932, -1492.17),
+"start_id": "thirdClue"
 },
 "1_1": {
 "dialogue": "Palasoliisi: You will be playing as me – Bernand Bartholomeu, but friends and family call me Bear. I came back to my home village because my dear aunt Gloria has been acting strange. There’s been rumors about a false news outbreak and it’s my duty to help the villagers and Break The Fake! ",
@@ -148,7 +160,7 @@ nodes = {
 "speaker": 0
 },
 "1_17": {
-"dialogue": "Okay I’ll look into that more... The Mayor sent the whole village test samples of honey along with a information flier about the product. I don’t want to get microchipped so I didn’t eat it. If you think you know better go check it out yourself...",
+"dialogue": "Okay I’ll look into that more... The Mayor sent the whole village test samples of honey along with a information flyer about the product. I don’t want to get microchipped so I didn’t eat it. If you think you know better go check it out yourself...",
 "offset": Vector2(2040, -1160),
 "options": {
 0: {
@@ -173,6 +185,19 @@ nodes = {
 "size": Vector2(300, 240),
 "speaker": 0
 },
+"1_19": {
+"dialogue": "Now, how am I so sure this is credible information? It’s always smart to check...",
+"offset": Vector2(-220, -1420),
+"options": {
+0: {
+"condition": {},
+"link": &"1_20",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
 "1_2": {
 "dialogue": "My dear cousin Gloria has been acting so weird lately. I couldn't bear the thought of not coming to visit her, so here I am. Oh! someone is calling.",
 "offset": Vector2(-20, -520),
@@ -184,6 +209,58 @@ nodes = {
 }
 },
 "size": Vector2(300, 290),
+"speaker": 0
+},
+"1_20": {
+"dialogue": "Do we know the author and source? Well of course we do it’s our beloved Mayor! Mayor always provides transparent and trustworthy facts backed by science. Unlike when using a tactic called “Anecdote”.",
+"offset": Vector2(80, -1440),
+"options": {
+0: {
+"condition": {},
+"link": &"1_21",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_21": {
+"dialogue": "Just like when Gloria got sick from eating too much honey, she got paranoid and warned everyone of the dangers of honey. She was using her own experience as evidence. Singular cases can’t be used as absolute truth.",
+"offset": Vector2(420, -1460),
+"options": {
+0: {
+"condition": {},
+"link": &"1_22",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_22": {
+"dialogue": " A lot seems to have changed since the last time I was here – I should look around and investigate more...",
+"offset": Vector2(760, -1480),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
+"1_23": {
+"dialogue": "Oh no! This has gone too far – Gloria has been influenced by all of this misinformation. There must be a way to turn things around....I need to check this website right now!",
+"offset": Vector2(-180, -1740),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
 "speaker": 0
 },
 "1_3": {

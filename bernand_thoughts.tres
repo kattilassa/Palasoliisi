@@ -10,7 +10,13 @@ starts = {
 "3": &"0_5",
 "4": &"0_6",
 "5": &"0_7",
+"bed": &"0_11",
+"clue": &"0_12",
 "first": &"0_1",
+"fridge": &"0_10",
+"honey": &"0_8",
+"honeyfound": &"0_9",
+"honeyhere": &"0_13",
 "second": &"0_2"
 }
 nodes = {
@@ -18,6 +24,26 @@ nodes = {
 "link": &"1_1",
 "offset": Vector2(-438, -250),
 "start_id": "first"
+},
+"0_10": {
+"link": &"1_10",
+"offset": Vector2(-63.9156, -749.201),
+"start_id": "fridge"
+},
+"0_11": {
+"link": &"1_11",
+"offset": Vector2(674.087, -771.201),
+"start_id": "bed"
+},
+"0_12": {
+"link": &"1_12",
+"offset": Vector2(-500, -440),
+"start_id": "clue"
+},
+"0_13": {
+"link": &"1_13",
+"offset": Vector2(-471.131, -723.341),
+"start_id": "honeyhere"
 },
 "0_2": {
 "link": &"1_2",
@@ -49,6 +75,16 @@ nodes = {
 "offset": Vector2(240, -40),
 "start_id": "5"
 },
+"0_8": {
+"link": &"1_8",
+"offset": Vector2(40, -540),
+"start_id": "honey"
+},
+"0_9": {
+"link": &"1_9",
+"offset": Vector2(620, -580),
+"start_id": "honeyfound"
+},
 "1_1": {
 "dialogue": "Hmm I should look around..",
 "offset": Vector2(-200, -400),
@@ -61,6 +97,58 @@ nodes = {
 },
 "size": Vector2(300, 240),
 "speaker": 0
+},
+"1_10": {
+"dialogue": "Love me some blue bear-y pie!",
+"offset": Vector2(180, -880),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": ""
+},
+"1_11": {
+"dialogue": "Bears don't sleep in the summer!",
+"offset": Vector2(860, -940),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": ""
+},
+"1_12": {
+"dialogue": "wait...what's this?",
+"offset": Vector2(-300, -540),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": ""
+},
+"1_13": {
+"dialogue": "just honey here",
+"offset": Vector2(-279.131, -767.341),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": ""
 },
 "1_2": {
 "dialogue": "I should check out the computer too",
@@ -89,7 +177,7 @@ nodes = {
 "speaker": ""
 },
 "1_4": {
-"dialogue": "I don't feel like being on the computer right now.",
+"dialogue": "Nothing new here...",
 "offset": Vector2(700, -360),
 "options": {
 0: {
@@ -102,8 +190,8 @@ nodes = {
 "speaker": ""
 },
 "1_5": {
-"dialogue": "I should stop mindlessly surfing the internet...",
-"offset": Vector2(460, -60),
+"dialogue": "I should stop doomscrolling...",
+"offset": Vector2(620, -140),
 "options": {
 0: {
 "condition": {},
@@ -115,8 +203,8 @@ nodes = {
 "speaker": ""
 },
 "1_6": {
-"dialogue": "I have nothing interesting to do on the computer.",
-"offset": Vector2(160, -140),
+"dialogue": "I have better things to do!",
+"offset": Vector2(400, -460),
 "options": {
 0: {
 "condition": {},
@@ -128,8 +216,34 @@ nodes = {
 "speaker": ""
 },
 "1_7": {
-"dialogue": "I should focus on something else instead.",
+"dialogue": "Not right now!",
 "offset": Vector2(400, 160),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": ""
+},
+"1_8": {
+"dialogue": "Who would keep honey in a fridge...",
+"offset": Vector2(280, -600),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": ""
+},
+"1_9": {
+"dialogue": "Here's the flyer!",
+"offset": Vector2(863.921, -499.49),
 "options": {
 0: {
 "condition": {},

@@ -22,4 +22,4 @@ offset_right = 63.0
 offset_bottom = 23.0
 grow_horizontal = 2
 theme = ExtResource("2_ugrf8")
-text = "Pieces found: 00"
+text = "Clues found: 00"

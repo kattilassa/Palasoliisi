@@ -3,15 +3,10 @@
 [ext_resource type="Script" path="res://Code/Level.cs" id="1_uqqbp"]
 [ext_resource type="Texture2D" uid="uid://bjxo38brfpjof" path="res://art/House_base_curtain.png" id="2_h33wx"]
 [ext_resource type="TileSet" uid="uid://xu544k2gpeo7" path="res://art/leveltiles.tres" id="2_myw2y"]
-[ext_resource type="PackedScene" uid="uid://bw1b55q33qgnr" path="res://Code/UI/InGameMenu.tscn" id="3_1pr6y"]
 [ext_resource type="Theme" uid="uid://dq18l0hyb3bqt" path="res://addons/dialogue_nodes/themes/bubblyClean.theme" id="5_1cjeq"]
 [ext_resource type="Texture2D" uid="uid://nva4fn3qe8f8" path="res://art/lattiamatto.png" id="5_sl3t5"]
-[ext_resource type="Texture2D" uid="uid://cmffkqiiemf56" path="res://art/settings.1.png" id="6_biwi7"]
-[ext_resource type="FontFile" uid="uid://cw6pyp0ft2pbd" path="res://art/Fonts/boldreel/Boldreel.otf" id="6_kuk3a"]
 [ext_resource type="Texture2D" uid="uid://kwg43yedefnp" path="res://art/matkalaukku.png" id="6_lu1gs"]
 [ext_resource type="Texture2D" uid="uid://b8e1n27c261w3" path="res://art/Sänky1.png" id="7_d8tn1"]
-[ext_resource type="PackedScene" uid="uid://b76xiux4rne1t" path="res://Code/UI/ScoreUI.tscn" id="7_dt16r"]
-[ext_resource type="Texture2D" uid="uid://bsir1syi7smu0" path="res://art/settings.2.png" id="7_xhxos"]
 [ext_resource type="Texture2D" uid="uid://cshrjlg34sfbb" path="res://art/sammakko_herätyskello.png" id="8_i0hin"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBubble.gd" id="9_dw4qc"]
 [ext_resource type="Texture2D" uid="uid://y33o4rvw4hhu" path="res://art/vaatekaappi1.png" id="9_jrs01"]
@@ -30,18 +25,27 @@
 [ext_resource type="AudioStream" uid="uid://wteveke4gnd1" path="res://music/sneaky-feet-150618.mp3" id="20_55ul1"]
 [ext_resource type="Texture2D" uid="uid://bsl1g8st8fkjc" path="res://art/Puhelin.png" id="22_38mqv"]
 [ext_resource type="Texture2D" uid="uid://c8f6ymrdpajb4" path="res://art/next_pressed.png" id="25_lqb1q"]
-[ext_resource type="Texture2D" uid="uid://dn6p1oiayjosa" path="res://art/X.png" id="25_sodyy"]
+[ext_resource type="PackedScene" uid="uid://b76xiux4rne1t" path="res://Code/UI/ScoreUI.tscn" id="31_h1356"]
 [ext_resource type="Texture2D" uid="uid://cwj4ivmip8cdq" path="res://art/nallenappi.png" id="31_me71k"]
 [ext_resource type="Texture2D" uid="uid://chduo7ebrwpte" path="res://art/phonecall.png" id="31_rneb0"]
 [ext_resource type="AudioStream" uid="uid://8uaq1wqwu34a" path="res://music/phone-ringtone.mp3" id="32_583xg"]
+[ext_resource type="FontFile" uid="uid://cw6pyp0ft2pbd" path="res://art/Fonts/boldreel/Boldreel.otf" id="32_b8645"]
 [ext_resource type="Texture2D" uid="uid://b7psqbj4yw3md" path="res://art/clue.png" id="33_88m6g"]
-[ext_resource type="Texture2D" uid="uid://d2e3a1ghryxr1" path="res://art/XX.png" id="34_q4sxo"]
+[ext_resource type="PackedScene" uid="uid://bw1b55q33qgnr" path="res://Code/UI/InGameMenu.tscn" id="33_ibxos"]
+[ext_resource type="Texture2D" uid="uid://d2e3a1ghryxr1" path="res://art/XX.png" id="34_o6p5i"]
 [ext_resource type="FontFile" uid="uid://vtlnkbqwg1oj" path="res://art/Fonts/uni-sans.heavy-caps.otf" id="35_8i7lv"]
+[ext_resource type="Texture2D" uid="uid://dn6p1oiayjosa" path="res://art/X.png" id="35_77pmh"]
+[ext_resource type="Texture2D" uid="uid://cmffkqiiemf56" path="res://art/settings.1.png" id="36_44lh3"]
+[ext_resource type="Texture2D" uid="uid://bsir1syi7smu0" path="res://art/settings.2.png" id="37_ldiq3"]
 
-[sub_resource type="Theme" id="Theme_0snlr"]
-default_font = ExtResource("6_kuk3a")
-Label/constants/outline_size = 4
-Label/fonts/font = ExtResource("6_kuk3a")
+[sub_resource type="RichTextEffect" id="RichTextEffect_kjp2j"]
+script = ExtResource("14_g4w2e")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_0dtcu"]
+script = ExtResource("15_45o0a")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_80eou"]
+script = ExtResource("16_xve5m")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_lhdac"]
 script = ExtResource("14_g4w2e")
@@ -51,6 +55,11 @@ script = ExtResource("15_45o0a")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_1bvc0"]
 script = ExtResource("16_xve5m")
+
+[sub_resource type="Theme" id="Theme_imh8p"]
+default_font = ExtResource("32_b8645")
+Label/constants/outline_size = 4
+Label/fonts/font = ExtResource("32_b8645")
 
 [sub_resource type="Animation" id="Animation_m8u8h"]
 length = 0.001
@@ -219,25 +228,24 @@ _data = {
 "reminder": SubResource("Animation_xwvc0")
 }
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_kjp2j"]
-script = ExtResource("14_g4w2e")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_0dtcu"]
-script = ExtResource("15_45o0a")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_80eou"]
-script = ExtResource("16_xve5m")
-
-[node name="Level" type="Node2D" node_paths=PackedStringArray("_settingsButton", "_articleButton", "_computerButton", "_phoneButton", "_exitMenuButton", "_exitClueButton", "_menuButton", "_scoreUIControl")]
+[node name="Level" type="Node2D" node_paths=PackedStringArray("_clueLabel", "_settingsButton", "_articleButton", "_computerButton", "_fridgeButton", "_tableButton", "_phoneButton", "_exitMenuButton", "_bedButton", "_frogButton", "_closetButton", "_briefcaseButton", "_exitClueButton", "_menuButton", "_scoreUIControl", "_ringtonePlayer")]
 script = ExtResource("1_uqqbp")
+_clueLabel = NodePath("Clue/clue")
 _settingsButton = NodePath("UI/Settings")
 _articleButton = NodePath("piece")
-_computerButton = NodePath("computer")
-_phoneButton = NodePath("Phonebutton")
+_computerButton = NodePath("UI/ComputerButton")
+_fridgeButton = NodePath("UI/FridgeButton")
+_tableButton = NodePath("UI/TableButton")
+_phoneButton = NodePath("UI/Phonebutton")
 _exitMenuButton = NodePath("UI/exitmenu")
+_bedButton = NodePath("UI/bedButton")
+_frogButton = NodePath("UI/frogButton")
+_closetButton = NodePath("UI/closetButton")
+_briefcaseButton = NodePath("UI/briefcaseButton")
 _exitClueButton = NodePath("Clue/exitClue")
-_menuButton = NodePath("exitMenu")
+_menuButton = NodePath("UI/exitMenu")
 _scoreUIControl = NodePath("UI/ScoreUI")
+_ringtonePlayer = NodePath("AudioStreamPlayer")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -258,7 +266,7 @@ stretch_mode = 4
 [node name="borders" type="TileMapLayer" parent="Camera2D"]
 visible = false
 z_index = 3
-tile_map_data = PackedByteArray("AADx//n/BQAAAAAAAADx//r/BQAAAAAAAADx//v/BQAAAAAAAADx//z/BQAAAAAAAADx//3/BQAAAAAAAADx//7/BQAAAAAAAADx////BQAAAAAAAADx/wAABQAAAAAAAADx/wEABQAAAAAAAADx/wIABQAAAAAAAADx/wMABQAAAAAAAADx/wQABQAAAAAAAADx/wUABQAAAAAAAADx/wYABQAAAAAAAADx/wcABQAAAAAAAAAOAPn/BQAAAAAAAAAOAPr/BQAAAAAAAAAOAPv/BQAAAAAAAAAOAPz/BQAAAAAAAAAOAP3/BQAAAAAAAAAOAP7/BQAAAAAAAAAOAP//BQAAAAAAAAAOAAAABQAAAAAAAAAOAAEABQAAAAAAAAAOAAIABQAAAAAAAAAOAAMABQAAAAAAAAAOAAQABQAAAAAAAAAOAAUABQAAAAAAAAAOAAYABQAAAAAAAAAOAAcABQAAAAAAAADy/wcABQAAAAAAAADz/wcABQAAAAAAAAD0/wcABQAAAAAAAAD1/wcABQAAAAAAAAD2/wcABQAAAAAAAAD3/wcABQAAAAAAAAD4/wcABQAAAAAAAAD5/wcABQAAAAAAAAD6/wcABQAAAAAAAAD7/wcABQAAAAAAAAD8/wcABQAAAAAAAAD9/wcABQAAAAAAAAD+/wcABQAAAAAAAAD//wcABQAAAAAAAAAAAAcABQAAAAAAAAABAAcABQAAAAAAAAACAAcABQAAAAAAAAADAAcABQAAAAAAAAAEAAcABQAAAAAAAAAFAAcABQAAAAAAAAAGAAcABQAAAAAAAAAHAAcABQAAAAAAAAAIAAcABQAAAAAAAAAJAAcABQAAAAAAAAAKAAcABQAAAAAAAAALAAcABQAAAAAAAAAMAAcABQAAAAAAAAANAAcABQAAAAAAAADx//j/BQAAAAAAAADy//j/BQAAAAAAAADz//j/BQAAAAAAAAD0//j/BQAAAAAAAAD1//j/BQAAAAAAAAD2//j/BQAAAAAAAAD3//j/BQAAAAAAAAD4//j/BQAAAAAAAAD5//j/BQAAAAAAAAD6//j/BQAAAAAAAAD7//j/BQAAAAAAAAD8//j/BQAAAAAAAAD9//j/BQAAAAAAAAD+//j/BQAAAAAAAAD///j/BQAAAAAAAAAAAPj/BQAAAAAAAAABAPj/BQAAAAAAAAACAPj/BQAAAAAAAAADAPj/BQAAAAAAAAAEAPj/BQAAAAAAAAAFAPj/BQAAAAAAAAAGAPj/BQAAAAAAAAAHAPj/BQAAAAAAAAAIAPj/BQAAAAAAAAAJAPj/BQAAAAAAAAAKAPj/BQAAAAAAAAALAPj/BQAAAAAAAAAMAPj/BQAAAAAAAAANAPj/BQAAAAAAAAAOAPj/BQAAAAAAAADy//n/BQAAAAAAAADy//r/BQAAAAAAAADy//v/BQAAAAAAAADz//n/BQAAAAAAAADz//r/BQAAAAAAAADz//v/BQAAAAAAAAD0//n/BQAAAAAAAAD0//r/BQAAAAAAAAD0//v/BQAAAAAAAAD1//n/BQAAAAAAAAD1//r/BQAAAAAAAAD1//v/BQAAAAAAAAD2//n/BQAAAAAAAAD2//r/BQAAAAAAAAD2//v/BQAAAAAAAAD3//n/BQAAAAAAAAD3//r/BQAAAAAAAAD3//v/BQAAAAAAAAD4//n/BQAAAAAAAAD4//r/BQAAAAAAAAD4//v/BQAAAAAAAAD5//n/BQAAAAAAAAD5//r/BQAAAAAAAAD5//v/BQAAAAAAAAD6//n/BQAAAAAAAAD6//r/BQAAAAAAAAD6//v/BQAAAAAAAAD7//n/BQAAAAAAAAD7//r/BQAAAAAAAAD7//v/BQAAAAAAAAD8//n/BQAAAAAAAAD8//r/BQAAAAAAAAD8//v/BQAAAAAAAAD9//n/BQAAAAAAAAD9//r/BQAAAAAAAAD9//v/BQAAAAAAAAD+//n/BQAAAAAAAAD+//r/BQAAAAAAAAD+//v/BQAAAAAAAAD///n/BQAAAAAAAAD///r/BQAAAAAAAAD///v/BQAAAAAAAAAAAPn/BQAAAAAAAAAAAPr/BQAAAAAAAAAAAPv/BQAAAAAAAAABAPn/BQAAAAAAAAABAPr/BQAAAAAAAAABAPv/BQAAAAAAAAACAPn/BQAAAAAAAAACAPr/BQAAAAAAAAACAPv/BQAAAAAAAAADAPn/BQAAAAAAAAADAPr/BQAAAAAAAAADAPv/BQAAAAAAAAAEAPn/BQAAAAAAAAAEAPr/BQAAAAAAAAAEAPv/BQAAAAAAAAAFAPn/BQAAAAAAAAAFAPr/BQAAAAAAAAAFAPv/BQAAAAAAAAAGAPn/BQAAAAAAAAAGAPr/BQAAAAAAAAAGAPv/BQAAAAAAAAAHAPn/BQAAAAAAAAAHAPr/BQAAAAAAAAAHAPv/BQAAAAAAAAAIAPn/BQAAAAAAAAAIAPr/BQAAAAAAAAAIAPv/BQAAAAAAAAAJAPn/BQAAAAAAAAAJAPr/BQAAAAAAAAAJAPv/BQAAAAAAAAAKAPn/BQAAAAAAAAAKAPr/BQAAAAAAAAAKAPv/BQAAAAAAAAALAPn/BQAAAAAAAAALAPr/BQAAAAAAAAALAPv/BQAAAAAAAAAMAPn/BQAAAAAAAAAMAPr/BQAAAAAAAAAMAPv/BQAAAAAAAAANAPn/BQAAAAAAAAANAPr/BQAAAAAAAAANAPv/BQAAAAAAAADz//z/BQAAAAAAAADy//z/BQAAAAAAAADy//3/BQAAAAAAAADz//3/BQAAAAAAAAD0//3/BQAAAAAAAAD0//z/BQAAAAAAAAD9//z/BQAAAAAAAAD8//z/BQAAAAAAAADy/wUABQAAAAAAAADz/wUABQAAAAAAAAD0/wUABQAAAAAAAAD1/wUABQAAAAAAAAD2/wUABQAAAAAAAAD2/wQABQAAAAAAAADy/wQABQAAAAAAAADz/wQABQAAAAAAAAD0/wQABQAAAAAAAAD1/wQABQAAAAAAAADy/wYABQAAAAAAAADz/wYABQAAAAAAAAD0/wYABQAAAAAAAAD1/wYABQAAAAAAAAD2/wYABQAAAAAAAADy/wMABQAAAAAAAADz/wMABQAAAAAAAAD0/wMABQAAAAAAAAD1/wMABQAAAAAAAAD2/wMABQAAAAAAAAD3/wMABQAAAAAAAAD3/wQABQAAAAAAAAD3/wUABQAAAAAAAAD3/wYABQAAAAAAAAD+//z/BQAAAAAAAAD///z/BQAAAAAAAAD6//z/BQAAAAAAAAD7//z/BQAAAAAAAAAKAPz/BQAAAAAAAAALAPz/BQAAAAAAAAAMAPz/BQAAAAAAAAAMAP3/BQAAAAAAAAALAP3/BQAAAAAAAAAKAP3/BQAAAAAAAAD2//z/BQAAAAAAAAD3//z/BQAAAAAAAAD4//z/BQAAAAAAAAANAPz/BQAAAAAAAAANAP3/BQAAAAAAAAAHAPz/BQAAAAAAAAAIAPz/BQAAAAAAAAAJAPz/BQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AADx//n/BQAAAAAAAADx//r/BQAAAAAAAADx//v/BQAAAAAAAADx//z/BQAAAAAAAADx//3/BQAAAAAAAADx//7/BQAAAAAAAADx////BQAAAAAAAADx/wAABQAAAAAAAADx/wEABQAAAAAAAADx/wIABQAAAAAAAADx/wMABQAAAAAAAADx/wQABQAAAAAAAADx/wUABQAAAAAAAADx/wYABQAAAAAAAADx/wcABQAAAAAAAAAOAPn/BQAAAAAAAAAOAPr/BQAAAAAAAAAOAPv/BQAAAAAAAAAOAPz/BQAAAAAAAAAOAP3/BQAAAAAAAAAOAP7/BQAAAAAAAAAOAP//BQAAAAAAAAAOAAAABQAAAAAAAAAOAAEABQAAAAAAAAAOAAIABQAAAAAAAAAOAAMABQAAAAAAAAAOAAQABQAAAAAAAAAOAAUABQAAAAAAAAAOAAYABQAAAAAAAAAOAAcABQAAAAAAAADy/wcABQAAAAAAAADz/wcABQAAAAAAAAD0/wcABQAAAAAAAAD1/wcABQAAAAAAAAD2/wcABQAAAAAAAAD3/wcABQAAAAAAAAD4/wcABQAAAAAAAAD5/wcABQAAAAAAAAD6/wcABQAAAAAAAAD7/wcABQAAAAAAAAD8/wcABQAAAAAAAAD9/wcABQAAAAAAAAD+/wcABQAAAAAAAAD//wcABQAAAAAAAAAAAAcABQAAAAAAAAABAAcABQAAAAAAAAACAAcABQAAAAAAAAADAAcABQAAAAAAAAAEAAcABQAAAAAAAAAFAAcABQAAAAAAAAAGAAcABQAAAAAAAAAHAAcABQAAAAAAAAAIAAcABQAAAAAAAAAJAAcABQAAAAAAAAAKAAcABQAAAAAAAAALAAcABQAAAAAAAAAMAAcABQAAAAAAAAANAAcABQAAAAAAAADx//j/BQAAAAAAAADy//j/BQAAAAAAAADz//j/BQAAAAAAAAD0//j/BQAAAAAAAAD1//j/BQAAAAAAAAD2//j/BQAAAAAAAAD3//j/BQAAAAAAAAD4//j/BQAAAAAAAAD5//j/BQAAAAAAAAD6//j/BQAAAAAAAAD7//j/BQAAAAAAAAD8//j/BQAAAAAAAAD9//j/BQAAAAAAAAD+//j/BQAAAAAAAAD///j/BQAAAAAAAAAAAPj/BQAAAAAAAAABAPj/BQAAAAAAAAACAPj/BQAAAAAAAAADAPj/BQAAAAAAAAAEAPj/BQAAAAAAAAAFAPj/BQAAAAAAAAAGAPj/BQAAAAAAAAAHAPj/BQAAAAAAAAAIAPj/BQAAAAAAAAAJAPj/BQAAAAAAAAAKAPj/BQAAAAAAAAALAPj/BQAAAAAAAAAMAPj/BQAAAAAAAAANAPj/BQAAAAAAAAAOAPj/BQAAAAAAAADy//n/BQAAAAAAAADy//r/BQAAAAAAAADy//v/BQAAAAAAAADz//n/BQAAAAAAAADz//r/BQAAAAAAAADz//v/BQAAAAAAAAD0//n/BQAAAAAAAAD0//r/BQAAAAAAAAD0//v/BQAAAAAAAAD1//n/BQAAAAAAAAD1//r/BQAAAAAAAAD1//v/BQAAAAAAAAD2//n/BQAAAAAAAAD2//r/BQAAAAAAAAD2//v/BQAAAAAAAAD3//n/BQAAAAAAAAD3//r/BQAAAAAAAAD3//v/BQAAAAAAAAD4//n/BQAAAAAAAAD4//r/BQAAAAAAAAD4//v/BQAAAAAAAAD5//n/BQAAAAAAAAD5//r/BQAAAAAAAAD5//v/BQAAAAAAAAD6//n/BQAAAAAAAAD6//r/BQAAAAAAAAD6//v/BQAAAAAAAAD7//n/BQAAAAAAAAD7//r/BQAAAAAAAAD7//v/BQAAAAAAAAD8//n/BQAAAAAAAAD8//r/BQAAAAAAAAD8//v/BQAAAAAAAAD9//n/BQAAAAAAAAD9//r/BQAAAAAAAAD9//v/BQAAAAAAAAD+//n/BQAAAAAAAAD+//r/BQAAAAAAAAD+//v/BQAAAAAAAAD///n/BQAAAAAAAAD///r/BQAAAAAAAAD///v/BQAAAAAAAAAAAPn/BQAAAAAAAAAAAPr/BQAAAAAAAAAAAPv/BQAAAAAAAAABAPn/BQAAAAAAAAABAPr/BQAAAAAAAAABAPv/BQAAAAAAAAACAPn/BQAAAAAAAAACAPr/BQAAAAAAAAACAPv/BQAAAAAAAAADAPn/BQAAAAAAAAADAPr/BQAAAAAAAAADAPv/BQAAAAAAAAAEAPn/BQAAAAAAAAAEAPr/BQAAAAAAAAAEAPv/BQAAAAAAAAAFAPn/BQAAAAAAAAAFAPr/BQAAAAAAAAAFAPv/BQAAAAAAAAAGAPn/BQAAAAAAAAAGAPr/BQAAAAAAAAAGAPv/BQAAAAAAAAAHAPn/BQAAAAAAAAAHAPr/BQAAAAAAAAAHAPv/BQAAAAAAAAAIAPn/BQAAAAAAAAAIAPr/BQAAAAAAAAAIAPv/BQAAAAAAAAAJAPn/BQAAAAAAAAAJAPr/BQAAAAAAAAAJAPv/BQAAAAAAAAAKAPn/BQAAAAAAAAAKAPr/BQAAAAAAAAAKAPv/BQAAAAAAAAALAPn/BQAAAAAAAAALAPr/BQAAAAAAAAALAPv/BQAAAAAAAAAMAPn/BQAAAAAAAAAMAPr/BQAAAAAAAAAMAPv/BQAAAAAAAAANAPn/BQAAAAAAAAANAPr/BQAAAAAAAAANAPv/BQAAAAAAAADz//z/BQAAAAAAAADy//z/BQAAAAAAAADy//3/BQAAAAAAAADz//3/BQAAAAAAAAD0//3/BQAAAAAAAAD0//z/BQAAAAAAAAD9//z/BQAAAAAAAAD8//z/BQAAAAAAAADy/wUABQAAAAAAAADz/wUABQAAAAAAAAD0/wUABQAAAAAAAAD1/wUABQAAAAAAAAD2/wUABQAAAAAAAAD2/wQABQAAAAAAAADy/wQABQAAAAAAAADz/wQABQAAAAAAAAD0/wQABQAAAAAAAAD1/wQABQAAAAAAAADy/wYABQAAAAAAAADz/wYABQAAAAAAAAD0/wYABQAAAAAAAAD1/wYABQAAAAAAAAD2/wYABQAAAAAAAADy/wMABQAAAAAAAADz/wMABQAAAAAAAAD0/wMABQAAAAAAAAD1/wMABQAAAAAAAAD2/wMABQAAAAAAAAD3/wMABQAAAAAAAAD3/wQABQAAAAAAAAD3/wUABQAAAAAAAAD3/wYABQAAAAAAAAD+//z/BQAAAAAAAAD///z/BQAAAAAAAAD6//z/BQAAAAAAAAD7//z/BQAAAAAAAAAKAPz/BQAAAAAAAAALAPz/BQAAAAAAAAAMAPz/BQAAAAAAAAAMAP3/BQAAAAAAAAALAP3/BQAAAAAAAAAKAP3/BQAAAAAAAAD2//z/BQAAAAAAAAD3//z/BQAAAAAAAAD4//z/BQAAAAAAAAANAPz/BQAAAAAAAAANAP3/BQAAAAAAAAAHAPz/BQAAAAAAAAAIAPz/BQAAAAAAAAAJAPz/BQAAAAAAAAAFAPz/BQAAAAAAAAAGAPz/BQAAAAAAAAAFAP3/BQAAAAAAAAAGAP3/BQAAAAAAAAAHAP3/BQAAAAAAAAAIAP3/BQAAAAAAAAAJAP3/BQAAAAAAAAD5/wYABQAAAAAAAAD6/wYABQAAAAAAAAD7/wYABQAAAAAAAAD4/wYABQAAAAAAAAA=")
 tile_set = ExtResource("2_myw2y")
 
 [node name="Bernand" parent="Camera2D" instance=ExtResource("10_38n62")]
@@ -274,177 +282,8 @@ offset_bottom = 87.0
 texture = ExtResource("5_sl3t5")
 expand_mode = 1
 
-[node name="TextureRect3" type="TextureRect" parent="Camera2D"]
-offset_left = -98.0
-offset_top = -67.0
-offset_right = -58.0
-offset_bottom = -27.0
-texture = ExtResource("6_lu1gs")
-expand_mode = 1
-
-[node name="TextureRect4" type="TextureRect" parent="Camera2D"]
-z_index = 3
-offset_left = -226.0
-offset_top = 13.0
-offset_right = -135.0
-offset_bottom = 104.0
-texture = ExtResource("7_d8tn1")
-expand_mode = 1
-
-[node name="TextureRect5" type="TextureRect" parent="Camera2D"]
-z_index = 4
-offset_left = -228.0
-offset_top = 73.0
-offset_right = -173.0
-offset_bottom = 128.0
-texture = ExtResource("8_i0hin")
-expand_mode = 1
-
-[node name="TextureRect6" type="TextureRect" parent="Camera2D"]
-offset_left = -84.0
-offset_top = -135.0
-offset_right = 31.0
-offset_bottom = -20.0
-texture = ExtResource("9_jrs01")
-expand_mode = 1
-
-[node name="TextureRect7" type="TextureRect" parent="Camera2D"]
-offset_left = 144.0
-offset_top = -104.0
-offset_right = 234.0
-offset_bottom = -14.0
-texture = ExtResource("10_yyxco")
-expand_mode = 1
-
-[node name="TextureRect8" type="TextureRect" parent="Camera2D"]
-offset_left = 106.0
-offset_top = -78.0
-offset_right = 166.0
-offset_bottom = -18.0
-texture = ExtResource("11_wch52")
-expand_mode = 1
-
-[node name="UI" type="Control" parent="."]
-process_mode = 3
-z_index = 10
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -228.0
-offset_top = -126.0
-offset_right = 228.0
-offset_bottom = 127.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ScoreUI" parent="UI" instance=ExtResource("7_dt16r")]
-layout_mode = 1
-offset_left = 1.0
-offset_top = 5.0
-offset_right = -307.0
-offset_bottom = 30.0
-theme = SubResource("Theme_0snlr")
-
-[node name="InGameMenu" parent="UI" instance=ExtResource("3_1pr6y")]
-z_index = 5
-layout_mode = 1
-offset_top = -97.5
-offset_bottom = 62.5
-
-[node name="exitmenu" type="TextureButton" parent="UI"]
-process_mode = 3
-z_index = 10
-layout_mode = 0
-offset_left = 315.0
-offset_top = 23.0
-offset_right = 346.0
-offset_bottom = 54.0
-texture_normal = ExtResource("34_q4sxo")
-texture_pressed = ExtResource("25_sodyy")
-texture_hover = ExtResource("25_sodyy")
-texture_disabled = ExtResource("25_sodyy")
-texture_focused = ExtResource("25_sodyy")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Settings" type="TextureButton" parent="UI"]
-process_mode = 3
-z_index = 4
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 405.0
-offset_top = 9.0
-offset_right = -13.0
-offset_bottom = -207.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("6_biwi7")
-texture_pressed = ExtResource("7_xhxos")
-ignore_texture_size = true
-stretch_mode = 4
-
-[node name="DialogueBox" type="Panel" parent="."]
-process_mode = 3
-visible = false
-z_index = 6
-offset_left = -223.0
-offset_top = -2.0
-offset_right = 210.0
-offset_bottom = 116.0
-theme = ExtResource("12_6oeu2")
-script = ExtResource("12_v47gt")
-data = ExtResource("13_v4oxk")
-start_id = "first"
-scroll_speed = 100
-custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_lhdac"), SubResource("RichTextEffect_ueyag"), SubResource("RichTextEffect_1bvc0")])
-next_icon = ExtResource("25_lqb1q")
-
-[node name="exitMenu" type="Button" parent="."]
-process_mode = 3
-z_index = 20
-offset_left = -66.0
-offset_top = 22.0
-offset_right = 65.0
-offset_bottom = 43.0
-theme = ExtResource("10_v3aap")
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("6_kuk3a")
-theme_override_font_sizes/font_size = 12
-text = "back to main menu"
-
-[node name="piece" type="TextureButton" parent="."]
-z_index = 3
-offset_left = 30.0
-offset_top = -58.0
-offset_right = 53.0
-offset_bottom = -38.0
-rotation = -0.270526
-texture_normal = ExtResource("31_me71k")
-texture_pressed = ExtResource("31_me71k")
-texture_hover = ExtResource("31_me71k")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="piece"]
-libraries = {
-"": SubResource("AnimationLibrary_dmvwt")
-}
-autoplay = "reminder"
-
-[node name="computer" type="TextureButton" parent="."]
-offset_left = -166.0
-offset_top = -97.0
-offset_right = -38.0
-offset_bottom = 44.0
-scale = Vector2(0.5, 0.5)
-texture_normal = ExtResource("18_b4exs")
-ignore_texture_size = true
-stretch_mode = 0
-
 [node name="DialogueBubble" type="RichTextLabel" parent="." node_paths=PackedStringArray("follow_node")]
+visible = false
 z_index = 4
 clip_contents = false
 offset_left = -221.0
@@ -475,16 +314,6 @@ autoplay = true
 bus = &"Music"
 parameters/looping = false
 
-[node name="Phonebutton" type="TextureButton" parent="."]
-offset_left = -225.0
-offset_top = -82.0
-offset_right = -162.0
-offset_bottom = -19.0
-texture_normal = ExtResource("22_38mqv")
-texture_pressed = ExtResource("22_38mqv")
-ignore_texture_size = true
-stretch_mode = 4
-
 [node name="alarmed" type="TextureRect" parent="."]
 offset_left = -197.0
 offset_top = -102.0
@@ -496,6 +325,191 @@ expand_mode = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("32_583xg")
+bus = &"Sfx"
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Sfx"
+
+[node name="UI" type="Control" parent="."]
+custom_minimum_size = Vector2(456, 240)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -228.0
+offset_top = -128.0
+offset_right = 228.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogueBox" type="Panel" parent="UI"]
+process_mode = 3
+visible = false
+z_index = 6
+layout_mode = 0
+offset_left = 5.0
+offset_top = 126.0
+offset_right = 438.0
+offset_bottom = 244.0
+theme = ExtResource("12_6oeu2")
+script = ExtResource("12_v47gt")
+data = ExtResource("13_v4oxk")
+start_id = "first"
+scroll_speed = 1000
+custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_lhdac"), SubResource("RichTextEffect_ueyag"), SubResource("RichTextEffect_1bvc0")])
+next_icon = ExtResource("25_lqb1q")
+
+[node name="ScoreUI" parent="UI" instance=ExtResource("31_h1356")]
+layout_mode = 1
+offset_left = 3.0
+offset_top = 7.0
+offset_right = -305.0
+offset_bottom = 32.0
+theme = SubResource("Theme_imh8p")
+
+[node name="InGameMenu" parent="UI" instance=ExtResource("33_ibxos")]
+visible = false
+z_index = 11
+layout_mode = 1
+offset_left = -199.0
+offset_top = -97.5
+offset_right = 201.0
+offset_bottom = 62.5
+
+[node name="exitmenu" type="TextureButton" parent="UI"]
+process_mode = 3
+visible = false
+z_index = 20
+layout_mode = 0
+offset_left = 316.0
+offset_top = 23.0
+offset_right = 347.0
+offset_bottom = 54.0
+texture_normal = ExtResource("34_o6p5i")
+texture_pressed = ExtResource("35_77pmh")
+texture_hover = ExtResource("35_77pmh")
+texture_disabled = ExtResource("35_77pmh")
+texture_focused = ExtResource("35_77pmh")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="exitMenu" type="Button" parent="UI"]
+process_mode = 3
+visible = false
+z_index = 20
+layout_mode = 0
+offset_left = 163.0
+offset_top = 155.0
+offset_right = 294.0
+offset_bottom = 176.0
+theme = ExtResource("10_v3aap")
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("32_b8645")
+theme_override_font_sizes/font_size = 12
+text = "back to main menu"
+
+[node name="closetButton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 147.0
+offset_top = -3.0
+offset_right = 257.0
+offset_bottom = 107.0
+texture_normal = ExtResource("9_jrs01")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="briefcaseButton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 63.0
+offset_right = 171.0
+offset_bottom = 102.0
+texture_normal = ExtResource("6_lu1gs")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="FridgeButton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 345.0
+offset_top = 16.0
+offset_right = 437.0
+offset_bottom = 108.0
+texture_normal = ExtResource("10_yyxco")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Phonebutton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 46.0
+offset_right = 66.0
+offset_bottom = 109.0
+texture_normal = ExtResource("22_38mqv")
+texture_pressed = ExtResource("22_38mqv")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="ComputerButton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 31.0
+offset_right = 190.0
+offset_bottom = 172.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("18_b4exs")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TableButton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 298.0
+offset_top = 48.0
+offset_right = 361.0
+offset_bottom = 111.0
+texture_normal = ExtResource("11_wch52")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="bedButton" type="TextureButton" parent="UI"]
+z_index = 3
+layout_mode = 0
+offset_left = 1.0
+offset_top = 146.0
+offset_right = 104.0
+offset_bottom = 249.0
+texture_normal = ExtResource("7_d8tn1")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="frogButton" type="TextureButton" parent="UI"]
+z_index = 3
+layout_mode = 0
+offset_left = 107.0
+offset_top = 192.0
+offset_right = 171.0
+offset_bottom = 256.0
+texture_normal = ExtResource("8_i0hin")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Settings" type="TextureButton" parent="UI"]
+process_mode = 3
+z_index = 20
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 406.0
+offset_top = 9.0
+offset_right = -12.0
+offset_bottom = -207.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("36_44lh3")
+texture_pressed = ExtResource("37_ldiq3")
+ignore_texture_size = true
+stretch_mode = 4
 
 [node name="Clue" type="TextureRect" parent="."]
 visible = false
@@ -515,7 +529,7 @@ texture = ExtResource("33_88m6g")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="Clue"]
+[node name="clue" type="Label" parent="Clue"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -527,12 +541,16 @@ offset_bottom = 203.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("35_8i7lv")
-theme_override_font_sizes/font_size = 12
-text = "HONEY BUSINESS GONE WRONG?!!?!
---------------------------
+theme_override_font_sizes/font_size = 9
+text = "
+HONEY BUSINESS GONE WRONG?!?!
+-------------------------------------
+
 Mayor exposed!!...
 Microchip found from the mayors VERY  yucky honey......
-Mayor EVEN confirms: “Yes, It’s true-...\"
+
+Mayor EVEN confirms:
+“Yes, It’s true-...\"
 
 Author: mr.skunk"
 horizontal_alignment = 1
@@ -548,5 +566,21 @@ offset_bottom = 237.0
 theme = ExtResource("10_v3aap")
 text = "OK"
 
-[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
-bus = &"Sfx"
+[node name="piece" type="TextureButton" parent="."]
+z_index = 3
+offset_left = 30.0
+offset_top = -58.0
+offset_right = 53.0
+offset_bottom = -38.0
+rotation = -0.270526
+texture_normal = ExtResource("31_me71k")
+texture_pressed = ExtResource("31_me71k")
+texture_hover = ExtResource("31_me71k")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="piece"]
+libraries = {
+"": SubResource("AnimationLibrary_dmvwt")
+}
+autoplay = "reminder"

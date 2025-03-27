@@ -98,7 +98,7 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="Instructions" type="Panel" parent="."]
-z_index = 10
+z_index = 20
 custom_minimum_size = Vector2(350, 100)
 anchors_preset = 8
 anchor_left = 0.5

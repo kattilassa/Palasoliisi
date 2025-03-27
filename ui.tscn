@@ -1,0 +1,93 @@
+[gd_scene load_steps=10 format=3 uid="uid://djryrwi47idpy"]
+
+[ext_resource type="PackedScene" uid="uid://b76xiux4rne1t" path="res://Code/UI/ScoreUI.tscn" id="1_8xw4h"]
+[ext_resource type="FontFile" uid="uid://cw6pyp0ft2pbd" path="res://art/Fonts/boldreel/Boldreel.otf" id="2_3qx8c"]
+[ext_resource type="PackedScene" uid="uid://bw1b55q33qgnr" path="res://Code/UI/InGameMenu.tscn" id="3_l1cor"]
+[ext_resource type="Texture2D" uid="uid://d2e3a1ghryxr1" path="res://art/XX.png" id="4_5nrek"]
+[ext_resource type="Texture2D" uid="uid://dn6p1oiayjosa" path="res://art/X.png" id="5_ybnb7"]
+[ext_resource type="Texture2D" uid="uid://cmffkqiiemf56" path="res://art/settings.1.png" id="6_m8upj"]
+[ext_resource type="Texture2D" uid="uid://bsir1syi7smu0" path="res://art/settings.2.png" id="7_yvhxl"]
+[ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="8_36y0u"]
+
+[sub_resource type="Theme" id="Theme_0snlr"]
+default_font = ExtResource("2_3qx8c")
+Label/constants/outline_size = 4
+Label/fonts/font = ExtResource("2_3qx8c")
+
+[node name="UI" type="Control"]
+process_mode = 3
+z_index = 15
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -228.0
+offset_top = -126.0
+offset_right = -217.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreUI" parent="." instance=ExtResource("1_8xw4h")]
+layout_mode = 1
+offset_left = 231.0
+offset_top = 128.0
+offset_right = -77.0
+offset_bottom = 153.0
+theme = SubResource("Theme_0snlr")
+
+[node name="InGameMenu" parent="." instance=ExtResource("3_l1cor")]
+z_index = 6
+layout_mode = 1
+offset_left = 30.0
+offset_top = 25.5
+offset_right = 430.0
+offset_bottom = 185.5
+
+[node name="exitmenu" type="TextureButton" parent="."]
+process_mode = 3
+z_index = 10
+layout_mode = 0
+offset_left = 545.0
+offset_top = 146.0
+offset_right = 576.0
+offset_bottom = 177.0
+texture_normal = ExtResource("4_5nrek")
+texture_pressed = ExtResource("5_ybnb7")
+texture_hover = ExtResource("5_ybnb7")
+texture_disabled = ExtResource("5_ybnb7")
+texture_focused = ExtResource("5_ybnb7")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Settings" type="TextureButton" parent="."]
+process_mode = 3
+z_index = 5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 635.0
+offset_top = 132.0
+offset_right = 217.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("6_m8upj")
+texture_pressed = ExtResource("7_yvhxl")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="exitMenu" type="Button" parent="."]
+process_mode = 3
+z_index = 20
+layout_mode = 0
+offset_left = 392.0
+offset_top = 278.0
+offset_right = 523.0
+offset_bottom = 299.0
+theme = ExtResource("8_36y0u")
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_3qx8c")
+theme_override_font_sizes/font_size = 12
+text = "back to main menu"
