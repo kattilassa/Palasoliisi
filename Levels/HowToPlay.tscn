@@ -63,11 +63,8 @@ text = "How to play:
 -Read the dialogue – it will be useful later! 
 -Click on objects to reveal clues 
 
-After finding clues – you will be challenged
-with a minigame. Click to flip the cards and
-find pairs. Once you have completed the
-game – you will receive valuable
-information from the clue. 
+After finding clues – you will be challenged with a minigame. Click to flip the cards and find pairs. Once you have completed the game – you will receive valuable information from the clue. 
 
 Collect three clues for the final challenge."
 label_settings = SubResource("LabelSettings_h4ttw")
+autowrap_mode = 3

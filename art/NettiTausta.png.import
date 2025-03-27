@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2vscuduq62l8"
-path="res://.godot/imported/GloriaReveals.png-3f0dda60e47388ceccc54eb902467a8c.ctex"
+uid="uid://tk5n28lo4nww"
+path="res://.godot/imported/NettiTausta.png-61f5e38543586a8b14daafec7ff5d4fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/GloriaReveals.png"
-dest_files=["res://.godot/imported/GloriaReveals.png-3f0dda60e47388ceccc54eb902467a8c.ctex"]
+source_file="res://art/NettiTausta.png"
+dest_files=["res://.godot/imported/NettiTausta.png-61f5e38543586a8b14daafec7ff5d4fd.ctex"]
 
 [params]
 
