@@ -61,9 +61,8 @@ grow_horizontal = 0
 grow_vertical = 2
 theme = ExtResource("2_rc13w")
 theme_override_font_sizes/font_size = 15
-text = "You have successfully
-convinced Gloria of the truth
-and saved all the villagers!"
+text = "You have successfully convinced Gloria of the truth and saved the village!"
+autowrap_mode = 3
 
 [node name="TestScoreLabel" type="Label" parent="Control"]
 custom_minimum_size = Vector2(200, 30)
