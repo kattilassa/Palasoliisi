@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://bu0y12c7gfv7e"]
+[gd_scene load_steps=51 format=4 uid="uid://bu0y12c7gfv7e"]
 
 [ext_resource type="Script" path="res://Code/Level.cs" id="1_uqqbp"]
 [ext_resource type="Texture2D" uid="uid://bjxo38brfpjof" path="res://art/House_base_curtain.png" id="2_h33wx"]
@@ -32,6 +32,7 @@
 [ext_resource type="FontFile" uid="uid://cw6pyp0ft2pbd" path="res://art/Fonts/boldreel/Boldreel.otf" id="32_b8645"]
 [ext_resource type="Texture2D" uid="uid://b7psqbj4yw3md" path="res://art/clue.png" id="33_88m6g"]
 [ext_resource type="PackedScene" uid="uid://bw1b55q33qgnr" path="res://Code/UI/InGameMenu.tscn" id="33_ibxos"]
+[ext_resource type="Texture2D" uid="uid://tbatpjp8sjt0" path="res://art/curtain.png" id="33_qwggj"]
 [ext_resource type="Texture2D" uid="uid://d2e3a1ghryxr1" path="res://art/XX.png" id="34_o6p5i"]
 [ext_resource type="FontFile" uid="uid://vtlnkbqwg1oj" path="res://art/Fonts/uni-sans.heavy-caps.otf" id="35_8i7lv"]
 [ext_resource type="Texture2D" uid="uid://dn6p1oiayjosa" path="res://art/X.png" id="35_77pmh"]
@@ -228,9 +229,10 @@ _data = {
 "reminder": SubResource("Animation_xwvc0")
 }
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("_clueLabel", "_settingsButton", "_articleButton", "_computerButton", "_fridgeButton", "_tableButton", "_phoneButton", "_exitMenuButton", "_bedButton", "_frogButton", "_closetButton", "_briefcaseButton", "_exitClueButton", "_menuButton", "_scoreUIControl", "_ringtonePlayer")]
+[node name="Level" type="Node2D" node_paths=PackedStringArray("_clueLabel", "_curtainButton", "_settingsButton", "_articleButton", "_computerButton", "_fridgeButton", "_tableButton", "_phoneButton", "_exitMenuButton", "_bedButton", "_frogButton", "_closetButton", "_briefcaseButton", "_exitClueButton", "_menuButton", "_scoreUIControl", "_ringtonePlayer")]
 script = ExtResource("1_uqqbp")
 _clueLabel = NodePath("Clue/clue")
+_curtainButton = NodePath("UI/CurtainButton")
 _settingsButton = NodePath("UI/Settings")
 _articleButton = NodePath("piece")
 _computerButton = NodePath("UI/ComputerButton")
@@ -490,6 +492,16 @@ offset_top = 192.0
 offset_right = 171.0
 offset_bottom = 256.0
 texture_normal = ExtResource("8_i0hin")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CurtainButton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 14.0
+offset_right = 302.0
+offset_bottom = 85.0
+texture_normal = ExtResource("33_qwggj")
 ignore_texture_size = true
 stretch_mode = 0
 

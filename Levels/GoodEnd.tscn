@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://h351eunrlcw1"]
+[gd_scene load_steps=5 format=3 uid="uid://h351eunrlcw1"]
 
 [ext_resource type="Texture2D" uid="uid://c7iekwdccic4b" path="res://art/GoodEnd.png" id="1_2xlxa"]
+[ext_resource type="Script" path="res://Code/Ending.cs" id="1_esnmi"]
 [ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="2_rc13w"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5rbag"]
@@ -9,6 +10,7 @@ outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
 [node name="GoodEnd" type="Node2D"]
+script = ExtResource("1_esnmi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

@@ -14,10 +14,12 @@ namespace PalaSoliisi
 		public bool _settingsClose = false;
 		public bool _UIpressed = false;
 		public bool _isMiniGameRunning = false;
+		public bool _isGameFinished = false;
 		public bool _isDialogueRunning = false;
 		[Export] public Label _clueLabel;
 		private Control _UI;
 		private Control _inGameMenu;
+		[Export] private TextureButton _curtainButton = null;
 		[Export] private TextureButton _settingsButton = null;
 		[Export] private TextureButton _articleButton = null;
 		[Export] private TextureButton _computerButton = null;
@@ -33,6 +35,8 @@ namespace PalaSoliisi
 		[Export] private Button _menuButton = null;
 		[Export] private string _miniGameScenePath = "res://Levels/MiniGame.tscn";
 		[Export] private string _howToPlayScenePath = "res://Levels/HowToPlay.tscn";
+		[Export] private string _goodEndScenePath = "res://Levels/GoodEnd.tscn";
+		[Export] private string _badEndScenePath = "res://Levels/BadEnd.tscn";
 		private SceneTree _optionsSceneTree = null;
 		private Bernand _bernand = null;
 		public bool isRunning;
@@ -64,8 +68,10 @@ namespace PalaSoliisi
 		private PackedScene _dialogueScene = null;
 		private PackedScene _miniGameScene = null;
 		private PackedScene _howToPlayScene = null;
+		private PackedScene _endScene = null;
 		private MiniGame _miniGame = null;
 		private PopUp _howToPlay = null;
+		private Ending _ending = null;
 
 		private int _articlePieces = 0;
 		private int _miniGamesPlayed = 0;
@@ -199,6 +205,9 @@ namespace PalaSoliisi
 				new Callable(this, nameof(OnBedPressed)));
 				_frogButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnFrogPressed)));
+//
+				_curtainButton.Connect(Button.SignalName.Pressed,
+				new Callable(this, nameof(OnCurtainPressed)));
 
 				_closetButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnClosetPressed)));
@@ -217,6 +226,56 @@ namespace PalaSoliisi
 
 
 			ResetGame();
+		}
+//
+		public void OnCurtainPressed()
+		{
+			// Pause game and hide UI and character
+			GetTree().Paused = true;
+			UIVisible(false);
+			_bernand.Hide();
+			_bernand.StopMovement();
+			_settingsButton.Hide();
+			_isGameFinished = true;
+
+			// Make sure EndScene empty
+			if (_ending != null)
+			{
+				_ending.QueueFree();
+				_ending = null;
+			}
+
+			if (_articlePieces == 3)
+			{
+				if (_endScene == null)
+				{
+					//Initialize new ending
+					_endScene = ResourceLoader.Load<PackedScene>(_goodEndScenePath);
+					if (_endScene == null)
+					{
+						GD.PrintErr("End scene can't be found");
+						return;
+					}
+				}
+				_ending = _endScene.Instantiate<Ending>();
+				AddChild(_ending);
+			}
+			else
+			{
+				if (_endScene == null)
+				{
+					//Initialize new ending
+					_endScene = ResourceLoader.Load<PackedScene>(_badEndScenePath);
+					if (_endScene == null)
+					{
+						GD.PrintErr("End scene can't be found");
+						return;
+					}
+				}
+				_ending = _endScene.Instantiate<Ending>();
+				AddChild(_ending);
+			}
+
 		}
 
         public void OnClosetPressed()
@@ -438,7 +497,6 @@ namespace PalaSoliisi
 		{
 			if(_isDialogueRunning);
 			{
-
 			}
 		}
 			private async void OnPhonePressed()
