@@ -176,6 +176,7 @@ text = "https://www.gloriareveals.bear"
 label_settings = SubResource("LabelSettings_2r4s2")
 
 [node name="DialogueBox" type="Panel" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 57.0
 offset_top = 89.0

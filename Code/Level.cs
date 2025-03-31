@@ -74,7 +74,8 @@ namespace PalaSoliisi
 		private Ending _ending = null;
 
 		private int _articlePieces = 0;
-		private int _miniGamesPlayed = 0;
+		private int _miniGameTurns = 0;
+		private int _testPoints = 0;
 
 		private Article _article = null;
 		private Obstacle _obstacle = null;
@@ -106,18 +107,18 @@ namespace PalaSoliisi
 			}
 		}
 
-		public int MiniGamesPlayed
+		public int MiniGameTurns
 		{
-			get { return _miniGamesPlayed; }
+			get { return _miniGameTurns; }
 			set
 			{
 				if (value < 0)
 				{
-					_miniGamesPlayed = 0;
+					_miniGameTurns = 0;
 				}
 				else
 				{
-					_miniGamesPlayed = value;
+					_miniGameTurns = value;
 				}
 			}
 		}
@@ -258,6 +259,8 @@ namespace PalaSoliisi
 					}
 				}
 				_ending = _endScene.Instantiate<Ending>();
+				_ending.SetMiniGameScore(_miniGameTurns);
+				_ending.SetTestScore(_testPoints);
 				AddChild(_ending);
 			}
 			else
@@ -273,6 +276,8 @@ namespace PalaSoliisi
 					}
 				}
 				_ending = _endScene.Instantiate<Ending>();
+				_ending.SetMiniGameScore(_miniGameTurns);
+				_ending.SetTestScore(_testPoints);
 				AddChild(_ending);
 			}
 
@@ -697,7 +702,7 @@ namespace PalaSoliisi
 		/// </summary>
 		public async void OnMiniGameCompleted()
 		{
-			MiniGamesPlayed++;
+			_miniGameTurns += _miniGame.TurnsTaken;
 			ArticlePieces++;
 			_scoreUIControl.SetScore(_articlePieces);
 			// Wait 1 sec before closing minigame window
