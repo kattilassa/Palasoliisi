@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dys81umq2bm3o"
-path="res://.godot/imported/Bernard1.0.png-dfd512bc5cf27ca2b44271b7d06c1a60.ctex"
+path="res://.godot/imported/Bernard1.0.png-33549e131c0e66167fc1230209a2f5f3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Collectables/Bernard1.0.png"
-dest_files=["res://.godot/imported/Bernard1.0.png-dfd512bc5cf27ca2b44271b7d06c1a60.ctex"]
+source_file="res://art/Cards/Collectables/Bernard1.0.png"
+dest_files=["res://.godot/imported/Bernard1.0.png-33549e131c0e66167fc1230209a2f5f3.ctex"]
 
 [params]
 

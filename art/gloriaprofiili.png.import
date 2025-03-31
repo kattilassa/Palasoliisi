@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctscrbqw6ehtp"
-path="res://.godot/imported/radioactive.png-0e5691c211ea91cdf5d0738292f5473d.ctex"
+uid="uid://474xcakbfd6q"
+path="res://.godot/imported/GloriaProfiili.png-62f1355ee86e3041926f67363992d6e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Collectables/radioactive.png"
-dest_files=["res://.godot/imported/radioactive.png-0e5691c211ea91cdf5d0738292f5473d.ctex"]
+source_file="res://art/GloriaProfiili.png"
+dest_files=["res://.godot/imported/GloriaProfiili.png-62f1355ee86e3041926f67363992d6e9.ctex"]
 
 [params]
 

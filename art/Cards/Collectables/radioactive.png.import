@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bp77o3qu167hg"
-path="res://.godot/imported/BadEnd.png-31f73a9f4515372a22bacbeade2bd671.ctex"
+uid="uid://ctscrbqw6ehtp"
+path="res://.godot/imported/radioactive.png-f7eaf74e51c490a15b57548f8aa24f91.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/BadEnd.png"
-dest_files=["res://.godot/imported/BadEnd.png-31f73a9f4515372a22bacbeade2bd671.ctex"]
+source_file="res://art/Cards/Collectables/radioactive.png"
+dest_files=["res://.godot/imported/radioactive.png-f7eaf74e51c490a15b57548f8aa24f91.ctex"]
 
 [params]
 
