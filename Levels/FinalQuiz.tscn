@@ -1,8 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://ba37yr7dhk87d"]
+[gd_scene load_steps=22 format=3 uid="uid://ba37yr7dhk87d"]
 
 [ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="1_bfssk"]
+[ext_resource type="Script" path="res://Levels/FinalQuiz.cs" id="1_i3ash"]
 [ext_resource type="Texture2D" uid="uid://tk5n28lo4nww" path="res://art/NettiTausta.png" id="2_to4cb"]
-[ext_resource type="Texture2D" uid="uid://474xcakbfd6q" path="res://art/GloriaProfiili.png" id="3_ye5lf"]
+[ext_resource type="Texture2D" uid="uid://474xcakbfd6q" path="res://art/gloriaprofiili.png" id="3_ye5lf"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="4_vxa80"]
+[ext_resource type="Resource" uid="uid://cbet03vy5yr8f" path="res://final_quiz.tres" id="5_pcfgw"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeWait.gd" id="6_ii4l6"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeGhost.gd" id="7_c7id8"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="8_dn7ym"]
 
 [sub_resource type="FontFile" id="FontFile_fh656"]
 subpixel_positioning = 0
@@ -49,82 +55,91 @@ font = SubResource("FontFile_fh656")
 font_size = 10
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jov0e"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t5n64"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j344i"]
+bg_color = Color(0.592157, 0.478431, 0.411765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8ui2"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0.723368, 0.607163, 0.540346, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0q4jb"]
+bg_color = Color(0.592157, 0.478431, 0.411765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7bsyf"]
 bg_color = Color(1, 1, 1, 1)
 
-[sub_resource type="FontFile" id="FontFile_akhqe"]
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-cache/0/14/0/ascent = 0.0
-cache/0/14/0/descent = 0.0
-cache/0/14/0/underline_position = 0.0
-cache/0/14/0/underline_thickness = 0.0
-cache/0/14/0/scale = 1.0
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_815lv"]
-font = SubResource("FontFile_akhqe")
-font_size = 14
-font_color = Color(0, 0, 0, 1)
-outline_size = 1
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="FontFile" id="FontFile_7fyul"]
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-cache/0/14/0/ascent = 0.0
-cache/0/14/0/descent = 0.0
-cache/0/14/0/underline_position = 0.0
-cache/0/14/0/underline_thickness = 0.0
-cache/0/14/0/scale = 1.0
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/13/0/ascent = 0.0
-cache/0/13/0/descent = 0.0
-cache/0/13/0/underline_position = 0.0
-cache/0/13/0/underline_thickness = 0.0
-cache/0/13/0/scale = 1.0
-cache/0/15/0/ascent = 0.0
-cache/0/15/0/descent = 0.0
-cache/0/15/0/underline_position = 0.0
-cache/0/15/0/underline_thickness = 0.0
-cache/0/15/0/scale = 1.0
-cache/0/17/0/ascent = 0.0
-cache/0/17/0/descent = 0.0
-cache/0/17/0/underline_position = 0.0
-cache/0/17/0/underline_thickness = 0.0
-cache/0/17/0/scale = 1.0
+[sub_resource type="FontFile" id="FontFile_6obug"]
 cache/0/12/0/ascent = 0.0
 cache/0/12/0/descent = 0.0
 cache/0/12/0/underline_position = 0.0
 cache/0/12/0/underline_thickness = 0.0
 cache/0/12/0/scale = 1.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/15/0/ascent = 0.0
+cache/0/15/0/descent = 0.0
+cache/0/15/0/underline_position = 0.0
+cache/0/15/0/underline_thickness = 0.0
+cache/0/15/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
+cache/0/13/0/ascent = 0.0
+cache/0/13/0/descent = 0.0
+cache/0/13/0/underline_position = 0.0
+cache/0/13/0/underline_thickness = 0.0
+cache/0/13/0/scale = 1.0
+cache/0/11/0/ascent = 0.0
+cache/0/11/0/descent = 0.0
+cache/0/11/0/underline_position = 0.0
+cache/0/11/0/underline_thickness = 0.0
+cache/0/11/0/scale = 1.0
 
-[sub_resource type="LabelSettings" id="LabelSettings_7sv6u"]
-font = SubResource("FontFile_7fyul")
-font_size = 12
-font_color = Color(0, 0, 0, 1)
+[sub_resource type="Theme" id="Theme_ytk32"]
+default_font = SubResource("FontFile_6obug")
+default_font_size = 12
+Button/colors/font_color = Color(0.129559, 0.129558, 0.129558, 1)
+Button/colors/font_focus_color = Color(0.129412, 0.129412, 0.129412, 1)
+Button/colors/font_hover_color = Color(0.129412, 0.129412, 0.129412, 1)
+Button/colors/font_hover_pressed_color = Color(0.129412, 0.129412, 0.129412, 1)
+Button/colors/font_pressed_color = Color(0.129412, 0.129412, 0.129412, 1)
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 12
+Button/styles/focus = SubResource("StyleBoxEmpty_t5n64")
+Button/styles/hover = SubResource("StyleBoxFlat_j344i")
+Button/styles/normal = SubResource("StyleBoxFlat_b8ui2")
+Button/styles/pressed = SubResource("StyleBoxFlat_0q4jb")
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 1
+Label/font_sizes/font_size = 13
+Panel/styles/panel = SubResource("StyleBoxFlat_7bsyf")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2qfx2"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_xcua5"]
+script = ExtResource("6_ii4l6")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u34ok"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_lwqt2"]
+script = ExtResource("7_c7id8")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5qeu"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_a8e1b"]
+script = ExtResource("8_dn7ym")
 
 [node name="FinalQuiz" type="Node2D"]
+script = ExtResource("1_i3ash")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Control" type="Control" parent="Camera2D"]
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -137,7 +152,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_bfssk")
 
-[node name="Background" type="TextureRect" parent="Camera2D/Control"]
+[node name="Background" type="TextureRect" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -146,7 +161,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_to4cb")
 
-[node name="Address" type="Label" parent="Camera2D/Control"]
+[node name="Address" type="Label" parent="Control"]
 custom_minimum_size = Vector2(150, 15)
 layout_mode = 1
 anchors_preset = 5
@@ -160,124 +175,20 @@ grow_horizontal = 2
 text = "https://www.gloriareveals.bear"
 label_settings = SubResource("LabelSettings_2r4s2")
 
-[node name="ExamplePost" type="Panel" parent="Camera2D/Control"]
-custom_minimum_size = Vector2(345, 110)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -172.0
-offset_top = -38.0
-offset_right = 173.0
-offset_bottom = 82.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_jov0e")
+[node name="DialogueBox" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 89.0
+offset_right = 401.0
+offset_bottom = 209.0
+theme = SubResource("Theme_ytk32")
+script = ExtResource("4_vxa80")
+data = ExtResource("5_pcfgw")
+start_id = "quiz"
+sample_portrait = ExtResource("3_ye5lf")
+custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_xcua5"), SubResource("RichTextEffect_lwqt2"), SubResource("RichTextEffect_a8e1b")])
 
-[node name="Picture" type="TextureRect" parent="Camera2D/Control/ExamplePost"]
-custom_minimum_size = Vector2(75, 75)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 10.0
-offset_top = -51.0
-offset_right = 85.0
-offset_bottom = 24.0
-grow_vertical = 2
-texture = ExtResource("3_ye5lf")
-expand_mode = 1
-
-[node name="Name" type="Label" parent="Camera2D/Control/ExamplePost"]
-custom_minimum_size = Vector2(75, 20)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -70.0
-offset_top = 5.0
-offset_right = 12.0
-offset_bottom = 25.0
-grow_horizontal = 2
-text = "Gloria Graves"
-label_settings = SubResource("LabelSettings_815lv")
-
-[node name="Post" type="Label" parent="Camera2D/Control/ExamplePost"]
-custom_minimum_size = Vector2(230, 45)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -245.0
-offset_top = -33.0
-offset_right = -15.0
-offset_bottom = 22.0
-grow_horizontal = 0
-grow_vertical = 2
-text = "Social media post example."
-label_settings = SubResource("LabelSettings_7sv6u")
-autowrap_mode = 3
-text_overrun_behavior = 1
-
-[node name="Button" type="Button" parent="Camera2D/Control/ExamplePost"]
-custom_minimum_size = Vector2(40, 20)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -79.5
-offset_top = -26.0
-offset_right = -39.5
-offset_bottom = -4.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 13
-theme_override_styles/normal = SubResource("StyleBoxFlat_2qfx2")
-text = "x"
-
-[node name="Button2" type="Button" parent="Camera2D/Control/ExamplePost"]
-custom_minimum_size = Vector2(40, 20)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -26.0
-offset_right = 20.0
-offset_bottom = -4.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 13
-theme_override_styles/normal = SubResource("StyleBoxFlat_u34ok")
-text = "x"
-
-[node name="Button3" type="Button" parent="Camera2D/Control/ExamplePost"]
-custom_minimum_size = Vector2(40, 20)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 40.5
-offset_top = -26.0
-offset_right = 80.5
-offset_bottom = -4.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 13
-theme_override_styles/normal = SubResource("StyleBoxFlat_j5qeu")
-text = "x"
-
-[node name="SubmitButton" type="Button" parent="Camera2D/Control"]
+[node name="SubmitButton" type="Button" parent="Control"]
 custom_minimum_size = Vector2(80, 30)
 layout_mode = 1
 anchors_preset = 7
