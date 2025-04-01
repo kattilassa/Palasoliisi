@@ -9,8 +9,11 @@ font_size = 23
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
-[node name="GoodEnd" type="Node2D" node_paths=PackedStringArray("_testScore", "_miniGameScore")]
+[node name="GoodEnd" type="Node2D" node_paths=PackedStringArray("_menuButton", "_testScore", "_miniGameScore")]
+process_mode = 3
+z_index = 30
 script = ExtResource("1_3vuqj")
+_menuButton = NodePath("Control/MenuButton")
 _testScore = NodePath("Control/TestScoreLabel")
 _miniGameScore = NodePath("Control/MiniGameScoreLabel")
 

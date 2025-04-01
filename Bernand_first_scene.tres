@@ -7,10 +7,10 @@ script = ExtResource("1_if737")
 starts = {
 "callGloria": &"0_6",
 "computer": &"0_4",
+"final": &"0_2",
 "first": &"0_1",
 "firstClue": &"0_5",
 "phone": &"0_3",
-"quiz": &"0_2",
 "secondClue": &"0_7",
 "thirdClue": &"0_8"
 }
@@ -22,8 +22,8 @@ nodes = {
 },
 "0_2": {
 "link": &"1_5",
-"offset": Vector2(-460, -80),
-"start_id": "quiz"
+"offset": Vector2(-560, -80),
+"start_id": "final"
 },
 "0_3": {
 "link": &"1_3",
@@ -290,23 +290,13 @@ nodes = {
 "speaker": 0
 },
 "1_5": {
-"dialogue": "\"Propagandaa sisältävä lause\" Hmm...this sounds like...",
-"offset": Vector2(-240, -80),
+"dialogue": "Hmm... I think it's a good idea to go outside and see what has changed since I’ve been away.",
+"offset": Vector2(-340, -180),
 "options": {
 0: {
 "condition": {},
-"link": &"1_6",
-"text": "Propaganda!"
-},
-1: {
-"condition": {},
-"link": &"1_7",
-"text": "Misinformation!"
-},
-2: {
-"condition": {},
-"link": &"1_7",
-"text": "Fake news!"
+"link": "END",
+"text": ""
 }
 },
 "size": Vector2(300, 323),
@@ -314,11 +304,11 @@ nodes = {
 },
 "1_6": {
 "dialogue": "Right! *tietoa propagandasta* ",
-"offset": Vector2(80, -80),
+"offset": Vector2(60, -160),
 "options": {
 0: {
 "condition": {},
-"link": &"4_1",
+"link": "END",
 "text": ""
 }
 },
@@ -365,7 +355,7 @@ nodes = {
 "speaker": 1
 },
 "4_1": {
-"link": &"1_8",
+"link": "END",
 "offset": Vector2(400, 80),
 "type": 1,
 "value": "1",
@@ -378,5 +368,5 @@ variables = {
 "value": 0
 }
 }
-strays = Array[String]([])
+strays = Array[String](["4_1", "1_8", "1_7", "1_6"])
 characters = "res://examples/PalasoliisiCharacters.tres"

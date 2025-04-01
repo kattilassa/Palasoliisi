@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ba37yr7dhk87d"]
+[gd_scene load_steps=18 format=3 uid="uid://ba37yr7dhk87d"]
 
 [ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="1_bfssk"]
 [ext_resource type="Script" path="res://Levels/FinalQuiz.cs" id="1_i3ash"]
@@ -7,8 +7,6 @@
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="4_vxa80"]
 [ext_resource type="Resource" uid="uid://cbet03vy5yr8f" path="res://final_quiz.tres" id="5_pcfgw"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeWait.gd" id="6_ii4l6"]
-[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeGhost.gd" id="7_c7id8"]
-[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="8_dn7ym"]
 
 [sub_resource type="FontFile" id="FontFile_fh656"]
 subpixel_positioning = 0
@@ -74,16 +72,16 @@ bg_color = Color(0.592157, 0.478431, 0.411765, 1)
 bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="FontFile" id="FontFile_6obug"]
-cache/0/12/0/ascent = 0.0
-cache/0/12/0/descent = 0.0
-cache/0/12/0/underline_position = 0.0
-cache/0/12/0/underline_thickness = 0.0
-cache/0/12/0/scale = 1.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
+cache/0/12/0/ascent = 0.0
+cache/0/12/0/descent = 0.0
+cache/0/12/0/underline_position = 0.0
+cache/0/12/0/underline_thickness = 0.0
+cache/0/12/0/scale = 1.0
 cache/0/15/0/ascent = 0.0
 cache/0/15/0/descent = 0.0
 cache/0/15/0/underline_position = 0.0
@@ -128,14 +126,10 @@ RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
 [sub_resource type="RichTextEffect" id="RichTextEffect_xcua5"]
 script = ExtResource("6_ii4l6")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_lwqt2"]
-script = ExtResource("7_c7id8")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_a8e1b"]
-script = ExtResource("8_dn7ym")
-
-[node name="FinalQuiz" type="Node2D"]
+[node name="FinalQuiz" type="Node2D" node_paths=PackedStringArray("_submitButton")]
+z_index = 30
 script = ExtResource("1_i3ash")
+_submitButton = NodePath("Control/SubmitButton")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -176,20 +170,21 @@ text = "https://www.gloriareveals.bear"
 label_settings = SubResource("LabelSettings_2r4s2")
 
 [node name="DialogueBox" type="Panel" parent="Control"]
-visible = false
 layout_mode = 0
 offset_left = 57.0
 offset_top = 89.0
 offset_right = 401.0
-offset_bottom = 209.0
+offset_bottom = 227.0
 theme = SubResource("Theme_ytk32")
 script = ExtResource("4_vxa80")
 data = ExtResource("5_pcfgw")
 start_id = "quiz"
 sample_portrait = ExtResource("3_ye5lf")
-custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_xcua5"), SubResource("RichTextEffect_lwqt2"), SubResource("RichTextEffect_a8e1b")])
+custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_xcua5")])
+max_options_count = 2
 
 [node name="SubmitButton" type="Button" parent="Control"]
+visible = false
 custom_minimum_size = Vector2(80, 30)
 layout_mode = 1
 anchors_preset = 7
@@ -197,10 +192,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -41.0
-offset_right = 40.0
-offset_bottom = -10.0
+offset_left = -38.0
+offset_top = -103.0
+offset_right = 43.0
+offset_bottom = -72.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Submit"
+text = "log off"

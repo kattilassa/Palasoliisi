@@ -9,8 +9,10 @@ font_size = 23
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
-[node name="GoodEnd" type="Node2D" node_paths=PackedStringArray("_testScore", "_miniGameScore")]
+[node name="GoodEnd" type="Node2D" node_paths=PackedStringArray("_menuButton", "_testScore", "_miniGameScore")]
+z_index = 30
 script = ExtResource("1_esnmi")
+_menuButton = NodePath("Control/MenuButton")
 _testScore = NodePath("Control/TestScoreLabel")
 _miniGameScore = NodePath("Control/MiniGameScoreLabel")
 
@@ -99,6 +101,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="MenuButton" type="Button" parent="Control"]
+process_mode = 3
 custom_minimum_size = Vector2(75, 30)
 layout_mode = 1
 anchors_preset = 4

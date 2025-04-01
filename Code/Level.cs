@@ -16,6 +16,7 @@ namespace PalaSoliisi
 		public bool _isMiniGameRunning = false;
 		public bool _isGameFinished = false;
 		public bool _isDialogueRunning = false;
+		public bool _isQuizDone = false;
 		[Export] public Label _clueLabel;
 		private Control _UI;
 		private Control _inGameMenu;
@@ -58,6 +59,7 @@ namespace PalaSoliisi
 			get { return _current; }
 		}
 		[Export] private string _articleScenePath = "res://Levels/Collectables/Article.tscn";
+		[Export] private string _finalQuizScenePath = "res://Levels/FinalQuiz.tscn";
 		[Export] private ScoreUIControl _scoreUIControl = null;
 		[Export] AudioStreamPlayer _ringtonePlayer;
 
@@ -68,6 +70,7 @@ namespace PalaSoliisi
 		private PackedScene _dialogueScene = null;
 		private PackedScene _miniGameScene = null;
 		private PackedScene _howToPlayScene = null;
+		private PackedScene _finalQuizScene = null;
 		private PackedScene _endScene = null;
 		private MiniGame _miniGame = null;
 		private PopUp _howToPlay = null;
@@ -76,7 +79,7 @@ namespace PalaSoliisi
 		private int _articlePieces = 0;
 		private int _miniGameTurns = 0;
 		private int _testPoints = 0;
-
+		public FinalQuiz _finalQuiz = null;
 		private Article _article = null;
 		private Obstacle _obstacle = null;
 		private Node _dialogueBox;
@@ -144,7 +147,7 @@ namespace PalaSoliisi
 		public override void _Ready()
 		{
 			base._Ready();
-
+			GetTree().Paused = false;
 			if (_howToPlay != null)
 			{
 				_howToPlay.QueueFree();
@@ -182,6 +185,7 @@ namespace PalaSoliisi
 			_exitMenuButton.Hide();
 			_clueCard = GetNode<TextureRect>("Clue");
 			_clueLabel = GetNode<Label>("Clue/clue");
+			//_finalQuiz = GetNode<FinalQuiz>("Level/FinalQuiz.tscn");
 
 				_articleButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnArticlePressed)));
@@ -214,6 +218,8 @@ namespace PalaSoliisi
 				new Callable(this, nameof(OnClosetPressed)));
 				_animationPlayer = GetNode<AnimationPlayer>("piece/AnimationPlayer");
 
+
+
 				_soundPlayer = GetNode<AudioStreamPlayer>("SoundPlayer");
 				 _ringtoneSound = GD.Load<AudioStream>("res://music/phone-ringtone.mp3");
 				 _paperSound = GD.Load<AudioStream>("res://music/paper.mp3");
@@ -228,16 +234,20 @@ namespace PalaSoliisi
 
 			ResetGame();
 		}
-//
-		public void OnCurtainPressed()
+        //
+        public void OnCurtainPressed()
 		{
+			_testPoints = _finalQuiz.quizPoints;
 			// Pause game and hide UI and character
+			if (_testPoints==3)
+			{
 			GetTree().Paused = true;
 			UIVisible(false);
 			_bernand.Hide();
 			_bernand.StopMovement();
 			_settingsButton.Hide();
 			_isGameFinished = true;
+
 
 			// Make sure EndScene empty
 			if (_ending != null)
@@ -246,10 +256,11 @@ namespace PalaSoliisi
 				_ending = null;
 			}
 
-			if (_articlePieces == 3)
+			if (_articlePieces == 3 && _testPoints==3)
 			{
-				if (_endScene == null)
-				{
+
+				//if (_testPoints==3)
+				//{
 					//Initialize new ending
 					_endScene = ResourceLoader.Load<PackedScene>(_goodEndScenePath);
 					if (_endScene == null)
@@ -257,16 +268,14 @@ namespace PalaSoliisi
 						GD.PrintErr("End scene can't be found");
 						return;
 					}
-				}
+				}//
 				_ending = _endScene.Instantiate<Ending>();
 				_ending.SetMiniGameScore(_miniGameTurns);
 				_ending.SetTestScore(_testPoints);
 				AddChild(_ending);
 			}
-			else
+			else if (_articlePieces==3 && _testPoints < 3)
 			{
-				if (_endScene == null)
-				{
 					//Initialize new ending
 					_endScene = ResourceLoader.Load<PackedScene>(_badEndScenePath);
 					if (_endScene == null)
@@ -274,13 +283,12 @@ namespace PalaSoliisi
 						GD.PrintErr("End scene can't be found");
 						return;
 					}
-				}
+
 				_ending = _endScene.Instantiate<Ending>();
 				_ending.SetMiniGameScore(_miniGameTurns);
 				_ending.SetTestScore(_testPoints);
 				AddChild(_ending);
 			}
-
 		}
 
         public void OnClosetPressed()
@@ -417,7 +425,6 @@ namespace PalaSoliisi
 		{
 			_UI.Visible = visible;
 		}
-
 		private void OnComputerPressed()
 		{
 			PlaySound(_clickSound);
@@ -427,7 +434,8 @@ namespace PalaSoliisi
 
 				if (_articlePieces==3)
 				{
-					dialogueStarter("quiz");
+					//dialogueStarter("quiz");
+					finalQuiz();
 				}
 				else if (!_isDialogueRunning)
 				{
@@ -497,7 +505,6 @@ namespace PalaSoliisi
 		{
 			_isDialogueRunning = true;
 		}
-
 		private void DialogueAnimationSkipper()
 		{
 			if(_isDialogueRunning);
@@ -654,7 +661,34 @@ namespace PalaSoliisi
 				dialogueStarter("thirdClue");
 			}
 		}
+		public void finalDialogue()
+		{
+			if (_isQuizDone == true)
+			{
+				dialogueStarter("final");
+			}
+		}
+		private void finalQuiz()
+		{
+			if (_finalQuiz != null)
+			{
+				_finalQuiz.QueueFree();
+				_finalQuiz = null;
+			}
 
+			if (_finalQuizScene == null)
+			{
+				//Initialize new minigame
+				_finalQuizScene = ResourceLoader.Load<PackedScene>(_finalQuizScenePath);
+				if (_finalQuizScene == null)
+				{
+					GD.PrintErr("MiniGame can't be found");
+					return;
+				}
+			}
+			_finalQuiz = _finalQuizScene.Instantiate<FinalQuiz>();
+			AddChild(_finalQuiz);
+		}
 		private void dialogueStarter(string dialogueID)
 		{
 				_dialogueBox.Call("start", dialogueID);
