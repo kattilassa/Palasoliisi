@@ -21,7 +21,6 @@ namespace PalaSoliisi
 		[Export] private string _cardBack1ScenePath = "res://Levels/Collectables/CardBack1.tscn";
 		[Export] private MiniGameControl _miniGameControl = null;
 		[Export] private TextureButton _settingsButton = null;
-		[Export] private Panel _instructions = null;
 
 		private PackedScene _card1Scene = null;
 		private PackedScene _card2Scene = null;
@@ -120,8 +119,6 @@ namespace PalaSoliisi
 
 		public override void _Ready()
 		{
-			_instructions = GetNode<Panel>("Instructions");
-
 			_inGameMenu = GetNode<Control>("UI/InGameMenu");
 			_inGameMenu.Hide();
 
@@ -136,7 +133,6 @@ namespace PalaSoliisi
 				new Callable(this, nameof(OnSettingsPressed)));
 
 			ResetMiniGame();
-			HideInstructions();
 
 		}
 
@@ -222,12 +218,6 @@ namespace PalaSoliisi
 				_inGameMenu.Show();
 			}
 
-		}
-
-		private async void HideInstructions()
-		{
-			await ToSignal(GetTree().CreateTimer(3.0f), "timeout");
-			_instructions.Hide();
 		}
 
 		/// <summary>

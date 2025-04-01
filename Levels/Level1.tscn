@@ -363,33 +363,12 @@ custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_lhdac"), Sub
 next_icon = ExtResource("25_lqb1q")
 
 [node name="ScoreUI" parent="UI" instance=ExtResource("31_h1356")]
-visible = false
 layout_mode = 1
 offset_left = 3.0
 offset_top = 7.0
 offset_right = -305.0
 offset_bottom = 32.0
 theme = SubResource("Theme_imh8p")
-
-[node name="closetButton" type="TextureButton" parent="UI"]
-layout_mode = 0
-offset_left = 147.0
-offset_top = -3.0
-offset_right = 257.0
-offset_bottom = 107.0
-texture_normal = ExtResource("9_jrs01")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="CurtainButton" type="TextureButton" parent="UI"]
-layout_mode = 0
-offset_left = 232.0
-offset_top = 14.0
-offset_right = 302.0
-offset_bottom = 85.0
-texture_normal = ExtResource("33_qwggj")
-ignore_texture_size = true
-stretch_mode = 0
 
 [node name="InGameMenu" parent="UI" instance=ExtResource("33_ibxos")]
 visible = false
@@ -431,6 +410,16 @@ theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("32_b8645")
 theme_override_font_sizes/font_size = 12
 text = "back to main menu"
+
+[node name="closetButton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 147.0
+offset_top = -3.0
+offset_right = 257.0
+offset_bottom = 107.0
+texture_normal = ExtResource("9_jrs01")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="briefcaseButton" type="TextureButton" parent="UI"]
 layout_mode = 0
@@ -503,6 +492,16 @@ offset_top = 192.0
 offset_right = 171.0
 offset_bottom = 256.0
 texture_normal = ExtResource("8_i0hin")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CurtainButton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 14.0
+offset_right = 302.0
+offset_bottom = 85.0
+texture_normal = ExtResource("33_qwggj")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -596,3 +595,4 @@ stretch_mode = 0
 libraries = {
 "": SubResource("AnimationLibrary_dmvwt")
 }
+autoplay = "reminder"
