@@ -59,7 +59,7 @@ grow_vertical = 2
 theme = ExtResource("1_huu6o")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
-text = "[font_size=14][outline_size=3]Search[/outline_size][/font_size] - Click on objects to reveal clues
+text = "[font_size=14][outline_size=3]Search your surroundings[/outline_size][/font_size] - Click on objects to reveal clues
 
 [font_size=14][outline_size=3]Collect clues[/outline_size][/font_size] - they will help you uncover the truth
 
