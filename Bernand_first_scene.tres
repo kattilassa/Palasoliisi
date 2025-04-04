@@ -56,13 +56,13 @@ nodes = {
 "start_id": "thirdClue"
 },
 "1_1": {
-"dialogue": "Palasoliisi: You will be playing as me – Bernand Bartholomeu, but friends and family call me Bear. I came back to my home village because my dear aunt Gloria has been acting strange. There’s been rumors about a false news outbreak and it’s my duty to help the villagers and Break The Fake! ",
+"dialogue": "You will be playing as me – Bernand Bartholomeu. I came back to my home village because my dear aunt Gloria has been acting strange. There’s been rumors about a false news outbreak and it’s my duty to help the villagers and Break The Fake! ",
 "offset": Vector2(-360, -540),
 "options": {
 0: {
 "condition": {},
 "link": &"1_2",
-"text": "Let's find out the truth!"
+"text": ""
 }
 },
 "size": Vector2(300, 257),
@@ -199,13 +199,13 @@ nodes = {
 "speaker": 0
 },
 "1_2": {
-"dialogue": "My dear cousin Gloria has been acting so weird lately. I couldn't bear the thought of not coming to visit her, so here I am. Oh! someone is calling.",
+"dialogue": "My dear cousin Gloria has been acting so weird lately. I couldn't bear the thought of not coming to visit her, so here I am. Oh! someone is calling. I should pick up the phone...",
 "offset": Vector2(-20, -520),
 "options": {
 0: {
 "condition": {},
 "link": "END",
-"text": "I should pick up the phone..."
+"text": ""
 }
 },
 "size": Vector2(300, 290),

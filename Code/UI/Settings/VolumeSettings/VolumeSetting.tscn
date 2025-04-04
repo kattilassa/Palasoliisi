@@ -22,8 +22,8 @@ expand_margin_bottom = 4.0
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -9.0
-offset_right = -246.0
+offset_left = -26.0
+offset_right = -207.0
 offset_bottom = -239.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -39,18 +39,18 @@ text = "Volume"
 horizontal_alignment = 2
 
 [node name="VolumeHSlider" type="HSlider" parent="."]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(150, 15)
 layout_mode = 2
 theme = ExtResource("2_7ia43")
 theme_override_icons/grabber = ExtResource("3_rsaar")
 theme_override_icons/grabber_highlight = ExtResource("3_rsaar")
 theme_override_icons/grabber_disabled = ExtResource("3_rsaar")
 theme_override_styles/slider = SubResource("StyleBoxFlat_p38mr")
-value = 50.0
+value = 66.0
 
 [node name="VolumePercentageLabel" type="Label" parent="."]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
 theme = ExtResource("2_7ia43")
-text = "50%"
+text = "66%"
 horizontal_alignment = 2

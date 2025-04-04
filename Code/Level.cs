@@ -324,6 +324,7 @@ namespace PalaSoliisi
 		{
 			ArticlePieces= 0;
 			_articleButton.Hide();
+
 			// Dialogue();
 		}
 

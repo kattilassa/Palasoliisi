@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="1_bfssk"]
 [ext_resource type="Script" path="res://Levels/FinalQuiz.cs" id="1_i3ash"]
-[ext_resource type="Texture2D" uid="uid://tk5n28lo4nww" path="res://art/NettiTausta.png" id="2_to4cb"]
+[ext_resource type="Texture2D" uid="uid://bhd1lm4pa7wwf" path="res://art/nettitausta.png" id="3_w645r"]
 [ext_resource type="Texture2D" uid="uid://474xcakbfd6q" path="res://art/gloriaprofiili.png" id="3_ye5lf"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="4_vxa80"]
 [ext_resource type="Resource" uid="uid://cbet03vy5yr8f" path="res://final_quiz.tres" id="5_pcfgw"]
@@ -153,7 +153,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_to4cb")
+texture = ExtResource("3_w645r")
 
 [node name="Address" type="Label" parent="Control"]
 custom_minimum_size = Vector2(150, 15)
