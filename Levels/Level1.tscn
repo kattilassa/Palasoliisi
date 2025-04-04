@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://bu0y12c7gfv7e"]
+[gd_scene load_steps=52 format=4 uid="uid://bu0y12c7gfv7e"]
 
 [ext_resource type="Script" path="res://Code/Level.cs" id="1_uqqbp"]
 [ext_resource type="Texture2D" uid="uid://bjxo38brfpjof" path="res://art/House_base_curtain.png" id="2_h33wx"]
@@ -25,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://wteveke4gnd1" path="res://music/sneaky-feet-150618.mp3" id="20_55ul1"]
 [ext_resource type="Texture2D" uid="uid://bsl1g8st8fkjc" path="res://art/Puhelin.png" id="22_38mqv"]
 [ext_resource type="Texture2D" uid="uid://c8f6ymrdpajb4" path="res://art/next_pressed.png" id="25_lqb1q"]
+[ext_resource type="Texture2D" uid="uid://diav8sidfanr1" path="res://art/pawsmall.png" id="27_2mh53"]
 [ext_resource type="PackedScene" uid="uid://b76xiux4rne1t" path="res://Code/UI/ScoreUI.tscn" id="31_h1356"]
 [ext_resource type="Texture2D" uid="uid://cwj4ivmip8cdq" path="res://art/nallenappi.png" id="31_me71k"]
 [ext_resource type="Texture2D" uid="uid://chduo7ebrwpte" path="res://art/phonecall.png" id="31_rneb0"]
@@ -34,10 +35,10 @@
 [ext_resource type="PackedScene" uid="uid://bw1b55q33qgnr" path="res://Code/UI/InGameMenu.tscn" id="33_ibxos"]
 [ext_resource type="Texture2D" uid="uid://tbatpjp8sjt0" path="res://art/curtain.png" id="33_qwggj"]
 [ext_resource type="Texture2D" uid="uid://d2e3a1ghryxr1" path="res://art/XX.png" id="34_o6p5i"]
-[ext_resource type="FontFile" uid="uid://vtlnkbqwg1oj" path="res://art/Fonts/uni-sans.heavy-caps.otf" id="35_8i7lv"]
 [ext_resource type="Texture2D" uid="uid://dn6p1oiayjosa" path="res://art/X.png" id="35_77pmh"]
 [ext_resource type="Texture2D" uid="uid://cmffkqiiemf56" path="res://art/settings.1.png" id="36_44lh3"]
 [ext_resource type="Texture2D" uid="uid://bsir1syi7smu0" path="res://art/settings.2.png" id="37_ldiq3"]
+[ext_resource type="FontFile" uid="uid://b8ytita5wvkhy" path="res://art/Fonts/Kalam/Kalam-Bold.ttf" id="37_wj8hl"]
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_kjp2j"]
 script = ExtResource("14_g4w2e")
@@ -138,7 +139,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.433333, 0.633333, 0.833333, 1.03333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-197, -101), Vector2(-197, -101), Vector2(-206, -101), Vector2(-188, -101), Vector2(-202, -101), Vector2(-197, -101)]
+"values": [Vector2(-17, -100), Vector2(-17, -96), Vector2(-17, -99), Vector2(-17, -99), Vector2(-17, -99), Vector2(-17, -99)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -189,7 +190,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.633333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(23, 20), Vector2(23, 20)]
+"values": [Vector2(23, 20), Vector2(33, 28)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -373,10 +374,10 @@ theme = SubResource("Theme_imh8p")
 
 [node name="closetButton" type="TextureButton" parent="UI"]
 layout_mode = 0
-offset_left = 147.0
-offset_top = -3.0
-offset_right = 257.0
-offset_bottom = 107.0
+offset_left = 100.0
+offset_top = 2.0
+offset_right = 210.0
+offset_bottom = 112.0
 texture_normal = ExtResource("9_jrs01")
 ignore_texture_size = true
 stretch_mode = 0
@@ -391,73 +392,32 @@ texture_normal = ExtResource("33_qwggj")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="InGameMenu" parent="UI" instance=ExtResource("33_ibxos")]
-visible = false
-z_index = 11
-layout_mode = 1
-offset_left = -199.0
-offset_top = -97.5
-offset_right = 201.0
-offset_bottom = 62.5
-
-[node name="exitmenu" type="TextureButton" parent="UI"]
-process_mode = 3
-visible = false
-z_index = 20
-layout_mode = 0
-offset_left = 316.0
-offset_top = 23.0
-offset_right = 347.0
-offset_bottom = 54.0
-texture_normal = ExtResource("34_o6p5i")
-texture_pressed = ExtResource("35_77pmh")
-texture_hover = ExtResource("35_77pmh")
-texture_disabled = ExtResource("35_77pmh")
-texture_focused = ExtResource("35_77pmh")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="exitMenu" type="Button" parent="UI"]
-process_mode = 3
-visible = false
-z_index = 20
-layout_mode = 0
-offset_left = 163.0
-offset_top = 155.0
-offset_right = 294.0
-offset_bottom = 176.0
-theme = ExtResource("10_v3aap")
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("32_b8645")
-theme_override_font_sizes/font_size = 12
-text = "back to main menu"
-
 [node name="briefcaseButton" type="TextureButton" parent="UI"]
 layout_mode = 0
-offset_left = 132.0
-offset_top = 63.0
-offset_right = 171.0
-offset_bottom = 102.0
+offset_left = 359.0
+offset_top = 152.0
+offset_right = 398.0
+offset_bottom = 191.0
 texture_normal = ExtResource("6_lu1gs")
 ignore_texture_size = true
 stretch_mode = 0
 
 [node name="FridgeButton" type="TextureButton" parent="UI"]
 layout_mode = 0
-offset_left = 345.0
-offset_top = 16.0
-offset_right = 437.0
-offset_bottom = 108.0
+offset_left = 314.0
+offset_top = 6.0
+offset_right = 406.0
+offset_bottom = 98.0
 texture_normal = ExtResource("10_yyxco")
 ignore_texture_size = true
 stretch_mode = 0
 
 [node name="Phonebutton" type="TextureButton" parent="UI"]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 46.0
-offset_right = 66.0
-offset_bottom = 109.0
+offset_left = 180.0
+offset_top = 49.0
+offset_right = 243.0
+offset_bottom = 112.0
 texture_normal = ExtResource("22_38mqv")
 texture_pressed = ExtResource("22_38mqv")
 ignore_texture_size = true
@@ -465,10 +425,10 @@ stretch_mode = 4
 
 [node name="ComputerButton" type="TextureButton" parent="UI"]
 layout_mode = 0
-offset_left = 62.0
-offset_top = 31.0
-offset_right = 190.0
-offset_bottom = 172.0
+offset_left = 12.0
+offset_top = 30.0
+offset_right = 140.0
+offset_bottom = 171.0
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("18_b4exs")
 ignore_texture_size = true
@@ -476,10 +436,10 @@ stretch_mode = 0
 
 [node name="TableButton" type="TextureButton" parent="UI"]
 layout_mode = 0
-offset_left = 298.0
-offset_top = 48.0
-offset_right = 361.0
-offset_bottom = 111.0
+offset_left = 70.0
+offset_top = 50.0
+offset_right = 133.0
+offset_bottom = 113.0
 texture_normal = ExtResource("11_wch52")
 ignore_texture_size = true
 stretch_mode = 0
@@ -503,6 +463,48 @@ offset_top = 192.0
 offset_right = 171.0
 offset_bottom = 256.0
 texture_normal = ExtResource("8_i0hin")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="InGameMenu" parent="UI" instance=ExtResource("33_ibxos")]
+visible = false
+z_index = 11
+layout_mode = 1
+offset_left = -199.0
+offset_top = -97.5
+offset_right = 201.0
+offset_bottom = 62.5
+
+[node name="exitMenu" type="Button" parent="UI"]
+process_mode = 3
+visible = false
+z_index = 20
+layout_mode = 0
+offset_left = 183.0
+offset_top = 150.0
+offset_right = 275.0
+offset_bottom = 173.0
+theme = ExtResource("10_v3aap")
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("32_b8645")
+theme_override_font_sizes/font_size = 12
+text = "main menu"
+icon = ExtResource("27_2mh53")
+
+[node name="exitmenu" type="TextureButton" parent="UI"]
+process_mode = 3
+visible = false
+z_index = 20
+layout_mode = 0
+offset_left = 316.0
+offset_top = 21.0
+offset_right = 353.0
+offset_bottom = 58.0
+texture_normal = ExtResource("34_o6p5i")
+texture_pressed = ExtResource("35_77pmh")
+texture_hover = ExtResource("35_77pmh")
+texture_disabled = ExtResource("35_77pmh")
+texture_focused = ExtResource("35_77pmh")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -547,35 +549,35 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -72.5
+offset_left = -75.5
 offset_top = 30.0
-offset_right = 72.5
-offset_bottom = 203.0
+offset_right = 75.5
+offset_bottom = 212.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("35_8i7lv")
-theme_override_font_sizes/font_size = 9
-text = "
-HONEY BUSINESS GONE WRONG?!?!
--------------------------------------
-
+theme_override_fonts/font = ExtResource("37_wj8hl")
+theme_override_font_sizes/font_size = 12
+text = "HONEY BUSINESS
+ GONE WRONG?!?!
+-----------------------
 Mayor exposed!!...
-Microchip found from the mayors VERY  yucky honey......
+Microchip found from the mayors VERY yucky honey......
 
 Mayor EVEN confirms:
 “Yes, It’s true-...\"
 
-Author: mr.skunk"
+Author: MR.Skunk"
 horizontal_alignment = 1
-autowrap_mode = 3
+vertical_alignment = 1
+autowrap_mode = 2
 structured_text_bidi_override_options = [null]
 
 [node name="exitClue" type="Button" parent="Clue"]
 layout_mode = 0
-offset_left = 117.0
-offset_top = 212.0
-offset_right = 148.0
-offset_bottom = 237.0
+offset_left = 116.0
+offset_top = 217.0
+offset_right = 147.0
+offset_bottom = 242.0
 theme = ExtResource("10_v3aap")
 text = "OK"
 

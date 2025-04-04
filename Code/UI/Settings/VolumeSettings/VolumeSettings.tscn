@@ -4,25 +4,30 @@
 [ext_resource type="AudioStream" uid="uid://dtdqqdvnuj05q" path="res://music/paper.mp3" id="2_ci830"]
 
 [node name="VolumeSettings" type="VBoxContainer"]
-offset_right = 280.0
+offset_right = 272.0
 offset_bottom = 80.0
+theme_override_constants/separation = 7
 
 [node name="VolumeSetting" parent="." instance=ExtResource("1_fij5k")]
 layout_mode = 2
+theme_override_constants/separation = 7
 BusName = "All"
 
 [node name="VolumeSetting2" parent="." instance=ExtResource("1_fij5k")]
 layout_mode = 2
+theme_override_constants/separation = 7
 BusName = "Music"
 Busindex = 1
 
 [node name="VolumeSetting3" parent="." instance=ExtResource("1_fij5k")]
 layout_mode = 2
+theme_override_constants/separation = 7
 BusName = "Ambience"
 Busindex = 2
 
 [node name="VolumeSetting4" parent="." instance=ExtResource("1_fij5k")]
 layout_mode = 2
+theme_override_constants/separation = 7
 BusName = "Sfx"
 Busindex = 3
 
