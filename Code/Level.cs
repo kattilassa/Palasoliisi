@@ -41,7 +41,7 @@ namespace PalaSoliisi
 		private SceneTree _optionsSceneTree = null;
 		private Bernand _bernand = null;
 		public bool isRunning;
-		private AnimationPlayer _animationPlayer;
+		public AnimationPlayer _animationPlayer;
 		private AudioStreamPlayer _soundPlayer;
         private AudioStream _ringtoneSound;
         private AudioStream _paperSound;

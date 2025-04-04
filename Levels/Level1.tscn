@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://bu0y12c7gfv7e"]
+[gd_scene load_steps=53 format=4 uid="uid://bu0y12c7gfv7e"]
 
 [ext_resource type="Script" path="res://Code/Level.cs" id="1_uqqbp"]
 [ext_resource type="Texture2D" uid="uid://bjxo38brfpjof" path="res://art/House_base_curtain.png" id="2_h33wx"]
@@ -125,6 +125,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [0.774926]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Camera2D/Bernand:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_2xebp"]
 resource_name = "alarmed"
@@ -222,12 +234,29 @@ tracks/0/keys = {
 "values": [0.261799, 0.523599, 0.261799]
 }
 
+[sub_resource type="Animation" id="Animation_i0h5k"]
+resource_name = "walking"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Camera2D/Bernand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.96667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(40, -50), Vector2(40, 0), Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dmvwt"]
 _data = {
 "RESET": SubResource("Animation_m8u8h"),
 "alarmed": SubResource("Animation_2xebp"),
 "flying_magazine": SubResource("Animation_bjfo2"),
-"reminder": SubResource("Animation_xwvc0")
+"reminder": SubResource("Animation_xwvc0"),
+"walking": SubResource("Animation_i0h5k")
 }
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("_clueLabel", "_curtainButton", "_settingsButton", "_articleButton", "_computerButton", "_fridgeButton", "_tableButton", "_phoneButton", "_exitMenuButton", "_bedButton", "_frogButton", "_closetButton", "_briefcaseButton", "_exitClueButton", "_menuButton", "_scoreUIControl", "_ringtonePlayer")]
@@ -278,10 +307,10 @@ z_index = 2
 Speed = 200
 
 [node name="TextureRect2" type="TextureRect" parent="Camera2D"]
-offset_left = -118.0
-offset_top = -27.0
-offset_right = 122.0
-offset_bottom = 87.0
+offset_left = -128.0
+offset_top = -23.0
+offset_right = 112.0
+offset_bottom = 91.0
 texture = ExtResource("5_sl3t5")
 expand_mode = 1
 
@@ -388,6 +417,7 @@ offset_left = 232.0
 offset_top = 14.0
 offset_right = 302.0
 offset_bottom = 85.0
+pivot_offset = Vector2(35, 70)
 texture_normal = ExtResource("33_qwggj")
 ignore_texture_size = true
 stretch_mode = 0

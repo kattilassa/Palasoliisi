@@ -22,6 +22,7 @@ namespace PalaSoliisi
 			this.Hide();
 			this.QueueFree();
 			Level.Current._isDialogueRunning = false;
+			Level.Current._animationPlayer.Play("walking");
 			Level.Current.Dialogue();
 
 		}
