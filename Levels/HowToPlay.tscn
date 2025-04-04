@@ -1,20 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://c85od2ripqjrj"]
+[gd_scene load_steps=5 format=3 uid="uid://c85od2ripqjrj"]
 
 [ext_resource type="Script" path="res://Code/PopUp.cs" id="1_50wjk"]
 [ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="1_huu6o"]
+[ext_resource type="Texture2D" uid="uid://dbqbcptml7jky" path="res://art/cardclue.png" id="3_b7rtk"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_h4ttw"]
-font_size = 10
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lx7sb"]
+texture = ExtResource("3_b7rtk")
 
-[node name="PopUp" type="Node2D" node_paths=PackedStringArray("_okButton")]
+[node name="PopUp" type="Control" node_paths=PackedStringArray("_okButton")]
 z_index = 15
+custom_minimum_size = Vector2(456, 256)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.0
+offset_top = -130.0
+offset_right = 228.0
+offset_bottom = 126.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_50wjk")
 _okButton = NodePath("Panel/Button")
 
 [node name="Panel" type="Panel" parent="."]
-custom_minimum_size = Vector2(350, 250)
+custom_minimum_size = Vector2(456, 270)
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -27,6 +40,33 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_huu6o")
+theme_override_styles/panel = SubResource("StyleBoxTexture_lx7sb")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+custom_minimum_size = Vector2(230, 150)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = -85.0
+offset_right = 115.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_huu6o")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[font_size=14][outline_size=3]Search your surroundings[/outline_size][/font_size] - Click on objects to reveal clues
+
+[font_size=14][outline_size=3]Collect clues[/outline_size][/font_size] - they will help you uncover the truth
+
+[font_size=14][outline_size=3]Complete minigames[/outline_size][/font_size] - test your memory and find the pairs
+
+[font_size=12][outline_size=3]Read the dialogue[/outline_size][/font_size] – it will be useful later! "
+fit_content = true
 
 [node name="Button" type="Button" parent="Panel"]
 custom_minimum_size = Vector2(30, 20)
@@ -36,35 +76,12 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -10.0
-offset_top = -44.0
-offset_right = 10.0
-offset_bottom = -24.0
+offset_left = -15.0
+offset_top = -51.0
+offset_right = 15.0
+offset_bottom = -31.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_huu6o")
 theme_override_font_sizes/font_size = 11
 text = "OK"
-
-[node name="Label" type="Label" parent="Panel"]
-custom_minimum_size = Vector2(150, 75)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -116.0
-offset_top = 22.0
-offset_right = 109.0
-offset_bottom = 205.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 10
-text = "How to play: 
--Search your surroundings/look around 
--Read the dialogue – it will be useful later! 
--Click on objects to reveal clues 
-
-After finding clues – you will be challenged with a minigame. Click to flip the cards and find pairs. Once you have completed the game – you will receive valuable information from the clue. 
-
-Collect three clues for the final challenge."
-label_settings = SubResource("LabelSettings_h4ttw")
-autowrap_mode = 3
