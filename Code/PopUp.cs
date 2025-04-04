@@ -3,7 +3,7 @@ using System;
 
 namespace PalaSoliisi
 {
-	public partial class PopUp : Node2D
+	public partial class PopUp : Node
 	{
 		[Export] private Button _okButton = null;
 
@@ -18,8 +18,6 @@ namespace PalaSoliisi
 		private void OnOkButtonPressed()
 		{
 			// Pois / piilota ??
-
-			this.Hide();
 			this.QueueFree();
 			Level.Current._isDialogueRunning = false;
 			Level.Current.Dialogue();
