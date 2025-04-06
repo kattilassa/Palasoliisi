@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m2gha3ecoxug"
-path="res://.godot/imported/House base.png-21c29934adaf6aed7897adf703f46516.ctex"
+uid="uid://cfsnvr6y7qu42"
+path="res://.godot/imported/tietokone_penkki.png-b8f53818251223ea559ef426453853c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/House base.png"
-dest_files=["res://.godot/imported/House base.png-21c29934adaf6aed7897adf703f46516.ctex"]
+source_file="res://art/furniture/tietokone_penkki.png"
+dest_files=["res://.godot/imported/tietokone_penkki.png-b8f53818251223ea559ef426453853c7.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceom1gsthvt5u"
-path="res://.godot/imported/Hyllykkö_naama.png-46aa1c18596461a3efdb8bbe2c05ba00.ctex"
+uid="uid://cu1e5y57tvm2"
+path="res://.godot/imported/Ruokaryhmä.png-b35c009965c067842be6fa41a08be9e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Hyllykkö_naama.png"
-dest_files=["res://.godot/imported/Hyllykkö_naama.png-46aa1c18596461a3efdb8bbe2c05ba00.ctex"]
+source_file="res://art/furniture/Ruokaryhmä.png"
+dest_files=["res://.godot/imported/Ruokaryhmä.png-b35c009965c067842be6fa41a08be9e8.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@ using System;
 
 namespace PalaSoliisi
 {
-	public partial class PopUp : Node
+	public partial class PopUp : Control
 	{
 		[Export] private Button _okButton = null;
 
@@ -12,13 +12,12 @@ namespace PalaSoliisi
 			Level.Current._isDialogueRunning = true;
 			_okButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnOkButtonPressed)));
-
 		}
 
-		private void OnOkButtonPressed()
+		public void OnOkButtonPressed()
 		{
 			// Pois / piilota ??
-			this.QueueFree();
+			Level.Current._howToPlay.Hide();
 			Level.Current._isDialogueRunning = false;
 			Level.Current._animationPlayer.Play("walking");
 			Level.Current.Dialogue();

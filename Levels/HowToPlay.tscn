@@ -1,48 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://c85od2ripqjrj"]
+[gd_scene load_steps=4 format=3 uid="uid://c85od2ripqjrj"]
 
 [ext_resource type="Script" path="res://Code/PopUp.cs" id="1_50wjk"]
 [ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="1_huu6o"]
-[ext_resource type="Texture2D" uid="uid://dbqbcptml7jky" path="res://art/cardclue.png" id="3_b7rtk"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lx7sb"]
-texture = ExtResource("3_b7rtk")
+[ext_resource type="Texture2D" uid="uid://b3nh22r7e4cko" path="res://art/card.png" id="2_xglpw"]
 
 [node name="PopUp" type="Control" node_paths=PackedStringArray("_okButton")]
 z_index = 15
-custom_minimum_size = Vector2(456, 256)
+custom_minimum_size = Vector2(350, 256)
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -228.0
-offset_top = -130.0
-offset_right = 228.0
-offset_bottom = 126.0
+offset_left = -169.0
+offset_top = -128.0
+offset_right = 181.0
+offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_50wjk")
-_okButton = NodePath("Panel/Button")
+_okButton = NodePath("TextureRect/Button")
 
-[node name="Panel" type="Panel" parent="."]
-custom_minimum_size = Vector2(456, 270)
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -175.0
+offset_top = -128.0
+offset_right = 175.0
+offset_bottom = 125.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_huu6o")
-theme_override_styles/panel = SubResource("StyleBoxTexture_lx7sb")
+texture = ExtResource("2_xglpw")
+expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect"]
 custom_minimum_size = Vector2(230, 150)
 layout_mode = 1
 anchors_preset = 8
@@ -50,25 +46,31 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -115.0
-offset_top = -85.0
-offset_right = 115.0
-offset_bottom = 65.0
+offset_left = -121.0
+offset_top = -99.5
+offset_right = 109.0
+offset_bottom = 75.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_huu6o")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
-text = "[font_size=14][outline_size=3]Search your surroundings[/outline_size][/font_size] - Click on objects to reveal clues
+text = "[font_size=14][outline_size=3]HOW TO PLAY:
 
-[font_size=14][outline_size=3]Collect clues[/outline_size][/font_size] - they will help you uncover the truth
+Search your surroundings[/outline_size][/font_size] 
+- Click on objects to reveal clues
 
-[font_size=14][outline_size=3]Complete minigames[/outline_size][/font_size] - test your memory and find the pairs
+[font_size=14][outline_size=3]Collect clues[/outline_size][/font_size] 
+- they will help you uncover the truth
 
-[font_size=12][outline_size=3]Read the dialogue[/outline_size][/font_size] – it will be useful later! "
+[font_size=14][outline_size=3]Complete minigames[/outline_size][/font_size] 
+- test your memory and find the pairs
+
+[font_size=12][outline_size=3]Read the dialogue[/outline_size][/font_size]
+ – it will be useful later! "
 fit_content = true
 
-[node name="Button" type="Button" parent="Panel"]
+[node name="Button" type="Button" parent="TextureRect"]
 custom_minimum_size = Vector2(30, 20)
 layout_mode = 1
 anchors_preset = 7
@@ -76,12 +78,12 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -15.0
-offset_top = -51.0
-offset_right = 15.0
-offset_bottom = -31.0
+offset_left = -28.0
+offset_top = -47.5
+offset_right = 16.0
+offset_bottom = -22.5
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_huu6o")
 theme_override_font_sizes/font_size = 11
-text = "OK"
+text = "OK!"

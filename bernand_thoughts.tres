@@ -17,6 +17,7 @@ starts = {
 "honey": &"0_8",
 "honeyfound": &"0_9",
 "honeyhere": &"0_13",
+"later": &"0_14",
 "second": &"0_2"
 }
 nodes = {
@@ -44,6 +45,11 @@ nodes = {
 "link": &"1_13",
 "offset": Vector2(-471.131, -723.341),
 "start_id": "honeyhere"
+},
+"0_14": {
+"link": &"1_14",
+"offset": Vector2(-429, -844.66),
+"start_id": "later"
 },
 "0_2": {
 "link": &"1_2",
@@ -149,6 +155,19 @@ nodes = {
 },
 "size": Vector2(300, 240),
 "speaker": ""
+},
+"1_14": {
+"dialogue": "I'll check this later!",
+"offset": Vector2(-240, -1020),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
 },
 "1_2": {
 "dialogue": "I should check out the computer too",

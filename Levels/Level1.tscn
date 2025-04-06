@@ -1,43 +1,51 @@
-[gd_scene load_steps=53 format=4 uid="uid://bu0y12c7gfv7e"]
+[gd_scene load_steps=62 format=4 uid="uid://bu0y12c7gfv7e"]
 
 [ext_resource type="Script" path="res://Code/Level.cs" id="1_uqqbp"]
 [ext_resource type="Texture2D" uid="uid://bjxo38brfpjof" path="res://art/House_base_curtain.png" id="2_h33wx"]
 [ext_resource type="TileSet" uid="uid://xu544k2gpeo7" path="res://art/leveltiles.tres" id="2_myw2y"]
 [ext_resource type="Theme" uid="uid://dq18l0hyb3bqt" path="res://addons/dialogue_nodes/themes/bubblyClean.theme" id="5_1cjeq"]
-[ext_resource type="Texture2D" uid="uid://nva4fn3qe8f8" path="res://art/lattiamatto.png" id="5_sl3t5"]
+[ext_resource type="Texture2D" uid="uid://chxsblkkq0orb" path="res://art/furniture/Kissa_matto_iso.png" id="5_wuin1"]
+[ext_resource type="Texture2D" uid="uid://b7pc57erqgohf" path="res://art/furniture/seinähylly.png" id="6_d560p"]
 [ext_resource type="Texture2D" uid="uid://kwg43yedefnp" path="res://art/matkalaukku.png" id="6_lu1gs"]
-[ext_resource type="Texture2D" uid="uid://b8e1n27c261w3" path="res://art/Sänky1.png" id="7_d8tn1"]
-[ext_resource type="Texture2D" uid="uid://cshrjlg34sfbb" path="res://art/sammakko_herätyskello.png" id="8_i0hin"]
+[ext_resource type="Texture2D" uid="uid://dr2smcr6urx0l" path="res://art/furniture/seinähylly_pieni.png" id="7_8yb4k"]
+[ext_resource type="Texture2D" uid="uid://bcjvrl40dtvs3" path="res://art/furniture/Sininen_matto_ruokapöytä.png" id="8_7l0aq"]
+[ext_resource type="Texture2D" uid="uid://bxa1dro53xwsu" path="res://art/furniture/Oranssi_matto_sänky.png" id="8_w6wjf"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBubble.gd" id="9_dw4qc"]
-[ext_resource type="Texture2D" uid="uid://y33o4rvw4hhu" path="res://art/vaatekaappi1.png" id="9_jrs01"]
 [ext_resource type="PackedScene" uid="uid://bwvbfdokg5du5" path="res://Character/bernand.tscn" id="10_38n62"]
+[ext_resource type="Texture2D" uid="uid://dsr5ydvy8jfik" path="res://art/furniture/Pitkä_pöytä1.png" id="10_dh7bt"]
 [ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="10_v3aap"]
 [ext_resource type="Resource" uid="uid://dom3qcv5xx1hp" path="res://bernand_thoughts.tres" id="10_wrf1k"]
-[ext_resource type="Texture2D" uid="uid://hsbxhtilpquo" path="res://art/jääkappi.png" id="10_yyxco"]
-[ext_resource type="Texture2D" uid="uid://ceom1gsthvt5u" path="res://art/Hyllykkö_naama.png" id="11_wch52"]
+[ext_resource type="Texture2D" uid="uid://crj5h8jg5ubs1" path="res://art/furniture/Pitkä_pöytä_liina.png" id="11_2su0x"]
 [ext_resource type="Theme" uid="uid://c7sdrp3ltdq24" path="res://addons/dialogue_nodes/themes/pixelart.theme" id="12_6oeu2"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="12_v47gt"]
 [ext_resource type="Resource" uid="uid://dc0xpmus4ce1k" path="res://Bernand_first_scene.tres" id="13_v4oxk"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeWait.gd" id="14_g4w2e"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeGhost.gd" id="15_45o0a"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="16_xve5m"]
-[ext_resource type="Texture2D" uid="uid://btg2o83fjag2w" path="res://art/TietokoneTietokone.png" id="18_b4exs"]
+[ext_resource type="Texture2D" uid="uid://c88frclufxqxn" path="res://art/furniture/Keittiöpöytä.png" id="19_kctaf"]
 [ext_resource type="AudioStream" uid="uid://wteveke4gnd1" path="res://music/sneaky-feet-150618.mp3" id="20_55ul1"]
-[ext_resource type="Texture2D" uid="uid://bsl1g8st8fkjc" path="res://art/Puhelin.png" id="22_38mqv"]
+[ext_resource type="PackedScene" uid="uid://c85od2ripqjrj" path="res://Levels/HowToPlay.tscn" id="22_x1svb"]
+[ext_resource type="Texture2D" uid="uid://bn7gnfkms5ul5" path="res://art/furniture/vaatekaappi.png" id="23_tuud2"]
+[ext_resource type="Texture2D" uid="uid://c0wp2nh8gphsn" path="res://art/furniture/Hyllykkö_liina.png" id="24_ld78t"]
+[ext_resource type="Texture2D" uid="uid://cu1e5y57tvm2" path="res://art/furniture/Ruokaryhmä.png" id="24_me6my"]
+[ext_resource type="Texture2D" uid="uid://q62qc5e55xet" path="res://art/furniture/Puhelin.png" id="25_axi6v"]
 [ext_resource type="Texture2D" uid="uid://c8f6ymrdpajb4" path="res://art/next_pressed.png" id="25_lqb1q"]
-[ext_resource type="Texture2D" uid="uid://diav8sidfanr1" path="res://art/pawsmall.png" id="27_2mh53"]
+[ext_resource type="Texture2D" uid="uid://d08d01msiwln7" path="res://art/furniture/Tietokone.png" id="27_c6o62"]
+[ext_resource type="Texture2D" uid="uid://c2q60vlndxe34" path="res://art/furniture/jääkaappi.png" id="27_g1wm0"]
+[ext_resource type="Texture2D" uid="uid://b2w6x6o06why1" path="res://art/furniture/Sänky.png" id="29_eajy7"]
+[ext_resource type="Texture2D" uid="uid://coo1003pefg1f" path="res://art/furniture/sammakko_herätyskello.png" id="30_u46jw"]
 [ext_resource type="PackedScene" uid="uid://b76xiux4rne1t" path="res://Code/UI/ScoreUI.tscn" id="31_h1356"]
 [ext_resource type="Texture2D" uid="uid://cwj4ivmip8cdq" path="res://art/nallenappi.png" id="31_me71k"]
+[ext_resource type="Texture2D" uid="uid://dtduydqt62vd1" path="res://art/furniture/Uuni.png" id="31_qsxwq"]
 [ext_resource type="Texture2D" uid="uid://chduo7ebrwpte" path="res://art/phonecall.png" id="31_rneb0"]
 [ext_resource type="AudioStream" uid="uid://8uaq1wqwu34a" path="res://music/phone-ringtone.mp3" id="32_583xg"]
 [ext_resource type="FontFile" uid="uid://cw6pyp0ft2pbd" path="res://art/Fonts/boldreel/Boldreel.otf" id="32_b8645"]
-[ext_resource type="Texture2D" uid="uid://b7psqbj4yw3md" path="res://art/clue.png" id="33_88m6g"]
+[ext_resource type="Texture2D" uid="uid://rxh78ns3l8tc" path="res://art/furniture/palasoliisi_taulu.png" id="33_g4cgv"]
 [ext_resource type="PackedScene" uid="uid://bw1b55q33qgnr" path="res://Code/UI/InGameMenu.tscn" id="33_ibxos"]
-[ext_resource type="Texture2D" uid="uid://tbatpjp8sjt0" path="res://art/curtain.png" id="33_qwggj"]
-[ext_resource type="Texture2D" uid="uid://d2e3a1ghryxr1" path="res://art/XX.png" id="34_o6p5i"]
-[ext_resource type="Texture2D" uid="uid://dn6p1oiayjosa" path="res://art/X.png" id="35_77pmh"]
+[ext_resource type="Texture2D" uid="uid://tbatpjp8sjt0" path="res://art/furniture/curtain.png" id="33_qwggj"]
 [ext_resource type="Texture2D" uid="uid://cmffkqiiemf56" path="res://art/settings.1.png" id="36_44lh3"]
 [ext_resource type="Texture2D" uid="uid://bsir1syi7smu0" path="res://art/settings.2.png" id="37_ldiq3"]
+[ext_resource type="Texture2D" uid="uid://s2baactvtf20" path="res://art/cluecard.png" id="37_tgvog"]
 [ext_resource type="FontFile" uid="uid://b8ytita5wvkhy" path="res://art/Fonts/Kalam/Kalam-Bold.ttf" id="37_wj8hl"]
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_kjp2j"]
@@ -228,10 +236,10 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(2.83333, 3.36667, 3.96667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(1.56667, 2.03333, 2.53333, 2.93333, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.261799, 0.523599, 0.261799]
+"values": [-0.0767945, 0.261799, 0.523599, 0.261799, -0.0767945]
 }
 
 [sub_resource type="Animation" id="Animation_i0h5k"]
@@ -259,9 +267,14 @@ _data = {
 "walking": SubResource("Animation_i0h5k")
 }
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("_clueLabel", "_curtainButton", "_settingsButton", "_articleButton", "_computerButton", "_fridgeButton", "_tableButton", "_phoneButton", "_exitMenuButton", "_bedButton", "_frogButton", "_closetButton", "_briefcaseButton", "_exitClueButton", "_menuButton", "_scoreUIControl", "_ringtonePlayer")]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_qak03"]
+vertices = PackedVector2Array(-218, 12, -218, -23.4766, -198.18, -22.5, -193, 12, 156, -30, 156, -95.7266, 175, -95.2422, 175, -40.0078, 170.859, -20, 57, -20, 124, -30, -140, -25, -140, -79.7813, -113.367, -79.2109, -115.383, -26, -128.727, 10, 91, 80, 18, 80.8672, 18, 42, 57, 58.8203, 166, 60.8125, 166, 80.8828, 22, -26, -7, -26, 102, -30, 102, -96, 124, -96, 57, -30, -160, 8.50781, -160, 52, -193, 52, -171.82, -25, -24.1563, -90, -7, -90, -25.1563, -27, 22, -104, 57, -104, -55.8203, -27, -42.7813, 42, -83.8672, 10, -81.1797, -26, -43.7734, 85.8281, -84.8594, 85.1563, -197.172, -81, -172.82, -81, -80.1797, -82, -56.8203, -82)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8), PackedInt32Array(4, 8, 9, 10), PackedInt32Array(11, 12, 13, 14, 15), PackedInt32Array(16, 17, 18, 19), PackedInt32Array(20, 21, 16, 19), PackedInt32Array(22, 9, 19, 18, 23), PackedInt32Array(24, 25, 26, 10), PackedInt32Array(24, 10, 9), PackedInt32Array(27, 24, 9, 22), PackedInt32Array(28, 29, 30, 3, 31), PackedInt32Array(32, 33, 23, 34), PackedInt32Array(22, 35, 36, 27), PackedInt32Array(37, 34, 23, 18, 38, 39, 40), PackedInt32Array(41, 42, 39, 38), PackedInt32Array(2, 43, 44, 31, 3), PackedInt32Array(28, 31, 11, 15), PackedInt32Array(39, 15, 14, 40), PackedInt32Array(37, 40, 45, 46)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(12, -114, 67, -114, 67, -40, 92, -40, 92, -106, 134, -106, 134, -40, 146, -40, 146, -106, 185, -105, 185, -39, 179, -10, 67, -10, 67, 49, 176, 51, 176, 91, 91, 90, 8, 91, 8, 52, -33, 52, -34, 96, -95, 95, -94, 20, -129, 20, -150, 19, -150, 62, -203, 62, -203, 22, -228, 22, -228, -34, -208, -33, -207, -91, -163, -91, -162, -35, -150, -35, -150, -90, -103, -89, -105, -36, -91, -36, -90, -92, -47, -92, -46, -37, -35, -37, -34, -100, 3, -100, 3, -36, 12, -36)])
+
+[node name="Level" type="Node2D" node_paths=PackedStringArray("_clueLabel", "_curtainButton", "_settingsButton", "_articleButton", "_computerButton", "_fridgeButton", "_tableButton", "_phoneButton", "_bedButton", "_frogButton", "_boardButton", "_closetButton", "_briefcaseButton", "_exitClueButton", "_scoreUIControl", "_ringtonePlayer")]
 script = ExtResource("1_uqqbp")
-_clueLabel = NodePath("Clue/clue")
+_clueLabel = NodePath("UI/Clue/clue")
 _curtainButton = NodePath("UI/CurtainButton")
 _settingsButton = NodePath("UI/Settings")
 _articleButton = NodePath("piece")
@@ -269,19 +282,18 @@ _computerButton = NodePath("UI/ComputerButton")
 _fridgeButton = NodePath("UI/FridgeButton")
 _tableButton = NodePath("UI/TableButton")
 _phoneButton = NodePath("UI/Phonebutton")
-_exitMenuButton = NodePath("UI/exitmenu")
 _bedButton = NodePath("UI/bedButton")
 _frogButton = NodePath("UI/frogButton")
+_boardButton = NodePath("UI/board")
 _closetButton = NodePath("UI/closetButton")
 _briefcaseButton = NodePath("UI/briefcaseButton")
-_exitClueButton = NodePath("Clue/exitClue")
-_menuButton = NodePath("UI/exitMenu")
+_exitClueButton = NodePath("UI/Clue/exitClue")
 _scoreUIControl = NodePath("UI/ScoreUI")
 _ringtonePlayer = NodePath("AudioStreamPlayer")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="TextureRect" type="TextureRect" parent="Camera2D"]
+[node name="HouseBG" type="TextureRect" parent="Camera2D"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -298,21 +310,109 @@ stretch_mode = 4
 [node name="borders" type="TileMapLayer" parent="Camera2D"]
 visible = false
 z_index = 3
-tile_map_data = PackedByteArray("AADx//n/BQAAAAAAAADx//r/BQAAAAAAAADx//v/BQAAAAAAAADx//z/BQAAAAAAAADx//3/BQAAAAAAAADx//7/BQAAAAAAAADx////BQAAAAAAAADx/wAABQAAAAAAAADx/wEABQAAAAAAAADx/wIABQAAAAAAAADx/wMABQAAAAAAAADx/wQABQAAAAAAAADx/wUABQAAAAAAAADx/wYABQAAAAAAAADx/wcABQAAAAAAAAAOAPn/BQAAAAAAAAAOAPr/BQAAAAAAAAAOAPv/BQAAAAAAAAAOAPz/BQAAAAAAAAAOAP3/BQAAAAAAAAAOAP7/BQAAAAAAAAAOAP//BQAAAAAAAAAOAAAABQAAAAAAAAAOAAEABQAAAAAAAAAOAAIABQAAAAAAAAAOAAMABQAAAAAAAAAOAAQABQAAAAAAAAAOAAUABQAAAAAAAAAOAAYABQAAAAAAAAAOAAcABQAAAAAAAADy/wcABQAAAAAAAADz/wcABQAAAAAAAAD0/wcABQAAAAAAAAD1/wcABQAAAAAAAAD2/wcABQAAAAAAAAD3/wcABQAAAAAAAAD4/wcABQAAAAAAAAD5/wcABQAAAAAAAAD6/wcABQAAAAAAAAD7/wcABQAAAAAAAAD8/wcABQAAAAAAAAD9/wcABQAAAAAAAAD+/wcABQAAAAAAAAD//wcABQAAAAAAAAAAAAcABQAAAAAAAAABAAcABQAAAAAAAAACAAcABQAAAAAAAAADAAcABQAAAAAAAAAEAAcABQAAAAAAAAAFAAcABQAAAAAAAAAGAAcABQAAAAAAAAAHAAcABQAAAAAAAAAIAAcABQAAAAAAAAAJAAcABQAAAAAAAAAKAAcABQAAAAAAAAALAAcABQAAAAAAAAAMAAcABQAAAAAAAAANAAcABQAAAAAAAADx//j/BQAAAAAAAADy//j/BQAAAAAAAADz//j/BQAAAAAAAAD0//j/BQAAAAAAAAD1//j/BQAAAAAAAAD2//j/BQAAAAAAAAD3//j/BQAAAAAAAAD4//j/BQAAAAAAAAD5//j/BQAAAAAAAAD6//j/BQAAAAAAAAD7//j/BQAAAAAAAAD8//j/BQAAAAAAAAD9//j/BQAAAAAAAAD+//j/BQAAAAAAAAD///j/BQAAAAAAAAAAAPj/BQAAAAAAAAABAPj/BQAAAAAAAAACAPj/BQAAAAAAAAADAPj/BQAAAAAAAAAEAPj/BQAAAAAAAAAFAPj/BQAAAAAAAAAGAPj/BQAAAAAAAAAHAPj/BQAAAAAAAAAIAPj/BQAAAAAAAAAJAPj/BQAAAAAAAAAKAPj/BQAAAAAAAAALAPj/BQAAAAAAAAAMAPj/BQAAAAAAAAANAPj/BQAAAAAAAAAOAPj/BQAAAAAAAADy//n/BQAAAAAAAADy//r/BQAAAAAAAADy//v/BQAAAAAAAADz//n/BQAAAAAAAADz//r/BQAAAAAAAADz//v/BQAAAAAAAAD0//n/BQAAAAAAAAD0//r/BQAAAAAAAAD0//v/BQAAAAAAAAD1//n/BQAAAAAAAAD1//r/BQAAAAAAAAD1//v/BQAAAAAAAAD2//n/BQAAAAAAAAD2//r/BQAAAAAAAAD2//v/BQAAAAAAAAD3//n/BQAAAAAAAAD3//r/BQAAAAAAAAD3//v/BQAAAAAAAAD4//n/BQAAAAAAAAD4//r/BQAAAAAAAAD4//v/BQAAAAAAAAD5//n/BQAAAAAAAAD5//r/BQAAAAAAAAD5//v/BQAAAAAAAAD6//n/BQAAAAAAAAD6//r/BQAAAAAAAAD6//v/BQAAAAAAAAD7//n/BQAAAAAAAAD7//r/BQAAAAAAAAD7//v/BQAAAAAAAAD8//n/BQAAAAAAAAD8//r/BQAAAAAAAAD8//v/BQAAAAAAAAD9//n/BQAAAAAAAAD9//r/BQAAAAAAAAD9//v/BQAAAAAAAAD+//n/BQAAAAAAAAD+//r/BQAAAAAAAAD+//v/BQAAAAAAAAD///n/BQAAAAAAAAD///r/BQAAAAAAAAD///v/BQAAAAAAAAAAAPn/BQAAAAAAAAAAAPr/BQAAAAAAAAAAAPv/BQAAAAAAAAABAPn/BQAAAAAAAAABAPr/BQAAAAAAAAABAPv/BQAAAAAAAAACAPn/BQAAAAAAAAACAPr/BQAAAAAAAAACAPv/BQAAAAAAAAADAPn/BQAAAAAAAAADAPr/BQAAAAAAAAADAPv/BQAAAAAAAAAEAPn/BQAAAAAAAAAEAPr/BQAAAAAAAAAEAPv/BQAAAAAAAAAFAPn/BQAAAAAAAAAFAPr/BQAAAAAAAAAFAPv/BQAAAAAAAAAGAPn/BQAAAAAAAAAGAPr/BQAAAAAAAAAGAPv/BQAAAAAAAAAHAPn/BQAAAAAAAAAHAPr/BQAAAAAAAAAHAPv/BQAAAAAAAAAIAPn/BQAAAAAAAAAIAPr/BQAAAAAAAAAIAPv/BQAAAAAAAAAJAPn/BQAAAAAAAAAJAPr/BQAAAAAAAAAJAPv/BQAAAAAAAAAKAPn/BQAAAAAAAAAKAPr/BQAAAAAAAAAKAPv/BQAAAAAAAAALAPn/BQAAAAAAAAALAPr/BQAAAAAAAAALAPv/BQAAAAAAAAAMAPn/BQAAAAAAAAAMAPr/BQAAAAAAAAAMAPv/BQAAAAAAAAANAPn/BQAAAAAAAAANAPr/BQAAAAAAAAANAPv/BQAAAAAAAADz//z/BQAAAAAAAADy//z/BQAAAAAAAADy//3/BQAAAAAAAADz//3/BQAAAAAAAAD0//3/BQAAAAAAAAD0//z/BQAAAAAAAAD9//z/BQAAAAAAAAD8//z/BQAAAAAAAADy/wUABQAAAAAAAADz/wUABQAAAAAAAAD0/wUABQAAAAAAAAD1/wUABQAAAAAAAAD2/wUABQAAAAAAAAD2/wQABQAAAAAAAADy/wQABQAAAAAAAADz/wQABQAAAAAAAAD0/wQABQAAAAAAAAD1/wQABQAAAAAAAADy/wYABQAAAAAAAADz/wYABQAAAAAAAAD0/wYABQAAAAAAAAD1/wYABQAAAAAAAAD2/wYABQAAAAAAAADy/wMABQAAAAAAAADz/wMABQAAAAAAAAD0/wMABQAAAAAAAAD1/wMABQAAAAAAAAD2/wMABQAAAAAAAAD3/wMABQAAAAAAAAD3/wQABQAAAAAAAAD3/wUABQAAAAAAAAD3/wYABQAAAAAAAAD+//z/BQAAAAAAAAD///z/BQAAAAAAAAD6//z/BQAAAAAAAAD7//z/BQAAAAAAAAAKAPz/BQAAAAAAAAALAPz/BQAAAAAAAAAMAPz/BQAAAAAAAAAMAP3/BQAAAAAAAAALAP3/BQAAAAAAAAAKAP3/BQAAAAAAAAD2//z/BQAAAAAAAAD3//z/BQAAAAAAAAD4//z/BQAAAAAAAAANAPz/BQAAAAAAAAANAP3/BQAAAAAAAAAHAPz/BQAAAAAAAAAIAPz/BQAAAAAAAAAJAPz/BQAAAAAAAAAFAPz/BQAAAAAAAAAGAPz/BQAAAAAAAAAFAP3/BQAAAAAAAAAGAP3/BQAAAAAAAAAHAP3/BQAAAAAAAAAIAP3/BQAAAAAAAAAJAP3/BQAAAAAAAAD5/wYABQAAAAAAAAD6/wYABQAAAAAAAAD7/wYABQAAAAAAAAD4/wYABQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AADx//n/BQAAAAAAAADx//r/BQAAAAAAAADx//v/BQAAAAAAAADx//z/BQAAAAAAAADx//3/BQAAAAAAAADx//7/BQAAAAAAAADx////BQAAAAAAAADx/wAABQAAAAAAAADx/wEABQAAAAAAAADx/wIABQAAAAAAAADx/wMABQAAAAAAAADx/wQABQAAAAAAAADx/wUABQAAAAAAAADx/wYABQAAAAAAAADx/wcABQAAAAAAAAAOAPn/BQAAAAAAAAAOAPr/BQAAAAAAAAAOAPv/BQAAAAAAAAAOAPz/BQAAAAAAAAAOAP3/BQAAAAAAAAAOAP7/BQAAAAAAAAAOAP//BQAAAAAAAAAOAAAABQAAAAAAAAAOAAEABQAAAAAAAAAOAAIABQAAAAAAAAAOAAMABQAAAAAAAAAOAAQABQAAAAAAAAAOAAUABQAAAAAAAAAOAAYABQAAAAAAAAAOAAcABQAAAAAAAADy/wcABQAAAAAAAADz/wcABQAAAAAAAAD0/wcABQAAAAAAAAD1/wcABQAAAAAAAAD2/wcABQAAAAAAAAD3/wcABQAAAAAAAAD4/wcABQAAAAAAAAD5/wcABQAAAAAAAAD6/wcABQAAAAAAAAD7/wcABQAAAAAAAAD8/wcABQAAAAAAAAD9/wcABQAAAAAAAAD+/wcABQAAAAAAAAD//wcABQAAAAAAAAAAAAcABQAAAAAAAAABAAcABQAAAAAAAAACAAcABQAAAAAAAAADAAcABQAAAAAAAAAEAAcABQAAAAAAAAAFAAcABQAAAAAAAAAGAAcABQAAAAAAAAAHAAcABQAAAAAAAAAIAAcABQAAAAAAAAAJAAcABQAAAAAAAAAKAAcABQAAAAAAAAALAAcABQAAAAAAAAAMAAcABQAAAAAAAAANAAcABQAAAAAAAADx//j/BQAAAAAAAADy//j/BQAAAAAAAADz//j/BQAAAAAAAAD0//j/BQAAAAAAAAD1//j/BQAAAAAAAAD2//j/BQAAAAAAAAD3//j/BQAAAAAAAAD4//j/BQAAAAAAAAD5//j/BQAAAAAAAAD6//j/BQAAAAAAAAD7//j/BQAAAAAAAAD8//j/BQAAAAAAAAD9//j/BQAAAAAAAAD+//j/BQAAAAAAAAD///j/BQAAAAAAAAAAAPj/BQAAAAAAAAABAPj/BQAAAAAAAAACAPj/BQAAAAAAAAADAPj/BQAAAAAAAAAEAPj/BQAAAAAAAAAFAPj/BQAAAAAAAAAGAPj/BQAAAAAAAAAHAPj/BQAAAAAAAAAIAPj/BQAAAAAAAAAJAPj/BQAAAAAAAAAKAPj/BQAAAAAAAAALAPj/BQAAAAAAAAAMAPj/BQAAAAAAAAANAPj/BQAAAAAAAAAOAPj/BQAAAAAAAADy//n/BQAAAAAAAADy//r/BQAAAAAAAADy//v/BQAAAAAAAADz//n/BQAAAAAAAADz//r/BQAAAAAAAADz//v/BQAAAAAAAAD0//n/BQAAAAAAAAD0//r/BQAAAAAAAAD0//v/BQAAAAAAAAD1//n/BQAAAAAAAAD1//r/BQAAAAAAAAD1//v/BQAAAAAAAAD2//n/BQAAAAAAAAD2//r/BQAAAAAAAAD2//v/BQAAAAAAAAD3//n/BQAAAAAAAAD3//r/BQAAAAAAAAD3//v/BQAAAAAAAAD4//n/BQAAAAAAAAD4//r/BQAAAAAAAAD4//v/BQAAAAAAAAD5//n/BQAAAAAAAAD5//r/BQAAAAAAAAD5//v/BQAAAAAAAAD6//n/BQAAAAAAAAD6//r/BQAAAAAAAAD6//v/BQAAAAAAAAD7//n/BQAAAAAAAAD7//r/BQAAAAAAAAD7//v/BQAAAAAAAAD8//n/BQAAAAAAAAD8//r/BQAAAAAAAAD8//v/BQAAAAAAAAD9//n/BQAAAAAAAAD9//r/BQAAAAAAAAD9//v/BQAAAAAAAAD+//n/BQAAAAAAAAD+//r/BQAAAAAAAAD+//v/BQAAAAAAAAD///n/BQAAAAAAAAD///r/BQAAAAAAAAD///v/BQAAAAAAAAAAAPn/BQAAAAAAAAAAAPr/BQAAAAAAAAAAAPv/BQAAAAAAAAABAPn/BQAAAAAAAAABAPr/BQAAAAAAAAABAPv/BQAAAAAAAAACAPn/BQAAAAAAAAACAPr/BQAAAAAAAAACAPv/BQAAAAAAAAADAPn/BQAAAAAAAAADAPr/BQAAAAAAAAADAPv/BQAAAAAAAAAEAPn/BQAAAAAAAAAEAPr/BQAAAAAAAAAEAPv/BQAAAAAAAAAFAPn/BQAAAAAAAAAFAPr/BQAAAAAAAAAFAPv/BQAAAAAAAAAGAPn/BQAAAAAAAAAGAPr/BQAAAAAAAAAGAPv/BQAAAAAAAAAHAPn/BQAAAAAAAAAHAPr/BQAAAAAAAAAHAPv/BQAAAAAAAAAIAPn/BQAAAAAAAAAIAPr/BQAAAAAAAAAIAPv/BQAAAAAAAAAJAPn/BQAAAAAAAAAJAPr/BQAAAAAAAAAJAPv/BQAAAAAAAAAKAPn/BQAAAAAAAAAKAPr/BQAAAAAAAAAKAPv/BQAAAAAAAAALAPn/BQAAAAAAAAALAPr/BQAAAAAAAAALAPv/BQAAAAAAAAAMAPn/BQAAAAAAAAAMAPr/BQAAAAAAAAAMAPv/BQAAAAAAAAANAPn/BQAAAAAAAAANAPr/BQAAAAAAAAANAPv/BQAAAAAAAADz//z/BQAAAAAAAADy//z/BQAAAAAAAAD0//z/BQAAAAAAAAD9//z/BQAAAAAAAAD8//z/BQAAAAAAAADy/wUABQAAAAAAAADz/wUABQAAAAAAAAD0/wUABQAAAAAAAAD1/wUABQAAAAAAAAD2/wQABQAAAAAAAADy/wQABQAAAAAAAADz/wQABQAAAAAAAAD0/wQABQAAAAAAAAD1/wQABQAAAAAAAADy/wYABQAAAAAAAADz/wYABQAAAAAAAAD0/wYABQAAAAAAAAD1/wYABQAAAAAAAADy/wMABQAAAAAAAADz/wMABQAAAAAAAAD0/wMABQAAAAAAAAD1/wMABQAAAAAAAAD2/wMABQAAAAAAAAD3/wMABQAAAAAAAAD3/wQABQAAAAAAAAD+//z/BQAAAAAAAAD///z/BQAAAAAAAAD6//z/BQAAAAAAAAD7//z/BQAAAAAAAAAMAPz/BQAAAAAAAAD2//z/BQAAAAAAAAD3//z/BQAAAAAAAAD4//z/BQAAAAAAAAANAPz/BQAAAAAAAAAAAPz/BQAAAAAAAAANAAIABQAAAAAAAAAMAAIABQAAAAAAAAALAAIABQAAAAAAAAAKAAIABQAAAAAAAAAJAAIABQAAAAAAAAAIAAIABQAAAAAAAAAHAAIABQAAAAAAAAAGAAIABQAAAAAAAAAFAAIABQAAAAAAAAANAAAABQAAAAAAAAANAP//BQAAAAAAAAANAP7/BQAAAAAAAAANAP3/BQAAAAAAAAAFAAEABQAAAAAAAAAGAAEABQAAAAAAAAAHAAEABQAAAAAAAAAIAAEABQAAAAAAAAAJAAEABQAAAAAAAAAKAAEABQAAAAAAAAALAAEABQAAAAAAAAAMAAEABQAAAAAAAAANAAEABQAAAAAAAAAMAP3/BQAAAAAAAAAMAP7/BQAAAAAAAAAMAP//BQAAAAAAAAAMAAAABQAAAAAAAAD2/wUABQAAAAAAAAD3/wUABQAAAAAAAAD3/wYABQAAAAAAAAALAAMABQAAAAAAAAAMAAMABQAAAAAAAAANAAMABQAAAAAAAAANAAQABQAAAAAAAAANAAUABQAAAAAAAAANAAYABQAAAAAAAAAMAAYABQAAAAAAAAALAAYABQAAAAAAAAALAAUABQAAAAAAAAAMAAUABQAAAAAAAAAMAAQABQAAAAAAAAALAAQABQAAAAAAAAAGAPz/BQAAAAAAAAAHAPz/BQAAAAAAAAAIAPz/BQAAAAAAAAAJAPz/BQAAAAAAAAAKAPz/BQAAAAAAAAALAPz/BQAAAAAAAAAFAPz/BQAAAAAAAAD2/wYABQAAAAAAAAA=")
 tile_set = ExtResource("2_myw2y")
+
+[node name="carpet" type="TextureRect" parent="Camera2D"]
+offset_left = -98.0
+offset_top = -18.0
+offset_right = 70.0
+offset_bottom = 62.0
+texture = ExtResource("5_wuin1")
+expand_mode = 1
+
+[node name="shelves" type="TextureRect" parent="Camera2D"]
+offset_left = -150.0
+offset_top = -105.0
+offset_right = -96.0
+offset_bottom = -73.0
+texture = ExtResource("6_d560p")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="shelves4" type="TextureRect" parent="Camera2D"]
+offset_left = -43.0
+offset_top = -105.0
+offset_right = 11.0
+offset_bottom = -73.0
+texture = ExtResource("6_d560p")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="shelves2" type="TextureRect" parent="Camera2D"]
+offset_left = -210.0
+offset_top = -103.0
+offset_right = -186.0
+offset_bottom = -71.0
+texture = ExtResource("7_8yb4k")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="shelves3" type="TextureRect" parent="Camera2D"]
+offset_left = -180.0
+offset_top = -104.0
+offset_right = -156.0
+offset_bottom = -72.0
+texture = ExtResource("7_8yb4k")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="carpetBlue" type="TextureRect" parent="Camera2D"]
+offset_left = 98.0
+offset_top = 68.0
+offset_right = 221.0
+offset_bottom = 118.0
+texture = ExtResource("8_7l0aq")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="carpetOrange" type="TextureRect" parent="Camera2D"]
+offset_left = -182.0
+offset_top = 13.0
+offset_right = -119.0
+offset_bottom = 103.0
+texture = ExtResource("8_w6wjf")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="table" type="TextureRect" parent="Camera2D"]
+z_index = 4
+offset_top = 57.0
+offset_right = 90.0
+offset_bottom = 124.0
+texture = ExtResource("10_dh7bt")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="table2" type="TextureRect" parent="Camera2D"]
+z_index = 4
+offset_left = -96.0
+offset_top = 45.0
+offset_right = -1.0
+offset_bottom = 125.0
+texture = ExtResource("11_2su0x")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="Bernand" parent="Camera2D" instance=ExtResource("10_38n62")]
 process_mode = 1
-z_index = 2
+z_index = 3
 Speed = 200
 
-[node name="TextureRect2" type="TextureRect" parent="Camera2D"]
-offset_left = -128.0
-offset_top = -23.0
-offset_right = 112.0
-offset_bottom = 91.0
-texture = ExtResource("5_sl3t5")
-expand_mode = 1
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Camera2D/Bernand"]
+path_postprocessing = 1
+simplify_path = true
+avoidance_enabled = true
+
+[node name="kitchentable" type="TextureButton" parent="Camera2D"]
+z_index = 2
+offset_left = 102.0
+offset_top = -75.0
+offset_right = 226.0
+offset_bottom = 55.0
+texture_normal = ExtResource("19_kctaf")
+ignore_texture_size = true
+stretch_mode = 4
 
 [node name="DialogueBubble" type="RichTextLabel" parent="." node_paths=PackedStringArray("follow_node")]
 visible = false
@@ -375,6 +475,21 @@ offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="howToPlay" parent="UI" instance=ExtResource("22_x1svb")]
+visible = false
+layout_mode = 1
+
+[node name="dinnertable" type="TextureButton" parent="UI"]
+z_index = 3
+layout_mode = 0
+offset_left = 337.0
+offset_top = 196.0
+offset_right = 443.0
+offset_bottom = 249.0
+texture_normal = ExtResource("24_me6my")
+ignore_texture_size = true
+stretch_mode = 4
+
 [node name="DialogueBox" type="Panel" parent="UI"]
 process_mode = 3
 visible = false
@@ -392,151 +507,199 @@ scroll_speed = 1000
 custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_lhdac"), SubResource("RichTextEffect_ueyag"), SubResource("RichTextEffect_1bvc0")])
 next_icon = ExtResource("25_lqb1q")
 
-[node name="ScoreUI" parent="UI" instance=ExtResource("31_h1356")]
-visible = false
-layout_mode = 1
-offset_left = 3.0
-offset_top = 7.0
-offset_right = -305.0
-offset_bottom = 32.0
-theme = SubResource("Theme_imh8p")
-
 [node name="closetButton" type="TextureButton" parent="UI"]
 layout_mode = 0
-offset_left = 100.0
-offset_top = 2.0
-offset_right = 210.0
-offset_bottom = 112.0
-texture_normal = ExtResource("9_jrs01")
+offset_left = 135.0
+offset_top = 21.0
+offset_right = 184.0
+offset_bottom = 104.0
+texture_normal = ExtResource("23_tuud2")
 ignore_texture_size = true
-stretch_mode = 0
+stretch_mode = 5
 
 [node name="CurtainButton" type="TextureButton" parent="UI"]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 14.0
 offset_right = 302.0
-offset_bottom = 85.0
+offset_bottom = 88.0
 pivot_offset = Vector2(35, 70)
 texture_normal = ExtResource("33_qwggj")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="briefcaseButton" type="TextureButton" parent="UI"]
-layout_mode = 0
-offset_left = 359.0
-offset_top = 152.0
-offset_right = 398.0
-offset_bottom = 191.0
-texture_normal = ExtResource("6_lu1gs")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="FridgeButton" type="TextureButton" parent="UI"]
-layout_mode = 0
-offset_left = 314.0
-offset_top = 6.0
-offset_right = 406.0
-offset_bottom = 98.0
-texture_normal = ExtResource("10_yyxco")
+texture_pressed = ExtResource("33_qwggj")
 ignore_texture_size = true
 stretch_mode = 0
 
 [node name="Phonebutton" type="TextureButton" parent="UI"]
 layout_mode = 0
-offset_left = 180.0
-offset_top = 49.0
-offset_right = 243.0
-offset_bottom = 112.0
-texture_normal = ExtResource("22_38mqv")
-texture_pressed = ExtResource("22_38mqv")
+offset_left = 193.0
+offset_top = 54.0
+offset_right = 234.0
+offset_bottom = 100.0
+texture_normal = ExtResource("25_axi6v")
 ignore_texture_size = true
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="ComputerButton" type="TextureButton" parent="UI"]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 30.0
-offset_right = 140.0
-offset_bottom = 171.0
+offset_left = 20.0
+offset_top = 47.0
+offset_right = 116.0
+offset_bottom = 153.0
 scale = Vector2(0.5, 0.5)
-texture_normal = ExtResource("18_b4exs")
+texture_normal = ExtResource("27_c6o62")
 ignore_texture_size = true
 stretch_mode = 0
 
 [node name="TableButton" type="TextureButton" parent="UI"]
 layout_mode = 0
-offset_left = 70.0
-offset_top = 50.0
-offset_right = 133.0
-offset_bottom = 113.0
-texture_normal = ExtResource("11_wch52")
+offset_left = 81.0
+offset_top = 58.0
+offset_right = 123.0
+offset_bottom = 100.0
+texture_normal = ExtResource("24_ld78t")
 ignore_texture_size = true
 stretch_mode = 0
 
 [node name="bedButton" type="TextureButton" parent="UI"]
 z_index = 3
 layout_mode = 0
-offset_left = 1.0
-offset_top = 146.0
+offset_left = 6.0
+offset_top = 143.0
 offset_right = 104.0
-offset_bottom = 249.0
-texture_normal = ExtResource("7_d8tn1")
+offset_bottom = 207.0
+texture_normal = ExtResource("29_eajy7")
 ignore_texture_size = true
-stretch_mode = 6
+stretch_mode = 4
 
 [node name="frogButton" type="TextureButton" parent="UI"]
 z_index = 3
 layout_mode = 0
-offset_left = 107.0
-offset_top = 192.0
-offset_right = 171.0
-offset_bottom = 256.0
-texture_normal = ExtResource("8_i0hin")
+offset_left = 11.0
+offset_top = 207.0
+offset_right = 53.0
+offset_bottom = 249.0
+texture_normal = ExtResource("30_u46jw")
 ignore_texture_size = true
-stretch_mode = 0
+stretch_mode = 4
+
+[node name="ovenButton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 371.0
+offset_top = 24.0
+offset_right = 415.0
+offset_bottom = 95.0
+texture_normal = ExtResource("31_qsxwq")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="FridgeButton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 316.0
+offset_top = 18.0
+offset_right = 366.0
+offset_bottom = 95.0
+texture_normal = ExtResource("27_g1wm0")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="briefcaseButton" type="TextureButton" parent="UI"]
+z_index = 2
+z_as_relative = false
+layout_mode = 0
+offset_left = 364.0
+offset_top = 160.0
+offset_right = 393.0
+offset_bottom = 187.0
+texture_normal = ExtResource("6_lu1gs")
+ignore_texture_size = true
+stretch_mode = 4
+flip_h = true
+
+[node name="board" type="TextureButton" parent="UI"]
+z_index = 2
+z_as_relative = false
+layout_mode = 0
+offset_left = 300.0
+offset_top = 134.0
+offset_right = 362.0
+offset_bottom = 187.0
+texture_normal = ExtResource("33_g4cgv")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Clue" type="TextureRect" parent="UI"]
+visible = false
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = -131.0
+offset_right = 136.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("37_tgvog")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="clue" type="Label" parent="UI/Clue"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.5
+offset_top = 22.0
+offset_right = 75.5
+offset_bottom = 216.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("37_wj8hl")
+theme_override_font_sizes/font_size = 12
+text = "HONEY BUSINESS 
+GONE WRONG?!?!
+
+Mayor exposed!!...
+Microchip found from the mayors VERY yucky honey......
+
+Mayor EVEN confirms:
+“Yes, It’s true-...\"
+
+Author: MR.Skunk"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+structured_text_bidi_override_options = [null]
+
+[node name="exitClue" type="Button" parent="UI/Clue"]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 216.0
+offset_right = 147.0
+offset_bottom = 241.0
+theme = ExtResource("10_v3aap")
+text = "OK"
 
 [node name="InGameMenu" parent="UI" instance=ExtResource("33_ibxos")]
 visible = false
-z_index = 11
+top_level = true
+z_index = 30
 layout_mode = 1
-offset_left = -199.0
-offset_top = -97.5
-offset_right = 201.0
-offset_bottom = 62.5
-
-[node name="exitMenu" type="Button" parent="UI"]
-process_mode = 3
-visible = false
-z_index = 20
-layout_mode = 0
-offset_left = 183.0
-offset_top = 150.0
-offset_right = 275.0
-offset_bottom = 173.0
-theme = ExtResource("10_v3aap")
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("32_b8645")
-theme_override_font_sizes/font_size = 12
-text = "main menu"
-icon = ExtResource("27_2mh53")
-
-[node name="exitmenu" type="TextureButton" parent="UI"]
-process_mode = 3
-visible = false
-z_index = 20
-layout_mode = 0
-offset_left = 316.0
-offset_top = 21.0
-offset_right = 353.0
-offset_bottom = 58.0
-texture_normal = ExtResource("34_o6p5i")
-texture_pressed = ExtResource("35_77pmh")
-texture_hover = ExtResource("35_77pmh")
-texture_disabled = ExtResource("35_77pmh")
-texture_focused = ExtResource("35_77pmh")
-ignore_texture_size = true
-stretch_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 400.0
+offset_bottom = 160.0
+grow_horizontal = 1
+grow_vertical = 1
+use_top_left = true
 
 [node name="Settings" type="TextureButton" parent="UI"]
 process_mode = 3
@@ -556,60 +719,13 @@ texture_pressed = ExtResource("37_ldiq3")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="Clue" type="TextureRect" parent="."]
-visible = false
-z_index = 5
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -133.0
-offset_top = -131.0
-offset_right = 136.0
-offset_bottom = 140.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("33_88m6g")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="clue" type="Label" parent="Clue"]
+[node name="ScoreUI" parent="UI" instance=ExtResource("31_h1356")]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -75.5
-offset_top = 30.0
-offset_right = 75.5
-offset_bottom = 212.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("37_wj8hl")
-theme_override_font_sizes/font_size = 12
-text = "HONEY BUSINESS
- GONE WRONG?!?!
------------------------
-Mayor exposed!!...
-Microchip found from the mayors VERY yucky honey......
-
-Mayor EVEN confirms:
-“Yes, It’s true-...\"
-
-Author: MR.Skunk"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-structured_text_bidi_override_options = [null]
-
-[node name="exitClue" type="Button" parent="Clue"]
-layout_mode = 0
-offset_left = 116.0
-offset_top = 217.0
-offset_right = 147.0
-offset_bottom = 242.0
-theme = ExtResource("10_v3aap")
-text = "OK"
+offset_left = 3.0
+offset_top = 7.0
+offset_right = -305.0
+offset_bottom = 32.0
+theme = SubResource("Theme_imh8p")
 
 [node name="piece" type="TextureButton" parent="."]
 z_index = 3
@@ -628,3 +744,7 @@ stretch_mode = 0
 libraries = {
 "": SubResource("AnimationLibrary_dmvwt")
 }
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_qak03")

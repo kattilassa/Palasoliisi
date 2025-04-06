@@ -1,12 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://bw1b55q33qgnr"]
+[gd_scene load_steps=10 format=3 uid="uid://bw1b55q33qgnr"]
 
 [ext_resource type="Texture2D" uid="uid://b3nh22r7e4cko" path="res://art/card.png" id="1_n3vpn"]
 [ext_resource type="PackedScene" uid="uid://b60yxlkl1xjot" path="res://Code/UI/Settings/VolumeSettings/VolumeSettings.tscn" id="1_o5jel"]
+[ext_resource type="Script" path="res://Code/UI/InGameMenu.cs" id="1_s8l6n"]
 [ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="3_qdc1a"]
 [ext_resource type="FontFile" uid="uid://cw6pyp0ft2pbd" path="res://art/Fonts/boldreel/Boldreel.otf" id="4_xoeml"]
+[ext_resource type="Texture2D" uid="uid://cwj4ivmip8cdq" path="res://art/nallenappi.png" id="5_uffk5"]
+[ext_resource type="Texture2D" uid="uid://diav8sidfanr1" path="res://art/pawsmall.png" id="7_fyeb0"]
+[ext_resource type="Texture2D" uid="uid://d2e3a1ghryxr1" path="res://art/XX.png" id="8_6s68y"]
+[ext_resource type="Texture2D" uid="uid://dn6p1oiayjosa" path="res://art/X.png" id="9_iiupo"]
 
-[node name="InGameMenu" type="CenterContainer"]
+[node name="InGameMenu" type="CenterContainer" node_paths=PackedStringArray("_exitMenuButton", "_menuButton")]
 process_mode = 3
+z_index = 20
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -18,6 +24,9 @@ offset_right = 200.0
 offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_s8l6n")
+_exitMenuButton = NodePath("TextureRect/exitmenu")
+_menuButton = NodePath("TextureRect/exitMenu")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = 5
@@ -61,3 +70,51 @@ theme_override_fonts/font = ExtResource("4_xoeml")
 theme_override_font_sizes/font_size = 20
 text = "SETTINGS"
 horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = -16.0
+offset_right = 167.0
+offset_bottom = 25.0
+texture = ExtResource("5_uffk5")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="exitMenu" type="Button" parent="TextureRect"]
+process_mode = 3
+z_index = 24
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -46.0
+offset_top = -38.0
+offset_right = 46.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_qdc1a")
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_xoeml")
+theme_override_font_sizes/font_size = 12
+text = "main menu"
+icon = ExtResource("7_fyeb0")
+
+[node name="exitmenu" type="TextureButton" parent="TextureRect"]
+process_mode = 3
+z_index = 24
+layout_mode = 0
+offset_left = 282.0
+offset_top = -13.0
+offset_right = 319.0
+offset_bottom = 24.0
+texture_normal = ExtResource("8_6s68y")
+texture_pressed = ExtResource("9_iiupo")
+texture_hover = ExtResource("9_iiupo")
+texture_disabled = ExtResource("9_iiupo")
+texture_focused = ExtResource("9_iiupo")
+ignore_texture_size = true
+stretch_mode = 0

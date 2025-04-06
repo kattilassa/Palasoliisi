@@ -19,7 +19,7 @@ namespace PalaSoliisi
 		public bool _isQuizDone = false;
 		[Export] public Label _clueLabel;
 		private Control _UI;
-		private Control _inGameMenu;
+		public Control _inGameMenu;
 		[Export] private TextureButton _curtainButton = null;
 		[Export] private TextureButton _settingsButton = null;
 		[Export] private TextureButton _articleButton = null;
@@ -27,15 +27,14 @@ namespace PalaSoliisi
 		[Export] private TextureButton _fridgeButton = null;
 		[Export] private TextureButton _tableButton = null;
 		[Export] private TextureButton _phoneButton = null;
-		[Export] private TextureButton _exitMenuButton = null;
 		[Export] private TextureButton _bedButton = null;
 		[Export] private TextureButton _frogButton = null;
+		[Export] private TextureButton _boardButton = null;
 		[Export] private TextureButton _closetButton = null;
 		[Export] private TextureButton _briefcaseButton = null;
 		[Export] private Button _exitClueButton = null;
-		[Export] private Button _menuButton = null;
 		[Export] private string _miniGameScenePath = "res://Levels/MiniGame.tscn";
-		[Export] private string _howToPlayScenePath = "res://Levels/HowToPlay.tscn";
+		//[Export] private string _howToPlayScenePath = "res://Levels/HowToPlay.tscn";
 		[Export] private string _goodEndScenePath = "res://Levels/GoodEnd.tscn";
 		[Export] private string _badEndScenePath = "res://Levels/BadEnd.tscn";
 		private SceneTree _optionsSceneTree = null;
@@ -69,13 +68,12 @@ namespace PalaSoliisi
 		private PackedScene _obstacleScene = null;
 		private PackedScene _dialogueScene = null;
 		private PackedScene _miniGameScene = null;
-		private PackedScene _howToPlayScene = null;
+		//private PackedScene _howToPlayScene = null;
 		private PackedScene _finalQuizScene = null;
 		private PackedScene _endScene = null;
 		private MiniGame _miniGame = null;
-		private PopUp _howToPlay = null;
+		public Control _howToPlay = null;
 		private Ending _ending = null;
-
 		private int _articlePieces = 0;
 		private int _miniGameTurns = 0;
 		private int _testPoints = 0;
@@ -148,28 +146,9 @@ namespace PalaSoliisi
 		{
 			base._Ready();
 			GetTree().Paused = false;
-			if (_howToPlay != null)
-			{
-				_howToPlay.QueueFree();
-				_howToPlay = null;
-			}
-
-			if (_howToPlayScene == null)
-			{
-				//Initialize new minigame
-				_howToPlayScene = ResourceLoader.Load<PackedScene>(_howToPlayScenePath);
-				if (_howToPlayScene == null)
-				{
-					GD.PrintErr("PopUp can't be found");
-					return;
-				}
-			}
-			_howToPlay = _howToPlayScene.Instantiate<PopUp>();
-			AddChild(_howToPlay);
-
 			_inGameSceneTree = GetTree();
-			_menuButton.Hide();
 			_UI = GetNode<Control>("UI");
+			_howToPlay= GetNode<Control>("UI/howToPlay");
 			_inGameMenu = GetNode<Control>("UI/InGameMenu");
 			_dialogueBox = GetNode("UI/DialogueBox");
 			_dialogueBubble = GetNode("DialogueBubble");
@@ -178,20 +157,18 @@ namespace PalaSoliisi
 			 _dialogueBox.Connect("dialogue_ended", new Callable(this, nameof(OnDialogueEnded)));
 			 _dialogueBox.Connect("dialogue_started", new Callable(this, nameof(OnDialogueStarted)));
 			  _dialogueBubble.Connect("dialogue_started", new Callable(this, nameof(OnDialogueBubbleStarted)));
-			_menuButton.Connect(Button.SignalName.Pressed, new Callable(this, nameof(OnMenuPressed)));
 			_settingsButton.Connect("gui_input", new Callable(this, nameof(OnSettingsGuiInput)));
 			_phoneEffect = GetNode<TextureRect>("alarmed");
 			_phoneEffect.Hide();
-			_exitMenuButton.Hide();
-			_clueCard = GetNode<TextureRect>("Clue");
-			_clueLabel = GetNode<Label>("Clue/clue");
+			_clueCard = GetNode<TextureRect>("UI/Clue");
+			_clueLabel = GetNode<Label>("UI/Clue/clue");
 			//_finalQuiz = GetNode<FinalQuiz>("Level/FinalQuiz.tscn");
 
 				_articleButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnArticlePressed)));
 
-				_exitMenuButton.Connect(Button.SignalName.Pressed,
-				new Callable(this, nameof(OnSettingsPressed)));
+				//_exitMenuButton.Connect(Button.SignalName.Pressed,
+				//new Callable(this, nameof(OnSettingsPressed)));
 
 				_exitClueButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(clueExit)));
@@ -210,6 +187,9 @@ namespace PalaSoliisi
 				new Callable(this, nameof(OnBedPressed)));
 				_frogButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnFrogPressed)));
+
+				_boardButton.Connect(Button.SignalName.Pressed,
+				new Callable(this, nameof(OnBoardPressed)));
 //
 				_curtainButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnCurtainPressed)));
@@ -303,7 +283,11 @@ namespace PalaSoliisi
 
         public void OnBedPressed()
         {
-			PlaySound(_bedSound);
+				_dialogueBubble.Call("start", "bed");
+        }
+		 public void OnBoardPressed()
+        {
+			PlaySound(_paperSound);
 			if(_articlePieces==2)
 			{
 				_dialogueBubble.Call("start", "clue");
@@ -311,7 +295,7 @@ namespace PalaSoliisi
 			}
 			else
 			{
-				_dialogueBubble.Call("start", "bed");
+				_dialogueBubble.Call("start", "later");
 			}
         }
 
@@ -324,7 +308,7 @@ namespace PalaSoliisi
 		{
 			ArticlePieces= 0;
 			_articleButton.Hide();
-
+			_howToPlay.Show();
 			// Dialogue();
 		}
 
@@ -334,11 +318,13 @@ namespace PalaSoliisi
 			GD.Print("jääkaappi");
 			if (callGloria &&_articlePieces == 1)
 			{
-				_dialogueBubble.Call("start", "honey");
+				//_dialogueBubble.Call("start", "honey");
+				_dialogueBubble.Call("start", "honeyfound");
+				_articleButton.Show();
 			}
 			else
 			{
-				_dialogueBubble.Call("start", "fridge");
+				//_dialogueBubble.Call("start", "fridge");
 			}
 		}
 
@@ -349,15 +335,16 @@ namespace PalaSoliisi
 			GD.Print("jääkaappi");
 			if (callGloria &&_articlePieces == 1)
 			{
-				_dialogueBubble.Call("start", "honeyfound");
-				_articleButton.Show();
+				//_dialogueBubble.Call("start", "honeyfound");
+				//_articleButton.Show();
 			}
 			else
 			{
 				_dialogueBubble.Call("start", "honeyhere");
 			}
 		}
-		public void OnSettingsPressed()
+		/*
+		 public void OnSettingsPressed()
 		{
 			_UIpressed = true;
 			if (_showInGameMenu)
@@ -378,8 +365,8 @@ namespace PalaSoliisi
 				_exitMenuButton.Show();
 				Movement();
 			}
-
 		}
+	*/
 		private async void OnArticlePressed()
 		{
 			bool firstButton = true;
@@ -405,7 +392,7 @@ namespace PalaSoliisi
 			else if (_articlePieces == 1 && secondButton)
 			{ 	_articleButton.Hide();
 				secondButton=false;
-				_articleButton.GlobalPosition = new Vector2(-176, 34);
+				_articleButton.GlobalPosition = new Vector2(86, 16);
 			}
 			else if (_articlePieces >= 2 && thirdButton)
 			{
@@ -470,7 +457,7 @@ namespace PalaSoliisi
 		{
 		 await ToSignal(GetTree().CreateTimer(time), "timeout");
 		}
-		private async void Movement()
+		public async void Movement()
 		{
 		await timerAsync(1);
 		 _UIpressed=false;
@@ -498,7 +485,7 @@ namespace PalaSoliisi
 		public async void OnDialogueBubbleStarted(string id)
 		{
 				_isDialogueRunning = true;
-			    await timerAsync(1);
+			    await timerAsync(2);
 		  		_dialogueBubble.Call("_on_dialogue_ended");
 				_isDialogueRunning = false;
 		}
@@ -530,7 +517,7 @@ namespace PalaSoliisi
 				_articleButton.Show();
 				_animationPlayer.Play("flying_magazine");
 				PlaySound(_paperSound);
-				await timerAsync(10);
+				await timerAsync(5);
 				_animationPlayer.Play("reminder");
 			}
 			else if (!callGloria && _articlePieces==1)
@@ -549,7 +536,7 @@ namespace PalaSoliisi
 			{
 				if (mb.ButtonIndex == MouseButton.Left && mb.Pressed)
 				{
-					OnSettingsPressed();
+					InGameMenu.OnSettingsPressed();
 				}
 			}
 		}
@@ -618,37 +605,36 @@ namespace PalaSoliisi
 		 private void showClueLabel()
 		{
 			_clueCard.Show();
+			_isDialogueRunning = true;
 
 			if (_articlePieces==2)
 			{
 
 			_clueLabel.Text = @"Hello dear villagers!
-			Find facts about the Mayor’s honey business
-			Certificated by scientists from Honey Science Inc.
 
-			Bear scientist: The honey making process is strict and we don’t let any foreign objects get in.
+			Bear scientists say: The honey making process is strict and we don’t let any foreign objects get in.
 			Worry not this honey is safe to consume!
+
 			-CredibleSource.com-
 			Signed by, The Mayor.";
 			}
+			//Find facts about the Mayor’s honey business certificated by scientists from Honey Science Inc.
 			else if (_articlePieces==3)
 			{
-			_clueLabel.Text = @"GLORIA REVEALS the truth!
-
+			_clueLabel.Text = @"GLORIA REVEALS THE TRUTH!
 				Village mayor is actually a robot in a mechanical bear suit trying to turn us into robots by eating microchips!
 
 				Sources: Gloria, neighbor, various people from gloriareveals.com
-
 				Author: Gloria Graves
 				www.gloriareveals.bear";
 			}
-
 		}
 
 		private void clueExit()
 		{
-			_clueCard.Hide();
 
+			_clueCard.Hide();
+			_isDialogueRunning = false;
 			if(_articlePieces==1)
 			{
 				dialogueStarter("firstClue");

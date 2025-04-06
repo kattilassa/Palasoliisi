@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tbatpjp8sjt0"
-path="res://.godot/imported/curtain.png-84c9ab4cb18c752659b85fed84df5d3e.ctex"
+uid="uid://bxa1dro53xwsu"
+path="res://.godot/imported/Oranssi_matto_sänky.png-23ca12a570787a4ab04a28af1cc32928.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/curtain.png"
-dest_files=["res://.godot/imported/curtain.png-84c9ab4cb18c752659b85fed84df5d3e.ctex"]
+source_file="res://art/furniture/Oranssi_matto_sänky.png"
+dest_files=["res://.godot/imported/Oranssi_matto_sänky.png-23ca12a570787a4ab04a28af1cc32928.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bwvbfdokg5du5"]
 
 [ext_resource type="Script" path="res://Character/Bernand.cs" id="1_w14n6"]
-[ext_resource type="Texture2D" uid="uid://fnylrfnrh4w1" path="res://art/UI/Bernard1.0.png" id="2_aqn75"]
+[ext_resource type="Texture2D" uid="uid://m22vfume7q11" path="res://art/Bernand_bookless.png" id="2_fiiex"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5kg18"]
 size = Vector2(24, 26.5)
@@ -10,9 +10,10 @@ size = Vector2(24, 26.5)
 script = ExtResource("1_w14n6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.846008, -3.07817)
 rotation = 0.0174533
-scale = Vector2(0.231481, 0.231481)
-texture = ExtResource("2_aqn75")
+scale = Vector2(0.257917, 0.257917)
+texture = ExtResource("2_fiiex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 16.25)

@@ -4,59 +4,57 @@ using System;
 
 public partial class Bernand : CharacterBody2D
 {
-	[Export]
+    [Export]
     public int Speed { get; set; } = 400;
+
     private Vector2 _target;
     public bool _isPaused = false;
 
+    private NavigationAgent2D agent;
+
+    public override void _Ready()
+    {
+        agent = GetNode<NavigationAgent2D>("NavigationAgent2D");
+    }
+
     public override void _Process(double delta)
     {
-        if (_isPaused)
+        if (_isPaused || agent == null || agent.IsNavigationFinished())
         {
+            Velocity = Vector2.Zero;
             return;
         }
-        else
-        {
-            Velocity = Position.DirectionTo(_target) * Speed;
-            //LookAt(_target);
-            if (Position.DistanceTo(_target) > 10)
-            {
-                MoveAndSlide();
-            }
-        }
+
+        // Get next direction and move
+        Vector2 nextPathPos = agent.GetNextPathPosition();
+        Vector2 direction = (nextPathPos - GlobalPosition).Normalized();
+        Velocity = direction * Speed;
+
+        MoveAndSlide();
     }
 
     public override void _Input(InputEvent @event)
     {
-        if (Level.Current._isMiniGameRunning || Level.Current._isDialogueRunning)
-        {
+        if (Level.Current._isMiniGameRunning || Level.Current._isDialogueRunning || Level.Current._UIpressed)
             return;
-        }
-        if (Level.Current._UIpressed)
-        {
-                return;
-        }
-        else if (@event is InputEventMouseButton mouseEvent
+
+        if (@event is InputEventMouseButton mouseEvent
             && mouseEvent.ButtonIndex == MouseButton.Left
             && !mouseEvent.Pressed)
         {
             _target = GetGlobalMousePosition();
+            agent.TargetPosition = _target; // agent calculates a path
         }
-            //if (@event is InputEventScreenTouch touchEvent
-             //   && touchEvent.Pressed
-            //    && touchEvent.Index == 0)
-            //{
-              //  _target = GetGlobalMousePosition();
-            //}
-	}
+    }
 
     public void StopMovement()
     {
-        this._isPaused = true;
+        _isPaused = true;
+        Velocity = Vector2.Zero;
     }
 
     public void StartMovement()
     {
-        this._isPaused = false;
+        _isPaused = false;
     }
 }

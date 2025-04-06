@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://eud1ec3ehtcl"
-path="res://.godot/imported/house.png-b73f8a14a783d8a09fecd450111f7418.ctex"
+uid="uid://c6r6ydthbtm4m"
+path="res://.godot/imported/Asettelumalli.png-d41a74b7febca403983f52f9d8526519.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/house.png"
-dest_files=["res://.godot/imported/house.png-b73f8a14a783d8a09fecd450111f7418.ctex"]
+source_file="res://art/furniture/Asettelumalli.png"
+dest_files=["res://.godot/imported/Asettelumalli.png-d41a74b7febca403983f52f9d8526519.ctex"]
 
 [params]
 
