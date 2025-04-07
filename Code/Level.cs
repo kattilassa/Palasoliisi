@@ -32,6 +32,7 @@ namespace PalaSoliisi
 		[Export] private TextureButton _boardButton = null;
 		[Export] private TextureButton _closetButton = null;
 		[Export] private TextureButton _briefcaseButton = null;
+		[Export] private TextureButton _dinnerTableButton = null;
 		[Export] private Button _exitClueButton = null;
 		[Export] private string _miniGameScenePath = "res://Levels/MiniGame.tscn";
 		//[Export] private string _howToPlayScenePath = "res://Levels/HowToPlay.tscn";
@@ -53,6 +54,7 @@ namespace PalaSoliisi
         private AudioStream _backpackSound;
         public bool callAnswered = false;
 		public bool callGloria= false;
+		public bool clueCollected= false;
 		public static Level Current
 		{
 			get { return _current; }
@@ -197,6 +199,10 @@ namespace PalaSoliisi
 				_closetButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnClosetPressed)));
 				_animationPlayer = GetNode<AnimationPlayer>("piece/AnimationPlayer");
+				_dinnerTableButton.Connect(Button.SignalName.Pressed,
+				new Callable(this, nameof(OnDinnerTablePressed)));
+				_animationPlayer = GetNode<AnimationPlayer>("piece/AnimationPlayer");
+
 
 
 
@@ -217,9 +223,17 @@ namespace PalaSoliisi
         //
         public void OnCurtainPressed()
 		{
-			_testPoints = _finalQuiz.quizPoints;
+			if(_finalQuiz.quizPoints<=0)
+			{
+				_testPoints = 0;
+			}
+			else
+			{
+				_testPoints = _finalQuiz.quizPoints;
+			}
+
 			// Pause game and hide UI and character
-			if (_testPoints==3)
+			if (_testPoints>=3)
 			{
 			GetTree().Paused = true;
 			UIVisible(false);
@@ -236,7 +250,7 @@ namespace PalaSoliisi
 				_ending = null;
 			}
 
-			if (_articlePieces == 3 && _testPoints==3)
+			if (_articlePieces == 3 && _testPoints<=3)
 			{
 
 				//if (_testPoints==3)
@@ -276,6 +290,14 @@ namespace PalaSoliisi
             PlaySound(_cabinetSound);
         }
 
+		 public void OnDinnerTablePressed()
+        {
+			if(_articlePieces==2)
+			{
+				_dialogueBubble.Call("start", "clue");
+				_articleButton.Show();
+			}
+        }
 		 public void OnBriefcasePressed()
         {
             PlaySound(_backpackSound);
@@ -287,15 +309,13 @@ namespace PalaSoliisi
         }
 		 public void OnBoardPressed()
         {
+			_animationPlayer.Stop();
 			PlaySound(_paperSound);
-			if(_articlePieces==2)
+			_dialogueBubble.Call("start", "later");
+
+			if(clueCollected)
 			{
-				_dialogueBubble.Call("start", "clue");
-				_articleButton.Show();
-			}
-			else
-			{
-				_dialogueBubble.Call("start", "later");
+				StartMiniGame();
 			}
         }
 
@@ -316,7 +336,7 @@ namespace PalaSoliisi
 		{
 			PlaySound(_cabinetSound);
 			GD.Print("jääkaappi");
-			if (callGloria &&_articlePieces == 1)
+			if (!clueCollected && callGloria &&_articlePieces == 1)
 			{
 				//_dialogueBubble.Call("start", "honey");
 				_dialogueBubble.Call("start", "honeyfound");
@@ -374,6 +394,7 @@ namespace PalaSoliisi
 			bool thirdButton = true;
 			await timerAsync(1);
 			PlaySound(_paperSound);
+			_dialogueBubble.Call("start","cluefound");
 			//if(!_showInGameMenu)
 			//{
 			//ArticlePieces++;
@@ -390,19 +411,20 @@ namespace PalaSoliisi
 				_animationPlayer.Play("reminder");
 			}
 			else if (_articlePieces == 1 && secondButton)
-			{ 	_articleButton.Hide();
+			{
+				_animationPlayer.Stop();
+				_articleButton.Hide();
 				secondButton=false;
-				_articleButton.GlobalPosition = new Vector2(86, 16);
+				_articleButton.GlobalPosition = new Vector2(91, 61);
 			}
 			else if (_articlePieces >= 2 && thirdButton)
 			{
 				thirdButton=false;
 				_articleButton.Hide();
 			}
-
+			clueCollected= true;
+			_animationPlayer.Play("clueboard");
 			// Start minigame when article collected
-			StartMiniGame();
-
 		}
 
 		/// <summary>
@@ -471,9 +493,32 @@ namespace PalaSoliisi
 					_phoneEffect.Visible = true;
 					Ringing();
 				}
-				if(!_isAnswered)
-				{
 
+				if(!callGloria && _articlePieces==1)
+				{
+					_animationPlayer.Play("phoneAnimation");
+				}
+
+				if (callGloria &&_articlePieces == 1)
+				{
+					clueAnimation();
+				}
+		}
+		public async void clueAnimation()
+		{
+				if(_articlePieces==1 && !clueCollected)
+				{
+			    await timerAsync(15);
+		  		_animationPlayer.Play("fridgeAnimation");
+				}
+				if(_articlePieces==2 && !clueCollected)
+				{
+			    await timerAsync(15);
+		  		_animationPlayer.Play("dinnerTable");
+				}
+				if(clueCollected)
+				{
+					_animationPlayer.Stop();
 				}
 		}
 		public async void OnDialogueBubbleEnded()
@@ -723,6 +768,7 @@ namespace PalaSoliisi
 		/// </summary>
 		public async void OnMiniGameCompleted()
 		{
+			clueCollected=false;
 			_miniGameTurns += _miniGame.TurnsTaken;
 			ArticlePieces++;
 			_scoreUIControl.SetScore(_articlePieces);

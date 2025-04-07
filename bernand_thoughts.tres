@@ -12,6 +12,7 @@ starts = {
 "5": &"0_7",
 "bed": &"0_11",
 "clue": &"0_12",
+"cluefound": &"0_15",
 "first": &"0_1",
 "fridge": &"0_10",
 "honey": &"0_8",
@@ -50,6 +51,11 @@ nodes = {
 "link": &"1_14",
 "offset": Vector2(-429, -844.66),
 "start_id": "later"
+},
+"0_15": {
+"link": &"1_15",
+"offset": Vector2(-252, 167),
+"start_id": "cluefound"
 },
 "0_2": {
 "link": &"1_2",
@@ -169,9 +175,22 @@ nodes = {
 "size": Vector2(300, 240),
 "speaker": 0
 },
+"1_15": {
+"dialogue": "Let’s check the board!",
+"offset": Vector2(-40, 80),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
 "1_2": {
 "dialogue": "I should check out the computer too",
-"offset": Vector2(-103, -29),
+"offset": Vector2(-100, -120),
 "options": {
 0: {
 "condition": {},

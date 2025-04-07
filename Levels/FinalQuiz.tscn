@@ -182,7 +182,7 @@ data = ExtResource("5_pcfgw")
 start_id = "quiz"
 sample_portrait = ExtResource("3_ye5lf")
 custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_xcua5")])
-max_options_count = 2
+max_options_count = 3
 
 [node name="SubmitButton" type="Button" parent="Control"]
 visible = false

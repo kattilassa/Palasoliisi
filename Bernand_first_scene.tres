@@ -56,7 +56,7 @@ nodes = {
 "start_id": "thirdClue"
 },
 "1_1": {
-"dialogue": "You will be playing as me – Bernand Bartholomeu. I came back to my home village because my dear aunt Gloria has been acting strange. There’s been rumors about a false news outbreak and it’s my duty to help the villagers and Break The Fake! ",
+"dialogue": "You will be playing as me – Bernand Bartholomeu. I came back to my home village. There’s been rumors about a false news outbreak and it’s my duty to help the villagers and Break The Fake! ",
 "offset": Vector2(-360, -540),
 "options": {
 0: {
@@ -75,7 +75,7 @@ nodes = {
 0: {
 "condition": {},
 "link": "END",
-"text": "Read the magazine"
+"text": ""
 }
 },
 "size": Vector2(300, 257),
@@ -96,7 +96,7 @@ nodes = {
 },
 "1_12": {
 "dialogue": "Hey Gloria, I read the article and the author is known for using manipulation tactics such as “Quote mining” and “Cherry picking”.",
-"offset": Vector2(360, -1180),
+"offset": Vector2(340, -1120),
 "options": {
 0: {
 "condition": {},
@@ -199,12 +199,12 @@ nodes = {
 "speaker": 0
 },
 "1_2": {
-"dialogue": "My dear cousin Gloria has been acting so weird lately. I couldn't bear the thought of not coming to visit her, so here I am. Oh! someone is calling. I should pick up the phone...",
+"dialogue": "My dear cousin Gloria has been acting so weird lately. I couldn't bear the thought of not coming to visit her, so here I am.",
 "offset": Vector2(-20, -520),
 "options": {
 0: {
 "condition": {},
-"link": "END",
+"link": &"1_24",
 "text": ""
 }
 },
@@ -263,6 +263,19 @@ nodes = {
 "size": Vector2(300, 240),
 "speaker": 0
 },
+"1_24": {
+"dialogue": "Oh! someone is calling. I should pick up the phone...",
+"offset": Vector2(300, -540),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 0
+},
 "1_3": {
 "dialogue": "Hey Gloria, I was just thinking about you.",
 "offset": Vector2(-240, -860),
@@ -290,7 +303,7 @@ nodes = {
 "speaker": 0
 },
 "1_5": {
-"dialogue": "Hmm... I think it's a good idea to go outside and see what has changed since I’ve been away.",
+"dialogue": "Okay...I think my work here is done... That's enough of internet for today - it's time to touch grass.",
 "offset": Vector2(-340, -180),
 "options": {
 0: {
@@ -302,35 +315,9 @@ nodes = {
 "size": Vector2(300, 323),
 "speaker": 0
 },
-"1_6": {
-"dialogue": "Right! *tietoa propagandasta* ",
-"offset": Vector2(60, -160),
-"options": {
-0: {
-"condition": {},
-"link": "END",
-"text": ""
-}
-},
-"size": Vector2(300, 240),
-"speaker": 0
-},
 "1_7": {
 "dialogue": "Hmm not quite, this seems more like propaganda!",
 "offset": Vector2(140, 220),
-"options": {
-0: {
-"condition": {},
-"link": "END",
-"text": ""
-}
-},
-"size": Vector2(300, 240),
-"speaker": 0
-},
-"1_8": {
-"dialogue": "WOW, you scored {{points}} points!",
-"offset": Vector2(760, -40),
 "options": {
 0: {
 "condition": {},
@@ -353,13 +340,6 @@ nodes = {
 },
 "size": Vector2(300, 240),
 "speaker": 1
-},
-"4_1": {
-"link": "END",
-"offset": Vector2(400, 80),
-"type": 1,
-"value": "1",
-"variable": "points"
 }
 }
 variables = {
@@ -368,5 +348,5 @@ variables = {
 "value": 0
 }
 }
-strays = Array[String](["4_1", "1_8", "1_7", "1_6"])
+strays = Array[String](["1_7"])
 characters = "res://examples/PalasoliisiCharacters.tres"

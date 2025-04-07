@@ -14,7 +14,8 @@ nodes = {
 "start_id": "quiz"
 },
 "1_1": {
-"dialogue": "Look out the window – if climate change is true, then why has it been so cold this week!!",
+"dialogue": "Look out the window – if climate change is true, then why has it been so cold this week!!
+#ClimateHoax #GloriaReveals #ThinkAgain",
 "offset": Vector2(-120, -280),
 "options": {
 0: {
@@ -24,16 +25,143 @@ nodes = {
 },
 1: {
 "condition": {},
-"link": &"4_1",
+"link": &"4_7",
 "text": "Report"
 }
 },
 "size": Vector2(300, 290),
 "speaker": 2
 },
+"1_10": {
+"dialogue": "Please specify the reason for the report.",
+"offset": Vector2(2040, -220),
+"options": {
+0: {
+"condition": {},
+"link": &"4_5",
+"text": "Conspiracy theory"
+},
+1: {
+"condition": {},
+"link": &"4_5",
+"text": "Manipulation"
+},
+2: {
+"condition": {},
+"link": &"4_5",
+"text": "Disinformation"
+}
+},
+"size": Vector2(300, 289),
+"speaker": "Reason for reporting"
+},
+"1_11": {
+"dialogue": "Please specify the reason for the report.",
+"offset": Vector2(3420, 560),
+"options": {
+0: {
+"condition": {},
+"link": &"1_12",
+"text": "Manipulation"
+},
+1: {
+"condition": {},
+"link": &"1_12",
+"text": "Conspiracy theory"
+},
+2: {
+"condition": {},
+"link": &"1_12",
+"text": "Disinformation"
+}
+},
+"size": Vector2(300, 289),
+"speaker": "Reason for reporting"
+},
+"1_12": {
+"dialogue": "We did not find anything suspicious from this post. Thank you for your feedback.",
+"offset": Vector2(3480, 160),
+"options": {
+0: {
+"condition": {},
+"link": &"1_13",
+"text": "Next post"
+}
+},
+"size": Vector2(300, 240),
+"speaker": "Thank you for reporting"
+},
+"1_13": {
+"dialogue": "Mayors honey is DEATHLY to young bear baby cubs!  :'( 
+#SaveTheBabies #WakeUp!  #GloriaReveals",
+"offset": Vector2(3920, 60),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": "Like this post"
+},
+1: {
+"condition": {},
+"link": &"4_11",
+"text": "Report"
+}
+},
+"size": Vector2(300, 257),
+"speaker": 2
+},
+"1_14": {
+"dialogue": "Please specify the reason for the report.",
+"offset": Vector2(4540, 200),
+"options": {
+0: {
+"condition": {},
+"link": &"1_16",
+"text": "Trolling"
+},
+1: {
+"condition": {},
+"link": &"4_12",
+"text": "Appeal to emotion"
+},
+2: {
+"condition": {},
+"link": &"1_16",
+"text": "Exaggeration"
+}
+},
+"size": Vector2(300, 289),
+"speaker": "Reason for reporting"
+},
+"1_15": {
+"dialogue": "The post has been removed for causing fear and confusion.",
+"offset": Vector2(5280, 240),
+"options": {
+0: {
+"condition": {},
+"link": &"1_16",
+"text": "Next post"
+}
+},
+"size": Vector2(300, 240),
+"speaker": "Thank you for reporting"
+},
+"1_16": {
+"dialogue": "No new posts",
+"offset": Vector2(5020, 500),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": "OK"
+}
+},
+"size": Vector2(300, 240),
+"speaker": ""
+},
 "1_2": {
 "dialogue": "Thanks for your report. The post has been removed for misinformation caused by a misunderstanding of climate change.",
-"offset": Vector2(620, -300),
+"offset": Vector2(940, -440),
 "options": {
 0: {
 "condition": {},
@@ -45,8 +173,8 @@ nodes = {
 "speaker": "Post removed for misinformation"
 },
 "1_3": {
-"dialogue": "Doctors don’t tell you everything...Vaccines contain microchips that are implanted in you so the government can listen to you!!!",
-"offset": Vector2(800, -40),
+"dialogue": "Honey jars are equipped with tracking devices so the goverment can monitor you!! #GloriaReveals #RevealOfTheDay",
+"offset": Vector2(740, -140),
 "options": {
 0: {
 "condition": {},
@@ -55,20 +183,20 @@ nodes = {
 },
 1: {
 "condition": {},
-"link": &"1_4",
+"link": &"4_8",
 "text": "Report"
 }
 },
-"size": Vector2(300, 290),
+"size": Vector2(300, 280),
 "speaker": 2
 },
 "1_4": {
-"dialogue": "Thank you for your report. The post has been removed due to disinformation about vaccines and conspiracy theories.",
-"offset": Vector2(1240, 120),
+"dialogue": "The post has been removed for promoting conspiracy theories.",
+"offset": Vector2(1480, 60),
 "options": {
 0: {
 "condition": {},
-"link": &"4_4",
+"link": &"1_5",
 "text": "Next post"
 }
 },
@@ -76,17 +204,18 @@ nodes = {
 "speaker": "Post removed for disinformation"
 },
 "1_5": {
-"dialogue": "I'm getting reported by the SHEEP!! They are trying to censor my posts because I share the REAL truth!",
+"dialogue": "Bears are omnivores - Berries, fish and bugs are part of their diet. Here are some of my favorite recipes...
+#BearDiet #WildLifeFacts",
 "offset": Vector2(1900, 60),
 "options": {
 0: {
 "condition": {},
-"link": &"4_5",
+"link": &"4_6",
 "text": "Like this post"
 },
 1: {
 "condition": {},
-"link": &"4_6",
+"link": &"1_10",
 "text": "Report"
 }
 },
@@ -94,21 +223,107 @@ nodes = {
 "speaker": 2
 },
 "1_6": {
-"dialogue": "This user's account has been temporarily banned due to the spread of misinformation.",
-"offset": Vector2(2663.31, 242.766),
+"dialogue": "The decline of bees has a huge global impact!!
+#SaveTheBees #GloriaReveals",
+"offset": Vector2(2720, 240),
 "options": {
 0: {
 "condition": {},
-"link": "END",
-"text": "OK"
+"link": &"4_9",
+"text": "Like this post"
+},
+1: {
+"condition": {},
+"link": &"4_10",
+"text": "Report"
 }
 },
-"size": Vector2(300, 256),
-"speaker": "This user's account has been temporarily banned"
+"size": Vector2(300, 257),
+"speaker": 2
+},
+"1_7": {
+"dialogue": "Please specify the reason for the report.",
+"offset": Vector2(240, -520),
+"options": {
+0: {
+"condition": {},
+"link": &"4_1",
+"text": "Misinformation"
+},
+1: {
+"condition": {},
+"link": &"1_2",
+"text": "Manipulation"
+},
+2: {
+"condition": {},
+"link": &"1_2",
+"text": "Disinformation"
+}
+},
+"size": Vector2(300, 289),
+"speaker": "Reason for reporting"
+},
+"1_8": {
+"dialogue": "Please specify the reason for the report.",
+"offset": Vector2(1080, 160),
+"options": {
+0: {
+"condition": {},
+"link": &"1_4",
+"text": "Trolling"
+},
+1: {
+"condition": {},
+"link": "END",
+"text": "Falseness"
+},
+2: {
+"condition": {},
+"link": &"4_4",
+"text": "Conspiracy theory"
+}
+},
+"size": Vector2(300, 289),
+"speaker": "Reason for reporting"
+},
+"1_9": {
+"dialogue": "We did not find anything suspicious from this post. Thank you for your feedback.",
+"offset": Vector2(2680, -80),
+"options": {
+0: {
+"condition": {},
+"link": &"1_6",
+"text": "Next post"
+}
+},
+"size": Vector2(300, 240),
+"speaker": "Thank you for reporting"
 },
 "4_1": {
 "link": &"1_2",
-"offset": Vector2(260, -180),
+"offset": Vector2(560, -500),
+"type": 1,
+"value": "1",
+"variable": "points"
+},
+"4_10": {
+"link": &"1_11",
+"offset": Vector2(3107.02, 455.826),
+"type": 2,
+"value": "1",
+"variable": "points"
+},
+"4_11": {
+"link": &"1_14",
+"offset": Vector2(4180, 380),
+"type": 1,
+"value": "1",
+"variable": "reported"
+},
+"4_12": {
+"link": &"1_15",
+"offset": Vector2(4940, 300),
 "type": 1,
 "value": "1",
 "variable": "points"
@@ -128,22 +343,43 @@ nodes = {
 "variable": "points"
 },
 "4_4": {
-"link": &"1_5",
-"offset": Vector2(1580.98, 331.78),
+"link": &"1_4",
+"offset": Vector2(1400, 360),
 "type": 1,
 "value": "1",
 "variable": "points"
 },
 "4_5": {
-"link": &"1_6",
-"offset": Vector2(2258.41, 222.766),
+"link": &"1_9",
+"offset": Vector2(2400, -20),
 "type": 2,
 "value": "1",
 "variable": "points"
 },
 "4_6": {
 "link": &"1_6",
-"offset": Vector2(2260, 300),
+"offset": Vector2(2300, 240),
+"type": 1,
+"value": "1",
+"variable": "points"
+},
+"4_7": {
+"link": &"1_7",
+"offset": Vector2(-80, -480),
+"type": 1,
+"value": "1",
+"variable": "reported"
+},
+"4_8": {
+"link": &"1_8",
+"offset": Vector2(700, 200),
+"type": 1,
+"value": "1",
+"variable": "reported"
+},
+"4_9": {
+"link": &"1_13",
+"offset": Vector2(3062.95, 312.826),
 "type": 1,
 "value": "1",
 "variable": "points"
@@ -151,6 +387,10 @@ nodes = {
 }
 variables = {
 "points": {
+"type": 2,
+"value": 0
+},
+"reported": {
 "type": 2,
 "value": 0
 }
