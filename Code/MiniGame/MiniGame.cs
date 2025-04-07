@@ -21,6 +21,7 @@ namespace PalaSoliisi
 		[Export] private string _cardBack1ScenePath = "res://Levels/Collectables/CardBack1.tscn";
 		[Export] private MiniGameControl _miniGameControl = null;
 		[Export] private TextureButton _settingsButton = null;
+		[Export] private TextureButton _completeButton = null;
 
 		private PackedScene _card1Scene = null;
 		private PackedScene _card2Scene = null;
@@ -132,6 +133,9 @@ namespace PalaSoliisi
 			_settingsButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnSettingsPressed)));
 
+			_completeButton.Connect(Button.SignalName.Pressed,
+				new Callable(this, nameof(OnCompletePressed)));
+
 			ResetMiniGame();
 
 		}
@@ -218,6 +222,12 @@ namespace PalaSoliisi
 				_inGameMenu.Show();
 			}
 
+		}
+
+		private void OnCompletePressed()
+		{
+			// Pelin pikalopetus
+			PairsFound = 4;
 		}
 
 		/// <summary>

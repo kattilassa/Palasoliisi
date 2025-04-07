@@ -87,6 +87,7 @@ namespace PalaSoliisi
 		public bool _isAnswered = true;
 		public TextureRect _phoneEffect;
 		public TextureRect _clueCard;
+		public TextureRect _computerOn;
 
 
         public int ArticlePieces
@@ -160,8 +161,12 @@ namespace PalaSoliisi
 			 _dialogueBox.Connect("dialogue_started", new Callable(this, nameof(OnDialogueStarted)));
 			  _dialogueBubble.Connect("dialogue_started", new Callable(this, nameof(OnDialogueBubbleStarted)));
 			_settingsButton.Connect("gui_input", new Callable(this, nameof(OnSettingsGuiInput)));
+
 			_phoneEffect = GetNode<TextureRect>("alarmed");
 			_phoneEffect.Hide();
+			_computerOn = GetNode<TextureRect>("ComputerOn");
+			_computerOn.Hide();
+
 			_clueCard = GetNode<TextureRect>("UI/Clue");
 			_clueLabel = GetNode<Label>("UI/Clue/clue");
 			//_finalQuiz = GetNode<FinalQuiz>("Level/FinalQuiz.tscn");
@@ -446,6 +451,7 @@ namespace PalaSoliisi
 				{
 					//dialogueStarter("quiz");
 					finalQuiz();
+					_computerOn.Hide();
 				}
 				else if (!_isDialogueRunning)
 				{
@@ -666,6 +672,7 @@ namespace PalaSoliisi
 			//Find facts about the Mayor’s honey business certificated by scientists from Honey Science Inc.
 			else if (_articlePieces==3)
 			{
+				_computerOn.Show();
 			_clueLabel.Text = @"GLORIA REVEALS THE TRUTH!
 				Village mayor is actually a robot in a mechanical bear suit trying to turn us into robots by eating microchips!
 

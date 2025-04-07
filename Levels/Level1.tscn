@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=67 format=4 uid="uid://bu0y12c7gfv7e"]
+=======
+[gd_scene load_steps=63 format=4 uid="uid://bu0y12c7gfv7e"]
+>>>>>>> b7b05b3aea03b71207c67d673817c9eddd04acd2
 
 [ext_resource type="Script" path="res://Code/Level.cs" id="1_uqqbp"]
 [ext_resource type="Texture2D" uid="uid://bjxo38brfpjof" path="res://art/House_base_curtain.png" id="2_h33wx"]
@@ -25,6 +29,7 @@
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="16_xve5m"]
 [ext_resource type="Texture2D" uid="uid://c88frclufxqxn" path="res://art/furniture/Keittiöpöytä.png" id="19_kctaf"]
 [ext_resource type="AudioStream" uid="uid://wteveke4gnd1" path="res://music/sneaky-feet-150618.mp3" id="20_55ul1"]
+[ext_resource type="Texture2D" uid="uid://bus1dpbvd3fnk" path="res://art/ComputerOn.png" id="21_c7o88"]
 [ext_resource type="PackedScene" uid="uid://c85od2ripqjrj" path="res://Levels/HowToPlay.tscn" id="22_x1svb"]
 [ext_resource type="Texture2D" uid="uid://bn7gnfkms5ul5" path="res://art/furniture/vaatekaappi.png" id="23_tuud2"]
 [ext_resource type="Texture2D" uid="uid://c0wp2nh8gphsn" path="res://art/furniture/Hyllykkö_liina.png" id="24_ld78t"]
@@ -644,6 +649,15 @@ offset_right = -176.0
 offset_bottom = -81.0
 rotation = 0.774926
 texture = ExtResource("31_rneb0")
+expand_mode = 1
+
+[node name="ComputerOn" type="TextureRect" parent="."]
+z_index = 1
+offset_left = -198.0
+offset_top = -76.0
+offset_right = -168.0
+offset_bottom = -63.0
+texture = ExtResource("21_c7o88")
 expand_mode = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
