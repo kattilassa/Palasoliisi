@@ -228,7 +228,6 @@ namespace PalaSoliisi
 		{
 			// Pelin pikalopetus
 			PairsFound = 4;
-			TurnsTaken++;
 		}
 
 		/// <summary>
