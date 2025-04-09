@@ -641,19 +641,20 @@ autoplay = true
 bus = &"Music"
 parameters/looping = false
 
-[node name="ambiencePorridge" type="AudioStreamPlayer2D" parent="."]
+[node name="ambienceWind" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3
-position = Vector2(174, -108)
-stream = ExtResource("21_86u5n")
+position = Vector2(175, -108)
+stream = ExtResource("22_lj87s")
 autoplay = true
 bus = &"Ambience"
 parameters/looping = false
 
-[node name="ambienceWind" type="AudioStreamPlayer2D" parent="."]
+[node name="ambiencePorridge" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3
-position = Vector2(174, -108)
-stream = ExtResource("22_lj87s")
+position = Vector2(170, -60)
+stream = ExtResource("21_86u5n")
 autoplay = true
+max_distance = 500.0
 bus = &"Ambience"
 parameters/looping = false
 
