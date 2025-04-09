@@ -33,6 +33,7 @@ namespace PalaSoliisi
 		[Export] private TextureButton _closetButton = null;
 		[Export] private TextureButton _briefcaseButton = null;
 		[Export] private TextureButton _dinnerTableButton = null;
+		[Export] private TextureButton _ovenButton = null;
 		[Export] private Button _exitClueButton = null;
 		[Export] private string _miniGameScenePath = "res://Levels/MiniGame.tscn";
 		//[Export] private string _howToPlayScenePath = "res://Levels/HowToPlay.tscn";
@@ -52,6 +53,7 @@ namespace PalaSoliisi
         private AudioStream _cabinetSound;
         private AudioStream _bedSound;
         private AudioStream _backpackSound;
+		private AudioStream _ovenSound;
         public bool callAnswered = false;
 		public bool callGloria= false;
 		public bool clueCollected= false;
@@ -164,7 +166,7 @@ namespace PalaSoliisi
 
 			_phoneEffect = GetNode<TextureRect>("alarmed");
 			_phoneEffect.Hide();
-			_computerOn = GetNode<TextureRect>("ComputerOn");
+			_computerOn = GetNode<TextureRect>("UI/ComputerButton/ComputerOn");
 			_computerOn.Hide();
 
 			_clueCard = GetNode<TextureRect>("UI/Clue");
@@ -200,6 +202,8 @@ namespace PalaSoliisi
 //
 				_curtainButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnCurtainPressed)));
+				_ovenButton.Connect(Button.SignalName.Pressed,
+				new Callable(this, nameof(OnOvenPressed)));
 
 				_closetButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnClosetPressed)));
@@ -221,6 +225,7 @@ namespace PalaSoliisi
 				 _cabinetSound = GD.Load<AudioStream>("res://music/cabinet.mp3");
 				 _bedSound = GD.Load<AudioStream>("res://music/bed.mp3");
 				_backpackSound = GD.Load<AudioStream>("res://music/bed.mp3");
+				_ovenSound = GD.Load<AudioStream>("res://music/oven-door.mp3");
 
 
 			ResetGame();
@@ -294,7 +299,10 @@ namespace PalaSoliisi
         {
             PlaySound(_cabinetSound);
         }
-
+ 		public void OnOvenPressed()
+        {
+            PlaySound(_ovenSound);
+        }
 		 public void OnDinnerTablePressed()
         {
 			if(_articlePieces==2)
@@ -312,8 +320,9 @@ namespace PalaSoliisi
         {
 				_dialogueBubble.Call("start", "bed");
         }
-		 public void OnBoardPressed()
+		 public async void OnBoardPressed()
         {
+			await timerAsync(2);
 			_animationPlayer.Stop();
 			PlaySound(_paperSound);
 			_dialogueBubble.Call("start", "later");
@@ -323,7 +332,6 @@ namespace PalaSoliisi
 				StartMiniGame();
 			}
         }
-
         public void OnFrogPressed()
         {
             PlaySound(_dingSound);
@@ -514,12 +522,10 @@ namespace PalaSoliisi
 		{
 				if(_articlePieces==1 && !clueCollected)
 				{
-			    await timerAsync(15);
 		  		_animationPlayer.Play("fridgeAnimation");
 				}
 				if(_articlePieces==2 && !clueCollected)
 				{
-			    await timerAsync(15);
 		  		_animationPlayer.Play("dinnerTable");
 				}
 				if(clueCollected)

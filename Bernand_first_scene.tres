@@ -56,7 +56,7 @@ nodes = {
 "start_id": "thirdClue"
 },
 "1_1": {
-"dialogue": "You will be playing as me – Bernand Bartholomeu. I came back to my home village. There’s been rumors about a false news outbreak and it’s my duty to help the villagers and Break The Fake! ",
+"dialogue": "You will be playing as me – Bernard Bartholomeu. I came back to my home village. There’s been rumors about a false news outbreak and it’s my duty to help the villagers and Break The Fake! ",
 "offset": Vector2(-360, -540),
 "options": {
 0: {

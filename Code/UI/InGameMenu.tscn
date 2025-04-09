@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Code/UI/InGameMenu.cs" id="1_s8l6n"]
 [ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="3_qdc1a"]
 [ext_resource type="FontFile" uid="uid://cw6pyp0ft2pbd" path="res://art/Fonts/boldreel/Boldreel.otf" id="4_xoeml"]
-[ext_resource type="Texture2D" uid="uid://cwj4ivmip8cdq" path="res://art/nallenappi.png" id="5_uffk5"]
+[ext_resource type="Texture2D" uid="uid://cm2cej57ry4bq" path="res://art/nallenappi.png" id="5_uffk5"]
 [ext_resource type="Texture2D" uid="uid://diav8sidfanr1" path="res://art/pawsmall.png" id="7_fyeb0"]
 [ext_resource type="Texture2D" uid="uid://d2e3a1ghryxr1" path="res://art/XX.png" id="8_6s68y"]
 [ext_resource type="Texture2D" uid="uid://dn6p1oiayjosa" path="res://art/X.png" id="9_iiupo"]
