@@ -233,6 +233,9 @@ namespace PalaSoliisi
         //
         public void OnCurtainPressed()
 		{
+			GD.Print("Curtain pressed");
+			if(_isQuizDone == true)
+			{
 			if(_finalQuiz.quizPoints<=0)
 			{
 				_testPoints = 0;
@@ -292,6 +295,7 @@ namespace PalaSoliisi
 				_ending.SetMiniGameScore(_miniGameTurns);
 				_ending.SetTestScore(_testPoints);
 				AddChild(_ending);
+			}
 			}
 		}
 
@@ -448,8 +452,9 @@ namespace PalaSoliisi
 		{
 			_UI.Visible = visible;
 		}
-		private void OnComputerPressed()
+		private async void OnComputerPressed()
 		{
+			await timerAsync(1);
 			PlaySound(_clickSound);
 			if(!_showInGameMenu && !_isDialogueRunning)
 			{
@@ -457,7 +462,6 @@ namespace PalaSoliisi
 
 				if (_articlePieces==3)
 				{
-					//dialogueStarter("quiz");
 					finalQuiz();
 					_computerOn.Hide();
 				}
@@ -711,6 +715,8 @@ namespace PalaSoliisi
 			if (_isQuizDone == true)
 			{
 				dialogueStarter("final");
+				_animationPlayer.Play("curtainAnimation");
+
 			}
 		}
 		private void finalQuiz()

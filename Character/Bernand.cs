@@ -9,12 +9,15 @@ public partial class Bernand : CharacterBody2D
 
     private Vector2 _target;
     public bool _isPaused = false;
+    private AnimationPlayer walkingAnimation;
 
     private NavigationAgent2D agent;
 
     public override void _Ready()
     {
         agent = GetNode<NavigationAgent2D>("NavigationAgent2D");
+        walkingAnimation = GetNode<AnimationPlayer>("AnimationPlayer");
+
     }
 
     public override void _Process(double delta)
@@ -22,6 +25,7 @@ public partial class Bernand : CharacterBody2D
         if (_isPaused || agent == null || agent.IsNavigationFinished())
         {
             Velocity = Vector2.Zero;
+            walkingAnimation.Stop();
             return;
         }
 
@@ -29,8 +33,11 @@ public partial class Bernand : CharacterBody2D
         Vector2 nextPathPos = agent.GetNextPathPosition();
         Vector2 direction = (nextPathPos - GlobalPosition).Normalized();
         Velocity = direction * Speed;
-
         MoveAndSlide();
+        if (!walkingAnimation.IsPlaying())
+        {
+            walkingAnimation.Play("walking");
+        }
     }
 
     public override void _Input(InputEvent @event)
