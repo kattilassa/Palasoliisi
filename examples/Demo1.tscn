@@ -1,18 +1,575 @@
-[gd_scene load_steps=19 format=3 uid="uid://bwk7tjlhnu23j"]
+[gd_scene load_steps=19 format=3 uid="uid://dbvyhhlj0brlf"]
 
 [ext_resource type="Theme" uid="uid://dc6c1peo4pfyr" path="res://addons/dialogue_nodes/themes/bubbly.theme" id="1_qerq3"]
-[ext_resource type="Script" path="res://examples/demo.gd" id="2_5ddyy"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="3_vbmhq"]
-[ext_resource type="Resource" uid="uid://dj818hys8f3u8" path="res://examples/ExampleBasic.tres" id="3_yex7d"]
-[ext_resource type="Resource" uid="uid://btriowhsx04c2" path="res://examples/ExampleBBCodes.tres" id="4_ay03t"]
-[ext_resource type="Resource" uid="uid://bjme2drtas671" path="res://examples/ExampleBranching.tres" id="5_ifbb7"]
-[ext_resource type="Resource" uid="uid://c303qivlsn30t" path="res://examples/ExampleCharacters.tres" id="6_arg21"]
-[ext_resource type="Resource" uid="uid://b4os1qum2hx0x" path="res://examples/ExampleSignals.tres" id="7_18syg"]
-[ext_resource type="Resource" uid="uid://cbu4k4hs8fk5s" path="res://examples/ExampleVariables.tres" id="8_4fu3f"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="9_s4y1y"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeWait.gd" id="10_wwm1y"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeGhost.gd" id="11_iuh66"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="12_cnev0"]
+
+[sub_resource type="GDScript" id="GDScript_lct0l"]
+script/source = "extends Control
+
+@export var demos: Array[DialogueData]
+
+@onready var dialogue_box = $DialogueBox
+@onready var particles = $Particles
+
+
+func _ready():
+	for demo in demos:
+		var label = demo.resource_path.split('/')[-1].split('.')[0]
+		$DemoSelector.add_item(label)
+	
+	dialogue_box.data = demos[0]
+
+
+func explode(_a=0):
+	particles.emitting = true
+
+
+func _on_Button_pressed():
+	if not dialogue_box.is_running():
+		dialogue_box.start()
+
+
+func _on_dialogue_signal(value):
+	match(value):
+		'explode': explode()
+
+
+func _on_demo_selected(index):
+	dialogue_box.data = demos[index]
+
+
+func _on_locale_selected(index):
+	match index:
+		0:
+			# English
+			TranslationServer.set_locale('en')
+		1:
+			# Japanese
+			TranslationServer.set_locale('ja')
+			
+"
+
+[sub_resource type="Resource" id="Resource_2hphh"]
+script = ExtResource("3_vbmhq")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(0, 0),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "Hey there!",
+"offset": Vector2(220, 0),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": "Greg"
+},
+"2_1": {
+"comment": "A basic example",
+"offset": Vector2(-20, 100),
+"size": Vector2(200, 100)
+}
+}
+variables = {}
+strays = Array[String](["2_1"])
+characters = ""
+
+[sub_resource type="Resource" id="Resource_tkmx0"]
+script = ExtResource("3_vbmhq")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(0, 0),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "Wanna learn about [u]bbcodes[/u]?",
+"offset": Vector2(220, 0),
+"options": {
+0: {
+"condition": {},
+"link": &"1_3",
+"text": "Yeah!"
+},
+1: {
+"condition": {},
+"link": &"1_2",
+"text": "Nah"
+}
+},
+"size": Vector2(300, 289),
+"speaker": "Greg"
+},
+"1_2": {
+"dialogue": "[shake]Oh... too bad...[/shake]",
+"offset": Vector2(560, 300),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": "..."
+}
+},
+"size": Vector2(300, 256),
+"speaker": "Greg"
+},
+"1_3": {
+"dialogue": "You can write special keywords between [lb] & ] for different effects.",
+"offset": Vector2(560, 0),
+"options": {
+0: {
+"condition": {},
+"link": &"1_4",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": "Greg"
+},
+"1_4": {
+"dialogue": "Like u for [u]underlining[/u] or [fade start=26 length=4]fade[/fade] or [color=red]color=red[/color] or [rainbow]rainbow[/rainbow] or [shake]shake[/shake] or [wave]wave[/wave] or [tornado]tornado[/tornado]",
+"offset": Vector2(900, 0),
+"options": {
+0: {
+"condition": {},
+"link": &"1_5",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": "Greg"
+},
+"1_5": {
+"dialogue": "You can even combine two or more effects to create [rainbow][wave]EVEN MORE AWESOME EFFECTS![/wave][/rainbow][br]
+Usage: [lb]effect1] [lb]effect2] text goes here [lb]/effect2] [lb]s/effect1]",
+"offset": Vector2(1240, 0),
+"options": {
+0: {
+"condition": {},
+"link": &"1_3",
+"text": "One more time?"
+},
+1: {
+"condition": {},
+"link": "END",
+"text": "Got it!"
+}
+},
+"size": Vector2(300, 289),
+"speaker": "Greg"
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = ""
+
+[sub_resource type="Resource" id="Resource_f02to"]
+script = ExtResource("3_vbmhq")
+starts = {
+"START": &"0_1",
+"START2": &"0_2"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(0, 0),
+"start_id": "START"
+},
+"0_2": {
+"link": &"1_4",
+"offset": Vector2(0, 600),
+"start_id": "START2"
+},
+"1_1": {
+"dialogue": "Which pill will you take?",
+"offset": Vector2(220, 0),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": "Red pill"
+},
+1: {
+"condition": {},
+"link": &"1_3",
+"text": "Blue pill"
+}
+},
+"size": Vector2(300, 275),
+"speaker": "Morpheus"
+},
+"1_2": {
+"dialogue": "Do you have the doctor's prescription for the pill?",
+"offset": Vector2(560, -80),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": "Uh..."
+}
+},
+"size": Vector2(300, 242),
+"speaker": "Morpheus"
+},
+"1_3": {
+"dialogue": "You shouldn't take pills from strangers, you know!",
+"offset": Vector2(560, 260),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": "Oh..."
+}
+},
+"size": Vector2(300, 242),
+"speaker": "Morpheus"
+},
+"1_4": {
+"dialogue": "Heck, you can even make multiple dialogue trees in the same file! (Say, all dialogues for one character or one act)",
+"offset": Vector2(220, 600),
+"options": {
+0: {
+"condition": {},
+"link": &"1_5",
+"text": ""
+}
+},
+"size": Vector2(300, 242.948),
+"speaker": "Greg"
+},
+"1_5": {
+"dialogue": "When you want to call a specific dialogue tree, just pass the unique start ID when calling [color=green]$DialogueBox.start('MyID')[/color]",
+"offset": Vector2(560, 600),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": "Cool!"
+}
+},
+"size": Vector2(300, 312.5),
+"speaker": "Greg"
+},
+"2_1": {
+"comment": "Create branching dialogues using different options.",
+"offset": Vector2(-200, 80),
+"size": Vector2(392.562, 100)
+},
+"2_2": {
+"comment": "Create multiple dialogue trees in the same file.",
+"offset": Vector2(-200, 680),
+"size": Vector2(392.562, 100)
+}
+}
+variables = {}
+strays = Array[String](["2_1", "2_2"])
+characters = ""
+
+[sub_resource type="Resource" id="Resource_1m3cp"]
+script = ExtResource("3_vbmhq")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(0, 0),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "Writing the character name for every single dialogue can be tedious and prone to mistakes.
+(I mean look at my name)",
+"offset": Vector2(220, 0),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(300, 276),
+"speaker": 0
+},
+"1_2": {
+"dialogue": "So you can create CharacterList resources containing an array of Character resources and use it in your dialogues.",
+"offset": Vector2(560, 0),
+"options": {
+0: {
+"condition": {},
+"link": &"1_3",
+"text": ""
+}
+},
+"size": Vector2(300, 275),
+"speaker": 0
+},
+"1_3": {
+"dialogue": "What's more you can even put character profiles to spice up the dialogue.",
+"offset": Vector2(900, 0),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 275),
+"speaker": 1
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = "res://examples/PalasoliisiCharacters.tres"
+
+[sub_resource type="Resource" id="Resource_fy7ec"]
+script = ExtResource("3_vbmhq")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(0, 0),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "You can trigger a signal from your dialogue.
+Additionally you can pass a value with the signal and use it in your code.",
+"offset": Vector2(220, 0),
+"options": {
+0: {
+"condition": {},
+"link": &"3_1",
+"text": "Try it!"
+},
+1: {
+"condition": {},
+"link": "END",
+"text": "Got it, bye!"
+}
+},
+"size": Vector2(307.167, 307),
+"speaker": "Greg"
+},
+"1_2": {
+"dialogue": "The signal triggered the code in the demo to create an explosion.",
+"offset": Vector2(800, 0),
+"options": {
+0: {
+"condition": {},
+"link": &"3_1",
+"text": "Do it again!"
+},
+1: {
+"condition": {},
+"link": "END",
+"text": "Got it!"
+}
+},
+"size": Vector2(300, 307),
+"speaker": "Greg"
+},
+"3_1": {
+"link": &"1_2",
+"offset": Vector2(560, 0),
+"signalValue": "explode"
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = ""
+
+[sub_resource type="Resource" id="Resource_8dr05"]
+script = ExtResource("3_vbmhq")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(0, 0),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "You can store and use variables from your dialogue tree.
+Like: You have {{COINS}} coins!",
+"offset": Vector2(220, 0),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(300, 241),
+"speaker": "Greg"
+},
+"1_2": {
+"dialogue": "What would you like to try?",
+"offset": Vector2(700, 0),
+"options": {
+0: {
+"condition": {},
+"link": &"1_3",
+"text": "Set value"
+},
+1: {
+"condition": {},
+"link": &"1_6",
+"text": "Check condition"
+},
+2: {
+"condition": {},
+"link": "END",
+"text": "Nothing"
+}
+},
+"size": Vector2(300, 308),
+"speaker": "Greg"
+},
+"1_3": {
+"dialogue": "Setting COINS to 5.
+Current value: {{COINS}}
+",
+"offset": Vector2(1040, 0),
+"options": {
+0: {
+"condition": {},
+"link": &"4_1",
+"text": ""
+}
+},
+"size": Vector2(300, 241),
+"speaker": "Greg"
+},
+"1_4": {
+"dialogue": "New value: {{COINS}}",
+"offset": Vector2(1700, 0),
+"options": {
+0: {
+"condition": {},
+"link": &"1_5",
+"text": ""
+}
+},
+"size": Vector2(300, 241),
+"speaker": "Greg"
+},
+"1_5": {
+"dialogue": "You can even use the set node perform arithematic operations on values.",
+"offset": Vector2(2040, 0),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": "Got it!"
+},
+1: {
+"condition": {},
+"link": "END",
+"text": "Bye"
+}
+},
+"size": Vector2(300, 275),
+"speaker": "Greg"
+},
+"1_6": {
+"dialogue": "You can use the condition node to show dialogues based on a condition.",
+"offset": Vector2(1040, 280),
+"options": {
+0: {
+"condition": {},
+"link": &"5_1",
+"text": ""
+}
+},
+"size": Vector2(300, 241),
+"speaker": "Greg"
+},
+"1_7": {
+"dialogue": "Like right now you have more than 5 coins!",
+"offset": Vector2(1720, 380),
+"options": {
+0: {
+"condition": {},
+"link": &"1_9",
+"text": ""
+}
+},
+"size": Vector2(300, 241.001),
+"speaker": "Greg"
+},
+"1_8": {
+"dialogue": "I can tell you don't have more than 5 coins...",
+"offset": Vector2(1720, 640),
+"options": {
+0: {
+"condition": {},
+"link": &"1_9",
+"text": ""
+}
+},
+"size": Vector2(300, 241),
+"speaker": "Greg"
+},
+"1_9": {
+"dialogue": "Feel free to look at the example files to learn how to do it yourself!",
+"offset": Vector2(2080, 520),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": "Got it!"
+},
+1: {
+"condition": {},
+"link": "END",
+"text": "Bye"
+}
+},
+"size": Vector2(300, 275),
+"speaker": "Greg"
+},
+"4_1": {
+"link": &"1_4",
+"offset": Vector2(1360, 140),
+"type": 0,
+"value": "5",
+"variable": "COINS"
+},
+"5_1": {
+"false": &"1_8",
+"offset": Vector2(1360, 380),
+"operator": 2,
+"true": &"1_7",
+"value1": "{{COINS}}",
+"value2": "5"
+}
+}
+variables = {
+"COINS": {
+"type": 2,
+"value": 10
+}
+}
+strays = Array[String]([])
+characters = ""
 
 [sub_resource type="Curve" id="1"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.67805, 0.0, 0, 0]
@@ -40,8 +597,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_qerq3")
-script = ExtResource("2_5ddyy")
-demos = Array[ExtResource("3_vbmhq")]([ExtResource("3_yex7d"), ExtResource("4_ay03t"), ExtResource("5_ifbb7"), ExtResource("6_arg21"), ExtResource("7_18syg"), ExtResource("8_4fu3f")])
+script = SubResource("GDScript_lct0l")
+demos = Array[ExtResource("3_vbmhq")]([SubResource("Resource_2hphh"), SubResource("Resource_tkmx0"), SubResource("Resource_f02to"), SubResource("Resource_1m3cp"), SubResource("Resource_fy7ec"), SubResource("Resource_8dr05")])
 
 [node name="DemoSelector" type="OptionButton" parent="."]
 layout_mode = 1
@@ -109,6 +666,7 @@ hue_variation_min = -1.0
 hue_variation_max = 1.0
 
 [node name="DialogueBox" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

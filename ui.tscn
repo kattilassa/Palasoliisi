@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://djryrwi47idpy"]
+[gd_scene load_steps=10 format=3 uid="uid://ct7nv06q6rcao"]
 
 [ext_resource type="PackedScene" uid="uid://b76xiux4rne1t" path="res://Code/UI/ScoreUI.tscn" id="1_8xw4h"]
 [ext_resource type="FontFile" uid="uid://cw6pyp0ft2pbd" path="res://art/Fonts/boldreel/Boldreel.otf" id="2_3qx8c"]

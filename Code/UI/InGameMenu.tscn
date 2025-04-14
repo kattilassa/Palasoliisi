@@ -1,6 +1,5 @@
 [gd_scene load_steps=10 format=3 uid="uid://bw1b55q33qgnr"]
 
-[ext_resource type="Texture2D" uid="uid://b3nh22r7e4cko" path="res://art/card.png" id="1_n3vpn"]
 [ext_resource type="PackedScene" uid="uid://b60yxlkl1xjot" path="res://Code/UI/Settings/VolumeSettings/VolumeSettings.tscn" id="1_o5jel"]
 [ext_resource type="Script" path="res://Code/UI/InGameMenu.cs" id="1_s8l6n"]
 [ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="3_qdc1a"]
@@ -9,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://diav8sidfanr1" path="res://art/pawsmall.png" id="7_fyeb0"]
 [ext_resource type="Texture2D" uid="uid://d2e3a1ghryxr1" path="res://art/XX.png" id="8_6s68y"]
 [ext_resource type="Texture2D" uid="uid://dn6p1oiayjosa" path="res://art/X.png" id="9_iiupo"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2sn68"]
+load_path = "res://.godot/imported/card.png-cbf59a8dc0f4acbf700dd43db8122ba8.ctex"
 
 [node name="InGameMenu" type="CenterContainer" node_paths=PackedStringArray("_exitMenuButton", "_menuButton")]
 process_mode = 3
@@ -32,7 +34,7 @@ _menuButton = NodePath("TextureRect/exitMenu")
 z_index = 5
 custom_minimum_size = Vector2(400, 160)
 layout_mode = 2
-texture = ExtResource("1_n3vpn")
+texture = SubResource("CompressedTexture2D_2sn68")
 expand_mode = 1
 
 [node name="VolumeSettings" parent="TextureRect" instance=ExtResource("1_o5jel")]

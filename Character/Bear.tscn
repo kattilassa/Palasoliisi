@@ -1,7 +1,95 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyh8af6t3vuso"]
+[gd_scene load_steps=4 format=3 uid="uid://cgrjwdcwvsvmf"]
 
 [ext_resource type="Texture2D" uid="uid://fnylrfnrh4w1" path="res://art/UI/Bernard1.0.png" id="1_rl1bn"]
-[ext_resource type="Script" path="res://Code/Bear.cs" id="2_ppn53"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_ne14o"]
+script/source = "using Godot;
+using System;
+
+namespace PalaSoliisi
+{
+	public partial class Bear : Node2D
+	{
+        [Export] private float _speed = 50; // Nopeus, jolla hahmo liikkuu kohti kohdetta
+        [Export] private Vector2I _startPosition = new Vector2I(6 ,3);
+
+        private Vector2 _targetPosition; // Tavoite, johon halutaan liikkua
+
+        public CellOccupierType Type
+		{
+			get { return CellOccupierType.Bear; }
+		}
+
+        public override void _Ready()
+        {
+            if (Level.Current.Grid.GetWorldPosition(_startPosition, out Vector2 worldPosition))
+			{
+				Position = worldPosition;
+                _targetPosition = worldPosition;
+			}
+        }
+
+        public override void _Process(double delta)
+        {
+            Move(delta);
+        }
+
+        // Input-eventit (hiiren klikkaus)
+        public override void _Input(InputEvent @event)
+        {
+            if (@event is InputEventMouseButton mouseEvent
+                && mouseEvent.ButtonIndex == MouseButton.Left
+                && !mouseEvent.Pressed)
+            {
+                Vector2 clickPos = GetGlobalMousePosition();
+
+                if (Level.Current.Grid.IsCellClicked(clickPos, out Vector2I gridCoord))
+                {
+                    GD.Print($\"Solua klikattu: {gridCoord}\");
+                        // Suorita halutut toimenpiteet klikatulle solulle
+                    if (Level.Current.Grid.GetWorldPosition(gridCoord, out Vector2 cellCenter))
+                    {
+                        _targetPosition = cellCenter;
+                    }
+                }
+                if (Level.Current.Grid.HasCollectable(gridCoord))
+                {
+                    Level.Current.Article.Collect();
+                    GD.Print(\"Artikkeli kerätty\");
+                }
+                else
+                {
+                    GD.Print(\"Klikkaus ei osunut soluun.\");
+                }
+            }
+        }
+
+        public void Move(double delta)
+        {
+                // Liikkeen laskenta suoraan _targetPositionia kohti
+            Vector2 direction = _targetPosition - GlobalPosition;
+            float distance = direction.Length();
+
+            if (distance > 1) // Jos etäisyys on tarpeeksi suuri, liikutaan
+            {
+                direction = direction.Normalized();
+                GlobalPosition += direction * (float)delta * _speed;
+            }
+            else
+            {
+                // Kun ollaan lähellä kohdetta, asetetaan sijainti ruudukon mukaiseksi
+                // Muutetaan _targetPosition grid koordinaateiksi (tässä oletetaan, että
+                // hiiren klikkaus tuottaa ruudun keskikoordinaatin, mutta jos ei, niin muunnetaan)
+                Vector2I gridPos = (Vector2I)_targetPosition;
+                if (Level.Current.Grid.GetWorldPosition(gridPos, out Vector2 worldPosition))
+                {
+                    GlobalPosition = worldPosition;
+                }
+            }
+        }
+
+	}
+}"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qoif2"]
 size = Vector2(109.899, 223.333)
@@ -10,7 +98,9 @@ size = Vector2(109.899, 223.333)
 z_index = 1
 position = Vector2(35, 35)
 scale = Vector2(0.309375, 0.309375)
-script = ExtResource("2_ppn53")
+script = SubResource("CSharpScript_ne14o")
+_speed = null
+_startPosition = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_rl1bn")

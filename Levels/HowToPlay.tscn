@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://c85od2ripqjrj"]
+[gd_scene load_steps=5 format=3 uid="uid://c85od2ripqjrj"]
 
 [ext_resource type="Script" path="res://Code/PopUp.cs" id="1_50wjk"]
 [ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="1_huu6o"]
-[ext_resource type="Texture2D" uid="uid://b3nh22r7e4cko" path="res://art/card.png" id="2_xglpw"]
+[ext_resource type="Texture2D" uid="uid://diav8sidfanr1" path="res://art/pawsmall.png" id="4_rp8tj"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2sn68"]
+load_path = "res://.godot/imported/card.png-cbf59a8dc0f4acbf700dd43db8122ba8.ctex"
 
 [node name="PopUp" type="Control" node_paths=PackedStringArray("_okButton")]
 z_index = 15
@@ -13,9 +16,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -169.0
+offset_left = -228.0
 offset_top = -128.0
-offset_right = 181.0
+offset_right = 228.0
 offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -23,6 +26,7 @@ script = ExtResource("1_50wjk")
 _okButton = NodePath("TextureRect/Button")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(350, 253)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -35,11 +39,13 @@ offset_right = 175.0
 offset_bottom = 125.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_xglpw")
+texture = SubResource("CompressedTexture2D_2sn68")
 expand_mode = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TextureRect"]
-custom_minimum_size = Vector2(230, 150)
+clip_contents = false
+custom_minimum_size = Vector2(233, 175)
+layout_direction = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -47,9 +53,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -121.0
-offset_top = -99.5
-offset_right = 109.0
-offset_bottom = 75.5
+offset_top = -102.5
+offset_right = 112.0
+offset_bottom = 72.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_huu6o")
@@ -69,6 +75,7 @@ Search your surroundings[/outline_size][/font_size]
 [font_size=12][outline_size=3]Read the dialogue[/outline_size][/font_size]
  – it will be useful later! "
 fit_content = true
+scroll_active = false
 
 [node name="Button" type="Button" parent="TextureRect"]
 custom_minimum_size = Vector2(30, 20)
@@ -78,12 +85,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -28.0
-offset_top = -47.5
-offset_right = 16.0
-offset_bottom = -22.5
+offset_left = 52.0
+offset_top = -61.0
+offset_right = 107.0
+offset_bottom = -29.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_huu6o")
 theme_override_font_sizes/font_size = 11
 text = "OK!"
+icon = ExtResource("4_rp8tj")

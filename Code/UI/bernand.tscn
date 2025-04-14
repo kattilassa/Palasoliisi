@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://pwtgi58meu22"]
-
-[ext_resource type="Texture2D" uid="uid://bwnic2qdiuuoc" path="res://art/pngegg(1).png" id="1_0uwu2"]
-
-[node name="bernand" type="TextureRect"]
-texture = ExtResource("1_0uwu2")
-expand_mode = 3
-stretch_mode = 4

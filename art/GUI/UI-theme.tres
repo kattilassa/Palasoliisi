@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=9 format=3 uid="uid://chq23h1hhmktp"]
 
-[ext_resource type="Texture2D" uid="uid://b3nh22r7e4cko" path="res://art/card.png" id="1_apby1"]
+[ext_resource type="Texture2D" uid="uid://byxfgv8fartiu" path="res://art/card.png" id="1_apby1"]
 [ext_resource type="FontFile" uid="uid://cw6pyp0ft2pbd" path="res://art/Fonts/boldreel/Boldreel.otf" id="1_tr62e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8r3o"]

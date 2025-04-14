@@ -1,26 +1,26 @@
-[gd_scene load_steps=12 format=3 uid="uid://b15035piso76o"]
+[gd_scene load_steps=11 format=3 uid="uid://b15035piso76o"]
 
 [ext_resource type="Script" path="res://Code/MiniGame/MiniGame.cs" id="1_ud83l"]
 [ext_resource type="PackedScene" uid="uid://biil78h7unvgi" path="res://Levels/Grid.tscn" id="2_no4ox"]
 [ext_resource type="Texture2D" uid="uid://dhu3dxhvb65o0" path="res://art/Test2.png" id="2_prftr"]
-[ext_resource type="Texture2D" uid="uid://b3nh22r7e4cko" path="res://art/card.png" id="3_3xnwm"]
 [ext_resource type="Theme" uid="uid://chq23h1hhmktp" path="res://art/GUI/UI-theme.tres" id="6_7meq3"]
 [ext_resource type="Texture2D" uid="uid://cmffkqiiemf56" path="res://art/settings.1.png" id="6_u5vp5"]
 [ext_resource type="PackedScene" uid="uid://bw1b55q33qgnr" path="res://Code/UI/InGameMenu.tscn" id="6_v4t5l"]
 [ext_resource type="Texture2D" uid="uid://bsir1syi7smu0" path="res://art/settings.2.png" id="7_4aeeu"]
 [ext_resource type="PackedScene" uid="uid://gugyeq2bngsf" path="res://Code/UI/MiniGameUI.tscn" id="7_ecxnm"]
-[ext_resource type="Texture2D" uid="uid://drldl1k7smfym" path="res://icon.svg" id="10_fywyh"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2sn68"]
+load_path = "res://.godot/imported/card.png-cbf59a8dc0f4acbf700dd43db8122ba8.ctex"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ch8hc"]
 bg_color = Color(0.286275, 0.215686, 0.207843, 0)
 
-[node name="MiniGame" type="Node2D" node_paths=PackedStringArray("_miniGameControl", "_settingsButton", "_completeButton")]
+[node name="MiniGame" type="Node2D" node_paths=PackedStringArray("_miniGameControl", "_settingsButton")]
 process_mode = 1
 z_index = 7
 script = ExtResource("1_ud83l")
 _miniGameControl = NodePath("UI/MiniGameUI")
 _settingsButton = NodePath("Settings")
-_completeButton = NodePath("Complete")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -50,7 +50,7 @@ offset_right = 260.0
 offset_bottom = 119.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_3xnwm")
+texture = SubResource("CompressedTexture2D_2sn68")
 expand_mode = 1
 
 [node name="Grid" parent="." instance=ExtResource("2_no4ox")]
@@ -134,12 +134,3 @@ theme = ExtResource("6_7meq3")
 text = "Click to flip the cards and find pairs. "
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Complete" type="TextureButton" parent="."]
-offset_left = 186.0
-offset_top = 85.0
-offset_right = 226.0
-offset_bottom = 125.0
-texture_normal = ExtResource("10_fywyh")
-ignore_texture_size = true
-stretch_mode = 0

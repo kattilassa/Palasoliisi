@@ -180,11 +180,6 @@ namespace PalaSoliisi
 
 			Cell cell = _cells[gridPosition.X, gridPosition.Y];
 
-			if (cell.Occupier is Collectable)
-			{
-				return cell.Occupier as Collectable;
-			}
-
 			return null;
 		}
 

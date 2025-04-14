@@ -19,6 +19,7 @@ starts = {
 "honeyfound": &"0_9",
 "honeyhere": &"0_13",
 "later": &"0_14",
+"outside": &"0_16",
 "second": &"0_2"
 }
 nodes = {
@@ -56,6 +57,11 @@ nodes = {
 "link": &"1_15",
 "offset": Vector2(-252, 167),
 "start_id": "cluefound"
+},
+"0_16": {
+"link": &"1_16",
+"offset": Vector2(-319, 85),
+"start_id": "outside"
 },
 "0_2": {
 "link": &"1_2",
@@ -187,6 +193,19 @@ nodes = {
 },
 "size": Vector2(300, 240),
 "speaker": 0
+},
+"1_16": {
+"dialogue": "I still have things to do!",
+"offset": Vector2(-120, -100),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": ""
 },
 "1_2": {
 "dialogue": "I should check out the computer too",

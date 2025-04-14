@@ -9,7 +9,7 @@ namespace PalaSoliisi.UI
 
         public void SetScore(int score)
         {
-            _scoreLabel.Text = $"Clues found: {score}";
+            _scoreLabel.Text = $"Clues found: {score}/3";
         }
     }
 }

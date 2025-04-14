@@ -1,13 +1,103 @@
-[gd_scene load_steps=12 format=3 uid="uid://dexedy1bup8vh"]
+[gd_scene load_steps=13 format=3 uid="uid://4sc10lt24p5k"]
 
 [ext_resource type="Theme" uid="uid://dc6c1peo4pfyr" path="res://addons/dialogue_nodes/themes/bubbly.theme" id="1_fbp1s"]
-[ext_resource type="Script" path="res://examples/audioDemo.gd" id="2_2jvcg"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeWait.gd" id="2_435yb"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="3_swdgf"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeGhost.gd" id="3_xlyqn"]
-[ext_resource type="Resource" uid="uid://c4ay241u6mexj" path="res://examples/ExampleAudio.tres" id="4_1tepv"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="4_x7bn6"]
 [ext_resource type="AudioStream" uid="uid://bin1ei6yesmjv" path="res://examples/voice.ogg" id="7_au5ch"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="8_2keth"]
+
+[sub_resource type="GDScript" id="GDScript_td7le"]
+script/source = "extends Control
+
+@onready var dialogue_box = $DialogueBox
+@onready var audio_player = $AudioStreamPlayer
+
+func _ready():
+	# connect to the char_displayed signal which is emitted everytime a character is displayed in the dialoguebox
+	dialogue_box.custom_effects[0].char_displayed.connect(_on_char_displayed)
+
+
+func _on_button_pressed():
+	dialogue_box.start()
+
+
+func _on_char_displayed(idx):
+	# you can use the idx parameter to check the index of the character displayed
+	
+	# we'll just play an AudioStreamPlayer for this example
+	audio_player.play()
+"
+
+[sub_resource type="Resource" id="Resource_0fiwn"]
+script = ExtResource("3_swdgf")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(0, 0),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "Oh hey!",
+"offset": Vector2(220, 0),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 1
+},
+"1_2": {
+"dialogue": "This is an example of setting up audio to play when a dialogue is playing.",
+"offset": Vector2(560, 0),
+"options": {
+0: {
+"condition": {},
+"link": &"1_3",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": 1
+},
+"1_3": {
+"dialogue": "[wait]Funny thing is, you don't have to do anything in the dialogue editor.[/wait][br]
+[wait time=1]Its just the signal connected in the scene's script[/wait]",
+"offset": Vector2(900, 0),
+"options": {
+0: {
+"condition": {},
+"link": &"1_4",
+"text": ""
+}
+},
+"size": Vector2(300, 241),
+"speaker": 1
+},
+"1_4": {
+"dialogue": "[wait speed=4]Also...[/wait][wait time=2] you can mess around with the wait speed and time and the sound plays accordingly![/wait]",
+"offset": Vector2(1240, 0),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 241),
+"speaker": 1
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = "res://examples/Characters.tres"
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_c6wh6"]
 script = ExtResource("2_435yb")
@@ -26,7 +116,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_fbp1s")
-script = ExtResource("2_2jvcg")
+script = SubResource("GDScript_td7le")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
@@ -58,7 +148,7 @@ offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("4_x7bn6")
-data = ExtResource("4_1tepv")
+data = SubResource("Resource_0fiwn")
 start_id = "START"
 custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_c6wh6"), SubResource("RichTextEffect_pyhwf"), SubResource("RichTextEffect_fu5un")])
 

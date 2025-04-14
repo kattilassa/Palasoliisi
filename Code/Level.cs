@@ -54,6 +54,7 @@ namespace PalaSoliisi
         private AudioStream _bedSound;
         private AudioStream _backpackSound;
 		private AudioStream _ovenSound;
+		private AudioStream _phoneSound;
         public bool callAnswered = false;
 		public bool callGloria= false;
 		public bool clueCollected= false;
@@ -82,8 +83,6 @@ namespace PalaSoliisi
 		private int _miniGameTurns = 0;
 		private int _testPoints = 0;
 		public FinalQuiz _finalQuiz = null;
-		private Article _article = null;
-		private Obstacle _obstacle = null;
 		private Node _dialogueBox;
 		private Node _dialogueBubble;
 		public bool _isAnswered = true;
@@ -133,14 +132,6 @@ namespace PalaSoliisi
 		{
 			get { return _grid; }
 		}
-		public Article Article
-		{
-			get { return _article; }
-		}
-		  public CellOccupierType Obstacle
-		{
-			get { return CellOccupierType.Obstacle; }
-		}
 
 		// Rakentaja. Käytetään alustamaan olio.
 		public Level()
@@ -175,19 +166,12 @@ namespace PalaSoliisi
 
 				_articleButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnArticlePressed)));
-
-				//_exitMenuButton.Connect(Button.SignalName.Pressed,
-				//new Callable(this, nameof(OnSettingsPressed)));
-
 				_exitClueButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(clueExit)));
-
-			_computerButton.Connect(Button.SignalName.Pressed,
+			    _computerButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnComputerPressed)));
-
 				_phoneButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnPhonePressed)));
-
 				_fridgeButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnFridgePressed)));
 				_tableButton.Connect(Button.SignalName.Pressed,
@@ -196,15 +180,12 @@ namespace PalaSoliisi
 				new Callable(this, nameof(OnBedPressed)));
 				_frogButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnFrogPressed)));
-
 				_boardButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnBoardPressed)));
-//
 				_curtainButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnCurtainPressed)));
 				_ovenButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnOvenPressed)));
-
 				_closetButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnClosetPressed)));
 				_animationPlayer = GetNode<AnimationPlayer>("piece/AnimationPlayer");
@@ -224,8 +205,10 @@ namespace PalaSoliisi
 				 _clickSound = GD.Load<AudioStream>("res://music/click.mp3");
 				 _cabinetSound = GD.Load<AudioStream>("res://music/cabinet.mp3");
 				 _bedSound = GD.Load<AudioStream>("res://music/bed.mp3");
-				_backpackSound = GD.Load<AudioStream>("res://music/bed.mp3");
+				_backpackSound = GD.Load<AudioStream>("res://music/backpack.mp3");
 				_ovenSound = GD.Load<AudioStream>("res://music/oven-door.mp3");
+				_phoneSound = GD.Load<AudioStream>("res://music/phone.mp3");
+
 
 
 			ResetGame();
@@ -233,6 +216,10 @@ namespace PalaSoliisi
         //
         public void OnCurtainPressed()
 		{
+			if(!_isQuizDone)
+			{
+			_dialogueBubble.Call("start", "outside");
+			}
 			GD.Print("Curtain pressed");
 			if(_isQuizDone == true)
 			{
@@ -298,7 +285,6 @@ namespace PalaSoliisi
 			}
 			}
 		}
-
         public void OnClosetPressed()
         {
             PlaySound(_cabinetSound);
@@ -460,7 +446,7 @@ namespace PalaSoliisi
 			{
 				GD.Print("Tietokonetta painettu");
 
-				if (_articlePieces==3)
+				if (_articlePieces>=3)
 				{
 					finalQuiz();
 					_computerOn.Hide();
@@ -522,7 +508,7 @@ namespace PalaSoliisi
 					clueAnimation();
 				}
 		}
-		public async void clueAnimation()
+		public void clueAnimation()
 		{
 				if(_articlePieces==1 && !clueCollected)
 				{
@@ -556,16 +542,16 @@ namespace PalaSoliisi
 		}
 		private void DialogueAnimationSkipper()
 		{
-			if(_isDialogueRunning);
+			if(_isDialogueRunning)
 			{
 			}
 		}
 			private async void OnPhonePressed()
 		{
-			_animationPlayer.Stop();
-			_phoneEffect.Hide();
+			PlaySound(_phoneSound);
 			if (_ringtonePlayer.Playing)
 			{
+				_phoneEffect.Hide();
 				_ringtonePlayer.Stop();
 			}
 			if(!_showInGameMenu & _articlePieces==0 & !callAnswered)
@@ -583,6 +569,7 @@ namespace PalaSoliisi
 			}
 			else if (!callGloria && _articlePieces==1)
 			{
+				_animationPlayer.Stop();
 				callGloria=true;
 				PlaySound(_callStartedSound);
 				await timerAsync(2);
@@ -635,32 +622,6 @@ namespace PalaSoliisi
 		public void callEnded()
 		{
 			return;
-		}
-		public void CreateArticles()
-		{
-			if (_article != null)
-			{
-				_article.QueueFree();
-				_article = null;
-			}
-
-			if (_articleScene == null)
-			{
-				_articleScene = ResourceLoader.Load<PackedScene>(_articleScenePath);
-				if (_articleScene == null)
-				{
-					GD.PrintErr("Articles can't be found");
-					return;
-				}
-			}
-			_article = _articleScene.Instantiate<Article>();
-			AddChild(_article);
-
-			Cell freeCell = Grid.GetRandomFreeCell();
-			if (Grid.OccupyCell(_article, freeCell.GridPosition))
-			{
-				_article.SetPosition(freeCell.GridPosition);
-			}
 		}
 
 		 private void showClueLabel()

@@ -160,7 +160,7 @@ nodes = {
 "speaker": 0
 },
 "1_17": {
-"dialogue": "Okay I’ll look into that more... The Mayor sent the whole village test samples of honey along with a information flyer about the product. I don’t want to get microchipped so I didn’t eat it. If you think you know better go check it out yourself...",
+"dialogue": "Okay I’ll look into that more... The Mayor sent the whole village test samples of honey along with a information flyer about the product. I don’t want to get microchipped so I didn’t eat it. Go check it out yourself!",
 "offset": Vector2(2040, -1160),
 "options": {
 0: {
