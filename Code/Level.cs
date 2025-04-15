@@ -223,53 +223,45 @@ namespace PalaSoliisi
 			GD.Print("Curtain pressed");
 			if(_isQuizDone == true)
 			{
-			if(_finalQuiz.quizPoints<=0)
-			{
-				_testPoints = 0;
-			}
-			else
-			{
-				_testPoints = _finalQuiz.quizPoints;
-			}
+				if(_finalQuiz.quizPoints<=0)
+				{
+					_testPoints = 0;
+				}
+				else
+				{
+					_testPoints = _finalQuiz.quizPoints;
+				}
 
-			// Pause game and hide UI and character
-			if (_testPoints>=3)
-			{
-			GetTree().Paused = true;
-			UIVisible(false);
-			_bernand.Hide();
-			_bernand.StopMovement();
-			_settingsButton.Hide();
-			_isGameFinished = true;
+				// Pause game and hide UI and character
+				if (_testPoints>=3)
+				{
+					GetTree().Paused = true;
+					UIVisible(false);
+					_bernand.Hide();
+					_bernand.StopMovement();
+					_settingsButton.Hide();
+					_isGameFinished = true;
 
 
-			// Make sure EndScene empty
-			if (_ending != null)
-			{
-				_ending.QueueFree();
-				_ending = null;
-			}
-
-			if (_articlePieces == 3 && _testPoints<=3)
-			{
-
-				//if (_testPoints==3)
-				//{
-					//Initialize new ending
-					_endScene = ResourceLoader.Load<PackedScene>(_goodEndScenePath);
-					if (_endScene == null)
+					// Make sure EndScene empty
+					if (_ending != null)
 					{
-						GD.PrintErr("End scene can't be found");
-						return;
+						_ending.QueueFree();
+						_ending = null;
 					}
-				}//
-				_ending = _endScene.Instantiate<Ending>();
-				_ending.SetMiniGameScore(_miniGameTurns);
-				_ending.SetTestScore(_testPoints);
-				AddChild(_ending);
-			}
-			else if (_articlePieces==3 && _testPoints < 3)
-			{
+
+					if (_articlePieces == 3 && _testPoints>=3)
+					{
+						_endScene = ResourceLoader.Load<PackedScene>(_goodEndScenePath);
+						if (_endScene == null)
+						{
+							GD.PrintErr("End scene can't be found");
+							return;
+						}
+					}
+				}
+				else if (_articlePieces==3 && _testPoints < 3)
+				{
 					//Initialize new ending
 					_endScene = ResourceLoader.Load<PackedScene>(_badEndScenePath);
 					if (_endScene == null)
@@ -277,12 +269,12 @@ namespace PalaSoliisi
 						GD.PrintErr("End scene can't be found");
 						return;
 					}
+				}
 
 				_ending = _endScene.Instantiate<Ending>();
 				_ending.SetMiniGameScore(_miniGameTurns);
 				_ending.SetTestScore(_testPoints);
 				AddChild(_ending);
-			}
 			}
 		}
         public void OnClosetPressed()

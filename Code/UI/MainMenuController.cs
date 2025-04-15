@@ -37,9 +37,6 @@ namespace PalaSoliisi
 		private void OnNewGamePressed()
 		{
 			GD.Print("New game pressed");
-
-			// Voisi korjata esim. staattisella Config-luokalla tai resurssi-
-			// oliolla, jossa viittaukset leveleihin.
 			_mainMenuSceneTree.ChangeSceneToFile("res://Levels/Level1.tscn");
 		}
 

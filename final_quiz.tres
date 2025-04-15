@@ -16,7 +16,7 @@ nodes = {
 "1_1": {
 "dialogue": "Look out the window – if climate change is true, then why has it been so cold this week!!
 #ClimateHoax #GloriaReveals #ThinkAgain",
-"offset": Vector2(-120, -280),
+"offset": Vector2(-220, -120),
 "options": {
 0: {
 "condition": {},
@@ -34,7 +34,7 @@ nodes = {
 },
 "1_10": {
 "dialogue": "Please specify the reason for the report.",
-"offset": Vector2(2040, -220),
+"offset": Vector2(2000, -220),
 "options": {
 0: {
 "condition": {},
@@ -52,7 +52,7 @@ nodes = {
 "text": "Disinformation"
 }
 },
-"size": Vector2(300, 289),
+"size": Vector2(300, 322),
 "speaker": "Reason for reporting"
 },
 "1_11": {
@@ -75,7 +75,7 @@ nodes = {
 "text": "Disinformation"
 }
 },
-"size": Vector2(300, 289),
+"size": Vector2(300, 322),
 "speaker": "Reason for reporting"
 },
 "1_12": {
@@ -88,7 +88,7 @@ nodes = {
 "text": "Next post"
 }
 },
-"size": Vector2(300, 240),
+"size": Vector2(300, 256),
 "speaker": "Thank you for reporting"
 },
 "1_13": {
@@ -107,7 +107,7 @@ nodes = {
 "text": "Report"
 }
 },
-"size": Vector2(300, 257),
+"size": Vector2(300, 290),
 "speaker": 2
 },
 "1_14": {
@@ -130,7 +130,7 @@ nodes = {
 "text": "Exaggeration"
 }
 },
-"size": Vector2(300, 289),
+"size": Vector2(300, 322),
 "speaker": "Reason for reporting"
 },
 "1_15": {
@@ -143,7 +143,7 @@ nodes = {
 "text": "Next post"
 }
 },
-"size": Vector2(300, 240),
+"size": Vector2(300, 256),
 "speaker": "Thank you for reporting"
 },
 "1_16": {
@@ -156,7 +156,7 @@ nodes = {
 "text": "OK"
 }
 },
-"size": Vector2(300, 240),
+"size": Vector2(300, 256),
 "speaker": ""
 },
 "1_2": {
@@ -187,7 +187,7 @@ nodes = {
 "text": "Report"
 }
 },
-"size": Vector2(300, 280),
+"size": Vector2(300, 290),
 "speaker": 2
 },
 "1_4": {
@@ -206,7 +206,7 @@ nodes = {
 "1_5": {
 "dialogue": "Bears are omnivores - Berries, fish and bugs are part of their diet. Here are some of my favorite recipes...
 #BearDiet #WildLifeFacts",
-"offset": Vector2(1900, 60),
+"offset": Vector2(1820, 120),
 "options": {
 0: {
 "condition": {},
@@ -238,7 +238,7 @@ nodes = {
 "text": "Report"
 }
 },
-"size": Vector2(300, 257),
+"size": Vector2(300, 290),
 "speaker": 2
 },
 "1_7": {
@@ -261,7 +261,7 @@ nodes = {
 "text": "Disinformation"
 }
 },
-"size": Vector2(300, 289),
+"size": Vector2(300, 322),
 "speaker": "Reason for reporting"
 },
 "1_8": {
@@ -284,7 +284,7 @@ nodes = {
 "text": "Conspiracy theory"
 }
 },
-"size": Vector2(300, 289),
+"size": Vector2(300, 322),
 "speaker": "Reason for reporting"
 },
 "1_9": {
@@ -297,7 +297,7 @@ nodes = {
 "text": "Next post"
 }
 },
-"size": Vector2(300, 240),
+"size": Vector2(300, 256),
 "speaker": "Thank you for reporting"
 },
 "4_1": {
@@ -351,7 +351,7 @@ nodes = {
 },
 "4_5": {
 "link": &"1_9",
-"offset": Vector2(2400, -20),
+"offset": Vector2(2340, -120),
 "type": 2,
 "value": "1",
 "variable": "points"
