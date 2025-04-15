@@ -21,7 +21,7 @@ namespace PalaSoliisi
         }
         public void SetTestScore(int score)
         {
-            _testScore.Text = $"Test score: {score}";
+            _testScore.Text = $"Test score: {score}/10";
         }
 
         public void SetMiniGameScore(int score)

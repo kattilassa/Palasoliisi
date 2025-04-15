@@ -30,7 +30,7 @@ project/assembly_name="Palasoliisi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_nodes/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/dialogue_nodes/plugin.cfg")
 
 [input]
 

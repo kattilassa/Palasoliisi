@@ -10,13 +10,13 @@ starts = {
 nodes = {
 "0_1": {
 "link": &"1_1",
-"offset": Vector2(-374, -254),
+"offset": Vector2(-560, -220),
 "start_id": "quiz"
 },
 "1_1": {
 "dialogue": "Look out the window – if climate change is true, then why has it been so cold this week!!
 #ClimateHoax #GloriaReveals #ThinkAgain",
-"offset": Vector2(-220, -120),
+"offset": Vector2(-340, -240),
 "options": {
 0: {
 "condition": {},
@@ -34,21 +34,21 @@ nodes = {
 },
 "1_10": {
 "dialogue": "Please specify the reason for the report.",
-"offset": Vector2(2000, -220),
+"offset": Vector2(3740, 920),
 "options": {
 0: {
 "condition": {},
-"link": &"4_5",
+"link": &"1_9",
 "text": "Conspiracy theory"
 },
 1: {
 "condition": {},
-"link": &"4_5",
+"link": &"1_9",
 "text": "Manipulation"
 },
 2: {
 "condition": {},
-"link": &"4_5",
+"link": &"1_9",
 "text": "Disinformation"
 }
 },
@@ -57,7 +57,7 @@ nodes = {
 },
 "1_11": {
 "dialogue": "Please specify the reason for the report.",
-"offset": Vector2(3420, 560),
+"offset": Vector2(5180, 1120),
 "options": {
 0: {
 "condition": {},
@@ -80,7 +80,7 @@ nodes = {
 },
 "1_12": {
 "dialogue": "We did not find anything suspicious from this post. Thank you for your feedback.",
-"offset": Vector2(3480, 160),
+"offset": Vector2(5540, 1240),
 "options": {
 0: {
 "condition": {},
@@ -94,11 +94,11 @@ nodes = {
 "1_13": {
 "dialogue": "Mayors honey is DEATHLY to young bear baby cubs!  :'( 
 #SaveTheBabies #WakeUp!  #GloriaReveals",
-"offset": Vector2(3920, 60),
+"offset": Vector2(5900, 1140),
 "options": {
 0: {
 "condition": {},
-"link": "END",
+"link": &"4_13",
 "text": "Like this post"
 },
 1: {
@@ -112,11 +112,11 @@ nodes = {
 },
 "1_14": {
 "dialogue": "Please specify the reason for the report.",
-"offset": Vector2(4540, 200),
+"offset": Vector2(6620, 1400),
 "options": {
 0: {
 "condition": {},
-"link": &"1_16",
+"link": &"1_15",
 "text": "Trolling"
 },
 1: {
@@ -126,7 +126,7 @@ nodes = {
 },
 2: {
 "condition": {},
-"link": &"1_16",
+"link": &"1_15",
 "text": "Exaggeration"
 }
 },
@@ -135,7 +135,7 @@ nodes = {
 },
 "1_15": {
 "dialogue": "The post has been removed for causing fear and confusion.",
-"offset": Vector2(5280, 240),
+"offset": Vector2(7400, 1520),
 "options": {
 0: {
 "condition": {},
@@ -148,7 +148,7 @@ nodes = {
 },
 "1_16": {
 "dialogue": "No new posts",
-"offset": Vector2(5020, 500),
+"offset": Vector2(7820, 1440),
 "options": {
 0: {
 "condition": {},
@@ -161,7 +161,7 @@ nodes = {
 },
 "1_2": {
 "dialogue": "Thanks for your report. The post has been removed for misinformation caused by a misunderstanding of climate change.",
-"offset": Vector2(940, -440),
+"offset": Vector2(940, 300),
 "options": {
 0: {
 "condition": {},
@@ -174,7 +174,7 @@ nodes = {
 },
 "1_3": {
 "dialogue": "Honey jars are equipped with tracking devices so the goverment can monitor you!! #GloriaReveals #RevealOfTheDay",
-"offset": Vector2(740, -140),
+"offset": Vector2(1300, 220),
 "options": {
 0: {
 "condition": {},
@@ -192,7 +192,7 @@ nodes = {
 },
 "1_4": {
 "dialogue": "The post has been removed for promoting conspiracy theories.",
-"offset": Vector2(1480, 60),
+"offset": Vector2(2660, 700),
 "options": {
 0: {
 "condition": {},
@@ -206,7 +206,7 @@ nodes = {
 "1_5": {
 "dialogue": "Bears are omnivores - Berries, fish and bugs are part of their diet. Here are some of my favorite recipes...
 #BearDiet #WildLifeFacts",
-"offset": Vector2(1820, 120),
+"offset": Vector2(3060, 620),
 "options": {
 0: {
 "condition": {},
@@ -215,7 +215,7 @@ nodes = {
 },
 1: {
 "condition": {},
-"link": &"1_10",
+"link": &"4_5",
 "text": "Report"
 }
 },
@@ -225,7 +225,7 @@ nodes = {
 "1_6": {
 "dialogue": "The decline of bees has a huge global impact!!
 #SaveTheBees #GloriaReveals",
-"offset": Vector2(2720, 240),
+"offset": Vector2(4460, 800),
 "options": {
 0: {
 "condition": {},
@@ -243,7 +243,7 @@ nodes = {
 },
 "1_7": {
 "dialogue": "Please specify the reason for the report.",
-"offset": Vector2(240, -520),
+"offset": Vector2(300, 20),
 "options": {
 0: {
 "condition": {},
@@ -266,7 +266,7 @@ nodes = {
 },
 "1_8": {
 "dialogue": "Please specify the reason for the report.",
-"offset": Vector2(1080, 160),
+"offset": Vector2(1980, 480),
 "options": {
 0: {
 "condition": {},
@@ -275,7 +275,7 @@ nodes = {
 },
 1: {
 "condition": {},
-"link": "END",
+"link": &"1_4",
 "text": "Falseness"
 },
 2: {
@@ -289,7 +289,7 @@ nodes = {
 },
 "1_9": {
 "dialogue": "We did not find anything suspicious from this post. Thank you for your feedback.",
-"offset": Vector2(2680, -80),
+"offset": Vector2(4120, 940),
 "options": {
 0: {
 "condition": {},
@@ -302,86 +302,93 @@ nodes = {
 },
 "4_1": {
 "link": &"1_2",
-"offset": Vector2(560, -500),
+"offset": Vector2(620, 200),
 "type": 1,
 "value": "1",
 "variable": "points"
 },
 "4_10": {
 "link": &"1_11",
-"offset": Vector2(3107.02, 455.826),
+"offset": Vector2(4840, 1100),
 "type": 2,
 "value": "1",
 "variable": "points"
 },
 "4_11": {
 "link": &"1_14",
-"offset": Vector2(4180, 380),
+"offset": Vector2(6240, 1400),
 "type": 1,
 "value": "1",
-"variable": "reported"
+"variable": "points"
 },
 "4_12": {
 "link": &"1_15",
-"offset": Vector2(4940, 300),
+"offset": Vector2(7000, 1740),
 "type": 1,
+"value": "1",
+"variable": "points"
+},
+"4_13": {
+"link": &"1_16",
+"offset": Vector2(6240, 1280),
+"type": 2,
 "value": "1",
 "variable": "points"
 },
 "4_2": {
 "link": &"1_3",
-"offset": Vector2(260, -20),
+"offset": Vector2(300, -80),
 "type": 2,
 "value": "1",
 "variable": "points"
 },
 "4_3": {
 "link": &"1_5",
-"offset": Vector2(1201.39, 7.22769),
+"offset": Vector2(1640, 340),
 "type": 2,
 "value": "1",
 "variable": "points"
 },
 "4_4": {
 "link": &"1_4",
-"offset": Vector2(1400, 360),
+"offset": Vector2(2320, 800),
 "type": 1,
 "value": "1",
 "variable": "points"
 },
 "4_5": {
-"link": &"1_9",
-"offset": Vector2(2340, -120),
+"link": &"1_10",
+"offset": Vector2(3400, 900),
 "type": 2,
 "value": "1",
 "variable": "points"
 },
 "4_6": {
 "link": &"1_6",
-"offset": Vector2(2300, 240),
+"offset": Vector2(3400, 800),
 "type": 1,
-"value": "1",
+"value": "2",
 "variable": "points"
 },
 "4_7": {
 "link": &"1_7",
-"offset": Vector2(-80, -480),
+"offset": Vector2(-20, 20),
 "type": 1,
 "value": "1",
-"variable": "reported"
+"variable": "points"
 },
 "4_8": {
 "link": &"1_8",
-"offset": Vector2(700, 200),
+"offset": Vector2(1640, 480),
 "type": 1,
 "value": "1",
-"variable": "reported"
+"variable": "points"
 },
 "4_9": {
 "link": &"1_13",
-"offset": Vector2(3062.95, 312.826),
+"offset": Vector2(4840, 1000),
 "type": 1,
-"value": "1",
+"value": "2",
 "variable": "points"
 }
 }
