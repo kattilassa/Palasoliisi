@@ -1,6 +1,6 @@
 # Palasoliisi - Mobile game
 
-This game was created as a part of TAMK’s mandatory project/game course. In this project we worked closely with a client who has a fixed theme for the game. Our client was Infotester4Education.
+This game was created as a part of TAMK’s mandatory project/game course. In this project we worked closely with a client who had a fixed theme for the game. Our client was Infotester4Education.
 
 ### Game overview
 
