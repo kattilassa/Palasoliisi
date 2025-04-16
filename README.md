@@ -44,25 +44,24 @@ Download the APK file to your ANDROID device from our website.
 
 ### Credits
 
-OlioNexus
-TAMK
+OlioNexus \n
+TAMK \n
 Infoterster4Education
 
 all listed sounds are from PIXABAY under these titles and users:
 
 Sound effects:
-'Phone outgoing call', 'Ding', 'Backpack sound', 'Cabinet Door Open', 'Oven Door open 2 inches', 'Phone Pick Up', 'Wind ambience', 'Porridge boiled' By freesound_community
-'Phone outgoing call', 'Ding', 'Backpack sound'
-Phone Ringtone Home - by Jurij
+'Phone outgoing call', 'Ding', 'Backpack sound', 'Cabinet Door Open', 'Oven Door open 2 inches', 'Phone Pick Up', 'Wind ambience', 'Porridge boiled' By freesound_community \n
+'Phone outgoing call', 'Ding', 'Backpack sound', 'Phone Ringtone Home' - by Jurij \n
 'Mouse click' - by Matthew Vakalyuk
 
 Music:
-Menu music - 'a private detective' Music by Noru
+Menu music - 'a private detective' Music by Noru \n
 Game music - 'Sneaky Feet Music' by Geoff Harvey
 
 Dialogue Nodes addon by user Nagi:
 https://godotengine.org/asset-library/asset/1197
 
 Fonts used:
-Kalam Font Family By Indian Type Foundry
+Kalam Font Family By Indian Type Foundry \n
 Boldreel By Khurasan
