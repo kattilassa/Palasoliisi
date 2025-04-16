@@ -45,7 +45,9 @@ Download the APK file to your ANDROID device from our website.
 ### Credits
 
 OlioNexus
+
 TAMK
+
 Infoterster4Education
 
 all listed sounds are from PIXABAY under these titles and users:
