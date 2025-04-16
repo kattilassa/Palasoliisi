@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bhd1lm4pa7wwf"
-path="res://.godot/imported/NettiTausta.png-61f5e38543586a8b14daafec7ff5d4fd.ctex"
+path="res://.godot/imported/nettitausta.png-81a1966191b23cb408c73e0e75d07a2f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/NettiTausta.png"
-dest_files=["res://.godot/imported/NettiTausta.png-61f5e38543586a8b14daafec7ff5d4fd.ctex"]
+source_file="res://art/nettitausta.png"
+dest_files=["res://.godot/imported/nettitausta.png-81a1966191b23cb408c73e0e75d07a2f.ctex"]
 
 [params]
 

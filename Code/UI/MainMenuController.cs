@@ -9,7 +9,6 @@ namespace PalaSoliisi
 		[Export] private Button _newGameButton = null;
 		[Export] private Button _optionsButton = null;
 		[Export] private Button _quitButton = null;
-		//[Export] private DialogWindow _optionsWindow = null;
 
 		private SceneTree _mainMenuSceneTree = null;
 

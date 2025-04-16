@@ -109,12 +109,6 @@ layout_mode = 2
 texture = ExtResource("2_j3ckg")
 expand_mode = 5
 
-[node name="TEMP-DELETE-ME" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_6xx7f")
-autoplay = true
-bus = &"Music"
-parameters/looping = false
-
 [node name="GameName" type="Label" parent="."]
 custom_minimum_size = Vector2(42, 40)
 layout_mode = 1
@@ -204,3 +198,8 @@ autoplay = "fade_in"
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="musicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6xx7f")
+autoplay = true
+bus = &"Music"

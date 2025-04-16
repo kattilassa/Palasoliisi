@@ -46,12 +46,10 @@ namespace PalaSoliisi
 		private AudioStreamPlayer _soundPlayer;
         private AudioStream _ringtoneSound;
         private AudioStream _paperSound;
-        private AudioStream _callEndedSound;
         private AudioStream _callStartedSound;
         private AudioStream _dingSound;
         private AudioStream _clickSound;
         private AudioStream _cabinetSound;
-        private AudioStream _bedSound;
         private AudioStream _backpackSound;
 		private AudioStream _ovenSound;
 		private AudioStream _phoneSound;
@@ -199,12 +197,10 @@ namespace PalaSoliisi
 				_soundPlayer = GetNode<AudioStreamPlayer>("SoundPlayer");
 				 _ringtoneSound = GD.Load<AudioStream>("res://music/phone-ringtone.mp3");
 				 _paperSound = GD.Load<AudioStream>("res://music/paper.mp3");
-				  _callEndedSound = GD.Load<AudioStream>("res://music/unavailable.mp3");
 				  _callStartedSound = GD.Load<AudioStream>("res://music/phoneCall.mp3");
 				 _dingSound = GD.Load<AudioStream>("res://music/ding.mp3");
 				 _clickSound = GD.Load<AudioStream>("res://music/click.mp3");
 				 _cabinetSound = GD.Load<AudioStream>("res://music/cabinet.mp3");
-				 _bedSound = GD.Load<AudioStream>("res://music/bed.mp3");
 				_backpackSound = GD.Load<AudioStream>("res://music/backpack.mp3");
 				_ovenSound = GD.Load<AudioStream>("res://music/oven-door.mp3");
 				_phoneSound = GD.Load<AudioStream>("res://music/phone.mp3");
