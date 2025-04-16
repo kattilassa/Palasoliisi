@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c5p5wf6ksi2o"]
+[gd_scene load_steps=9 format=3 uid="uid://c5p5wf6ksi2o"]
 
 [ext_resource type="Script" path="res://Code/Ending.cs" id="1_3vuqj"]
 [ext_resource type="Texture2D" uid="uid://bp77o3qu167hg" path="res://art/BadEnd.png" id="1_je1v0"]
@@ -18,16 +18,6 @@ bg_color = Color(0.305882, 0.305882, 0.305882, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofkid"]
 bg_color = Color(0.266575, 0.266575, 0.266575, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kml2h"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ukvqf"]
-bg_color = Color(0.306923, 0.306923, 0.306923, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knmka"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4bkt5"]
-bg_color = Color(0.266667, 0.266667, 0.266667, 1)
 
 [node name="GoodEnd" type="Node2D" node_paths=PackedStringArray("_menuButton", "_testScore", "_miniGameScore")]
 process_mode = 3
@@ -89,9 +79,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -73.0
+offset_top = -63.0
 offset_right = 230.0
-offset_bottom = -43.0
+offset_bottom = -33.0
 grow_vertical = 2
 theme = ExtResource("2_vuaj7")
 text = "Test score: 00"
@@ -104,9 +94,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -43.0
+offset_top = -33.0
 offset_right = 230.0
-offset_bottom = -13.0
+offset_bottom = -3.0
 grow_vertical = 2
 theme = ExtResource("2_vuaj7")
 text = "MiniGame turns used: 00"
@@ -116,35 +106,17 @@ vertical_alignment = 1
 [node name="MenuButton" type="Button" parent="Control"]
 custom_minimum_size = Vector2(75, 30)
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = -51.0
-offset_right = 95.0
-offset_bottom = -21.0
-grow_vertical = 0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 65.0
+offset_top = 52.0
+offset_right = 140.0
+offset_bottom = 82.0
+grow_vertical = 2
 theme = ExtResource("2_vuaj7")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_r1tph")
 theme_override_styles/hover = SubResource("StyleBoxFlat_2we70")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_dr6hs")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ofkid")
 text = "Menu"
-
-[node name="InfoButton" type="Button" parent="Control"]
-custom_minimum_size = Vector2(75, 30)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 115.0
-offset_top = -51.0
-offset_right = 190.0
-offset_bottom = -21.0
-grow_vertical = 0
-theme = ExtResource("2_vuaj7")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_kml2h")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ukvqf")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_knmka")
-theme_override_styles/normal = SubResource("StyleBoxFlat_4bkt5")
-text = "Info"
