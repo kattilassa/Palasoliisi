@@ -123,9 +123,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -57.0
-offset_top = -61.0
+offset_top = -56.0
 offset_right = 57.0
-offset_bottom = -26.0
+offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("6_pjfww")
@@ -155,7 +155,7 @@ libraries = {
 }
 autoplay = "GameNameAnimation"
 
-[node name="List" type="VBoxContainer" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -163,30 +163,64 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -100.0
-offset_top = -38.0
+offset_top = -43.0
 offset_right = 100.0
-offset_bottom = 62.0
+offset_bottom = 66.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("6_pjfww")
+bbcode_enabled = true
+text = "[center][font_size=14]OlioNexus
+TAMK[/font_size]
 
-[node name="OlioNexus" type="Label" parent="List"]
-layout_mode = 2
-text = "Olio Nexus"
-horizontal_alignment = 1
-vertical_alignment = 1
+[font_size=13]Infotester4Education[/font_size]
 
-[node name="TAMK" type="Label" parent="List"]
-layout_mode = 2
-text = "TAMK"
-horizontal_alignment = 1
-vertical_alignment = 1
+If you want to learn more, you can join the “Break the Fake” course
 
-[node name="Infotester" type="Label" parent="List"]
-layout_mode = 2
-text = "Infotester4Education"
-horizontal_alignment = 1
-vertical_alignment = 1
+All listed sounds are from PIXABAY under these titles and users
+
+Sound effects
+
+'Phone outgoing call',
+'Ding',
+'Backpack sound',
+'Cabinet Door Open',
+'Oven Door open 2 inches',
+'Phone Pick Up',
+'Wind ambience',
+'Porridge boiled'
+By freesound_community
+
+'Phone outgoing call',
+'Ding',
+'Backpack sound',
+'Phone Ringtone Home'
+by Jurij
+
+'Mouse click'
+by Matthew Vakalyuk
+
+Music
+
+Menu music
+'A private detective'
+by Noru
+
+Game music
+'Sneaky Feet Music'
+by Geoff Harvey
+
+Fonts used
+
+Kalam Font Family
+By Indian Type Foundry
+
+Boldreel 
+By Khurasan
+
+Dialogue Nodes addon by user Nagi
+[/center]"
+context_menu_enabled = true
 
 [node name="Bernand" parent="." instance=ExtResource("7_ia3bo")]
 position = Vector2(10, 110)

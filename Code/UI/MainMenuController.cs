@@ -9,6 +9,7 @@ namespace PalaSoliisi
 		[Export] private Button _newGameButton = null;
 		[Export] private Button _optionsButton = null;
 		[Export] private Button _quitButton = null;
+		[Export] private Button _creditsButton = null;
 
 		private SceneTree _mainMenuSceneTree = null;
 
@@ -31,6 +32,9 @@ namespace PalaSoliisi
 
 			_quitButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnQuitPressed)));
+
+			_creditsButton.Connect(Button.SignalName.Pressed,
+				new Callable(this, nameof(OnCreditsPressed)));
 		}
 
 		private void OnNewGamePressed()
@@ -47,6 +51,12 @@ namespace PalaSoliisi
 		private void OnQuitPressed()
 		{
 			_mainMenuSceneTree.Quit();
+		}
+
+		private void OnCreditsPressed()
+		{
+			GD.Print("Credits pressed");
+			_mainMenuSceneTree.ChangeSceneToFile("res://Levels/Credits.tscn");
 		}
 	}
 }

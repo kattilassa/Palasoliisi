@@ -81,7 +81,7 @@ _data = {
 "fade_in": SubResource("Animation_se6ql")
 }
 
-[node name="Menu" type="Control" node_paths=PackedStringArray("_newGameButton", "_optionsButton", "_quitButton")]
+[node name="Menu" type="Control" node_paths=PackedStringArray("_newGameButton", "_optionsButton", "_quitButton", "_creditsButton")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -93,6 +93,7 @@ script = ExtResource("1_wyj4e")
 _newGameButton = NodePath("ButtonMenu/NewGamebutton")
 _optionsButton = NodePath("ButtonMenu/OptionsButton")
 _quitButton = NodePath("ButtonMenu/QuitGameButton")
+_creditsButton = NodePath("Credits")
 
 [node name="BackGround" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -135,6 +136,16 @@ theme = ExtResource("3_o21db")
 text = "info"
 clip_text = true
 script = ExtResource("6_s8jbw")
+
+[node name="Credits" type="Button" parent="."]
+layout_mode = 2
+offset_left = 372.0
+offset_top = 225.0
+offset_right = 445.0
+offset_bottom = 250.0
+theme = ExtResource("3_o21db")
+text = "credits"
+clip_text = true
 
 [node name="Bernand" parent="." instance=ExtResource("3_10f56")]
 position = Vector2(15, 50)
