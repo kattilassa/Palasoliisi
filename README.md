@@ -35,12 +35,12 @@ Download the APK file to your ANDROID device from our website.
 - https://github.com/myemilia
 
 
-### Used technologies
-Godot game engine
-C#
-GD Script (dialogue nodes by Nagi)
-Krita
-Canva
+### Used tools
+- Godot game engine
+- C#
+- GD Script (dialogue nodes by Nagi)
+- Krita
+- Canva
 
 ### Credits
 
