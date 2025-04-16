@@ -8,7 +8,7 @@ Game works with basic point and click mechanics.
 Palasoliisi is story driven puzzle game.
 Animations, dialogues, minigames, and clickable furniture with sound effects create an interactive game experience for the player.
 
-## Teaser
+### Teaser
 
 Step into the paws of Bernand, the cunning bear! Save a struggling village from the grasps of disinformation - only you can save them.
 
@@ -22,17 +22,17 @@ https://www.youtube.com/watch?v=Lp9g-5sH_ro&source_ve_path=MjM4NTE
 
 Download the APK file to your ANDROID device from our website.
 
-### Team
+## Team
 
-- Coders
+### Coders
 
-@matamimimma
-@kattilassa
+- https://github.com/matamimimma
+- https://github.com/kattilassa
 
-- Artists
+### Artists
 
-@jjonskiv
-@myemilia
+- https://github.com/jjonskiv
+- https://github.com/myemilia
 
 
 ### Used technologies
