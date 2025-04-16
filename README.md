@@ -54,7 +54,7 @@ Sound effects:
 
 'Phone outgoing call', 'Ding', 'Backpack sound', 'Cabinet Door Open', 'Oven Door open 2 inches', 'Phone Pick Up', 'Wind ambience', 'Porridge boiled' By freesound_community
 
-'Phone outgoing call', 'Ding', 'Backpack sound', 'Phone Ringtone Home' - by Jurij
+'Phone Ringtone Home' - by Jurij
 
 'Mouse click' - by Matthew Vakalyuk
 
