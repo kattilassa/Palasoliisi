@@ -182,7 +182,7 @@ nodes = {
 "speaker": 0
 },
 "1_15": {
-"dialogue": "Let’s check the board!",
+"dialogue": "Let’s investigate!",
 "offset": Vector2(-40, 80),
 "options": {
 0: {

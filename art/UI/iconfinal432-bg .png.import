@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhd1lm4pa7wwf"
-path="res://.godot/imported/nettitausta.png-81a1966191b23cb408c73e0e75d07a2f.ctex"
+uid="uid://s3pf6gy1g0n6"
+path="res://.godot/imported/iconfinal432-bg .png-23b4b3e20c75a0afd28ad938b62551f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/nettitausta.png"
-dest_files=["res://.godot/imported/nettitausta.png-81a1966191b23cb408c73e0e75d07a2f.ctex"]
+source_file="res://art/UI/iconfinal432-bg .png"
+dest_files=["res://.godot/imported/iconfinal432-bg .png-23b4b3e20c75a0afd28ad938b62551f9.ctex"]
 
 [params]
 

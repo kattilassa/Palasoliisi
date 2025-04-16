@@ -493,6 +493,10 @@ namespace PalaSoliisi
 				{
 					clueAnimation();
 				}
+				else if (_articlePieces == 2)
+				{
+					clueAnimation();
+				}
 		}
 		public void clueAnimation()
 		{
@@ -500,7 +504,7 @@ namespace PalaSoliisi
 				{
 		  		_animationPlayer.Play("fridgeAnimation");
 				}
-				if(_articlePieces==2 && !clueCollected)
+				else if (_articlePieces==2 && !clueCollected)
 				{
 		  		_animationPlayer.Play("dinnerTable");
 				}
