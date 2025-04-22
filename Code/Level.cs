@@ -352,30 +352,6 @@ namespace PalaSoliisi
 				_dialogueBubble.Call("start", "honeyhere");
 			}
 		}
-		/*
-		 public void OnSettingsPressed()
-		{
-			_UIpressed = true;
-			if (_showInGameMenu)
-			{
-				GetTree().Paused = false;
-				_showInGameMenu = false;
-				_inGameMenu.Hide();
-				_menuButton.Hide();
-				_exitMenuButton.Hide();
-				Movement();
-			}
-			else
-			{
-				GetTree().Paused = true;
-				_showInGameMenu = true;
-				_inGameMenu.Show();
-				_menuButton.Show();
-				_exitMenuButton.Show();
-				Movement();
-			}
-		}
-	*/
 		private async void OnArticlePressed()
 		{
 			bool firstButton = true;
