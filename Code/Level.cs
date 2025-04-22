@@ -9,6 +9,8 @@ namespace PalaSoliisi
 	{
 		private static Level _current = null;
 		private SceneTree _inGameSceneTree = null;
+
+		// Flags for UI visibility and game states
 		public bool _showInGameMenu = false;
 		public bool _showDialogue = false;
 		public bool _settingsClose = false;
@@ -17,9 +19,18 @@ namespace PalaSoliisi
 		public bool _isGameFinished = false;
 		public bool _isDialogueRunning = false;
 		public bool _isQuizDone = false;
+		public bool isRunning;
+		public bool callAnswered = false;
+		public bool callGloria= false;
+		public bool clueCollected= false;
+
+
+		// UI elements references
 		[Export] public Label _clueLabel;
 		private Control _UI;
 		public Control _inGameMenu;
+
+		// Texturebuttons for interacting with objects and furniture in the game
 		[Export] private TextureButton _curtainButton = null;
 		[Export] private TextureButton _settingsButton = null;
 		[Export] private TextureButton _articleButton = null;
@@ -35,13 +46,16 @@ namespace PalaSoliisi
 		[Export] private TextureButton _dinnerTableButton = null;
 		[Export] private TextureButton _ovenButton = null;
 		[Export] private Button _exitClueButton = null;
+
+		// Scene paths for the mini-game and endings.
 		[Export] private string _miniGameScenePath = "res://Levels/MiniGame.tscn";
 		//[Export] private string _howToPlayScenePath = "res://Levels/HowToPlay.tscn";
 		[Export] private string _goodEndScenePath = "res://Levels/GoodEnd.tscn";
 		[Export] private string _badEndScenePath = "res://Levels/BadEnd.tscn";
 		private SceneTree _optionsSceneTree = null;
 		private Bernand _bernand = null;
-		public bool isRunning;
+
+		// AnimationPlayer and sound effects.
 		public AnimationPlayer _animationPlayer;
 		private AudioStreamPlayer _soundPlayer;
         private AudioStream _ringtoneSound;
@@ -53,17 +67,16 @@ namespace PalaSoliisi
         private AudioStream _backpackSound;
 		private AudioStream _ovenSound;
 		private AudioStream _phoneSound;
-        public bool callAnswered = false;
-		public bool callGloria= false;
-		public bool clueCollected= false;
+		[Export] AudioStreamPlayer _ringtonePlayer;
+
 		public static Level Current
 		{
 			get { return _current; }
 		}
 		[Export] private string _articleScenePath = "res://Levels/Collectables/Article.tscn";
+		//old article piece - not used ATM.
 		[Export] private string _finalQuizScenePath = "res://Levels/FinalQuiz.tscn";
 		[Export] private ScoreUIControl _scoreUIControl = null;
-		[Export] AudioStreamPlayer _ringtonePlayer;
 
         private Grid _grid = null;
 
@@ -162,6 +175,7 @@ namespace PalaSoliisi
 			_clueLabel = GetNode<Label>("UI/Clue/clue");
 			//_finalQuiz = GetNode<FinalQuiz>("Level/FinalQuiz.tscn");
 
+				//Texturebuttons for furniture and clue pieces.
 				_articleButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnArticlePressed)));
 				_exitClueButton.Connect(Button.SignalName.Pressed,
@@ -191,9 +205,7 @@ namespace PalaSoliisi
 				new Callable(this, nameof(OnDinnerTablePressed)));
 				_animationPlayer = GetNode<AnimationPlayer>("piece/AnimationPlayer");
 
-
-
-
+				//Sound effects that can be played through code.
 				_soundPlayer = GetNode<AudioStreamPlayer>("SoundPlayer");
 				 _ringtoneSound = GD.Load<AudioStream>("res://music/phone-ringtone.mp3");
 				 _paperSound = GD.Load<AudioStream>("res://music/paper.mp3");
@@ -205,18 +217,17 @@ namespace PalaSoliisi
 				_ovenSound = GD.Load<AudioStream>("res://music/oven-door.mp3");
 				_phoneSound = GD.Load<AudioStream>("res://music/phone.mp3");
 
-
-
 			ResetGame();
 		}
-        //
         public void OnCurtainPressed()
 		{
+			//Before the final quiz - character won't be able to leave the room.
 			if(!_isQuizDone)
 			{
 			_dialogueBubble.Call("start", "outside");
 			}
 			GD.Print("Curtain pressed");
+			//After the final quiz - character can leave the room.
 			if(_isQuizDone == true)
 			{
 				// Pause game and hide UI and character
@@ -318,7 +329,6 @@ namespace PalaSoliisi
 			ArticlePieces= 0;
 			_articleButton.Hide();
 			_howToPlay.Show();
-			// Dialogue();
 		}
 
 		public void OnFridgePressed()
@@ -327,30 +337,15 @@ namespace PalaSoliisi
 			GD.Print("jääkaappi");
 			if (!clueCollected && callGloria &&_articlePieces == 1)
 			{
-				//_dialogueBubble.Call("start", "honey");
 				_dialogueBubble.Call("start", "honeyfound");
 				_articleButton.Show();
-			}
-			else
-			{
-				//_dialogueBubble.Call("start", "fridge");
 			}
 		}
 
 		public void OnTablePressed()
 		{
 			PlaySound(_cabinetSound);
-			GD.Print("pöytä");
-			GD.Print("jääkaappi");
-			if (callGloria &&_articlePieces == 1)
-			{
-				//_dialogueBubble.Call("start", "honeyfound");
-				//_articleButton.Show();
-			}
-			else
-			{
 				_dialogueBubble.Call("start", "honeyhere");
-			}
 		}
 		private async void OnArticlePressed()
 		{
@@ -360,20 +355,13 @@ namespace PalaSoliisi
 			await timerAsync(1);
 			PlaySound(_paperSound);
 			_dialogueBubble.Call("start","cluefound");
-			//if(!_showInGameMenu)
-			//{
-			//ArticlePieces++;
-			//_scoreUIControl.SetScore(_articlePieces);
-			//}
-			//else
-			//{
-			//	return;
-			//}
+
 			if(_articlePieces == 0 && firstButton)
 			{ _articleButton.Hide();
 				firstButton=false;
 				_articleButton.GlobalPosition = new Vector2(87, -91);
 				_animationPlayer.Play("reminder");
+				//Play animation for visual animation tip for the player.
 			}
 			else if (_articlePieces == 1 && secondButton)
 			{
@@ -389,7 +377,7 @@ namespace PalaSoliisi
 			}
 			clueCollected= true;
 			_animationPlayer.Play("clueboard");
-			// Start minigame when article collected
+			//Play animation for visual animation tip for the player.
 		}
 
 		/// <summary>
@@ -418,7 +406,7 @@ namespace PalaSoliisi
 				Random rnd = new Random();
 				int randomDialogue = rnd.Next(1, 6);
 				String startID = $"{randomDialogue}";
-
+				//Get a random dialogue comment from bernard. (5 versions)
 				switch (randomDialogue)
 				{
 					case 1:
@@ -440,7 +428,6 @@ namespace PalaSoliisi
 			}
 			}
 		}
-
 		private async Task timerAsync(float time)
 		{
 		 await ToSignal(GetTree().CreateTimer(time), "timeout");

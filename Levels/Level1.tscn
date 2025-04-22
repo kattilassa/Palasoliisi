@@ -498,7 +498,7 @@ vertices = PackedVector2Array(-163.797, 10, -162.797, 23, -192.867, 23, -193.867
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(17, 18, 19, 20, 21), PackedInt32Array(22, 23, 24, 25), PackedInt32Array(3, 26, 27, 4), PackedInt32Array(4, 28, 29, 5), PackedInt32Array(0, 5, 30, 31), PackedInt32Array(32, 33, 34, 35), PackedInt32Array(12, 36, 37, 38, 31, 13), PackedInt32Array(30, 39, 40, 41), PackedInt32Array(31, 30, 41), PackedInt32Array(31, 41, 13), PackedInt32Array(42, 43, 44, 45, 46), PackedInt32Array(42, 46, 47, 24), PackedInt32Array(25, 24, 47, 9), PackedInt32Array(19, 36, 12, 32, 35), PackedInt32Array(19, 35, 6, 9, 47, 20), PackedInt32Array(14, 17, 21, 48, 49)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(14, -80, 66, -80, 64, -40, 104, -40, 105, -56, 134, -56, 134, -39, 148, -39, 150, -56, 181, -56, 182, -39, 179, -10, 67, -10, 67, 49, 79, 42, 95, 48, 100, 54, 176, 51, 176, 91, 91, 90, 8, 91, 8, 52, -33, 52, -34, 96, -95, 95, -94, 20, -129, 20, -153, 20, -152, 33, -202, 33, -203, 22, -228, 22, -228, -34, -204, -34, -204, -56, -169, -56, -169, -35, -146, -35, -145, -56, -108, -56, -107, -35, -88, -35, -88, -56, -50, -56, -51, -36, -33, -36, -33, -54, 2, -54, 2, -35, 17, -41)])
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("_clueLabel", "_curtainButton", "_settingsButton", "_articleButton", "_computerButton", "_fridgeButton", "_tableButton", "_phoneButton", "_bedButton", "_frogButton", "_boardButton", "_closetButton", "_briefcaseButton", "_dinnerTableButton", "_ovenButton", "_exitClueButton", "_scoreUIControl", "_ringtonePlayer")]
+[node name="Level" type="Node2D" node_paths=PackedStringArray("_clueLabel", "_curtainButton", "_settingsButton", "_articleButton", "_computerButton", "_fridgeButton", "_tableButton", "_phoneButton", "_bedButton", "_frogButton", "_boardButton", "_closetButton", "_briefcaseButton", "_dinnerTableButton", "_ovenButton", "_exitClueButton", "_ringtonePlayer", "_scoreUIControl")]
 script = ExtResource("1_uqqbp")
 _clueLabel = NodePath("UI/Clue/clue")
 _curtainButton = NodePath("UI/CurtainButton")
@@ -516,8 +516,8 @@ _briefcaseButton = NodePath("UI/briefcaseButton")
 _dinnerTableButton = NodePath("UI/dinnertable")
 _ovenButton = NodePath("UI/ovenButton")
 _exitClueButton = NodePath("UI/Clue/exitClue")
-_scoreUIControl = NodePath("UI/ScoreUI")
 _ringtonePlayer = NodePath("AudioStreamPlayer")
+_scoreUIControl = NodePath("UI/ScoreUI")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
