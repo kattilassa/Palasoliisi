@@ -117,31 +117,43 @@ namespace PalaSoliisi
 			}
 		}
 
+		/// <summary>
+		/// Initiate and reset minigame
+		/// </summary>
 		public override void _Ready()
 		{
+			// Initiate in game settings menu and hide it
 			_inGameMenu = GetNode<Control>("UI/InGameMenu");
 			_inGameMenu.Hide();
 
-			// Initializes Grid
+			// Initiate Grid
 			_grid = GetNode<Grid>("Grid");
 			if (_grid == null)
 			{
 				GD.PrintErr("Grid could not be found in nodetree!");
 			}
 
+			// Open setting menu when button clicked
 			_settingsButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnSettingsPressed)));
 
+			// Reset minigame when scene opened
 			ResetMiniGame();
 
 		}
 
+		/// <summary>
+		/// Read user input
+		/// </summary>
+		/// <param name="event">User input</param>
 		public override void _Input(InputEvent @event)
         {
+			// Touch screen event
         	if (@event is InputEventScreenTouch touchEvent
 			&& touchEvent.Index == 0
 			&& touchEvent.Pressed)
             {
+				// Get position from touch screen event
                 Vector2 clickPos = GetViewport().GetCanvasTransform().AffineInverse() * touchEvent.Position;
 
                 if (Grid.IsCellClicked(clickPos, out Vector2I gridCoord))

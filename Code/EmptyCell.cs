@@ -1,7 +1,7 @@
 namespace PalaSoliisi
 {
 	/// <summary>
-	/// Kuvaa tyhjää solua Gridillä.
+	/// Empty Cell in grid
 	/// </summary>
 	public class EmptyCell : ICellOccupier
 	{

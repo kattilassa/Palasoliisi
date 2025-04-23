@@ -14,6 +14,9 @@ namespace PalaSoliisi
 				new Callable(this, nameof(OnOkButtonPressed)));
 		}
 
+		/// <summary>
+		/// When button is clicked close how to play pop-up and start the game
+		/// </summary>
 		public void OnOkButtonPressed()
 		{
 			// Pois / piilota ??

@@ -11,7 +11,7 @@ namespace PalaSoliisi
 		[Export] private int _height = 0;
 
 
-		// Vector2I on integeriä kullekin koordinaatille yksikkönä käyttävä vektorityyppi.
+		// Size of the cell (clickable area)
 		[Export] private Vector2I _cellSize = Vector2I.Zero;
 
 		public int Width
@@ -23,8 +23,7 @@ namespace PalaSoliisi
 			get {return _height;}
 		}
 
-		// Tähän 2-uloitteiseen taulukkoon on tallennettu gridin solut. Alussa taulukkoa ei ole, vaan
-		// muuttujassa on tyhjä viittaus (null). Taulukko pitää luoda pelin alussa (esim. _Ready-metodissa).
+		// Save all cells from grid
 		private Cell[,] _cells = null;
 		private List<Cell> _freeCells = new List<Cell>();
 
@@ -34,19 +33,19 @@ namespace PalaSoliisi
 		{
 			get
 			{
-				// Lasketaan offset samalla tavalla kuin _Ready-metodissa
 				Vector2 offset = new Vector2((_width * _cellSize.X) / 2f, (_height * _cellSize.Y) / 2f);
 				return offset;
 			}
 		}
 
+		/// <summary>
+		/// Initiate grid when scene opened
+		/// </summary>
 		public override void _Ready()
 		{
 			_cells = new Cell[Width, Height];
 
-			// Laske se piste, josta taulukon rakentaminen aloitetaan. Koska 1. solu luodaan gridin vasempaan
-			// yläkulmaan, on meidän laskettava sitä koordinaattia vastaava piste. Oletetaan Gridin pivot-pisteen
-			// olevan kameran keskellä (https://en.wikipedia.org/wiki/Pivot_point).
+			// Grid offset point to start drawing from
 			Vector2 offset = new Vector2((_width * _cellSize.X) / 2, (_height * _cellSize.Y) / 2);
 
 			Vector2 halfNode = new Vector2(_cellSize.X / 2f, _cellSize.Y / 2f);
@@ -54,7 +53,7 @@ namespace PalaSoliisi
 			offset.X -= halfNode.X;
 			offset.Y -= halfNode.Y;
 
-			// Lataa Cell-scene. Luomme tästä uuden olion kutakin ruutua kohden.
+			// Load Cell scene
 			PackedScene cellScene = ResourceLoader.Load<PackedScene>(_cellScenePath);
 			if (cellScene == null)
 			{
@@ -62,7 +61,7 @@ namespace PalaSoliisi
 				return;
 			}
 
-			// Alustetaan Grid kahdella sisäkkäisellä for-silmukalla.
+			// Draw grid with given values
 			for (int x = 0; x < _width; ++x)
 			{
 				for (int y = 0; y < _height; ++y)
@@ -71,12 +70,10 @@ namespace PalaSoliisi
 					{
 						continue;
 					}
-					// Luo uusi olio Cell-scenestä.
+					// Initiate cell scene for grid cell that is being drawn
 					Cell cell = cellScene.Instantiate<Cell>();
-					// Lisää juuri luotu Cell-olio gridin Nodepuuhun.
+					// Add to node tree
 					AddChild(cell);
-					// Vector2 worldPosition = new Vector2(x * _cellSize.X, y * _cellSize.Y) - offset;
-					// cell.Position = worldPosition;
 
 					cell.Position = new Vector2(x * _cellSize.X, y * _cellSize.Y) - offset;
 					cell.GridPosition = new Vector2I(x, y);
@@ -87,20 +84,33 @@ namespace PalaSoliisi
 			}
 		}
 
+		/// <summary>
+		/// Check if coordinates valid in grid and return position
+		/// </summary>
+		/// <param name="gridPosition">Position in grid</param>
+		/// <param name="worldPosition"></param>
+		/// <returns>True if coordinates valid</returns>
 		public bool GetWorldPosition(Vector2I gridPosition, out Vector2 worldPosition)
 		{
 			if (IsValidCoordinate(gridPosition))
     		{
 				worldPosition = _cells[gridPosition.X, gridPosition.Y].Position;
 
-				return true; // Sijainti on laillinen
+				// Position valid
+				return true;
 			}
 
-    		worldPosition = Vector2.Zero; // Jos sijainti ei ole laillinen, palautetaan (0,0)
+    		// Position not valid, return (0, 0)
+			worldPosition = Vector2.Zero;
     		return false;
 
 		}
 
+		/// <summary>
+		/// Check if clicked position valid in grid
+		/// </summary>
+		/// <param name="gridPosition">Click position in grid coordinates</param>
+		/// <returns>True if coordinates valid in grid</returns>
 		public bool IsValidCoordinate(Vector2I gridPosition)
 		{
 			if (gridPosition.X >= 0 && gridPosition.X < _width &&
@@ -111,8 +121,15 @@ namespace PalaSoliisi
 			else {return false;}
 		}
 
+		/// <summary>
+		/// Set cell occupier type for cell
+		/// </summary>
+		/// <param name="occupier">Cell occupier type</param>
+		/// <param name="gridPosition">Position to occupy in grid</param>
+		/// <returns>True if cell can be occupied</returns>
 		public bool OccupyCell(ICellOccupier occupier, Vector2I gridPosition)
 		{
+			// Check if coordinates valid in grid
 			if (!IsValidCoordinate(gridPosition))
 			{
 				return false;
@@ -122,7 +139,7 @@ namespace PalaSoliisi
 			bool canOccupy = cell.Occupy(occupier);
 			if (canOccupy)
 			{
-				// Solu on varattu, poista se _freeCells-listalta.
+				// Cell already occupied, delete from list of free cells
 				_freeCells.Remove(cell);
 			}
 
@@ -130,10 +147,10 @@ namespace PalaSoliisi
 		}
 
 		/// <summary>
-		/// Vapauttaa solun.
+		/// Empty cell of all occupiers
 		/// </summary>
-		/// <param name="gridPosition">Solun sijainti gridin koordinaatistossa.</param>
-		/// <returns>True, jos vapautus onnistuu. False muuten.</returns>
+		/// <param name="gridPosition">Cell position in grid coordinates</param>
+		/// <returns>True if cell successfullt released. False otherwise.</returns>
 		public bool ReleaseCell(Vector2I gridPosition)
 		{
 			if (!IsValidCoordinate(gridPosition))
@@ -149,86 +166,32 @@ namespace PalaSoliisi
 		}
 
 		/// <summary>
-		/// Palauttaa satunnaisen vapaan solun gridiltä.
+		/// Return random cell from grid
 		/// </summary>
-		/// <returns>Satunnainen vapaa solu</returns>
+		/// <returns>Random free cell</returns>
 		public Cell GetRandomFreeCell()
 		{
-			// Koska lista indeksoidaan C#-kielessä nollasta alkaen, pitää listan
-			// pituudesta vähentää yksi, jotta saadaan oikeat luvut mukaan randomiin.
 			int randomIndex = GD.RandRange(0, _freeCells.Count - 1);
 			return _freeCells[randomIndex];
 		}
 
-		public bool HasCollectable(Vector2I gridPosition)
-		{
-			if (!IsValidCoordinate(gridPosition))
-			{
-				return false;
-			}
-
-			Cell cell = _cells[gridPosition.X, gridPosition.Y];
-			return cell.Occupier.Type == CellOccupierType.Collectable;
-		}
-
-		public ICellOccupier GetCollectable(Vector2I gridPosition)
-		{
-			if (!IsValidCoordinate(gridPosition))
-			{
-				return null;
-			}
-
-			Cell cell = _cells[gridPosition.X, gridPosition.Y];
-
-			return null;
-		}
-
-		public Card GetCard(Vector2I gridPosition)
-		{
-			if (!IsValidCoordinate(gridPosition))
-			{
-				return null;
-			}
-
-			Cell cell = _cells[gridPosition.X, gridPosition.Y];
-
-			if (cell.Occupier is Card)
-			{
-				return cell.Occupier as Card;
-			}
-
-			return null;
-		}
-
-		public CardBack GetCardBack(Vector2I gridPosition)
-		{
-			if (!IsValidCoordinate(gridPosition))
-			{
-				return null;
-			}
-
-			Cell cell = _cells[gridPosition.X, gridPosition.Y];
-
-			if (cell.Occupier is CardBack)
-			{
-				return cell.Occupier as CardBack;
-			}
-
-			return null;
-		}
-
+		/// <summary>
+		/// Convert clicked position to grid coordinates and check if coordinates are valid
+		/// </summary>
+		/// <param name="clickPosition">Click position</param>
+		/// <param name="gridCoordinate">Coordinate in grid</param>
+		/// <returns>True if click position valid in grid</returns>
 		public bool IsCellClicked(Vector2 clickPosition, out Vector2I gridCoordinate)
 		{
-			// Oletetaan, että näitä propertyjä on saatavilla
 			Vector2 cellSize = MiniGame.Current.Grid.CellSize;
 			Vector2 gridOffset = MiniGame.Current.Grid.Offset;
 
-			// Muunna klikkauspaikka ruudukon koordinaateiksi
+			// Convert click position to grid coordinates
 			int cellX = (int)Math.Floor((clickPosition.X + gridOffset.X) / cellSize.X);
 			int cellY = (int)Math.Floor((clickPosition.Y + gridOffset.Y) / cellSize.Y);
 			gridCoordinate = new Vector2I(cellX, cellY);
 
-			// Tarkista, että ruudun koordinaatit ovat kelvolliset
+			// Check if coordinates valid, return true if valid
 			return MiniGame.Current.Grid.IsValidCoordinate(gridCoordinate);
 		}
 
