@@ -46,11 +46,11 @@ theme_override_icons/grabber = ExtResource("3_rsaar")
 theme_override_icons/grabber_highlight = ExtResource("3_rsaar")
 theme_override_icons/grabber_disabled = ExtResource("3_rsaar")
 theme_override_styles/slider = SubResource("StyleBoxFlat_p38mr")
-value = 50.0
+value = 49.0
 
 [node name="VolumePercentageLabel" type="Label" parent="."]
 custom_minimum_size = Vector2(42, 0)
 layout_mode = 2
 theme = ExtResource("2_7ia43")
-text = "50%"
+text = "49%"
 horizontal_alignment = 2

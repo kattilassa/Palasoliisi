@@ -7,30 +7,15 @@ namespace PalaSoliisi
 {
 	public partial class Level : Node2D
 	{
-		private static Level _current = null;
-		private SceneTree _inGameSceneTree = null;
-
-		// Flags for UI visibility and game states
-		public bool _showInGameMenu = false;
-		public bool _showDialogue = false;
-		public bool _settingsClose = false;
-		public bool _UIpressed = false;
-		public bool _isMiniGameRunning = false;
-		public bool _isGameFinished = false;
-		public bool _isDialogueRunning = false;
-		public bool _isQuizDone = false;
-		public bool isRunning;
-		public bool callAnswered = false;
-		public bool callGloria= false;
-		public bool clueCollected= false;
-
-
-		// UI elements references
+		// Ui elements references
 		[Export] public Label _clueLabel;
-		private Control _UI;
+		[Export] private ScoreUIControl _scoreUIControl = null;
 		public Control _inGameMenu;
+		private Control _UI;
+		public Control _howToPlay = null;
 
-		// Texturebuttons for interacting with objects and furniture in the game
+
+		// Texture buttons for interacting with objects and furniture in the game
 		[Export] private TextureButton _curtainButton = null;
 		[Export] private TextureButton _settingsButton = null;
 		[Export] private TextureButton _articleButton = null;
@@ -45,18 +30,26 @@ namespace PalaSoliisi
 		[Export] private TextureButton _briefcaseButton = null;
 		[Export] private TextureButton _dinnerTableButton = null;
 		[Export] private TextureButton _ovenButton = null;
+
 		[Export] private Button _exitClueButton = null;
 
-		// Scene paths for the mini-game and endings.
+		// Scene paths for the minigame and endings
 		[Export] private string _miniGameScenePath = "res://Levels/MiniGame.tscn";
-		//[Export] private string _howToPlayScenePath = "res://Levels/HowToPlay.tscn";
 		[Export] private string _goodEndScenePath = "res://Levels/GoodEnd.tscn";
 		[Export] private string _badEndScenePath = "res://Levels/BadEnd.tscn";
+		[Export] private string _finalQuizScenePath = "res://Levels/FinalQuiz.tscn";
+
+		private static Level _current = null;
+		private SceneTree _inGameSceneTree = null;
 		private SceneTree _optionsSceneTree = null;
 		private Bernand _bernand = null;
 
-		// AnimationPlayer and sound effects.
-		public AnimationPlayer _animationPlayer;
+		private MiniGame _miniGame = null;
+		private Ending _ending = null;
+		public FinalQuiz _finalQuiz = null;
+
+		// Sound effects animation player
+		[Export] AudioStreamPlayer _ringtonePlayer;
 		private AudioStreamPlayer _soundPlayer;
         private AudioStream _ringtoneSound;
         private AudioStream _paperSound;
@@ -67,40 +60,43 @@ namespace PalaSoliisi
         private AudioStream _backpackSound;
 		private AudioStream _ovenSound;
 		private AudioStream _phoneSound;
-		[Export] AudioStreamPlayer _ringtonePlayer;
+		public AnimationPlayer _animationPlayer;
+
+		private PackedScene _dialogueScene = null;
+		private PackedScene _miniGameScene = null;
+		private PackedScene _finalQuizScene = null;
+		private PackedScene _endScene = null;
+
+		private Node _dialogueBox;
+		private Node _dialogueBubble;
+
+		public TextureRect _phoneEffect;
+		public TextureRect _clueCard;
+		public TextureRect _computerOn;
+
+		// Flags for UI visibility and game states
+		public bool _showInGameMenu = false;
+		public bool _showDialogue = false;
+		public bool _settingsClose = false;
+		public bool _UIpressed = false;
+		public bool _isMiniGameRunning = false;
+		public bool _isGameFinished = false;
+		public bool _isDialogueRunning = false;
+		public bool _isQuizDone = false;
+		public bool callAnswered = false;
+		public bool callGloria= false;
+		public bool clueCollected= false;
+		public bool _isAnswered = true;
+		public bool isRunning;
+
+		private int _articlePieces = 0;
+		private int _miniGameTurns = 0;
+		private int _testPoints = 0;
 
 		public static Level Current
 		{
 			get { return _current; }
 		}
-		[Export] private string _articleScenePath = "res://Levels/Collectables/Article.tscn";
-		//old article piece - not used ATM.
-		[Export] private string _finalQuizScenePath = "res://Levels/FinalQuiz.tscn";
-		[Export] private ScoreUIControl _scoreUIControl = null;
-
-        private Grid _grid = null;
-
-		private PackedScene _articleScene = null;
-		private PackedScene _obstacleScene = null;
-		private PackedScene _dialogueScene = null;
-		private PackedScene _miniGameScene = null;
-		//private PackedScene _howToPlayScene = null;
-		private PackedScene _finalQuizScene = null;
-		private PackedScene _endScene = null;
-		private MiniGame _miniGame = null;
-		public Control _howToPlay = null;
-		private Ending _ending = null;
-		private int _articlePieces = 0;
-		private int _miniGameTurns = 0;
-		private int _testPoints = 0;
-		public FinalQuiz _finalQuiz = null;
-		private Node _dialogueBox;
-		private Node _dialogueBubble;
-		public bool _isAnswered = true;
-		public TextureRect _phoneEffect;
-		public TextureRect _clueCard;
-		public TextureRect _computerOn;
-
 
         public int ArticlePieces
 		{
@@ -122,7 +118,6 @@ namespace PalaSoliisi
 				}
 			}
 		}
-
 		public int MiniGameTurns
 		{
 			get { return _miniGameTurns; }
@@ -139,31 +134,30 @@ namespace PalaSoliisi
 			}
 		}
 
-		public Grid Grid
-		{
-			get { return _grid; }
-		}
-
-		// Rakentaja. Käytetään alustamaan olio.
+		// Constructor
 		public Level()
 		{
 			_current = this;
 		}
+
 		public override void _Ready()
 		{
 			base._Ready();
 			GetTree().Paused = false;
 			_inGameSceneTree = GetTree();
+
 			_UI = GetNode<Control>("UI");
 			_howToPlay= GetNode<Control>("UI/howToPlay");
 			_inGameMenu = GetNode<Control>("UI/InGameMenu");
 			_dialogueBox = GetNode("UI/DialogueBox");
 			_dialogueBubble = GetNode("DialogueBubble");
-			_inGameMenu.Hide();
 			_bernand = GetNode<Bernand>("Camera2D/Bernand");
-			 _dialogueBox.Connect("dialogue_ended", new Callable(this, nameof(OnDialogueEnded)));
-			 _dialogueBox.Connect("dialogue_started", new Callable(this, nameof(OnDialogueStarted)));
-			  _dialogueBubble.Connect("dialogue_started", new Callable(this, nameof(OnDialogueBubbleStarted)));
+
+			_inGameMenu.Hide();
+
+			_dialogueBox.Connect("dialogue_ended", new Callable(this, nameof(OnDialogueEnded)));
+			_dialogueBox.Connect("dialogue_started", new Callable(this, nameof(OnDialogueStarted)));
+			_dialogueBubble.Connect("dialogue_started", new Callable(this, nameof(OnDialogueBubbleStarted)));
 			_settingsButton.Connect("gui_input", new Callable(this, nameof(OnSettingsGuiInput)));
 
 			_phoneEffect = GetNode<TextureRect>("alarmed");
@@ -173,61 +167,77 @@ namespace PalaSoliisi
 
 			_clueCard = GetNode<TextureRect>("UI/Clue");
 			_clueLabel = GetNode<Label>("UI/Clue/clue");
-			//_finalQuiz = GetNode<FinalQuiz>("Level/FinalQuiz.tscn");
 
-				//Texturebuttons for furniture and clue pieces.
-				_articleButton.Connect(Button.SignalName.Pressed,
+			// Read input for when button or furniture clicked
+			_articleButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnArticlePressed)));
-				_exitClueButton.Connect(Button.SignalName.Pressed,
+			_exitClueButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(clueExit)));
-			    _computerButton.Connect(Button.SignalName.Pressed,
+			_computerButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnComputerPressed)));
-				_phoneButton.Connect(Button.SignalName.Pressed,
+			_phoneButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnPhonePressed)));
-				_fridgeButton.Connect(Button.SignalName.Pressed,
+			_fridgeButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnFridgePressed)));
-				_tableButton.Connect(Button.SignalName.Pressed,
+			_tableButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnTablePressed)));
-					_bedButton.Connect(Button.SignalName.Pressed,
+			_bedButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnBedPressed)));
-				_frogButton.Connect(Button.SignalName.Pressed,
+			_frogButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnFrogPressed)));
-				_boardButton.Connect(Button.SignalName.Pressed,
+			_boardButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnBoardPressed)));
-				_curtainButton.Connect(Button.SignalName.Pressed,
+			_curtainButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnCurtainPressed)));
-				_ovenButton.Connect(Button.SignalName.Pressed,
+			_ovenButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnOvenPressed)));
-				_closetButton.Connect(Button.SignalName.Pressed,
+			_closetButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnClosetPressed)));
-				_animationPlayer = GetNode<AnimationPlayer>("piece/AnimationPlayer");
-				_dinnerTableButton.Connect(Button.SignalName.Pressed,
+			_dinnerTableButton.Connect(Button.SignalName.Pressed,
 				new Callable(this, nameof(OnDinnerTablePressed)));
-				_animationPlayer = GetNode<AnimationPlayer>("piece/AnimationPlayer");
+			_animationPlayer = GetNode<AnimationPlayer>("piece/AnimationPlayer");
 
-				//Sound effects that can be played through code.
-				_soundPlayer = GetNode<AudioStreamPlayer>("SoundPlayer");
-				 _ringtoneSound = GD.Load<AudioStream>("res://music/phone-ringtone.mp3");
-				 _paperSound = GD.Load<AudioStream>("res://music/paper.mp3");
-				  _callStartedSound = GD.Load<AudioStream>("res://music/phoneCall.mp3");
-				 _dingSound = GD.Load<AudioStream>("res://music/ding.mp3");
-				 _clickSound = GD.Load<AudioStream>("res://music/click.mp3");
-				 _cabinetSound = GD.Load<AudioStream>("res://music/cabinet.mp3");
+			// Animation player and sound effects
+			_animationPlayer = GetNode<AnimationPlayer>("piece/AnimationPlayer");
+			_soundPlayer = GetNode<AudioStreamPlayer>("SoundPlayer");
+				_ringtoneSound = GD.Load<AudioStream>("res://music/phone-ringtone.mp3");
+				_paperSound = GD.Load<AudioStream>("res://music/paper.mp3");
+				_callStartedSound = GD.Load<AudioStream>("res://music/phoneCall.mp3");
+				_dingSound = GD.Load<AudioStream>("res://music/ding.mp3");
+				_clickSound = GD.Load<AudioStream>("res://music/click.mp3");
+				_cabinetSound = GD.Load<AudioStream>("res://music/cabinet.mp3");
 				_backpackSound = GD.Load<AudioStream>("res://music/backpack.mp3");
 				_ovenSound = GD.Load<AudioStream>("res://music/oven-door.mp3");
 				_phoneSound = GD.Load<AudioStream>("res://music/phone.mp3");
 
+			// Reset game when scene opened
 			ResetGame();
 		}
+
+		/// <summary>
+		/// Reset game. Hide articles and reset score.
+		/// </summary>
+		public void ResetGame()
+		{
+			ArticlePieces= 0;
+			_articleButton.Hide();
+			_howToPlay.Show();
+		}
+
+		/// <summary>
+		/// When curtain pressed after final quiz complete end game and initiate end scene
+		/// </summary>
         public void OnCurtainPressed()
 		{
-			//Before the final quiz - character won't be able to leave the room.
+			// If final quiz not complete initiate pop-up dialogue bubble
 			if(!_isQuizDone)
 			{
-			_dialogueBubble.Call("start", "outside");
+				_dialogueBubble.Call("start", "outside");
 			}
+
 			GD.Print("Curtain pressed");
-			//After the final quiz - character can leave the room.
+
+			// After final quiz character can leave the room
 			if(_isQuizDone == true)
 			{
 				// Pause game and hide UI and character
@@ -255,8 +265,10 @@ namespace PalaSoliisi
 					_ending = null;
 				}
 
+				// Good end scene
 				if (_testPoints>=5)
 				{
+					// Initialize new ending
 					_endScene = ResourceLoader.Load<PackedScene>(_goodEndScenePath);
 					if (_endScene == null)
 					{
@@ -265,9 +277,10 @@ namespace PalaSoliisi
 					}
 				}
 
+				// Bad end scene
 				else if (_testPoints < 5)
 				{
-					//Initialize new ending
+					// Initialize new ending
 					_endScene = ResourceLoader.Load<PackedScene>(_badEndScenePath);
 					if (_endScene == null)
 					{
@@ -282,14 +295,26 @@ namespace PalaSoliisi
 				AddChild(_ending);
 			}
 		}
+
+		/// <summary>
+		/// When closet pressed play sound effect
+		/// </summary>
         public void OnClosetPressed()
         {
             PlaySound(_cabinetSound);
         }
+
+		/// <summary>
+		/// When oven pressed play sound effect
+		/// </summary>
  		public void OnOvenPressed()
         {
             PlaySound(_ovenSound);
         }
+
+		/// <summary>
+		/// Give final clue if 2 already found
+		/// </summary>
 		 public void OnDinnerTablePressed()
         {
 			if(_articlePieces==2)
@@ -298,15 +323,26 @@ namespace PalaSoliisi
 				_articleButton.Show();
 			}
         }
+
+		/// <summary>
+		/// When suitcase pressed play sound effect
+		/// </summary>
 		 public void OnBriefcasePressed()
         {
             PlaySound(_backpackSound);
         }
 
+		/// <summary>
+		/// When bed pressed initiate dialogue bubble
+		/// </summary>
         public void OnBedPressed()
         {
 				_dialogueBubble.Call("start", "bed");
         }
+
+		/// <summary>
+		/// Start minigame if clue is collected
+		/// </summary>
 		 public async void OnBoardPressed()
         {
 			await timerAsync(2);
@@ -319,18 +355,18 @@ namespace PalaSoliisi
 				StartMiniGame();
 			}
         }
+
+		/// <summary>
+		/// When alarm clock pressed play sound effect
+		/// </summary>
         public void OnFrogPressed()
         {
             PlaySound(_dingSound);
         }
 
-        public void ResetGame()
-		{
-			ArticlePieces= 0;
-			_articleButton.Hide();
-			_howToPlay.Show();
-		}
-
+		/// <summary>
+		/// Give second clue if 1 already found
+		/// </summary>
 		public void OnFridgePressed()
 		{
 			PlaySound(_cabinetSound);
@@ -342,11 +378,22 @@ namespace PalaSoliisi
 			}
 		}
 
+		/// <summary>
+		/// When sidetable pressed play sound effect and initiate dialogue bubble
+		/// </summary>
 		public void OnTablePressed()
 		{
 			PlaySound(_cabinetSound);
-				_dialogueBubble.Call("start", "honeyhere");
+			GD.Print("pöytä");
+			GD.Print("jääkaappi");
+
+			_dialogueBubble.Call("start", "honeyhere");
+
 		}
+
+		/// <summary>
+		/// When found article pressed start dialogue bubble and direct player to clue board
+		/// </summary>
 		private async void OnArticlePressed()
 		{
 			bool firstButton = true;
@@ -360,8 +407,8 @@ namespace PalaSoliisi
 			{ _articleButton.Hide();
 				firstButton=false;
 				_articleButton.GlobalPosition = new Vector2(87, -91);
+				// Play animation for visual clue for the player
 				_animationPlayer.Play("reminder");
-				//Play animation for visual animation tip for the player.
 			}
 			else if (_articlePieces == 1 && secondButton)
 			{
@@ -376,8 +423,8 @@ namespace PalaSoliisi
 				_articleButton.Hide();
 			}
 			clueCollected= true;
+			// Play animation for visual clue for the player
 			_animationPlayer.Play("clueboard");
-			//Play animation for visual animation tip for the player.
 		}
 
 		/// <summary>
@@ -388,6 +435,10 @@ namespace PalaSoliisi
 		{
 			_UI.Visible = visible;
 		}
+
+		/// <summary>
+		/// Start final quiz if all clues collected
+		/// </summary>
 		private async void OnComputerPressed()
 		{
 			await timerAsync(1);
@@ -406,7 +457,8 @@ namespace PalaSoliisi
 				Random rnd = new Random();
 				int randomDialogue = rnd.Next(1, 6);
 				String startID = $"{randomDialogue}";
-				//Get a random dialogue comment from bernard. (5 versions)
+
+				// Get random dialogue from Bernard (5 versions)
 				switch (randomDialogue)
 				{
 					case 1:
@@ -428,15 +480,21 @@ namespace PalaSoliisi
 			}
 			}
 		}
+
 		private async Task timerAsync(float time)
 		{
-		 await ToSignal(GetTree().CreateTimer(time), "timeout");
+			await ToSignal(GetTree().CreateTimer(time), "timeout");
 		}
+
 		public async void Movement()
 		{
-		await timerAsync(1);
-		 _UIpressed=false;
+			await timerAsync(1);
+			_UIpressed=false;
 		}
+
+		/// <summary>
+		/// After first dialogue start phone sound effect and animation
+		/// </summary>
 		public void OnDialogueEnded()
 		{
 				_isDialogueRunning = false;
@@ -461,6 +519,10 @@ namespace PalaSoliisi
 					clueAnimation();
 				}
 		}
+
+		/// <summary>
+		/// Animation on clue hiding places
+		/// </summary>
 		public void clueAnimation()
 		{
 				if(_articlePieces==1 && !clueCollected)
@@ -476,12 +538,14 @@ namespace PalaSoliisi
 					_animationPlayer.Stop();
 				}
 		}
+
 		public async void OnDialogueBubbleEnded()
 		{
 			    await timerAsync(1);
 		  		_dialogueBubble.Call("_on_dialogue_ended");
 				_isDialogueRunning = false;
 		}
+
 		public async void OnDialogueBubbleStarted(string id)
 		{
 				_isDialogueRunning = true;
@@ -489,49 +553,57 @@ namespace PalaSoliisi
 		  		_dialogueBubble.Call("_on_dialogue_ended");
 				_isDialogueRunning = false;
 		}
+
 		private void OnDialogueStarted(string id)
 		{
 			_isDialogueRunning = true;
 		}
-		private void DialogueAnimationSkipper()
-		{
-			if(_isDialogueRunning)
-			{
-			}
-		}
-			private async void OnPhonePressed()
+
+		/// <summary>
+		/// Start phone dialogue based on amount of clues found
+		/// </summary>
+		private async void OnPhonePressed()
 		{
 			PlaySound(_phoneSound);
+
 			if (_ringtonePlayer.Playing)
 			{
 				_phoneEffect.Hide();
 				_ringtonePlayer.Stop();
 			}
+
+			// Answer the phone to get the first clue
 			if(!_showInGameMenu & _articlePieces==0 & !callAnswered)
 			{
 				callAnswered=true;
+
 				await timerAsync(1);
 				dialogueStarter("phone");
-				//_dialogueBox.Call("start", "phone");
+
 				await timerAsync(5);
 				_articleButton.Show();
 				_animationPlayer.Play("flying_magazine");
 				PlaySound(_paperSound);
+
 				await timerAsync(5);
 				_animationPlayer.Play("reminder");
 			}
+			// When first clue found start dialogue on callinf gloria
 			else if (!callGloria && _articlePieces==1)
 			{
 				_animationPlayer.Stop();
+
 				callGloria=true;
+
 				PlaySound(_callStartedSound);
+
 				await timerAsync(2);
 				_soundPlayer.Stop();
 				dialogueStarter("callGloria");
 			}
 		}
 
-			public void OnSettingsGuiInput(InputEvent @event)
+		public void OnSettingsGuiInput(InputEvent @event)
 		{
 			if (@event is InputEventMouseButton mb)
 			{
@@ -541,21 +613,26 @@ namespace PalaSoliisi
 				}
 			}
 		}
+
+		/// <summary>
+		/// Change scene back to main menu
+		/// </summary>
 		public void OnMenuPressed()
 		{
 			GetTree().Paused = false;
 			_inGameSceneTree.ChangeSceneToFile("res://Code/UI/MainMenu.tscn");
 		}
+
 		public void Dialogue()
 		{
 			string startId = (string)_dialogueBox.Get("start_id");
 			_dialogueBox.Call("start", startId);
 		}
+
 		public void Ringing()
 		{
 			_animationPlayer.Play("alarmed");
 			_ringtonePlayer.Play();
-			//PlaySound(_ringtoneSound);
 			return;
 		}
 
@@ -572,12 +649,10 @@ namespace PalaSoliisi
 			}
 		}
 
-		public void callEnded()
-		{
-			return;
-		}
-
-		 private void showClueLabel()
+		/// <summary>
+		/// Show clue label when minigame solved. Change text based on the amount of clues found
+		/// </summary>
+		private void showClueLabel()
 		{
 			_clueCard.Show();
 			_isDialogueRunning = true;
@@ -593,7 +668,7 @@ namespace PalaSoliisi
 			-CredibleSource.com-
 			Signed by, The Mayor.";
 			}
-			//Find facts about the Mayor’s honey business certificated by scientists from Honey Science Inc.
+
 			else if (_articlePieces==3)
 			{
 				_computerOn.Show();
@@ -606,6 +681,9 @@ namespace PalaSoliisi
 			}
 		}
 
+		/// <summary>
+		/// Close clue label and start dialogue
+		/// </summary>
 		private void clueExit()
 		{
 
@@ -624,6 +702,10 @@ namespace PalaSoliisi
 				dialogueStarter("thirdClue");
 			}
 		}
+
+		/// <summary>
+		/// Start dialogue to instruct player to pree the curtain and end the game
+		/// </summary>
 		public void finalDialogue()
 		{
 			if (_isQuizDone == true)
@@ -633,8 +715,13 @@ namespace PalaSoliisi
 
 			}
 		}
+
+		/// <summary>
+		/// Start final quiz scene
+		/// </summary>
 		private void finalQuiz()
 		{
+			// Make sure no previous scene open
 			if (_finalQuiz != null)
 			{
 				_finalQuiz.QueueFree();
@@ -643,7 +730,7 @@ namespace PalaSoliisi
 
 			if (_finalQuizScene == null)
 			{
-				//Initialize new minigame
+				//Initialize new final quiz
 				_finalQuizScene = ResourceLoader.Load<PackedScene>(_finalQuizScenePath);
 				if (_finalQuizScene == null)
 				{
@@ -651,15 +738,19 @@ namespace PalaSoliisi
 					return;
 				}
 			}
+
+			// Open final quiz scene
 			_finalQuiz = _finalQuizScene.Instantiate<FinalQuiz>();
 			AddChild(_finalQuiz);
 		}
+
 		private void dialogueStarter(string dialogueID)
 		{
 				_dialogueBox.Call("start", dialogueID);
 		}
+
 		/// <summary>
-		/// Opens MiniGame scene when article collected
+		/// Opens MiniGame scene when article collected and clue board clicked
 		/// </summary>
 		public void StartMiniGame()
 		{
