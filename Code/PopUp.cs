@@ -19,7 +19,6 @@ namespace PalaSoliisi
 		/// </summary>
 		public void OnOkButtonPressed()
 		{
-			// Pois / piilota ??
 			Level.Current._howToPlay.Hide();
 			Level.Current._isDialogueRunning = false;
 			Level.Current._animationPlayer.Play("walking");

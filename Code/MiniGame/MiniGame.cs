@@ -14,6 +14,7 @@ namespace PalaSoliisi
 		[Signal]
 		public delegate void MiniGameCompletedEventHandler();
 
+		// Scene paths for card sprites
 		[Export] private string _card1ScenePath = "res://Levels/Collectables/Card1.tscn";
 		[Export] private string _card2ScenePath = "res://Levels/Collectables/Card2.tscn";
 		[Export] private string _card3ScenePath = "res://Levels/Collectables/Card3.tscn";
@@ -31,6 +32,7 @@ namespace PalaSoliisi
 		private static MiniGame _current = null;
 		private Grid _grid = null;
 		private Control _inGameMenu;
+
 		public bool _showInGameMenu = false;
 		private bool _settingsClose = false;
 

@@ -8,10 +8,7 @@ namespace PalaSoliisi
 	public enum CellOccupierType
 	{
 		None,
-		Bear,
-		Collectable,
 		Card,
-		CardBack,
-		Obstacle
+		CardBack
 	}
 }
